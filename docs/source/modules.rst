@@ -6,6 +6,5 @@ src
 
    ModelFitter
    FileHandler
-   Patient
    VPCData
    newapp

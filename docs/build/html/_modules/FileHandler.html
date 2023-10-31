@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FileHandler &mdash; Virtual Patient Cohorts 2023 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=dca6b923"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">FileHandler</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for FileHandler</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">VPCData</span> <span class="kn">import</span> <span class="n">VPCData</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1"># import xml.etree.ElementTree as ET</span>
+
+<div class="viewcode-block" id="FileHandler"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler">[docs]</a><span class="k">class</span> <span class="nc">FileHandler</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to handle files</span>
+
+<span class="sd">    ...</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    </span>
+<span class="sd">    path: str</span>
+<span class="sd">        path to the file to be read or written</span>
+<span class="sd">    mode: str</span>
+<span class="sd">        mode of the object, either read or write</span>
+<span class="sd">    fileName: str</span>
+<span class="sd">        name of the file to be written</span>
+<span class="sd">    format: str</span>
+<span class="sd">        format of the file to be written</span>
+<span class="sd">    patientData: any</span>
+<span class="sd">        data to be read from or written to the file</span>
+<span class="sd">        </span>
+<span class="sd">    </span>
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    ReadMode():</span>
+<span class="sd">        returns a class obejct in read mode</span>
+<span class="sd">        </span>
+<span class="sd">    WriteMode():</span>
+<span class="sd">        returns a class object in write mode</span>
+<span class="sd">        </span>
+<span class="sd">    mode():</span>
+<span class="sd">        returns the mode of the object</span>
+<span class="sd">        </span>
+<span class="sd">    mode(value):</span>
+<span class="sd">        sets the mode of the object</span>
+<span class="sd">        </span>
+<span class="sd">    path():</span>
+<span class="sd">        returns the path of the object</span>
+<span class="sd">        </span>
+<span class="sd">    path(value):</span>
+<span class="sd">        sets the path of the object</span>
+<span class="sd">        </span>
+<span class="sd">    fileName():</span>
+<span class="sd">        returns the name of the file to be written</span>
+<span class="sd">        </span>
+<span class="sd">    fileName(value):</span>
+<span class="sd">        sets the name of the file to be written</span>
+<span class="sd">        </span>
+<span class="sd">    fileformat():</span>
+<span class="sd">        return the format of the file</span>
+<span class="sd">        </span>
+<span class="sd">    fileformat(value):</span>
+<span class="sd">        sets the format of the file</span>
+<span class="sd">        </span>
+<span class="sd">    readFile():</span>
+<span class="sd">        reads data from a file and returns a dataframe</span>
+<span class="sd">        </span>
+<span class="sd">    formatData():</span>
+<span class="sd">        the read data stored as dataFrame is formatted to a list</span>
+<span class="sd">        </span>
+<span class="sd">    writeFile(data):</span>
+<span class="sd">        writes the input data into a file</span>
+<span class="sd">        </span>
+<span class="sd">    validateData():</span>
+<span class="sd">        TODO</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">FORMATS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EXCEL&#39;</span><span class="p">,</span> <span class="s1">&#39;CSV&#39;</span><span class="p">,</span> <span class="s1">&#39;XML&#39;</span><span class="p">]</span>
+    
+    <span class="n">MODES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;READ&#39;</span><span class="p">,</span> <span class="s1">&#39;WRITE&#39;</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s2">&quot;file_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">patientData</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileName</span> <span class="o">=</span> <span class="n">fileName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="nb">format</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patientData</span> <span class="o">=</span> <span class="n">patientData</span>
+
+<div class="viewcode-block" id="FileHandler.ReadMode"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.ReadMode">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">ReadMode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        classmethod</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str): path to the file to be read</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            FileHandler: class object in read mode </span>
+<span class="sd">            with the path to the respective file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="FileHandler.WriteMode"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.WriteMode">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">WriteMode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fileName</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">pData</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        classmethod</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str): _description_</span>
+<span class="sd">            fileName (str): _description_</span>
+<span class="sd">            format (str): _description_</span>
+<span class="sd">            pData (any): _description_</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            FileHandler: class object in write mode</span>
+<span class="sd">            with the path, fileName, format and patient data </span>
+<span class="sd">            for the respective file to be written</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="n">fileName</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">patientData</span><span class="o">=</span><span class="n">pData</span><span class="p">)</span></div>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        gets the mode of the object</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            mode (str): string of the object&#39;s mode</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span>
+    
+    <span class="nd">@mode</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the mode of the object</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mode (str): string of the mode that will be set to the input</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: input value can only be a string of read or write</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="n">mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="s1">&#39;READ&#39;</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="s1">&#39;WRITE&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown mode, specify &#39;read&#39; or &#39;write&#39;&quot;</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        gets the path of the file to be read or write</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            path (str): path of the object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>
+    
+    <span class="nd">@path</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the path of the file to be read or write</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str): path of the object</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: path has to be a string</span>
+<span class="sd">            ValueError: illegal characters are not allowed to be in a path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Path must be of type string&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="n">path</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s1">&#39;&lt;&gt;&quot;|?*&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Illegal character in path&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_path</span> <span class="o">=</span> <span class="n">path</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fileName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        gets the fileName of the file to be written</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            fileName (str): fileName of the object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileName</span>
+    
+    <span class="nd">@fileName</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">fileName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sets the fileName of the file to be written</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): fileName of the object</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: input has to be a string</span>
+<span class="sd">            ValueError: input must not contain dots or commas</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File name needs to be a string&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">c</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="s1">&#39;,.&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File name can&#39;t contain dots, commas, etc.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fileName</span> <span class="o">=</span> <span class="n">name</span>
+                
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fileFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        gets the format of the file</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            fileFormat (str): file format of the object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileFormat</span> 
+    
+    <span class="nd">@fileFormat</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">fileFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fileFormat</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        set the file format</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fileFormat (str): fileformat of the object</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: input file format has to be in the pre-defined dict</span>
+<span class="sd">            otherwise the given format is not supported</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">fileFormat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">FORMATS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown file format&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fileFormat</span> <span class="o">=</span> <span class="n">fileFormat</span>
+    
+<div class="viewcode-block" id="FileHandler.readFile"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.readFile">[docs]</a>    <span class="k">def</span> <span class="nf">readFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        reads from a file and stores the data in it</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: object has so be in read mode</span>
+<span class="sd">            FileNotFoundError: objects path has to be valid</span>
+<span class="sd">            ValueError: file of the specified path must have a format</span>
+<span class="sd">            TypeError: objects format is unknown, data can&#39;t be read</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;READ&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;FileHandler not in read mode&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Invalid Path; no file at destination&quot;</span><span class="p">)</span>
+            
+        <span class="n">suffix</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">suffix</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No Fileextension found at path&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">suffix</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;XLSX&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">suffix</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;CSV&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">suffix</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;XML&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Unknown File extension&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span></div>
+                
+<div class="viewcode-block" id="FileHandler.formatData"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.formatData">[docs]</a>    <span class="k">def</span> <span class="nf">formatData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">includeFirstRow</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        formats the read data to a list</span>
+<span class="sd">        and transforms it to a VPCData object</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: object has to be in read mode</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dataFrame (float): the read data as a list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if self.mode != &#39;READ&#39;:</span>
+        <span class="c1">#    raise ValueError(&quot;Can&#39;t read file while not in read mode&quot;)</span>
+        <span class="c1"># return self.dataFrame.values.tolist() if self.dataFrame is not None else []</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No data could be read&quot;</span><span class="p">)</span>
+        
+        <span class="n">columnNames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">vpcDataList</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">if</span> <span class="n">includeFirstRow</span><span class="p">:</span>
+            <span class="n">vpcDataList</span> <span class="o">=</span> <span class="p">[</span><span class="n">VPCData</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">columnNames</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vpcDataList</span> <span class="o">=</span> <span class="p">[</span><span class="n">VPCData</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">columnNames</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">vpcDataList</span> <span class="c1"># , self.dataFrame</span></div>
+
+    
+<div class="viewcode-block" id="FileHandler.writeFile"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.writeFile">[docs]</a>    <span class="k">def</span> <span class="nf">writeFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        write a file with given data</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (_type_): input data to be written to a file</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: object has to be in write mode</span>
+<span class="sd">            TypeError: file format of the file to be written </span>
+<span class="sd">            can only be one of the supported ones</span>
+<span class="sd">            (Excel, xml, csv)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s1">&#39;write&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t write while not in write mode&quot;</span><span class="p">)</span>
+        
+        <span class="n">resPath</span> <span class="o">=</span> <span class="s1">&#39;./results/res_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">FileHandler</span><span class="o">.</span><span class="n">i</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileFormat</span> <span class="o">==</span> <span class="s1">&#39;EXCEL&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">resPath</span> <span class="o">+</span> <span class="s1">&#39;.xlsx&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileFormat</span> <span class="o">==</span> <span class="s1">&#39;XML&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span><span class="o">.</span><span class="n">to_xml</span><span class="p">(</span><span class="n">resPath</span> <span class="o">+</span> <span class="s1">&#39;.xml&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileFormat</span> <span class="o">==</span> <span class="s1">&#39;CSV&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">resPath</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t write to unknown Fileextension&quot;</span><span class="p">)</span>
+        <span class="n">FileHandler</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
+        
+<div class="viewcode-block" id="FileHandler.validateData"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.validateData">[docs]</a>    <span class="k">def</span> <span class="nf">validateData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO</span>
+<span class="sd">        read dataFrame / patientData and discard rows, if they are not fully populated</span>
+<span class="sd">        think of way other than discarding incomplete data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

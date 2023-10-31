@@ -26,7 +26,7 @@ class VPCData(UserList):
         sets a given value at a given index in the data vector
     
     __len__():
-        return the lenght of the data vector
+        return the length of the data vector
         
     __delitem__(idx):
         deletes data at a given index
