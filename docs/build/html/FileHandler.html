@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FileHandler module &mdash; Virtual Patient Cohorts 2023 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dca6b923"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="VPCData module" href="VPCData.html" />
+    <link rel="prev" title="ModelFitter module" href="ModelFitter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FileHandler module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#FileHandler.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.FORMATS"><code class="docutils literal notranslate"><span class="pre">FileHandler.FORMATS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.MODES"><code class="docutils literal notranslate"><span class="pre">FileHandler.MODES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.ReadMode"><code class="docutils literal notranslate"><span class="pre">FileHandler.ReadMode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.WriteMode"><code class="docutils literal notranslate"><span class="pre">FileHandler.WriteMode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.fileFormat"><code class="docutils literal notranslate"><span class="pre">FileHandler.fileFormat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.fileName"><code class="docutils literal notranslate"><span class="pre">FileHandler.fileName</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.formatData"><code class="docutils literal notranslate"><span class="pre">FileHandler.formatData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.i"><code class="docutils literal notranslate"><span class="pre">FileHandler.i</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.mode"><code class="docutils literal notranslate"><span class="pre">FileHandler.mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.path"><code class="docutils literal notranslate"><span class="pre">FileHandler.path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.readFile"><code class="docutils literal notranslate"><span class="pre">FileHandler.readFile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.validateData"><code class="docutils literal notranslate"><span class="pre">FileHandler.validateData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.writeFile"><code class="docutils literal notranslate"><span class="pre">FileHandler.writeFile()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="VPCData.html">VPCData module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newapp.html">app module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">FileHandler module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/FileHandler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-FileHandler">
+<span id="filehandler-module"></span><h1>FileHandler module<a class="headerlink" href="#module-FileHandler" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="FileHandler.FileHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FileHandler.</span></span><span class="sig-name descname"><span class="pre">FileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'file_0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patientData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to handle files</p>
+<p>…</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>path: str</dt><dd><p>path to the file to be read or written</p>
+</dd>
+<dt>mode: str</dt><dd><p>mode of the object, either read or write</p>
+</dd>
+<dt>fileName: str</dt><dd><p>name of the file to be written</p>
+</dd>
+<dt>format: str</dt><dd><p>format of the file to be written</p>
+</dd>
+<dt>patientData: any</dt><dd><p>data to be read from or written to the file</p>
+</dd>
+</dl>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>ReadMode():</dt><dd><p>returns a class obejct in read mode</p>
+</dd>
+<dt>WriteMode():</dt><dd><p>returns a class object in write mode</p>
+</dd>
+<dt>mode():</dt><dd><p>returns the mode of the object</p>
+</dd>
+<dt>mode(value):</dt><dd><p>sets the mode of the object</p>
+</dd>
+<dt>path():</dt><dd><p>returns the path of the object</p>
+</dd>
+<dt>path(value):</dt><dd><p>sets the path of the object</p>
+</dd>
+<dt>fileName():</dt><dd><p>returns the name of the file to be written</p>
+</dd>
+<dt>fileName(value):</dt><dd><p>sets the name of the file to be written</p>
+</dd>
+<dt>fileformat():</dt><dd><p>return the format of the file</p>
+</dd>
+<dt>fileformat(value):</dt><dd><p>sets the format of the file</p>
+</dd>
+<dt>readFile():</dt><dd><p>reads data from a file and returns a dataframe</p>
+</dd>
+<dt>formatData():</dt><dd><p>the read data stored as dataFrame is formatted to a list</p>
+</dd>
+<dt>writeFile(data):</dt><dd><p>writes the input data into a file</p>
+</dd>
+<dt>validateData():</dt><dd><p>TODO</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.FORMATS">
+<span class="sig-name descname"><span class="pre">FORMATS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['EXCEL',</span> <span class="pre">'CSV',</span> <span class="pre">'XML']</span></em><a class="headerlink" href="#FileHandler.FileHandler.FORMATS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.MODES">
+<span class="sig-name descname"><span class="pre">MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['READ',</span> <span class="pre">'WRITE']</span></em><a class="headerlink" href="#FileHandler.FileHandler.MODES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.ReadMode">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.ReadMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.ReadMode" title="Permalink to this definition"></a></dt>
+<dd><p>classmethod</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>path (str): path to the file to be read</p>
+</dd>
+<dt>Returns:</dt><dd><p>FileHandler: class object in read mode 
+with the path to the respective file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.WriteMode">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WriteMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pData</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.WriteMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.WriteMode" title="Permalink to this definition"></a></dt>
+<dd><p>classmethod</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>path (str): _description_
+fileName (str): _description_
+format (str): _description_
+pData (any): _description_</p>
+</dd>
+<dt>Returns:</dt><dd><p>FileHandler: class object in write mode
+with the path, fileName, format and patient data 
+for the respective file to be written</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.fileFormat">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fileFormat</span></span><a class="headerlink" href="#FileHandler.FileHandler.fileFormat" title="Permalink to this definition"></a></dt>
+<dd><p>gets the format of the file</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>fileFormat (str): file format of the object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.fileName">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fileName</span></span><a class="headerlink" href="#FileHandler.FileHandler.fileName" title="Permalink to this definition"></a></dt>
+<dd><p>gets the fileName of the file to be written</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>fileName (str): fileName of the object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.formatData">
+<span class="sig-name descname"><span class="pre">formatData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">includeFirstRow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.formatData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.formatData" title="Permalink to this definition"></a></dt>
+<dd><p>formats the read data to a list
+and transforms it to a VPCData object</p>
+<dl class="simple">
+<dt>Raises:</dt><dd><p>ValueError: object has to be in read mode</p>
+</dd>
+<dt>Returns:</dt><dd><p>dataFrame (float): the read data as a list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.i">
+<span class="sig-name descname"><span class="pre">i</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#FileHandler.FileHandler.i" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#FileHandler.FileHandler.mode" title="Permalink to this definition"></a></dt>
+<dd><p>gets the mode of the object</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>mode (str): string of the object’s mode</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#FileHandler.FileHandler.path" title="Permalink to this definition"></a></dt>
+<dd><p>gets the path of the file to be read or write</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>path (str): path of the object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.readFile">
+<span class="sig-name descname"><span class="pre">readFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.readFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.readFile" title="Permalink to this definition"></a></dt>
+<dd><p>reads from a file and stores the data in it</p>
+<dl class="simple">
+<dt>Raises:</dt><dd><p>ValueError: object has so be in read mode
+FileNotFoundError: objects path has to be valid
+ValueError: file of the specified path must have a format
+TypeError: objects format is unknown, data can’t be read</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.validateData">
+<span class="sig-name descname"><span class="pre">validateData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.validateData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.validateData" title="Permalink to this definition"></a></dt>
+<dd><p>TODO
+read dataFrame / patientData and discard rows, if they are not fully populated
+think of way other than discarding incomplete data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.writeFile">
+<span class="sig-name descname"><span class="pre">writeFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.writeFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.writeFile" title="Permalink to this definition"></a></dt>
+<dd><p>write a file with given data</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data (_type_): input data to be written to a file</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: object has to be in write mode
+TypeError: file format of the file to be written 
+can only be one of the supported ones
+(Excel, xml, csv)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ModelFitter.html" class="btn btn-neutral float-left" title="ModelFitter module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="VPCData.html" class="btn btn-neutral float-right" title="VPCData module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

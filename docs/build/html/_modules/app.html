@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>app &mdash; Virtual Patient Cohorts 2023 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=dca6b923"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">app</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for app</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<span class="kn">from</span> <span class="nn">FileHandler</span> <span class="kn">import</span> <span class="n">FileHandler</span>
+<span class="kn">from</span> <span class="nn">VPCData</span> <span class="kn">import</span> <span class="n">VPCData</span>
+<span class="kn">from</span> <span class="nn">ModelFitter</span> <span class="kn">import</span> <span class="n">ModelFitter</span>
+
+
+<div class="viewcode-block" id="ModelEquationWindow"><a class="viewcode-back" href="../newapp.html#app.ModelEquationWindow">[docs]</a><span class="k">class</span> <span class="nc">ModelEquationWindow</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mainWindow</span><span class="p">,</span> <span class="n">modelEquationTextVar</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mainWindow</span><span class="p">)</span>
+        <span class="n">screenWidth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
+        <span class="n">screenHeight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span>
+        <span class="n">windowWidth</span> <span class="o">=</span> <span class="mi">400</span>
+        <span class="n">windowHeight</span> <span class="o">=</span> <span class="mi">160</span>
+        <span class="n">centerX</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screenWidth</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">460</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">centerY</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screenHeight</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">260</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">windowWidth</span><span class="si">}</span><span class="s1">x</span><span class="si">{</span><span class="n">windowHeight</span><span class="si">}</span><span class="s1">+</span><span class="si">{</span><span class="n">centerX</span><span class="si">}</span><span class="s1">+</span><span class="si">{</span><span class="n">centerY</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEqTextVar</span> <span class="o">=</span> <span class="n">modelEquationTextVar</span>
+        
+        <span class="c1"># text</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;You can modify the model equation below.</span><span class="se">\n</span><span class="s2">Please only use standard pythonic notation for the equation.</span><span class="se">\n</span><span class="s2">The independent variable should be called &#39;t&#39;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">explanatoryText</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">windowWidth</span><span class="p">)</span>
+        
+        <span class="c1"># labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Enter new model equation:&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># entries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEntry</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        
+        <span class="c1"># button</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateButton</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Update&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">updateEquationText</span><span class="p">)</span>
+        
+        <span class="c1"># grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">explanatoryText</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEntry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateButton</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ipady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ModelEquationWindow.updateEquationText"><a class="viewcode-back" href="../newapp.html#app.ModelEquationWindow.updateEquationText">[docs]</a>    <span class="k">def</span> <span class="nf">updateEquationText</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">newEquationText</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelEntry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEqTextVar</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">newEquationText</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div></div>
+
+<div class="viewcode-block" id="ResultsWindow"><a class="viewcode-back" href="../newapp.html#app.ResultsWindow">[docs]</a><span class="k">class</span> <span class="nc">ResultsWindow</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mainWindow</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mainWindow</span><span class="p">)</span>
+        <span class="n">screenWidth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
+        <span class="n">screenHeight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span>
+        <span class="n">windowWidth</span> <span class="o">=</span> <span class="mi">320</span>
+        <span class="n">windowHeight</span> <span class="o">=</span> <span class="mi">120</span>
+        <span class="n">centerX</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screenWidth</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">windowWidth</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">425</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">centerY</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screenHeight</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">240</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">windowWidth</span><span class="si">}</span><span class="s1">x</span><span class="si">{</span><span class="n">windowHeight</span><span class="si">}</span><span class="s1">+</span><span class="si">{</span><span class="n">centerX</span><span class="si">}</span><span class="s1">+</span><span class="si">{</span><span class="n">centerY</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelParameters</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelParameters</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f(t) = </span><span class="si">{</span><span class="n">message</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">*t + </span><span class="si">{</span><span class="n">message</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelParametersLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modelParameters</span><span class="p">)</span>
+        
+        <span class="c1"># grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelParametersLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MainApplication"><a class="viewcode-back" href="../newapp.html#app.MainApplication">[docs]</a><span class="k">class</span> <span class="nc">MainApplication</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Virtual Patient Cohort Generator&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># member variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filePath</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># setting window geometry relative to screen geometry</span>
+        <span class="n">screenWidth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
+        <span class="n">screenHeight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span>
+        <span class="n">windowWidth</span> <span class="o">=</span> <span class="mi">460</span>
+        <span class="n">windowHeight</span> <span class="o">=</span> <span class="mi">260</span>
+        <span class="n">centerX</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screenWidth</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">windowWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">centerY</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screenHeight</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">windowHeight</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">windowWidth</span><span class="si">}</span><span class="s1">x</span><span class="si">{</span><span class="n">windowHeight</span><span class="si">}</span><span class="s1">+</span><span class="si">{</span><span class="n">centerX</span><span class="si">}</span><span class="s1">+</span><span class="si">{</span><span class="n">centerY</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcParamsLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;#Function Parameters:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resComponentsLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;#Result Components:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelTypeLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Model Type:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataInputLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Datapoints:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexTimeLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Use Indexing for time:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useFirstRowLabel</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Include First Row:&#39;</span><span class="p">)</span>
+        <span class="c1"># self.amountToGenerateLabel = tk.Label(text=&#39;Amount To Generate:&#39;)</span>
+
+        <span class="c1"># entries</span>
+        <span class="n">vcmd</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">validateEntry</span><span class="p">))</span>
+        <span class="c1"># self.funcParams = tk.StringVar()</span>
+        <span class="c1"># self.funcParamsEntry = tk.Entry(textvariable=self.funcParams, validate=&#39;all&#39;, validatecommand=(vcmd, &#39;%P&#39;), width=5)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcParams</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">IntVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcParamsEntry</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">funcParams</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">validatecommand</span><span class="o">=</span> <span class="p">(</span><span class="n">vcmd</span><span class="p">,</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># self.resComponents = tk.StringVar()</span>
+        <span class="c1"># self.resComponentsEntry = tk.Entry(textvariable=self.resComponents, validate=&#39;all&#39;, validatecommand=(vcmd, &#39;%P&#39;), width=5)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resComponents</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">IntVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resComponentsEntry</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">resComponents</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">validatecommand</span><span class="o">=</span> <span class="p">(</span><span class="n">vcmd</span><span class="p">,</span> <span class="s1">&#39;%P&#39;</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        
+        <span class="c1"># checkboxes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useIndexingTime</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">BooleanVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexTimeCheck</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Checkbutton</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">useIndexingTime</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useFirstRow</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">BooleanVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useFirstRowCheck</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Checkbutton</span><span class="p">(</span><span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">useFirstRow</span><span class="p">)</span>
+        
+        <span class="c1"># constants / strings</span>
+        <span class="n">OPTIONS</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;Linear&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Polynomial&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Exponential&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Trigonometric&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Differential&#39;</span>
+        <span class="p">]</span>
+        <span class="n">EQUATIONS</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;A*t + B&#39;</span><span class="p">,</span>              <span class="c1"># linear</span>
+            <span class="s1">&#39;A*t^2 + B*t + C&#39;</span><span class="p">,</span>      <span class="c1"># polynomial</span>
+            <span class="s1">&#39;A*e^(B*t) + C&#39;</span><span class="p">,</span>        <span class="c1"># exponential</span>
+            <span class="s1">&#39;A*sin(B*t + C) + D&#39;</span><span class="p">,</span>   <span class="c1"># trigonometric</span>
+            <span class="s1">&#39;dy/dx = f(x, y)&#39;</span>       <span class="c1"># differential</span>
+        <span class="p">]</span>
+
+        <span class="c1"># drop down menu</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelTypeChoice</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelTypeChoice</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">OPTIONS</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataTypeMenu</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">OptionMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelTypeChoice</span><span class="p">,</span> <span class="o">*</span><span class="n">OPTIONS</span><span class="p">)</span>
+
+        <span class="c1"># buttons</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fileName</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;Browse...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataInputButton</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fileName</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">browseFiles</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generateDataButton</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Compute Parameters&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">computeParameters</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEquation</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEquation</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">EQUATIONS</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEditButton</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modelEquation</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">openModelEquationChangeWindow</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">updateButton</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">selectedIdx</span> <span class="o">=</span> <span class="n">OPTIONS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modelTypeChoice</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">modelEquation</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">EQUATIONS</span><span class="p">[</span><span class="n">selectedIdx</span><span class="p">])</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelTypeChoice</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">updateButton</span><span class="p">)</span>
+
+        <span class="c1"># placement in window</span>
+        <span class="n">labelPaddingX</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        
+        <span class="c1"># 1st row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcParamsLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">labelPaddingX</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funcParamsEntry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resComponentsLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">labelPaddingX</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resComponentsEntry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        
+        <span class="c1"># 2nd row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelTypeLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">labelPaddingX</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataTypeMenu</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+        <span class="c1"># 3rd row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelEditButton</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        
+        <span class="c1"># 4th row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataInputLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">labelPaddingX</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataInputButton</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        
+        <span class="c1"># 5th row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexTimeLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">labelPaddingX</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexTimeCheck</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        
+        <span class="c1"># 6th row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useFirstRowLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="n">labelPaddingX</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">useFirstRowCheck</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># 7th row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generateDataButton</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        
+<div class="viewcode-block" id="MainApplication.openModelEquationChangeWindow"><a class="viewcode-back" href="../newapp.html#app.MainApplication.openModelEquationChangeWindow">[docs]</a>    <span class="k">def</span> <span class="nf">openModelEquationChangeWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Opens a new window for the user to change the default model equation to a custom one</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">modelEquationWindow</span> <span class="o">=</span> <span class="n">ModelEquationWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelEquation</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="MainApplication.openResultsWindow"><a class="viewcode-back" href="../newapp.html#app.MainApplication.openResultsWindow">[docs]</a>    <span class="k">def</span> <span class="nf">openResultsWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="n">resultsWindow</span> <span class="o">=</span> <span class="n">ResultsWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="MainApplication.validateEntry"><a class="viewcode-back" href="../newapp.html#app.MainApplication.validateEntry">[docs]</a>    <span class="k">def</span> <span class="nf">validateEntry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validation method to ensure only digits are entered for #Function Parameters and #Result Components</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            P (str): character that user tries to enter</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            True: if entered character is a digit or empty (e.g. backspace)</span>
+<span class="sd">            False: otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">P</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">P</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span></div>
+    
+<div class="viewcode-block" id="MainApplication.browseFiles"><a class="viewcode-back" href="../newapp.html#app.MainApplication.browseFiles">[docs]</a>    <span class="k">def</span> <span class="nf">browseFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Opens filedialog for user to specify the location of the file.</span>
+<span class="sd">        Sets fileName and filePath if user did not cancel the dialog.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfile</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">fp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fn</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fileName</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filePath</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span></div>
+
+<div class="viewcode-block" id="MainApplication.computeParameters"><a class="viewcode-back" href="../newapp.html#app.MainApplication.computeParameters">[docs]</a>    <span class="k">def</span> <span class="nf">computeParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main functionality of the app. Computes Parameters of the model given the type of model to fit and a dataset.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: can&#39;t fit a model if there is no filepath specified and thus no data to be fitted into a model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filePath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Did not specify a filepath&quot;</span><span class="p">)</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">ReadMode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filePath</span><span class="p">)</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">readFile</span><span class="p">()</span>
+        <span class="n">vpcdList</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">formatData</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">useFirstRow</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        
+        <span class="n">modelFitter</span> <span class="o">=</span> <span class="n">ModelFitter</span><span class="p">()</span>
+        
+        <span class="n">modelEquation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelEquation</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">funcParams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcParams</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">resComps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resComponents</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        
+        <span class="c1"># , numFunctionParameters=funcParams, numResultComponents=resComps</span>
+        <span class="n">modelFitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">vpcdList</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="n">modelEquation</span><span class="p">)</span></div></div>
+        
+        <span class="c1">#print(f&quot;f(t) = {modelFitter.coefficients[0]}*t + {modelFitter.intercept}&quot;)</span>
+        
+        <span class="c1">#self.openResultsWindow([str(modelFitter.coefficients[0]), str(modelFitter.intercept)])</span>
+        <span class="c1"># vpcdList:</span>
+        <span class="c1"># 0: empty file</span>
+        <span class="c1"># 1: assumption: not timeVec, only measurementVec</span>
+        <span class="c1"># 2: assumption: timeVec and measurementVec</span>
+        <span class="c1"># &gt;2: unclear; assumption: timeVec, measurementVec, and more?</span>
+        
+        
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span> <span class="o">=</span> <span class="n">MainApplication</span><span class="p">()</span>
+    <span class="n">main</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
