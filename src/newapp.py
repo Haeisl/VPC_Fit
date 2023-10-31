@@ -26,6 +26,33 @@ class ResultsWindow(tk.Toplevel):
 
 
 class MainApplication(tk.Tk):
+    """
+    A class to handle the functionality of the interface
+
+    ...
+
+    Attributes
+    ----------
+
+    filePath: str
+        path to the file to be read or written
+    funcParams: tk.StringVar()
+        parameters of the function to be fitted
+    numResComps: tk.StringVar()
+        number of components of the result
+    fileName: tk.StringVar()
+        name of the file to be read or written
+    modelEquation: tk.StringVar()
+        equation of the function to be fitted
+
+
+    Methods
+    -------
+
+
+
+    """
+
 
     def __init__(self):
         tk.Tk.__init__(self)
