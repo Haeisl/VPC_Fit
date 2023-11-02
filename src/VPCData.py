@@ -1,61 +1,27 @@
 from collections import UserList
 
 class VPCData(UserList):
-    """
-    A class to handle virtual patient data.
-    Basically just a list atm.
+    """This is a class to handle virtual patient data. Basically just a list atm.
 
-    Args:
-        UserList (class): wrapper around list objects
-        
-    ...
-    
-    Attributes
-    ----------
-    
-    data: vec
-        patient data
-    
-    
-    Methods
-    -------
-    __getitem__(idx):
-        returns the element of a given index in the data vector
-        
-    __setitem__(idx, value):
-        sets a given value at a given index in the data vector
-    
-    __len__():
-        return the length of the data vector
-        
-    __delitem__(idx):
-        deletes data at a given index
-        
-    append(next):
-        appends a given list or value to the data vector
-        
-    insert(idx, value):
-        inserts a given list or value at the desired index in the data vector
-        
-    remove(value):
-        deletes the given value from the data vector
-        
-    index(item, \*args):
-        returns the index of a given item
+    :param UserList: wrapper around list objects
+    :type UserList: class
     """
 
     def __init__(self, data=None):
+        """Constructor method
+
+        :param data: patient data read from the input files or generated virtual patient data, defaults to None
+        :type data: list, optional
+        """
         super().__init__(data)
         
     def __getitem__(self, idx):
-        """
-        returns the element of a given index in the data vector
+        """returns the element of a given index in the data list
 
-        Args:
-            idx (int): index in the data vector of the object
-
-        Returns:
-            data[idx]: data at a given index
+        :param idx: index in the data list of the object
+        :type idx: int
+        :return: data at a given index
+        :rtype: float
         """
         if isinstance(idx, slice):
             return self.__class__(self.data[idx])
@@ -63,40 +29,36 @@ class VPCData(UserList):
             return self.data[idx]
         
     def __setitem__(self, idx, value):
-        """
-        sets a given value at a given index in the data vector
+        """sets a given value at a given index in the data list
 
-        Args:
-            idx (int): index in the data vector of the object
-            value (any): value that should be at the given index
+        :param idx: index in the data list of the object
+        :type idx: int
+        :param value: value that should be at the given index
+        :type value: float
         """
         self.data[idx] = value
         
     def __len__(self):
-        """
-        return the lenght of the data vector
+        """returns the length of the data list
 
-        Returns:
-            int: objects lenght
+        :return: objects length
+        :rtype: int
         """
         return len(self.data)
     
     def __delitem__(self, idx):
-        """
-        deletes data at a given index
+        """deletes an element in the data list at a given index
 
-        Args:
-            idx (int): index in the data vector of the object
+        :param idx: index in the data list
+        :type idx: int
         """
         del self.data[idx]
         
     def append(self, next):
-        """
-        appends a given list or value to the data vector
+        """appends a given list or value to the data list
 
-        Args:
-            next (vec, float): input list or value to be appended
-            to the objects data
+        :param next: input list or value to be appended to the objects data
+        :type next: any
         """
         if isinstance(next, list):
             for value in next:
@@ -105,12 +67,12 @@ class VPCData(UserList):
             self.data.append(next)
         
     def insert(self, idx, value):
-        """
-        inserts a given list or value at the desired index in the data vector
+        """inserts a given list or value at the desired index in the data list
 
-        Args:
-            idx (idx): index in the data vector of the object
-            value (vec, float): given list or value to be inserted
+        :param idx: index in the data list of the object
+        :type idx: int
+        :param value: given list or value to be inserted
+        :type value: any
         """
         if isinstance(value, list):
             for i, val in enumerate(value):
@@ -119,31 +81,24 @@ class VPCData(UserList):
             self.data.insert(idx, value)
         
     def remove(self, value):
-        """
-        deletes the given value from the data vector
+        """deletes the given value from the data list
 
-        Args:
-            value (float): value in the data vector to be deleted
-
-        Raises:
-            ValueError: given value has to be in the objects data vector
+        :param value: value in the data list to be deleted
+        :type value: float
+        :raises ValueError: given value has to be in the objects data list
         """
         if value not in self.data:
             raise ValueError("value not in list")
         self.data.remove(value)
         
     def index(self, item, *args):
-        """
-        returns the index of a given item
-        
-        Args:
-            item (float): element of the objects data vector
+        """returns the index of a given element in the data list
 
-        Raises:
-            ValueError: input item has to be in the objects data vector
-
-        Returns:
-            int: index of the given item
+        :param item: element of the objects data list
+        :type item: float
+        :raises ValueError: input element has to be in the objects data list
+        :return: index of the given element
+        :rtype: int
         """
         if item not in self.data:
             raise ValueError("item not in list")

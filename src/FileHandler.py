@@ -4,70 +4,23 @@ from pathlib import Path
 # import xml.etree.ElementTree as ET
 
 class FileHandler():
-    """
-    A class to handle files
+    """This is a class to handle files
 
-    ...
-    
-    Attributes
-    ----------
-    
-    path: str
-        path to the file to be read or written
-    mode: str
-        mode of the object, either read or write
-    fileName: str
-        name of the file to be written
-    format: str
-        format of the file to be written
-    patientData: any
-        data to be read from or written to the file
-        
-    
-    Methods
-    -------
-    ReadMode():
-        returns a class obejct in read mode
-        
-    WriteMode():
-        returns a class object in write mode
-        
-    mode():
-        returns the mode of the object
-        
-    mode(value):
-        sets the mode of the object
-        
-    path():
-        returns the path of the object
-        
-    path(value):
-        sets the path of the object
-        
-    fileName():
-        returns the name of the file to be written
-        
-    fileName(value):
-        sets the name of the file to be written
-        
-    fileformat():
-        return the format of the file
-        
-    fileformat(value):
-        sets the format of the file
-        
-    readFile():
-        reads data from a file and returns a dataframe
-        
-    formatData():
-        the read data stored as dataFrame is formatted to a list
-        
-    writeFile(data):
-        writes the input data into a file
-        
-    validateData():
-        TODO
-
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises FileNotFoundError: _description_
+    :raises ValueError: _description_
+    :raises TypeError: _description_
+    :raises ValueError: _description_
+    :raises ValueError: _description_
+    :raises TypeError: _description_
+    :return: _description_
+    :rtype: _type_
     """
     
     i = 0
@@ -77,6 +30,19 @@ class FileHandler():
     MODES = ['READ', 'WRITE']
     
     def __init__(self, path=None, mode=None, fileName="file_" + str(i), format=None, patientData=None):
+        """Constructor method
+
+        :param path: path to the file to be read or written, defaults to None
+        :type path: str, optional
+        :param mode: mode of the object which can be either read or write, defaults to None
+        :type mode: str, optional
+        :param fileName: name of the file to be written, defaults to "file_"+str(i)
+        :type fileName: str, optional
+        :param format: format of the file to be written, defaults to None
+        :type format: str, optional
+        :param patientData: data to be read from or written to the file, defaults to None
+        :type patientData: any, optional
+        """
         self.path = path
         self.mode = mode
         self.fileName = fileName
@@ -85,56 +51,48 @@ class FileHandler():
 
     @classmethod
     def ReadMode(cls, path):
-        """
-        classmethod
+        """classmethod, returns a FileHandler class obejct in read mode
 
-        Args:
-            path (str): path to the file to be read
-
-        Returns:
-            FileHandler: class object in read mode 
-            with the path to the respective file
+        :param path: path to the file to be read
+        :type path: str
+        :return: class object in read mode with the path to the respective file
+        :rtype: FileHandler
         """
         return cls(path=path, mode='r')
     
     @classmethod
     def WriteMode(cls, path, fileName, format, pData):
-        """
-        classmethod
+        """classmethod, returns a FileHandler class object in write mode
 
-        Args:
-            path (str): _description_
-            fileName (str): _description_
-            format (str): _description_
-            pData (any): _description_
-
-        Returns:
-            FileHandler: class object in write mode
-            with the path, fileName, format and patient data 
-            for the respective file to be written
+        :param path: path to the file to be written
+        :type path: str
+        :param fileName: name of the file to be written
+        :type fileName: str
+        :param format: format of the file to be written
+        :type format: str
+        :param pData: data to be written
+        :type pData: any
+        :return: class object in write mode with the path, fileName, format and patient data for the respective file to be written
+        :rtype: FileHandler
         """
         return cls(path=path, mode='w', fileName=fileName, format=format, patientData=pData)
     
     @property
     def mode(self):
-        """
-        gets the mode of the object
+        """gets the mode of the object
 
-        Returns:
-            mode (str): string of the object's mode
+        :return: current mode of the object
+        :rtype: str
         """
         return self._mode
     
     @mode.setter
     def mode(self, mode):
-        """
-        sets the mode of the object
+        """sets the mode of the object to the given value
 
-        Args:
-            mode (str): string of the mode that will be set to the input
-
-        Raises:
-            ValueError: input value can only be a string of read or write
+        :param mode: mode of the object
+        :type mode: str
+        :raises ValueError: input value can only be a string of 'read' or 'write'
         """
         if mode.upper() in self.MODES:
             self._mode = mode.upper()
@@ -147,25 +105,21 @@ class FileHandler():
     
     @property
     def path(self):
-        """
-        gets the path of the file to be read or write
+        """gets the path of the file to be read or write
 
-        Returns:
-            path (str): path of the object
+        :return: current path of the object
+        :rtype: str
         """
         return self._path
     
     @path.setter
     def path(self, path):
-        """
-        sets the path of the file to be read or write
+        """sets the path of the file that is being read or written to
 
-        Args:
-            path (str): path of the object
-
-        Raises:
-            ValueError: path has to be a string
-            ValueError: illegal characters are not allowed to be in a path
+        :param path: path of the object
+        :type path: str
+        :raises ValueError: path has to be a string
+        :raises ValueError: illegal characters are not allowed to be in a path
         """
         if not isinstance(path, str):
             raise ValueError("Path must be of type string")
@@ -175,25 +129,21 @@ class FileHandler():
         
     @property
     def fileName(self):
-        """
-        gets the fileName of the file to be written
+        """gets the name of the file to be written
 
-        Returns:
-            fileName (str): fileName of the object
+        :return: current fileName of the object
+        :rtype: str
         """
         return self._fileName
     
     @fileName.setter
     def fileName(self, name):
-        """
-        sets the fileName of the file to be written
+        """sets the name of the file to be written to the input value
 
-        Args:
-            name (str): fileName of the object
-
-        Raises:
-            ValueError: input has to be a string
-            ValueError: input must not contain dots or commas
+        :param name: file name of the object
+        :type name: str
+        :raises ValueError: input has to be a string
+        :raises ValueError: input must not contain dots or commas
         """
         if not isinstance(name, str):
             raise ValueError("File name needs to be a string")
@@ -203,39 +153,34 @@ class FileHandler():
                 
     @property
     def fileFormat(self):
-        """
-        gets the format of the file
+        """gets the format of the file
 
-        Returns:
-            fileFormat (str): file format of the object
+        :return: current file format of the object
+        :rtype: str
         """
         return self._fileFormat 
     
     @fileFormat.setter
     def fileFormat(self, fileFormat):
-        """
-        set the file format
+        """sets the format of the file to the input value
 
-        Args:
-            fileFormat (str): fileformat of the object
-
-        Raises:
-            ValueError: input file format has to be in the pre-defined dict
-            otherwise the given format is not supported
+        :param fileFormat: file format of the object
+        :type fileFormat: str
+        :raises ValueError: input file format has to be in the pre-defined dict otherwise the given format is not supported
         """
         if fileFormat not in self.FORMATS:
             raise ValueError("Unknown file format")
         self._fileFormat = fileFormat
     
     def readFile(self):
-        """
-        reads from a file and stores the data in it
+        """reads data from a file and returns a dataframe
 
-        Raises:
-            ValueError: object has so be in read mode
-            FileNotFoundError: objects path has to be valid
-            ValueError: file of the specified path must have a format
-            TypeError: objects format is unknown, data can't be read
+        :raises ValueError: object has so be in read mode
+        :raises FileNotFoundError: objects path has to be valid
+        :raises ValueError: file of the specified path must have a format
+        :raises TypeError: objects format is unknown, data can't be read
+        :return: the data read from the file
+        :rtype: dataframe
         """
         if not self.mode == 'READ':
             raise ValueError("FileHandler not in read mode")
@@ -258,15 +203,13 @@ class FileHandler():
         return self.dataFrame
                 
     def formatData(self, includeFirstRow:bool):
-        """
-        formats the read data to a list
-        and transforms it to a VPCData object
+        """formats read data from a file to a list and transforms it to a VPCData object
 
-        Raises:
-            ValueError: object has to be in read mode
-
-        Returns:
-            dataFrame (float): the read data as a list
+        :param includeFirstRow: -deprecated-
+        :type includeFirstRow: bool
+        :raises ValueError: object has to be in read mode
+        :return: the transformed read data
+        :rtype: list[VPCData]
         """
         # if self.mode != 'READ':
         #    raise ValueError("Can't read file while not in read mode")
@@ -287,17 +230,12 @@ class FileHandler():
 
     
     def writeFile(self, data):
-        """
-        write a file with given data
+        """writes the given data into a file
 
-        Args:
-            data (_type_): input data to be written to a file
-
-        Raises:
-            ValueError: object has to be in write mode
-            TypeError: file format of the file to be written 
-            can only be one of the supported ones
-            (Excel, xml, csv)
+        :param data: data to be written to a file
+        :type data: any
+        :raises ValueError: object has to be in write mode
+        :raises TypeError: file format of the file to be written can only be one of the supported ones (excel, csv, xml)
         """
         if self.mode != 'write':
             raise ValueError("Can't write while not in write mode")
@@ -315,8 +253,7 @@ class FileHandler():
         FileHandler.i += 1
         
     def validateData(self):
-        """
-        TODO
+        """TODO
         read dataFrame / patientData and discard rows, if they are not fully populated
         think of way other than discarding incomplete data
         """
