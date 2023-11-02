@@ -6,7 +6,16 @@ from ModelFitter import ModelFitter
 
 
 class ResultsWindow(tk.Toplevel):
+    """This is a class to handle the functionality of the interface in connection with the presentation of the results 
+    """
     def __init__(self, mainWindow, message):
+        """Constructor method
+
+        :param mainWindow: the underlying main interface window
+        :type mainWindow: MainApplication class object
+        :param message: final equation with the calculated fitted parameters
+        :type message: list
+        """
         super().__init__(mainWindow)
         screenWidth = self.winfo_screenwidth()
         screenHeight = self.winfo_screenheight()
@@ -23,38 +32,38 @@ class ResultsWindow(tk.Toplevel):
 
         # grid
         self.finalEquationLabel.grid(column=0, row=0, sticky=tk.NSEW, padx=10, pady=10)
+    
+    def download():
+        """opens filedialog for user to specify the location for the file with the results to be written if the user did not cancel the dialog
+        
+        This function combines the functionality to write the results into a file and save it on the computer
+        """
+        pass
+
+    def restart():
+        """sets the program to it's default state
+        """
+        pass
 
 
 class MainApplication(tk.Tk):
+    """This is a class to handle the functionality of the interface
     """
-    A class to handle the functionality of the interface
-
-    ...
-
-    Attributes
-    ----------
-
-    filePath: str
-        path to the file to be read or written
-    funcParams: tk.StringVar()
-        parameters of the function to be fitted
-    numResComps: tk.StringVar()
-        number of components of the result
-    fileName: tk.StringVar()
-        name of the file to be read or written
-    modelEquation: tk.StringVar()
-        equation of the function to be fitted
-
-
-    Methods
-    -------
-
-
-
-    """
-
 
     def __init__(self):
+        """Constructor method
+
+        :param filePath: path to the file to be read or written
+        :type filePath: str
+        :param funcParams: parameters of the function to be fitted
+        :type funcParams: tk.StringVar()
+        :param numResComps: number of components of the result
+        :type numResComp: tk.StringVar()
+        :param fileName: name of the file to be read or written
+        :type fileName: tk.StringVar()
+        :param modelEquation: equation of the function to be fitted
+        :type modelEquation: tk.StringVar()
+        """
         tk.Tk.__init__(self)
         self.title('Virtual Patient Cohort Generator')
         self.filePath = None
@@ -114,24 +123,25 @@ class MainApplication(tk.Tk):
         self.generateDataButton.grid(column=2, row=4, columnspan=2, sticky=tk.E, ipadx=20, padx=(5,20), pady=(10,5))
 
     def openResultsWindow(self, parameters):
+        """returns a ResultWindow object to present the resulting fitted parameters
+
+        :param parameters: the calculated parameters
+        :type parameters: list[float]
+        """
         resultsWindow = ResultsWindow(self, parameters)
 
     def validateEntry(self, P: str):
-        """
-        Validation method to ensure only digits are entered for #Function Parameters and #Result Components
+        """validation method to ensure only digits are entered for #FunctionParameters and #ResultComponents
 
-        Args:
-            P (str): character that user tries to enter
-        Returns:
-            True: if entered character is a digit or empty (e.g. backspace)
-            False: otherwise
+        :param P: character that user tries to enter
+        :type P: str
+        :return: true, if entered character is a digit or empty (e.g. backspace), false otherwise
+        :rtype: bool
         """
         return P.isdigit() or P == ''
     
     def browseFiles(self):
-        """
-        Opens filedialog for user to specify the location of the file.
-        Sets fileName and filePath if user did not cancel the dialog.
+        """opens filedialog for user to specify the location of the file and sets file name and file path if the user did not cancel the dialog
         """
         fp = filedialog.askopenfile()
         if fp is not None:
@@ -140,6 +150,8 @@ class MainApplication(tk.Tk):
             self.filePath = fp.name
     
     def computeParameters(self):
+        """calculates the desired parameters based on the requirements provided by the user
+        """
         self.openResultsWindow([2, 3])
 
 
