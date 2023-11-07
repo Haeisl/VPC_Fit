@@ -41,7 +41,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests.html">tests</a></li>
 </ul>
 
         </div>
@@ -76,10 +77,10 @@
 <span class="kn">from</span> <span class="nn">ModelFitter</span> <span class="kn">import</span> <span class="n">ModelFitter</span>
 
 
-<div class="viewcode-block" id="ResultsWindow"><a class="viewcode-back" href="../newapp.html#app.ResultsWindow">[docs]</a><span class="k">class</span> <span class="nc">ResultsWindow</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">):</span>
+<div class="viewcode-block" id="ResultsWindow"><a class="viewcode-back" href="../app.html#app.ResultsWindow">[docs]</a><span class="k">class</span> <span class="nc">ResultsWindow</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to handle the functionality of the interface in connection with the presentation of the results </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="ResultsWindow.__init__"><a class="viewcode-back" href="../newapp.html#app.ResultsWindow.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mainWindow</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<div class="viewcode-block" id="ResultsWindow.__init__"><a class="viewcode-back" href="../app.html#app.ResultsWindow.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mainWindow</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
 
 <span class="sd">        :param mainWindow: the underlying main interface window</span>
@@ -104,24 +105,24 @@
         <span class="c1"># grid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">finalEquationLabel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">NSEW</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
     
-<div class="viewcode-block" id="ResultsWindow.download"><a class="viewcode-back" href="../newapp.html#app.ResultsWindow.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">():</span>
+<div class="viewcode-block" id="ResultsWindow.download"><a class="viewcode-back" href="../app.html#app.ResultsWindow.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;opens filedialog for user to specify the location for the file with the results to be written if the user did not cancel the dialog</span>
 <span class="sd">        </span>
 <span class="sd">        This function combines the functionality to write the results into a file and save it on the computer</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="ResultsWindow.restart"><a class="viewcode-back" href="../newapp.html#app.ResultsWindow.restart">[docs]</a>    <span class="k">def</span> <span class="nf">restart</span><span class="p">():</span>
+<div class="viewcode-block" id="ResultsWindow.restart"><a class="viewcode-back" href="../app.html#app.ResultsWindow.restart">[docs]</a>    <span class="k">def</span> <span class="nf">restart</span><span class="p">():</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;sets the program to it&#39;s default state</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
 
 
-<div class="viewcode-block" id="MainApplication"><a class="viewcode-back" href="../newapp.html#app.MainApplication">[docs]</a><span class="k">class</span> <span class="nc">MainApplication</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+<div class="viewcode-block" id="MainApplication"><a class="viewcode-back" href="../app.html#app.MainApplication">[docs]</a><span class="k">class</span> <span class="nc">MainApplication</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to handle the functionality of the interface</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MainApplication.__init__"><a class="viewcode-back" href="../newapp.html#app.MainApplication.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainApplication.__init__"><a class="viewcode-back" href="../app.html#app.MainApplication.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
 
 <span class="sd">        :param filePath: path to the file to be read or written</span>
@@ -193,7 +194,7 @@
         <span class="c1"># 5th row</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generateDataButton</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="MainApplication.openResultsWindow"><a class="viewcode-back" href="../newapp.html#app.MainApplication.openResultsWindow">[docs]</a>    <span class="k">def</span> <span class="nf">openResultsWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+<div class="viewcode-block" id="MainApplication.openResultsWindow"><a class="viewcode-back" href="../app.html#app.MainApplication.openResultsWindow">[docs]</a>    <span class="k">def</span> <span class="nf">openResultsWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;returns a ResultWindow object to present the resulting fitted parameters</span>
 
 <span class="sd">        :param parameters: the calculated parameters</span>
@@ -201,7 +202,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">resultsWindow</span> <span class="o">=</span> <span class="n">ResultsWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MainApplication.validateEntry"><a class="viewcode-back" href="../newapp.html#app.MainApplication.validateEntry">[docs]</a>    <span class="k">def</span> <span class="nf">validateEntry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="MainApplication.validateEntry"><a class="viewcode-back" href="../app.html#app.MainApplication.validateEntry">[docs]</a>    <span class="k">def</span> <span class="nf">validateEntry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;validation method to ensure only digits are entered for #FunctionParameters and #ResultComponents</span>
 
 <span class="sd">        :param P: character that user tries to enter</span>
@@ -211,7 +212,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">P</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">P</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span></div>
     
-<div class="viewcode-block" id="MainApplication.browseFiles"><a class="viewcode-back" href="../newapp.html#app.MainApplication.browseFiles">[docs]</a>    <span class="k">def</span> <span class="nf">browseFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainApplication.browseFiles"><a class="viewcode-back" href="../app.html#app.MainApplication.browseFiles">[docs]</a>    <span class="k">def</span> <span class="nf">browseFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;opens filedialog for user to specify the location of the file and sets file name and file path if the user did not cancel the dialog</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fp</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfile</span><span class="p">()</span>
@@ -220,7 +221,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">fileName</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filePath</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span></div>
     
-<div class="viewcode-block" id="MainApplication.computeParameters"><a class="viewcode-back" href="../newapp.html#app.MainApplication.computeParameters">[docs]</a>    <span class="k">def</span> <span class="nf">computeParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MainApplication.computeParameters"><a class="viewcode-back" href="../app.html#app.MainApplication.computeParameters">[docs]</a>    <span class="k">def</span> <span class="nf">computeParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;calculates the desired parameters based on the requirements provided by the user</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">openResultsWindow</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span></div></div>

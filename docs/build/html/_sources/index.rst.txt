@@ -11,6 +11,7 @@ Welcome to Virtual Patient Cohorts's documentation!
    :caption: Contents:
 
    modules
+   tests
 
 Indices and tables
 ==================

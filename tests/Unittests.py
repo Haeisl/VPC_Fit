@@ -4,6 +4,13 @@ from src.VPCData import VPCData
 from src.FileHandler import FileHandler
 
 class TestVPCData(unittest.TestCase):
+    """_summary_
+
+    _extended_summary_
+
+    :param unittest: _description_
+    :type unittest: _type_
+    """
     def setUp(self):
         print("Running setUp method...")
         self.data_1 = VPCData(["a", "b", "c", "d"])
@@ -23,6 +30,10 @@ class TestVPCData(unittest.TestCase):
         self.assertIsInstance(obj3, VPCData)
     
     def test_getItem(self):
+        """_summary_
+
+        _extended_summary_
+        """
         print("Running __getitem__ tests...")
         self.assertEqual(self.data_1[0], "a")
         self.assertEqual(self.data_2[1], 2.2)
@@ -96,6 +107,13 @@ class TestVPCData(unittest.TestCase):
             self.data_2.index([2.2, 3.3]) 
     
 class TestFileHandler(unittest.TestCase):
+    """_summary_
+
+    _extended_summary_
+
+    :param unittest: _description_
+    :type unittest: _type_
+    """
     
     def setUp(self):
         print("Running setUp method...")
@@ -103,6 +121,10 @@ class TestFileHandler(unittest.TestCase):
         self.handler_w = FileHandler.Write(".", "filey", "xml", [1,2,3])
         
     def test_init(self):
+        """_summary_
+
+        _extended_summary_
+        """
         print("Running __init__ tests...")
         with self.assertRaises(Exception):
             handler_blank0 = FileHandler()
