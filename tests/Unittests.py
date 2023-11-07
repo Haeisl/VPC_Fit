@@ -1,5 +1,4 @@
 import unittest
-
 from src.VPCData import VPCData
 from src.FileHandler import FileHandler
 
@@ -193,20 +192,21 @@ class TestFileHandler(unittest.TestCase):
     #     pass
 
     
-def run_tests():
-    test_classes_to_run = [TestVPCData, TestFileHandler]
+# def run_tests():
+#     test_classes_to_run = [TestVPCData, TestFileHandler]
     
-    loader = unittest.TestLoader()
+#     loader = unittest.TestLoader()
     
-    suites_list = []
-    for test_class in test_classes_to_run:
-        suite = loader.loadTestsFromTestCase(test_class)
-        suites_list.append(suite)
+#     suites_list = []
+#     for test_class in test_classes_to_run:
+#         suite = loader.loadTestsFromTestCase(test_class)
+#         suites_list.append(suite)
     
-    big_suite = unittest.TestSuite(suites_list)
+#     big_suite = unittest.TestSuite(suites_list)
     
-    runner = unittest.TextTestRunner()
-    results = runner.run(big_suite)
+#     runner = unittest.TextTestRunner()
+#     results = runner.run(big_suite)
 
 if __name__ == "__main__":
-    run_tests()
+    # run_tests()
+    unittest.main()
