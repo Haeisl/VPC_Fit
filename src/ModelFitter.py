@@ -19,7 +19,7 @@ class ModelFitter():
         """returns the fitted parameters of the given equation based on the input data 
 
         :param data: the user's input measurement data
-        :type data: supported data types are currently excel, csv and xml
+        :type data: list[VPCData]
         :param equation: the function equation entered by the user
         :type equation: str
         """
