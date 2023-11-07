@@ -1,5 +1,5 @@
 Unittests
 ==============
 
-.. automodule:: Unittests
+.. automodule:: tests.Unittests
    :members:

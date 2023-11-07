@@ -1,4 +1,4 @@
-from VPCData import VPCData
+from src.VPCData import VPCData
 import pandas as pd
 from pathlib import Path
 # import xml.etree.ElementTree as ET

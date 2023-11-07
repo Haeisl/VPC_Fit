@@ -45,7 +45,14 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ModelFitter module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ModelFitter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.ModelFitter.ModelFitter"><code class="docutils literal notranslate"><span class="pre">ModelFitter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#src.ModelFitter.ModelFitter.__init__"><code class="docutils literal notranslate"><span class="pre">ModelFitter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#src.ModelFitter.ModelFitter.fit"><code class="docutils literal notranslate"><span class="pre">ModelFitter.fit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VPCData.html">VPCData module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
@@ -79,8 +86,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="modelfitter-module">
-<h1>ModelFitter module<a class="headerlink" href="#modelfitter-module" title="Permalink to this heading"></a></h1>
+  <section id="module-src.ModelFitter">
+<span id="modelfitter-module"></span><h1>ModelFitter module<a class="headerlink" href="#module-src.ModelFitter" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">ModelFitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class to handle the model fitter</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>equation</strong> (<em>str</em>) – the equation of the function to be fitted</p></li>
+<li><p><strong>parameter</strong> (<em>any</em><em>, </em><em>optional</em>) – fitted parameter of the function</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter.fit" title="Permalink to this definition"></a></dt>
+<dd><p>returns the fitted parameters of the given equation based on the input data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>list</em><em>[</em><a class="reference internal" href="VPCData.html#src.VPCData.VPCData" title="src.VPCData.VPCData"><em>VPCData</em></a><em>]</em>) – the user’s input measurement data</p></li>
+<li><p><strong>equation</strong> (<em>str</em>) – the function equation entered by the user</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 

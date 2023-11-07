@@ -1,7 +1,7 @@
 VPCData module
 ==============
 
-.. automodule:: VPCData
+.. automodule:: src.VPCData
    :members:
    :undoc-members:
    :special-members: __init__

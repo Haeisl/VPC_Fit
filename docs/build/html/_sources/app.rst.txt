@@ -1,7 +1,7 @@
 app module
 ==========
 
-.. automodule:: app
+.. automodule:: src.app
    :members:
    :undoc-members:
    :special-members: __init__

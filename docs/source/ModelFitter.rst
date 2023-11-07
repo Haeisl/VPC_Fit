@@ -1,7 +1,7 @@
 ModelFitter module
 ===================
 
-.. automodule:: ModelFitter
+.. automodule:: src.ModelFitter
    :members:
    :undoc-members:
    :special-members: __init__

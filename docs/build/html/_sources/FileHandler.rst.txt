@@ -1,7 +1,7 @@
 FileHandler module
 ===================
 
-.. automodule:: FileHandler
+.. automodule:: src.FileHandler
    :members:
    :undoc-members:
    :special-members: __init__
