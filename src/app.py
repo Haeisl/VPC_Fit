@@ -4,9 +4,9 @@ sys.path.insert(0, os.path.abspath('..'))
 
 import tkinter as tk
 from tkinter import filedialog
-from src.FileHandler import FileHandler
-from src.VPCData import VPCData
-from src.ModelFitter import ModelFitter
+from FileHandler import FileHandler
+from VPCData import VPCData
+from ModelFitter import ModelFitter
 
 
 class ResultsWindow(tk.Toplevel):
