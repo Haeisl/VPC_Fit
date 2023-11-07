@@ -52,6 +52,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.MODES"><code class="docutils literal notranslate"><span class="pre">FileHandler.MODES</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.ReadMode"><code class="docutils literal notranslate"><span class="pre">FileHandler.ReadMode()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.WriteMode"><code class="docutils literal notranslate"><span class="pre">FileHandler.WriteMode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.__init__"><code class="docutils literal notranslate"><span class="pre">FileHandler.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.fileFormat"><code class="docutils literal notranslate"><span class="pre">FileHandler.fileFormat</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.fileName"><code class="docutils literal notranslate"><span class="pre">FileHandler.fileName</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#FileHandler.FileHandler.formatData"><code class="docutils literal notranslate"><span class="pre">FileHandler.formatData()</span></code></a></li>
@@ -173,6 +174,23 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#FileHandler.FileHandler" title="FileHandler.FileHandler">FileHandler</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="FileHandler.FileHandler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'file_0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patientData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – path to the file to be read or written, defaults to None</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – mode of the object which can be either read or write, defaults to None</p></li>
+<li><p><strong>fileName</strong> (<em>str</em><em>, </em><em>optional</em>) – name of the file to be written, defaults to file_+str(i)</p></li>
+<li><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – format of the file to be written, defaults to None</p></li>
+<li><p><strong>patientData</strong> (<em>any</em><em>, </em><em>optional</em>) – data to be read from or written to the file, defaults to None</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

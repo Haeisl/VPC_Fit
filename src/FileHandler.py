@@ -36,7 +36,7 @@ class FileHandler():
         :type path: str, optional
         :param mode: mode of the object which can be either read or write, defaults to None
         :type mode: str, optional
-        :param fileName: name of the file to be written, defaults to "file_"+str(i)
+        :param fileName: name of the file to be written, defaults to file_+str(i)
         :type fileName: str, optional
         :param format: format of the file to be written, defaults to None
         :type format: str, optional

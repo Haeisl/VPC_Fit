@@ -7,4 +7,4 @@ src
    ModelFitter
    FileHandler
    VPCData
-   newapp
+   app

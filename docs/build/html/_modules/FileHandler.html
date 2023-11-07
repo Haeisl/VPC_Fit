@@ -100,14 +100,14 @@
     
     <span class="n">MODES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;READ&#39;</span><span class="p">,</span> <span class="s1">&#39;WRITE&#39;</span><span class="p">]</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s2">&quot;file_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">patientData</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="FileHandler.__init__"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s2">&quot;file_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">patientData</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
 
 <span class="sd">        :param path: path to the file to be read or written, defaults to None</span>
 <span class="sd">        :type path: str, optional</span>
 <span class="sd">        :param mode: mode of the object which can be either read or write, defaults to None</span>
 <span class="sd">        :type mode: str, optional</span>
-<span class="sd">        :param fileName: name of the file to be written, defaults to &quot;file_&quot;+str(i)</span>
+<span class="sd">        :param fileName: name of the file to be written, defaults to file_+str(i)</span>
 <span class="sd">        :type fileName: str, optional</span>
 <span class="sd">        :param format: format of the file to be written, defaults to None</span>
 <span class="sd">        :type format: str, optional</span>
@@ -118,7 +118,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fileName</span> <span class="o">=</span> <span class="n">fileName</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="nb">format</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">patientData</span> <span class="o">=</span> <span class="n">patientData</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patientData</span> <span class="o">=</span> <span class="n">patientData</span></div>
 
 <div class="viewcode-block" id="FileHandler.ReadMode"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.ReadMode">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">ReadMode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
