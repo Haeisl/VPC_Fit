@@ -75,70 +75,23 @@
 <span class="c1"># import xml.etree.ElementTree as ET</span>
 
 <div class="viewcode-block" id="FileHandler"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler">[docs]</a><span class="k">class</span> <span class="nc">FileHandler</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A class to handle files</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to handle files</span>
 
-<span class="sd">    ...</span>
-<span class="sd">    </span>
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    </span>
-<span class="sd">    path: str</span>
-<span class="sd">        path to the file to be read or written</span>
-<span class="sd">    mode: str</span>
-<span class="sd">        mode of the object, either read or write</span>
-<span class="sd">    fileName: str</span>
-<span class="sd">        name of the file to be written</span>
-<span class="sd">    format: str</span>
-<span class="sd">        format of the file to be written</span>
-<span class="sd">    patientData: any</span>
-<span class="sd">        data to be read from or written to the file</span>
-<span class="sd">        </span>
-<span class="sd">    </span>
-<span class="sd">    Methods</span>
-<span class="sd">    -------</span>
-<span class="sd">    ReadMode():</span>
-<span class="sd">        returns a class obejct in read mode</span>
-<span class="sd">        </span>
-<span class="sd">    WriteMode():</span>
-<span class="sd">        returns a class object in write mode</span>
-<span class="sd">        </span>
-<span class="sd">    mode():</span>
-<span class="sd">        returns the mode of the object</span>
-<span class="sd">        </span>
-<span class="sd">    mode(value):</span>
-<span class="sd">        sets the mode of the object</span>
-<span class="sd">        </span>
-<span class="sd">    path():</span>
-<span class="sd">        returns the path of the object</span>
-<span class="sd">        </span>
-<span class="sd">    path(value):</span>
-<span class="sd">        sets the path of the object</span>
-<span class="sd">        </span>
-<span class="sd">    fileName():</span>
-<span class="sd">        returns the name of the file to be written</span>
-<span class="sd">        </span>
-<span class="sd">    fileName(value):</span>
-<span class="sd">        sets the name of the file to be written</span>
-<span class="sd">        </span>
-<span class="sd">    fileformat():</span>
-<span class="sd">        return the format of the file</span>
-<span class="sd">        </span>
-<span class="sd">    fileformat(value):</span>
-<span class="sd">        sets the format of the file</span>
-<span class="sd">        </span>
-<span class="sd">    readFile():</span>
-<span class="sd">        reads data from a file and returns a dataframe</span>
-<span class="sd">        </span>
-<span class="sd">    formatData():</span>
-<span class="sd">        the read data stored as dataFrame is formatted to a list</span>
-<span class="sd">        </span>
-<span class="sd">    writeFile(data):</span>
-<span class="sd">        writes the input data into a file</span>
-<span class="sd">        </span>
-<span class="sd">    validateData():</span>
-<span class="sd">        TODO</span>
-
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises FileNotFoundError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises TypeError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises ValueError: _description_</span>
+<span class="sd">    :raises TypeError: _description_</span>
+<span class="sd">    :return: _description_</span>
+<span class="sd">    :rtype: _type_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -148,6 +101,19 @@
     <span class="n">MODES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;READ&#39;</span><span class="p">,</span> <span class="s1">&#39;WRITE&#39;</span><span class="p">]</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="s2">&quot;file_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">patientData</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
+
+<span class="sd">        :param path: path to the file to be read or written, defaults to None</span>
+<span class="sd">        :type path: str, optional</span>
+<span class="sd">        :param mode: mode of the object which can be either read or write, defaults to None</span>
+<span class="sd">        :type mode: str, optional</span>
+<span class="sd">        :param fileName: name of the file to be written, defaults to &quot;file_&quot;+str(i)</span>
+<span class="sd">        :type fileName: str, optional</span>
+<span class="sd">        :param format: format of the file to be written, defaults to None</span>
+<span class="sd">        :type format: str, optional</span>
+<span class="sd">        :param patientData: data to be read from or written to the file, defaults to None</span>
+<span class="sd">        :type patientData: any, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fileName</span> <span class="o">=</span> <span class="n">fileName</span>
@@ -156,56 +122,48 @@
 
 <div class="viewcode-block" id="FileHandler.ReadMode"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.ReadMode">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">ReadMode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        classmethod</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;classmethod, returns a FileHandler class obejct in read mode</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            path (str): path to the file to be read</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            FileHandler: class object in read mode </span>
-<span class="sd">            with the path to the respective file</span>
+<span class="sd">        :param path: path to the file to be read</span>
+<span class="sd">        :type path: str</span>
+<span class="sd">        :return: class object in read mode with the path to the respective file</span>
+<span class="sd">        :rtype: FileHandler</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="FileHandler.WriteMode"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.WriteMode">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">WriteMode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fileName</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span> <span class="n">pData</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        classmethod</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;classmethod, returns a FileHandler class object in write mode</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            path (str): _description_</span>
-<span class="sd">            fileName (str): _description_</span>
-<span class="sd">            format (str): _description_</span>
-<span class="sd">            pData (any): _description_</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            FileHandler: class object in write mode</span>
-<span class="sd">            with the path, fileName, format and patient data </span>
-<span class="sd">            for the respective file to be written</span>
+<span class="sd">        :param path: path to the file to be written</span>
+<span class="sd">        :type path: str</span>
+<span class="sd">        :param fileName: name of the file to be written</span>
+<span class="sd">        :type fileName: str</span>
+<span class="sd">        :param format: format of the file to be written</span>
+<span class="sd">        :type format: str</span>
+<span class="sd">        :param pData: data to be written</span>
+<span class="sd">        :type pData: any</span>
+<span class="sd">        :return: class object in write mode with the path, fileName, format and patient data for the respective file to be written</span>
+<span class="sd">        :rtype: FileHandler</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="n">fileName</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">patientData</span><span class="o">=</span><span class="n">pData</span><span class="p">)</span></div>
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        gets the mode of the object</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;gets the mode of the object</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            mode (str): string of the object&#39;s mode</span>
+<span class="sd">        :return: current mode of the object</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span>
     
     <span class="nd">@mode</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        sets the mode of the object</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;sets the mode of the object to the given value</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            mode (str): string of the mode that will be set to the input</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: input value can only be a string of read or write</span>
+<span class="sd">        :param mode: mode of the object</span>
+<span class="sd">        :type mode: str</span>
+<span class="sd">        :raises ValueError: input value can only be a string of &#39;read&#39; or &#39;write&#39;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODES</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="o">=</span> <span class="n">mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
@@ -218,25 +176,21 @@
     
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        gets the path of the file to be read or write</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;gets the path of the file to be read or write</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            path (str): path of the object</span>
+<span class="sd">        :return: current path of the object</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>
     
     <span class="nd">@path</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        sets the path of the file to be read or write</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;sets the path of the file that is being read or written to</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            path (str): path of the object</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: path has to be a string</span>
-<span class="sd">            ValueError: illegal characters are not allowed to be in a path</span>
+<span class="sd">        :param path: path of the object</span>
+<span class="sd">        :type path: str</span>
+<span class="sd">        :raises ValueError: path has to be a string</span>
+<span class="sd">        :raises ValueError: illegal characters are not allowed to be in a path</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Path must be of type string&quot;</span><span class="p">)</span>
@@ -246,25 +200,21 @@
         
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fileName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        gets the fileName of the file to be written</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;gets the name of the file to be written</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            fileName (str): fileName of the object</span>
+<span class="sd">        :return: current fileName of the object</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileName</span>
     
     <span class="nd">@fileName</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">fileName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        sets the fileName of the file to be written</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;sets the name of the file to be written to the input value</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            name (str): fileName of the object</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: input has to be a string</span>
-<span class="sd">            ValueError: input must not contain dots or commas</span>
+<span class="sd">        :param name: file name of the object</span>
+<span class="sd">        :type name: str</span>
+<span class="sd">        :raises ValueError: input has to be a string</span>
+<span class="sd">        :raises ValueError: input must not contain dots or commas</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File name needs to be a string&quot;</span><span class="p">)</span>
@@ -274,39 +224,34 @@
                 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fileFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        gets the format of the file</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;gets the format of the file</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            fileFormat (str): file format of the object</span>
+<span class="sd">        :return: current file format of the object</span>
+<span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileFormat</span> 
     
     <span class="nd">@fileFormat</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">fileFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fileFormat</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        set the file format</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;sets the format of the file to the input value</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            fileFormat (str): fileformat of the object</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: input file format has to be in the pre-defined dict</span>
-<span class="sd">            otherwise the given format is not supported</span>
+<span class="sd">        :param fileFormat: file format of the object</span>
+<span class="sd">        :type fileFormat: str</span>
+<span class="sd">        :raises ValueError: input file format has to be in the pre-defined dict otherwise the given format is not supported</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">fileFormat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">FORMATS</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown file format&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fileFormat</span> <span class="o">=</span> <span class="n">fileFormat</span>
     
 <div class="viewcode-block" id="FileHandler.readFile"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.readFile">[docs]</a>    <span class="k">def</span> <span class="nf">readFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        reads from a file and stores the data in it</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;reads data from a file and returns a dataframe</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: object has so be in read mode</span>
-<span class="sd">            FileNotFoundError: objects path has to be valid</span>
-<span class="sd">            ValueError: file of the specified path must have a format</span>
-<span class="sd">            TypeError: objects format is unknown, data can&#39;t be read</span>
+<span class="sd">        :raises ValueError: object has so be in read mode</span>
+<span class="sd">        :raises FileNotFoundError: objects path has to be valid</span>
+<span class="sd">        :raises ValueError: file of the specified path must have a format</span>
+<span class="sd">        :raises TypeError: objects format is unknown, data can&#39;t be read</span>
+<span class="sd">        :return: the data read from the file</span>
+<span class="sd">        :rtype: dataframe</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;READ&#39;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;FileHandler not in read mode&quot;</span><span class="p">)</span>
@@ -329,15 +274,13 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataFrame</span></div>
                 
 <div class="viewcode-block" id="FileHandler.formatData"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.formatData">[docs]</a>    <span class="k">def</span> <span class="nf">formatData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">includeFirstRow</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        formats the read data to a list</span>
-<span class="sd">        and transforms it to a VPCData object</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;formats read data from a file to a list and transforms it to a VPCData object</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: object has to be in read mode</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            dataFrame (float): the read data as a list</span>
+<span class="sd">        :param includeFirstRow: -deprecated-</span>
+<span class="sd">        :type includeFirstRow: bool</span>
+<span class="sd">        :raises ValueError: object has to be in read mode</span>
+<span class="sd">        :return: the transformed read data</span>
+<span class="sd">        :rtype: list[VPCData]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># if self.mode != &#39;READ&#39;:</span>
         <span class="c1">#    raise ValueError(&quot;Can&#39;t read file while not in read mode&quot;)</span>
@@ -358,17 +301,12 @@
 
     
 <div class="viewcode-block" id="FileHandler.writeFile"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.writeFile">[docs]</a>    <span class="k">def</span> <span class="nf">writeFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        write a file with given data</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;writes the given data into a file</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            data (_type_): input data to be written to a file</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: object has to be in write mode</span>
-<span class="sd">            TypeError: file format of the file to be written </span>
-<span class="sd">            can only be one of the supported ones</span>
-<span class="sd">            (Excel, xml, csv)</span>
+<span class="sd">        :param data: data to be written to a file</span>
+<span class="sd">        :type data: any</span>
+<span class="sd">        :raises ValueError: object has to be in write mode</span>
+<span class="sd">        :raises TypeError: file format of the file to be written can only be one of the supported ones (excel, csv, xml)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s1">&#39;write&#39;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t write while not in write mode&quot;</span><span class="p">)</span>
@@ -386,8 +324,7 @@
         <span class="n">FileHandler</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
         
 <div class="viewcode-block" id="FileHandler.validateData"><a class="viewcode-back" href="../FileHandler.html#FileHandler.FileHandler.validateData">[docs]</a>    <span class="k">def</span> <span class="nf">validateData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        TODO</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;TODO</span>
 <span class="sd">        read dataFrame / patientData and discard rows, if they are not fully populated</span>
 <span class="sd">        think of way other than discarding incomplete data</span>
 <span class="sd">        &quot;&quot;&quot;</span>

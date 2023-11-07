@@ -102,53 +102,30 @@
 <dt class="sig sig-object py" id="FileHandler.FileHandler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FileHandler.</span></span><span class="sig-name descname"><span class="pre">FileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'file_0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patientData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class to handle files</p>
-<p>…</p>
-<section id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>path: str</dt><dd><p>path to the file to be read or written</p>
+<p>This is a class to handle files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>FileNotFoundError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>TypeError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>TypeError</strong> – _description_</p></li>
+</ul>
 </dd>
-<dt>mode: str</dt><dd><p>mode of the object, either read or write</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
 </dd>
-<dt>fileName: str</dt><dd><p>name of the file to be written</p>
-</dd>
-<dt>format: str</dt><dd><p>format of the file to be written</p>
-</dd>
-<dt>patientData: any</dt><dd><p>data to be read from or written to the file</p>
-</dd>
-</dl>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>ReadMode():</dt><dd><p>returns a class obejct in read mode</p>
-</dd>
-<dt>WriteMode():</dt><dd><p>returns a class object in write mode</p>
-</dd>
-<dt>mode():</dt><dd><p>returns the mode of the object</p>
-</dd>
-<dt>mode(value):</dt><dd><p>sets the mode of the object</p>
-</dd>
-<dt>path():</dt><dd><p>returns the path of the object</p>
-</dd>
-<dt>path(value):</dt><dd><p>sets the path of the object</p>
-</dd>
-<dt>fileName():</dt><dd><p>returns the name of the file to be written</p>
-</dd>
-<dt>fileName(value):</dt><dd><p>sets the name of the file to be written</p>
-</dd>
-<dt>fileformat():</dt><dd><p>return the format of the file</p>
-</dd>
-<dt>fileformat(value):</dt><dd><p>sets the format of the file</p>
-</dd>
-<dt>readFile():</dt><dd><p>reads data from a file and returns a dataframe</p>
-</dd>
-<dt>formatData():</dt><dd><p>the read data stored as dataFrame is formatted to a list</p>
-</dd>
-<dt>writeFile(data):</dt><dd><p>writes the input data into a file</p>
-</dd>
-<dt>validateData():</dt><dd><p>TODO</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -164,12 +141,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FileHandler.FileHandler.ReadMode">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.ReadMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.ReadMode" title="Permalink to this definition"></a></dt>
-<dd><p>classmethod</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>path (str): path to the file to be read</p>
+<dd><p>classmethod, returns a FileHandler class obejct in read mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – path to the file to be read</p>
 </dd>
-<dt>Returns:</dt><dd><p>FileHandler: class object in read mode 
-with the path to the respective file</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>class object in read mode with the path to the respective file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#FileHandler.FileHandler" title="FileHandler.FileHandler">FileHandler</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -177,16 +158,21 @@ with the path to the respective file</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FileHandler.FileHandler.WriteMode">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WriteMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pData</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.WriteMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.WriteMode" title="Permalink to this definition"></a></dt>
-<dd><p>classmethod</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>path (str): _description_
-fileName (str): _description_
-format (str): _description_
-pData (any): _description_</p>
+<dd><p>classmethod, returns a FileHandler class object in write mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – path to the file to be written</p></li>
+<li><p><strong>fileName</strong> (<em>str</em>) – name of the file to be written</p></li>
+<li><p><strong>format</strong> (<em>str</em>) – format of the file to be written</p></li>
+<li><p><strong>pData</strong> (<em>any</em>) – data to be written</p></li>
+</ul>
 </dd>
-<dt>Returns:</dt><dd><p>FileHandler: class object in write mode
-with the path, fileName, format and patient data 
-for the respective file to be written</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>class object in write mode with the path, fileName, format and patient data for the respective file to be written</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#FileHandler.FileHandler" title="FileHandler.FileHandler">FileHandler</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -195,8 +181,12 @@ for the respective file to be written</p>
 <dt class="sig sig-object py" id="FileHandler.FileHandler.fileFormat">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fileFormat</span></span><a class="headerlink" href="#FileHandler.FileHandler.fileFormat" title="Permalink to this definition"></a></dt>
 <dd><p>gets the format of the file</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>fileFormat (str): file format of the object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current file format of the object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -204,9 +194,13 @@ for the respective file to be written</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="FileHandler.FileHandler.fileName">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fileName</span></span><a class="headerlink" href="#FileHandler.FileHandler.fileName" title="Permalink to this definition"></a></dt>
-<dd><p>gets the fileName of the file to be written</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>fileName (str): fileName of the object</p>
+<dd><p>gets the name of the file to be written</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current fileName of the object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -214,12 +208,19 @@ for the respective file to be written</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FileHandler.FileHandler.formatData">
 <span class="sig-name descname"><span class="pre">formatData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">includeFirstRow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.formatData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.formatData" title="Permalink to this definition"></a></dt>
-<dd><p>formats the read data to a list
-and transforms it to a VPCData object</p>
-<dl class="simple">
-<dt>Raises:</dt><dd><p>ValueError: object has to be in read mode</p>
+<dd><p>formats read data from a file to a list and transforms it to a VPCData object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>includeFirstRow</strong> (<em>bool</em>) – -deprecated-</p>
 </dd>
-<dt>Returns:</dt><dd><p>dataFrame (float): the read data as a list</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – object has to be in read mode</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the transformed read data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="VPCData.html#VPCData.VPCData" title="VPCData.VPCData">VPCData</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -233,8 +234,12 @@ and transforms it to a VPCData object</p>
 <dt class="sig sig-object py" id="FileHandler.FileHandler.mode">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#FileHandler.FileHandler.mode" title="Permalink to this definition"></a></dt>
 <dd><p>gets the mode of the object</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>mode (str): string of the object’s mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current mode of the object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -243,8 +248,12 @@ and transforms it to a VPCData object</p>
 <dt class="sig sig-object py" id="FileHandler.FileHandler.path">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#FileHandler.FileHandler.path" title="Permalink to this definition"></a></dt>
 <dd><p>gets the path of the file to be read or write</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>path (str): path of the object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current path of the object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -252,12 +261,21 @@ and transforms it to a VPCData object</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FileHandler.FileHandler.readFile">
 <span class="sig-name descname"><span class="pre">readFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.readFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.readFile" title="Permalink to this definition"></a></dt>
-<dd><p>reads from a file and stores the data in it</p>
-<dl class="simple">
-<dt>Raises:</dt><dd><p>ValueError: object has so be in read mode
-FileNotFoundError: objects path has to be valid
-ValueError: file of the specified path must have a format
-TypeError: objects format is unknown, data can’t be read</p>
+<dd><p>reads data from a file and returns a dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – object has so be in read mode</p></li>
+<li><p><strong>FileNotFoundError</strong> – objects path has to be valid</p></li>
+<li><p><strong>ValueError</strong> – file of the specified path must have a format</p></li>
+<li><p><strong>TypeError</strong> – objects format is unknown, data can’t be read</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the data read from the file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dataframe</p>
 </dd>
 </dl>
 </dd></dl>
@@ -273,19 +291,20 @@ think of way other than discarding incomplete data</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FileHandler.FileHandler.writeFile">
 <span class="sig-name descname"><span class="pre">writeFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/FileHandler.html#FileHandler.writeFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#FileHandler.FileHandler.writeFile" title="Permalink to this definition"></a></dt>
-<dd><p>write a file with given data</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>data (_type_): input data to be written to a file</p>
+<dd><p>writes the given data into a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>any</em>) – data to be written to a file</p>
 </dd>
-<dt>Raises:</dt><dd><p>ValueError: object has to be in write mode
-TypeError: file format of the file to be written 
-can only be one of the supported ones
-(Excel, xml, csv)</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – object has to be in write mode</p></li>
+<li><p><strong>TypeError</strong> – file format of the file to be written can only be one of the supported ones (excel, csv, xml)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
-</section>
 </dd></dl>
 
 </section>

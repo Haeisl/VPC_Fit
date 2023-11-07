@@ -72,61 +72,27 @@
 <span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserList</span>
 
 <div class="viewcode-block" id="VPCData"><a class="viewcode-back" href="../VPCData.html#VPCData.VPCData">[docs]</a><span class="k">class</span> <span class="nc">VPCData</span><span class="p">(</span><span class="n">UserList</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A class to handle virtual patient data.</span>
-<span class="sd">    Basically just a list atm.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to handle virtual patient data. Basically just a list atm.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        UserList (class): wrapper around list objects</span>
-<span class="sd">        </span>
-<span class="sd">    ...</span>
-<span class="sd">    </span>
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    </span>
-<span class="sd">    data: vec</span>
-<span class="sd">        patient data</span>
-<span class="sd">    </span>
-<span class="sd">    </span>
-<span class="sd">    Methods</span>
-<span class="sd">    -------</span>
-<span class="sd">    __getitem__(idx):</span>
-<span class="sd">        returns the element of a given index in the data vector</span>
-<span class="sd">        </span>
-<span class="sd">    __setitem__(idx, value):</span>
-<span class="sd">        sets a given value at a given index in the data vector</span>
-<span class="sd">    </span>
-<span class="sd">    __len__():</span>
-<span class="sd">        return the lenght of the data vector</span>
-<span class="sd">        </span>
-<span class="sd">    __delitem__(idx):</span>
-<span class="sd">        deletes data at a given index</span>
-<span class="sd">        </span>
-<span class="sd">    append(next):</span>
-<span class="sd">        appends a given list or value to the data vector</span>
-<span class="sd">        </span>
-<span class="sd">    insert(idx, value):</span>
-<span class="sd">        inserts a given list or value at the desired index in the data vector</span>
-<span class="sd">        </span>
-<span class="sd">    remove(value):</span>
-<span class="sd">        deletes the given value from the data vector</span>
-<span class="sd">        </span>
-<span class="sd">    index(item, \*args):</span>
-<span class="sd">        returns the index of a given item</span>
+<span class="sd">    :param UserList: wrapper around list objects</span>
+<span class="sd">    :type UserList: class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
+
+<span class="sd">        :param data: patient data read from the input files or generated virtual patient data, defaults to None</span>
+<span class="sd">        :type data: list, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        returns the element of a given index in the data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns the element of a given index in the data list</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            idx (int): index in the data vector of the object</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            data[idx]: data at a given index</span>
+<span class="sd">        :param idx: index in the data list of the object</span>
+<span class="sd">        :type idx: int</span>
+<span class="sd">        :return: data at a given index</span>
+<span class="sd">        :rtype: float</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
@@ -134,40 +100,36 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
         
     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        sets a given value at a given index in the data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;sets a given value at a given index in the data list</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            idx (int): index in the data vector of the object</span>
-<span class="sd">            value (any): value that should be at the given index</span>
+<span class="sd">        :param idx: index in the data list of the object</span>
+<span class="sd">        :type idx: int</span>
+<span class="sd">        :param value: value that should be at the given index</span>
+<span class="sd">        :type value: float</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        return the lenght of the data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns the length of the data list</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            int: objects lenght</span>
+<span class="sd">        :return: objects length</span>
+<span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        deletes data at a given index</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;deletes an element in the data list at a given index</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            idx (int): index in the data vector of the object</span>
+<span class="sd">        :param idx: index in the data list</span>
+<span class="sd">        :type idx: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
         
 <div class="viewcode-block" id="VPCData.append"><a class="viewcode-back" href="../VPCData.html#VPCData.VPCData.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        appends a given list or value to the data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;appends a given list or value to the data list</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            next (vec, float): input list or value to be appended</span>
-<span class="sd">            to the objects data</span>
+<span class="sd">        :param next: input list or value to be appended to the objects data</span>
+<span class="sd">        :type next: any</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">next</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">next</span><span class="p">:</span>
@@ -176,12 +138,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="VPCData.insert"><a class="viewcode-back" href="../VPCData.html#VPCData.VPCData.insert">[docs]</a>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        inserts a given list or value at the desired index in the data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;inserts a given list or value at the desired index in the data list</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            idx (idx): index in the data vector of the object</span>
-<span class="sd">            value (vec, float): given list or value to be inserted</span>
+<span class="sd">        :param idx: index in the data list of the object</span>
+<span class="sd">        :type idx: int</span>
+<span class="sd">        :param value: given list or value to be inserted</span>
+<span class="sd">        :type value: any</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -190,31 +152,24 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="VPCData.remove"><a class="viewcode-back" href="../VPCData.html#VPCData.VPCData.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        deletes the given value from the data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;deletes the given value from the data list</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            value (float): value in the data vector to be deleted</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: given value has to be in the objects data vector</span>
+<span class="sd">        :param value: value in the data list to be deleted</span>
+<span class="sd">        :type value: float</span>
+<span class="sd">        :raises ValueError: given value has to be in the objects data list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;value not in list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
         
 <div class="viewcode-block" id="VPCData.index"><a class="viewcode-back" href="../VPCData.html#VPCData.VPCData.index">[docs]</a>    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        returns the index of a given item</span>
-<span class="sd">        </span>
-<span class="sd">        Args:</span>
-<span class="sd">            item (float): element of the objects data vector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns the index of a given element in the data list</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: input item has to be in the objects data vector</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            int: index of the given item</span>
+<span class="sd">        :param item: element of the objects data list</span>
+<span class="sd">        :type item: float</span>
+<span class="sd">        :raises ValueError: input element has to be in the objects data list</span>
+<span class="sd">        :return: index of the given element</span>
+<span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;item not in list&quot;</span><span class="p">)</span>

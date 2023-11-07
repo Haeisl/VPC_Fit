@@ -93,47 +93,19 @@
 <dt class="sig sig-object py" id="VPCData.VPCData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">VPCData.</span></span><span class="sig-name descname"><span class="pre">VPCData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VPCData.html#VPCData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#VPCData.VPCData" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code></p>
-<p>A class to handle virtual patient data.
-Basically just a list atm.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>UserList (class): wrapper around list objects</p>
-</dd>
-</dl>
-<p>…</p>
-<section id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>data: vec</dt><dd><p>patient data</p>
-</dd>
-</dl>
-</section>
-<section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h2>
-<dl class="simple">
-<dt>__getitem__(idx):</dt><dd><p>returns the element of a given index in the data vector</p>
-</dd>
-<dt>__setitem__(idx, value):</dt><dd><p>sets a given value at a given index in the data vector</p>
-</dd>
-<dt>__len__():</dt><dd><p>return the lenght of the data vector</p>
-</dd>
-<dt>__delitem__(idx):</dt><dd><p>deletes data at a given index</p>
-</dd>
-<dt>append(next):</dt><dd><p>appends a given list or value to the data vector</p>
-</dd>
-<dt>insert(idx, value):</dt><dd><p>inserts a given list or value at the desired index in the data vector</p>
-</dd>
-<dt>remove(value):</dt><dd><p>deletes the given value from the data vector</p>
-</dd>
-<dt>index(item, *args):</dt><dd><p>returns the index of a given item</p>
+<p>This is a class to handle virtual patient data. Basically just a list atm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>UserList</strong> (<em>class</em>) – wrapper around list objects</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="VPCData.VPCData.append">
 <span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VPCData.html#VPCData.append"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#VPCData.VPCData.append" title="Permalink to this definition"></a></dt>
-<dd><p>appends a given list or value to the data vector</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>next (vec, float): input list or value to be appended
-to the objects data</p>
+<dd><p>appends a given list or value to the data list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>next</strong> (<em>any</em>) – input list or value to be appended to the objects data</p>
 </dd>
 </dl>
 </dd></dl>
@@ -141,13 +113,19 @@ to the objects data</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="VPCData.VPCData.index">
 <span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VPCData.html#VPCData.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#VPCData.VPCData.index" title="Permalink to this definition"></a></dt>
-<dd><p>returns the index of a given item</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>item (float): element of the objects data vector</p>
+<dd><p>returns the index of a given element in the data list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<em>float</em>) – element of the objects data list</p>
 </dd>
-<dt>Raises:</dt><dd><p>ValueError: input item has to be in the objects data vector</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – input element has to be in the objects data list</p>
 </dd>
-<dt>Returns:</dt><dd><p>int: index of the given item</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>index of the given element</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -155,10 +133,13 @@ to the objects data</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="VPCData.VPCData.insert">
 <span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VPCData.html#VPCData.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#VPCData.VPCData.insert" title="Permalink to this definition"></a></dt>
-<dd><p>inserts a given list or value at the desired index in the data vector</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>idx (idx): index in the data vector of the object
-value (vec, float): given list or value to be inserted</p>
+<dd><p>inserts a given list or value at the desired index in the data list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<em>int</em>) – index in the data list of the object</p></li>
+<li><p><strong>value</strong> (<em>any</em>) – given list or value to be inserted</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -166,16 +147,17 @@ value (vec, float): given list or value to be inserted</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="VPCData.VPCData.remove">
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/VPCData.html#VPCData.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#VPCData.VPCData.remove" title="Permalink to this definition"></a></dt>
-<dd><p>deletes the given value from the data vector</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>value (float): value in the data vector to be deleted</p>
+<dd><p>deletes the given value from the data list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – value in the data list to be deleted</p>
 </dd>
-<dt>Raises:</dt><dd><p>ValueError: given value has to be in the objects data vector</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – given value has to be in the objects data list</p>
 </dd>
 </dl>
 </dd></dl>
 
-</section>
 </dd></dl>
 
 </section>
