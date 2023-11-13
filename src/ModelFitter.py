@@ -1,10 +1,11 @@
 import numpy as np
+from sympy import sympify, symbols, lambdify
 
 class ModelFitter():
     """This is a class to handle the model fitter
     """
 
-    def __init__(self, equation):
+    def __init__(self, equation=None):
         """Constructor method
 
         :param equation: the equation of the function to be fitted
@@ -24,3 +25,15 @@ class ModelFitter():
         :type equation: str
         """
         pass
+    
+    def stringToFunction(self, equation):
+        # T | Temporary, should be replaced with an earlier check
+        # E | maybe ask user what variable should stay?
+        # M | otherwise just assume 't' and throw error else
+        # P | 
+        t = symbols('t')
+        expr = sympify(equation)
+        func = lambdify(t, expr, 'numpy')
+        
+        return func
+        
