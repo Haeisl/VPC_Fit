@@ -51,7 +51,7 @@ class FileHandler():
 
     @classmethod
     def ReadMode(cls, path):
-        """classmethod, returns a FileHandler class obejct in read mode
+        """classmethod, returns a FileHandler class object in read mode
 
         :param path: path to the file to be read
         :type path: str

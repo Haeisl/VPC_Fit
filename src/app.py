@@ -153,8 +153,3 @@ class MainApplication(tk.Tk):
         """calculates the desired parameters based on the requirements provided by the user
         """
         self.openResultsWindow([2, 3])
-
-
-if __name__ == '__main__':
-    main = MainApplication()
-    main.mainloop()
