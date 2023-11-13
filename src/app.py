@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import filedialog
-from FileHandler import FileHandler
-from VPCData import VPCData
-from ModelFitter import ModelFitter
+from .FileHandler import FileHandler
+from .VPCData import VPCData
+from .ModelFitter import ModelFitter
 
 
 class ResultsWindow(tk.Toplevel):
