@@ -11,7 +11,7 @@ class ModelFitter():
         :param equation: the equation of the function to be fitted
         :type equation: str
         :param parameter: fitted parameter of the function
-        :type parameter: any, optional
+        :type parameter: list[float], optional
         """
         self.equation = equation
         self.parameter = None
@@ -27,6 +27,13 @@ class ModelFitter():
         pass
     
     def stringToFunction(self, equation):
+        """returns a lambda function based on the equation given by the user
+
+        :param equation: the function equation that the user enters for the fit
+        :type equation: str
+        :return: function given by the user as lambda expression
+        :rtype: sympy.FunctionClass instance
+        """
         # mf = ModelFitter()
         # func = mf.stringToFunction('a**b+t*c')
         
