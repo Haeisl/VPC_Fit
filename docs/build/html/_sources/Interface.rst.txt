@@ -1,7 +1,7 @@
-app module
-==========
+Interface module
+=================
 
-.. automodule:: src.app
+.. automodule:: src.Interface
    :members:
    :undoc-members:
    :special-members: __init__

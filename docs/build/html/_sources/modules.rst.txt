@@ -7,4 +7,4 @@ modules
    ModelFitter
    FileHandler
    VPCData
-   app
+   Interface

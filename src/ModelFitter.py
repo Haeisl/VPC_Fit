@@ -27,13 +27,25 @@ class ModelFitter():
         pass
     
     def stringToFunction(self, equation):
-        # T | Temporary, should be replaced with an earlier check
-        # E | maybe ask user what variable should stay?
-        # M | otherwise just assume 't' and throw error else
-        # P | 
-        t = symbols('t')
+        # mf = ModelFitter()
+        # func = mf.stringToFunction('a**b+t*c')
+        
+        # print(func(a=symbols('a'),t=1,b=5,c=3))
+        
+        variables = set()
+        for char in equation:
+            if char.isalpha():
+                variables.add(char)
+        variables = list(variables)
+        
+        sympyVars = [symbols(var) for var in variables]
+        
+        for var, symVar in zip(variables, sympyVars):
+            equation = equation.replace(var, str(symVar))
+        
         expr = sympify(equation)
-        func = lambdify(t, expr, 'numpy')
+        
+        func = lambdify(sympyVars, expr, 'numpy')
         
         return func
         

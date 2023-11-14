@@ -116,8 +116,8 @@ class TestFileHandler(unittest.TestCase):
     
     def setUp(self):
         print("Running setUp method...")
-        self.handler_r = FileHandler.Read(".")
-        self.handler_w = FileHandler.Write(".", "filey", "xml", [1,2,3])
+        self.handler_r = FileHandler.ReadMode(".")
+        self.handler_w = FileHandler.WriteMode(".", "filey", "xml", [1,2,3])
         
     def test_init(self):
         """_summary_
@@ -163,13 +163,13 @@ class TestFileHandler(unittest.TestCase):
     def test_getsetFilename(self):
         print("Running getFilename and setFilename tests...")
         with self.assertRaises(ValueError):
-            self.handler_r.filename = 123
+            self.handler_r.fileName = 123
         with self.assertRaises(ValueError):
-            self.handler_w.filename = "file.name"
-        self.handler_w.filename = "file1"
-        self.assertEqual(self.handler_w.filename, "file1")
+            self.handler_w.fileName = "file.name"
+        self.handler_w.fileName = "file1"
+        self.assertEqual(self.handler_w.fileName, "file1")
         with self.assertRaises(ValueError):
-            self.handler_r.filename = None
+            self.handler_r.fileName = None
     
     def test_getsetFileFormat(self):
         print("Running getFileFormat and setFileFormat tests...")
