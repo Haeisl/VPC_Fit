@@ -71,8 +71,8 @@ class MainApplication(tk.Tk):
         # setting window geometry relative to screen geometry
         screenWidth = self.winfo_screenwidth()
         screenHeight = self.winfo_screenheight()
-        windowWidth = 460
-        windowHeight = 260
+        windowWidth = 350
+        windowHeight = 185
         centerX = int(screenWidth/2 - windowWidth/2)
         centerY = int(screenHeight/2 - windowHeight/2)
         self.geometry(f'{windowWidth}x{windowHeight}+{centerX}+{centerY}')
@@ -117,10 +117,10 @@ class MainApplication(tk.Tk):
 
         # 4th row
         self.dataInputLabel.grid(column=0, row=3, columnspan=2, sticky=tk.W, padx=labelPaddingX, pady=5)
-        self.dataInputButton.grid(column=2, row=3, columnspan=4, sticky=tk.W, ipadx=20, padx=(2,20), pady=5)
+        self.dataInputButton.grid(column=2, row=3, columnspan=4, sticky=tk.W, ipadx=15, pady=5)
 
         # 5th row
-        self.generateDataButton.grid(column=2, row=4, columnspan=2, sticky=tk.E, ipadx=20, padx=(5,20), pady=(10,5))
+        self.generateDataButton.grid(column=1, row=4, columnspan=2, sticky=tk.W, ipadx=20, padx=(5,20), pady=(10,5))
 
     def openResultsWindow(self, parameters):
         """returns a ResultWindow object to present the resulting fitted parameters
