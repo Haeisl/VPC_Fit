@@ -34,15 +34,17 @@ class ModelFitter():
         
         variables = self.extractVariables(equation, prio)
         
-        objective, expr = self.stringToFunction(equation, variables)
+        objective = self.stringToFunction(equation, variables)
         
         # print(inspect.getsource(objective))
         
-        initGuess = np.ones(len(variables)-1)
+        # initGuess = np.ones(len(variables)-1)
+        #, p0=initGuess
+        result, _ = curve_fit(objective, x, y)
         
-        result, _ = curve_fit(objective, x, y, p0=initGuess)
+        print(result)
         
-        return result, expr, variables
+        return result, variables
     
     def stringToFunction(self, equation, variables):
         """returns a lambda function based on the equation given by the user
@@ -62,7 +64,7 @@ class ModelFitter():
         
         func = lambdify(sympyVars, expr, 'sympy')
         
-        return func, expr
+        return func
     
     def extractVariables(self, inputStr, prio):
         """extracts variables out of a mathematical expression
@@ -74,6 +76,10 @@ class ModelFitter():
         :return: array of variables of the given expression
         :rtype: list(str)
         """
+        # a, b -> set() -> {a, b} -> tolist() -> [a,b] | [b,a]
+        # a*x**2+b*x+c
+        # [a,x,b,c]
+        # array gets sorted anyway, maybe change from set() + list to only set and then tolist()
         seen = set()
         uniqueVars = []
         
@@ -83,12 +89,12 @@ class ModelFitter():
                 seen.add(variableName)
                 uniqueVars.append(variableName)
         
-        def customKey(char, prio):
+        def customSortKey(char, prio):
             if char in prio:
                 return (0, char)
             else:
                 return (1, char)
     
-        uniqueVars.sort(key=lambda x: customKey(x, prio))
+        uniqueVars.sort(key=lambda x: customSortKey(x, prio))
         
         return uniqueVars

@@ -31,10 +31,12 @@ class ResultsWindow(tk.Toplevel):
         # wir haben fitted parameters
         # wir brauchen die equation
         # wir ersetzen die parameter a, b, c, d, ... mit fittedparams[0], ...[1], ...
-        for c in indepParam:
-            if c in varNames:
-                varNames.remove(c)
+        
         try:
+            for c in indepParam:
+                if c in varNames:
+                    varNames.remove(c)
+            
             for var in varNames:
                 expression = expression.replace(var, str(fittedParams[varNames.index(var)]))
         except:
@@ -178,6 +180,6 @@ class MainApplication(tk.Tk):
         if self.parameterEntry.get() is not None:
             indepParam = [self.parameterEntry.get()]
         
-        fittedParams, expression, varNames = MF.fit(expression, data, indepParam)
+        fittedParams, varNames = MF.fit(expression, data, indepParam)
         
-        self.openResultsWindow(fittedParams, str(expression), varNames, indepParam)
+        self.openResultsWindow(fittedParams, expression, varNames, indepParam)
