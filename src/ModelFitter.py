@@ -1,5 +1,10 @@
 import numpy as np
-from sympy import sympify, symbols, lambdify
+from sympy import parse_expr, symbols, lambdify
+from scipy.optimize import curve_fit
+from scipy.optimize import minimize
+from scipy.integrate import odeint
+import re
+import inspect
 
 class ModelFitter():
     """This is a class to handle the model fitter
@@ -16,17 +21,30 @@ class ModelFitter():
         self.equation = equation
         self.parameter = None
 
-    def fit(self, data, equation):
+    def fit(self, equation, data, prio=['t','x']):
         """returns the fitted parameters of the given equation based on the input data 
 
-        :param data: the user's input measurement data
-        :type data: list[VPCData]
         :param equation: the function equation entered by the user
         :type equation: str
+        :param data: the user's input measurement data
+        :type data: list[VPCData]
         """
-        pass
+        
+        x, y = data[0], data[1]
+        
+        variables = self.extractVariables(equation, prio)
+        
+        objective, expr = self.stringToFunction(equation, variables)
+        
+        # print(inspect.getsource(objective))
+        
+        initGuess = np.ones(len(variables)-1)
+        
+        result, _ = curve_fit(objective, x, y, p0=initGuess)
+        
+        return result, expr, variables
     
-    def stringToFunction(self, equation):
+    def stringToFunction(self, equation, variables):
         """returns a lambda function based on the equation given by the user
 
         :param equation: the function equation that the user enters for the fit
@@ -34,25 +52,43 @@ class ModelFitter():
         :return: function given by the user as lambda expression
         :rtype: sympy.FunctionClass instance
         """
-        # mf = ModelFitter()
-        # func = mf.stringToFunction('a**b+t*c')
         
-        # print(func(a=symbols('a'),t=1,b=5,c=3))
-        
-        variables = set()
-        for char in equation:
-            if char.isalpha():
-                variables.add(char)
-        variables = list(variables)
-        
-        sympyVars = [symbols(var) for var in variables]
+        sympyVars = symbols(variables)
         
         for var, symVar in zip(variables, sympyVars):
             equation = equation.replace(var, str(symVar))
         
-        expr = sympify(equation)
+        expr = parse_expr(equation)
         
-        func = lambdify(sympyVars, expr, 'numpy')
+        func = lambdify(sympyVars, expr, 'sympy')
         
-        return func
+        return func, expr
+    
+    def extractVariables(self, inputStr, prio):
+        """extracts variables out of a mathematical expression
+        and sorts them such that 'x' would always be the first element
+        and the rest according to the alphabet.
+
+        :param inputStr: input expression
+        :type inputStr: str
+        :return: array of variables of the given expression
+        :rtype: list(str)
+        """
+        seen = set()
+        uniqueVars = []
         
+        for match in re.finditer(r'\b[a-zA-Z_]\w*\b|\b[a-zA-Z_]\b', inputStr):
+            variableName = match.group()
+            if variableName not in seen:
+                seen.add(variableName)
+                uniqueVars.append(variableName)
+        
+        def customKey(char, prio):
+            if char in prio:
+                return (0, char)
+            else:
+                return (1, char)
+    
+        uniqueVars.sort(key=lambda x: customKey(x, prio))
+        
+        return uniqueVars

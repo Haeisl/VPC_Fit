@@ -8,7 +8,7 @@ from .ModelFitter import ModelFitter
 class ResultsWindow(tk.Toplevel):
     """This is a class to handle the functionality of the interface in connection with the presentation of the results 
     """
-    def __init__(self, mainWindow, message):
+    def __init__(self, mainWindow, fittedParams, expression, varNames, indepParam):
         """Constructor method
 
         :param mainWindow: the underlying main interface window
@@ -27,7 +27,20 @@ class ResultsWindow(tk.Toplevel):
 
         # labels
         self.finalEquation = tk.StringVar(self)
-        self.finalEquation.set(f"f(t) = {message[0]}*t + {message[1]}")
+        
+        # wir haben fitted parameters
+        # wir brauchen die equation
+        # wir ersetzen die parameter a, b, c, d, ... mit fittedparams[0], ...[1], ...
+        for c in indepParam:
+            if c in varNames:
+                varNames.remove(c)
+        try:
+            for var in varNames:
+                expression = expression.replace(var, str(fittedParams[varNames.index(var)]))
+        except:
+            expression = 'Something went wrong trying to display the fitted model,\n please check your input.'
+        
+        self.finalEquation.set(expression)
         self.finalEquationLabel = tk.Label(self, textvariable=self.finalEquation)
 
         # grid
@@ -122,13 +135,13 @@ class MainApplication(tk.Tk):
         # 5th row
         self.generateDataButton.grid(column=1, row=4, columnspan=2, sticky=tk.W, ipadx=20, padx=(5,20), pady=(10,5))
 
-    def openResultsWindow(self, parameters):
+    def openResultsWindow(self, fittedParameters, expression, varNames, indepParam):
         """returns a ResultWindow object to present the resulting fitted parameters
 
         :param parameters: the calculated parameters
         :type parameters: list[float]
         """
-        resultsWindow = ResultsWindow(self, parameters)
+        resultsWindow = ResultsWindow(self, fittedParameters, expression, varNames, indepParam)
 
     def validateEntry(self, P: str):
         """validation method to ensure only digits are entered for #FunctionParameters and #ResultComponents
@@ -152,4 +165,19 @@ class MainApplication(tk.Tk):
     def computeParameters(self):
         """calculates the desired parameters based on the requirements provided by the user
         """
-        self.openResultsWindow([2, 3])
+        FH = FileHandler.ReadMode(self.filePath)
+        df = FH.readFile()
+        
+        data = []
+        for name in df.columns.values:
+            data.append(df[name].to_numpy())
+        
+        MF = ModelFitter()
+        expression = self.equationEntry.get()
+        
+        if self.parameterEntry.get() is not None:
+            indepParam = [self.parameterEntry.get()]
+        
+        fittedParams, expression, varNames = MF.fit(expression, data, indepParam)
+        
+        self.openResultsWindow(fittedParams, str(expression), varNames, indepParam)
