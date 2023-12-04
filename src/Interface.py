@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import filedialog
 from .FileHandler import FileHandler
@@ -27,6 +28,10 @@ class ResultsWindow(tk.Toplevel):
 
         # labels
         self.finalEquation = tk.StringVar(self)
+
+        # buttons
+        self.downloadButton = tk.Button(textvariable='Download', command=self.download)
+        self.restartButton = tk.Button(textvariable='Restart', command=self.restart)
         
         # wir haben fitted parameters
         # wir brauchen die equation
@@ -47,18 +52,23 @@ class ResultsWindow(tk.Toplevel):
 
         # grid
         self.finalEquationLabel.grid(column=0, row=0, sticky=tk.NSEW, padx=10, pady=10)
+        self.downloadButton.grid(column=0, row=1, sticky=tk.NW, padx=10, pady=10)
+        self.restartButton.grid(column=1, row=1, sticky=tk.NE, padx=10, pady=10)
     
     def download():
         """opens filedialog for user to specify the location for the file with the results to be written if the user did not cancel the dialog
         
         This function combines the functionality to write the results into a file and save it on the computer
         """
-        pass
+        fh = FileHandler.writeFile()
+        file_path = tk.filedialog.askdirectory()
 
-    def restart():
+    def restart(self, mainWindow):
         """sets the program to it's default state
         """
-        pass
+        self.destroy()
+        mainWindow.destroy()
+        os.startfile("main.py")
 
 
 class MainApplication(tk.Tk):
