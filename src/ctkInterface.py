@@ -1,9 +1,9 @@
 import tkinter
-# from tkinter import filedialog
-# from typing import Optional, Tuple, Union
-# from .FileHandler import FileHandler
-# from .VPCData import VPCData
-# from .ModelFitter import ModelFitter
+from tkinter import filedialog
+from typing import Optional, Tuple, Union
+from .FileHandler import FileHandler
+from .VPCData import VPCData
+from .ModelFitter import ModelFitter
 import customtkinter
 from customtkinter import CTkFont
 from tktooltip import ToolTip
@@ -17,7 +17,7 @@ class MainApp(customtkinter.CTk):
         
         # window configuration
         self.title("Virtual Patient Cohorts - Fitting App")
-        self.geometry(f"{500}x{250}")
+        self.geometry(f"{500}x{250}+{1000}+{600}")
         
         # grid layout
         self.grid_columnconfigure(0, weight=1)
@@ -31,7 +31,7 @@ class MainApp(customtkinter.CTk):
         
         # main frame tabview
         self.tabview = customtkinter.CTkTabview(self, width=100, height=300, corner_radius=0)
-        self.tabview.grid(row=0, column=0, padx=(5,5), pady=(5,0), sticky="nsew")
+        self.tabview.grid(row=0, column=0, padx=(5,2), pady=(5,0), sticky="nsew")
         self.tabview.add("Basic")
         self.tabview.add("Additional")
         self.tabview._segmented_button.configure(font=button_font)
@@ -69,7 +69,7 @@ class MainApp(customtkinter.CTk):
                                                            text="IndParam:",
                                                            font=font,
                                                            compound="left")
-        self.what_parameter_label.grid(row=0, column=0, padx=(20,5), pady=(10,5), sticky="w")
+        self.what_parameter_label.grid(row=0, column=0, padx=(20,2), pady=(10,5), sticky="w")
         self.what_parameter_entry = customtkinter.CTkEntry(self.tabview.tab("Additional"),
                                                               placeholder_text="t",
                                                               font=font,
@@ -90,7 +90,7 @@ class MainApp(customtkinter.CTk):
         
         # confirm frame | background_corner_colors=("gray17","gray17","gray14","gray14")
         self.confirm_frame = customtkinter.CTkFrame(self, corner_radius=0)
-        self.confirm_frame.grid(row=1, column=0, padx=(5,5), pady=(0,5), sticky="nsew")
+        self.confirm_frame.grid(row=1, column=0, padx=(5,2), pady=(0,5), sticky="nsew")
         self.confirm_frame.grid_columnconfigure(0, weight=1)
         self.confirm_frame.grid_rowconfigure(0, weight=1)
         self.confirm_inputs_button = customtkinter.CTkButton(self.confirm_frame, 
@@ -102,7 +102,7 @@ class MainApp(customtkinter.CTk):
         
         # compute frame
         self.compute_frame = customtkinter.CTkFrame(self, height=300, corner_radius=0)
-        self.compute_frame.grid(row=0, column=1, rowspan=2, padx=(5,5), pady=(10,5), sticky="nsew")
+        self.compute_frame.grid(row=0, column=1, rowspan=2, padx=(3,5), pady=(10,5), sticky="nsew")
         self.compute_frame.grid_columnconfigure(0, weight=1)
         self.compute_frame.grid_rowconfigure((2), weight=1)
         # self.compute_frame.grid_propagate(False)
@@ -122,31 +122,56 @@ class MainApp(customtkinter.CTk):
         
         
         # set default values
-        self.input_confirmation_textbox.insert("0.0",
-                                               "Function: ...\n" +
-                                               "Independent Variable(s): ...\n" +
-                                               "Constants to be fitted: ...\n" +
-                                               "Miscellaneous: ...")
+        msg = self.create_interpretation_string()
+        self.input_confirmation_textbox.insert("0.0", msg)
         self.compute_params_button.configure(state="disabled")
         
         # set tooltip for compute button
-        self.tt = ToolTip(widget=self.compute_params_button,
+        self.compute_button_tooltip = ToolTip(widget=self.compute_params_button,
                           msg="You need to confirm your inputs before computation.", delay=0,
                           parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
                           fg="#ffffff", bg="gray17", padx=3, pady=3)
     
     
-    def confirm_input(self):
+    def remove_tooltip(self) -> None:
         # unbinding compute button bindings
         self.compute_params_button.unbind("<Enter>")
         self.compute_params_button.unbind("<Leave>")
         self.compute_params_button.unbind("<Motion>")
         self.compute_params_button.unbind("<ButtonPress>")
         # destroying the tooltip
-        self.tt.destroy()
+        self.compute_button_tooltip.destroy()
         # enabling the button
         self.compute_params_button.configure(state="normal")
     
+    
+    def create_interpretation_string(self, 
+                                     function: Optional[str] = "...", 
+                                     var: Optional[str] = "...", 
+                                     consts: Optional[str] = "...",
+                                     **kwargs: Optional[str]) -> str:
+        
+        msg = f"Function: {function}\nIndependent Variable(s): {var}\nConstants to be fitted: {consts}"
+        if kwargs is not None:
+            for descr, val in kwargs.items():
+                msg += f"\n{descr}: {val}"
+        return msg
+    
+    
+    def display_interpreted_input(self) -> None:
+        # clear text Widget
+        self.input_confirmation_textbox.delete("1.0", tkinter.END)
+        # create text string
+        msg = self.create_interpretation_string(function="a*t+b", var="t", consts="a,b", hello="world", bye="sanity")
+        # add new text to widget
+        self.input_confirmation_textbox.insert("0.0", msg)
+    
+    
+    def confirm_input(self) -> None:
+        self.remove_tooltip()
+        self.display_interpreted_input()
+        
+        
     def compute_params(self) -> None:
         print(self.geometry())
     
