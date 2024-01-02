@@ -5,7 +5,6 @@ from .FileHandler import FileHandler
 from .VPCData import VPCData
 from .ModelFitter import ModelFitter
 import customtkinter
-from customtkinter import CTkFont
 from tktooltip import ToolTip
 
 customtkinter.set_appearance_mode("Dark")
@@ -26,8 +25,8 @@ class MainApp(customtkinter.CTk):
         # self.resizable(width=False, height=False)
         
         # font that is used
-        font = CTkFont(family="Arial", size=14, weight="bold")
-        button_font = CTkFont(family="Arial", size=14)
+        font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
+        button_font = customtkinter.CTkFont(family="Arial", size=14)
         
         # main frame tabview
         self.tabview = customtkinter.CTkTabview(self, width=100, height=300, corner_radius=0)
@@ -40,6 +39,7 @@ class MainApp(customtkinter.CTk):
         self.tabview.tab("Additional").grid_columnconfigure(0, weight=1)
         self.tabview.tab("Additional").grid_columnconfigure(1, weight=1)
         self.tabview.tab("Basic").grid_rowconfigure(2, weight=1)
+        self.tabview.tab("Additional").grid_rowconfigure(2, weight=1)
         # self.tabview.tab("Basic").grid_propagate(False)
         
         # tabview "Basic"
@@ -51,7 +51,7 @@ class MainApp(customtkinter.CTk):
         self.equation_entry = customtkinter.CTkEntry(self.tabview.tab("Basic"), 
                                                      placeholder_text="f(t) = ...", 
                                                      font=font,
-                                                     width=120)
+                                                     width=118)
         self.equation_entry.grid(row=0, column=1, padx=(0,20), pady=(10,5), sticky="ew")
         self.data_input_label = customtkinter.CTkLabel(self.tabview.tab("Basic"), 
                                                        text="Data:", 
@@ -82,7 +82,7 @@ class MainApp(customtkinter.CTk):
         self.result_components_label.grid(row=1, column=0, padx=(20,5), pady=(5,10), sticky="w")
         self.result_components_variable = customtkinter.StringVar(value="1")
         self.result_components_combobox = customtkinter.CTkComboBox(self.tabview.tab("Additional"),
-                                                                    values=[str(i) for i in range(4)],
+                                                                    values=[str(i) for i in range(1,4)],
                                                                     variable=self.result_components_variable,
                                                                     font=font,
                                                                     width=80)
@@ -123,7 +123,7 @@ class MainApp(customtkinter.CTk):
         
         # set default values
         msg = self.create_interpretation_string()
-        self.input_confirmation_textbox.insert("0.0", msg)
+        self.input_confirmation_textbox.insert("1.0", msg)
         self.compute_params_button.configure(state="disabled")
         
         # set tooltip for compute button
@@ -134,15 +134,16 @@ class MainApp(customtkinter.CTk):
     
     
     def remove_tooltip(self) -> None:
-        # unbinding compute button bindings
-        self.compute_params_button.unbind("<Enter>")
-        self.compute_params_button.unbind("<Leave>")
-        self.compute_params_button.unbind("<Motion>")
-        self.compute_params_button.unbind("<ButtonPress>")
-        # destroying the tooltip
-        self.compute_button_tooltip.destroy()
-        # enabling the button
-        self.compute_params_button.configure(state="normal")
+        if self.compute_button_tooltip.winfo_exists():
+            # unbinding compute button bindings
+            self.compute_params_button.unbind("<Enter>")
+            self.compute_params_button.unbind("<Leave>")
+            self.compute_params_button.unbind("<Motion>")
+            self.compute_params_button.unbind("<ButtonPress>")
+            # destroying the tooltip
+            self.compute_button_tooltip.destroy()
+            # enabling the button
+            self.compute_params_button.configure(state="normal")
     
     
     def create_interpretation_string(self, 
@@ -164,7 +165,7 @@ class MainApp(customtkinter.CTk):
         # create text string
         msg = self.create_interpretation_string(function="a*t+b", var="t", consts="a,b", hello="world", bye="sanity")
         # add new text to widget
-        self.input_confirmation_textbox.insert("0.0", msg)
+        self.input_confirmation_textbox.insert("1.0", msg)
     
     
     def confirm_input(self) -> None:
