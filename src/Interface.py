@@ -30,8 +30,8 @@ class ResultsWindow(tk.Toplevel):
         self.finalEquation = tk.StringVar(self)
 
         # buttons
-        self.downloadButton = tk.Button(textvariable='Download', command=self.download)
-        self.restartButton = tk.Button(textvariable='Restart', command=self.restart)
+        self.downloadButton = tk.Button(self, textvariable='Download', command=self.download)
+        self.restartButton = tk.Button(self, textvariable='Restart', command=self.restart)
         
         # wir haben fitted parameters
         # wir brauchen die equation

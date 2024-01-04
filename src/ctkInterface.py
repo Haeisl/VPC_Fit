@@ -13,21 +13,24 @@ customtkinter.set_default_color_theme("green")
 class MainApp(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        
+
         # window configuration
         self.title("Virtual Patient Cohorts - Fitting App")
         self.geometry(f"{500}x{250}+{1000}+{600}")
-        
+
         # grid layout
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=2)
         self.grid_rowconfigure(0, weight=1)
         # self.resizable(width=False, height=False)
-        
+
         # font that is used
         font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
         button_font = customtkinter.CTkFont(family="Arial", size=14)
-        
+
+        # variables that change through user interaction
+        self.file_name = customtkinter.StringVar(self, "Browse...")
+
         # main frame tabview
         self.tabview = customtkinter.CTkTabview(self, width=100, height=300, corner_radius=0)
         self.tabview.grid(row=0, column=0, padx=(5,2), pady=(5,0), sticky="nsew")
@@ -41,29 +44,29 @@ class MainApp(customtkinter.CTk):
         self.tabview.tab("Basic").grid_rowconfigure(2, weight=1)
         self.tabview.tab("Additional").grid_rowconfigure(2, weight=1)
         # self.tabview.tab("Basic").grid_propagate(False)
-        
+
         # tabview "Basic"
-        self.equation_label = customtkinter.CTkLabel(self.tabview.tab("Basic"), 
-                                                     text="Model:", 
+        self.equation_label = customtkinter.CTkLabel(self.tabview.tab("Basic"),
+                                                     text="Model:",
                                                      font=font,
                                                      compound="left")
         self.equation_label.grid(row=0, column=0, padx=(20,5), pady=(10,5), sticky="w")
-        self.equation_entry = customtkinter.CTkEntry(self.tabview.tab("Basic"), 
-                                                     placeholder_text="f(t) = ...", 
+        self.equation_entry = customtkinter.CTkEntry(self.tabview.tab("Basic"),
+                                                     placeholder_text="f(t) = ...",
                                                      font=font,
                                                      width=118)
         self.equation_entry.grid(row=0, column=1, padx=(0,20), pady=(10,5), sticky="ew")
-        self.data_input_label = customtkinter.CTkLabel(self.tabview.tab("Basic"), 
-                                                       text="Data:", 
+        self.data_input_label = customtkinter.CTkLabel(self.tabview.tab("Basic"),
+                                                       text="Data:",
                                                        font=font,
                                                        compound="left")
         self.data_input_label.grid(row=1, column=0, padx=(20,5), pady=(5,10), sticky="w")
-        self.data_input_button = customtkinter.CTkButton(self.tabview.tab("Basic"), 
-                                                         text="Browse...", 
+        self.data_input_button = customtkinter.CTkButton(self.tabview.tab("Basic"),
+                                                         textvariable=self.file_name,
                                                          font=button_font,
                                                          width=80)
         self.data_input_button.grid(row=1, column=1, padx=(0,20), pady=(5,10), sticky="w")
-        
+
         # tabview "Additional"
         self.what_parameter_label = customtkinter.CTkLabel(self.tabview.tab("Additional"),
                                                            text="IndParam:",
@@ -80,26 +83,25 @@ class MainApp(customtkinter.CTk):
                                                               font=font,
                                                               compound="left")
         self.result_components_label.grid(row=1, column=0, padx=(20,5), pady=(5,10), sticky="w")
-        self.result_components_variable = customtkinter.StringVar(value="1")
         self.result_components_combobox = customtkinter.CTkComboBox(self.tabview.tab("Additional"),
                                                                     values=[str(i) for i in range(1,4)],
-                                                                    variable=self.result_components_variable,
+                                                                    #variable=self.result_components,
                                                                     font=font,
                                                                     width=80)
         self.result_components_combobox.grid(row=1, column=1, padx=(0,20), pady=(5,10), sticky="ew")
-        
+
         # confirm frame | background_corner_colors=("gray17","gray17","gray14","gray14")
         self.confirm_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.confirm_frame.grid(row=1, column=0, padx=(5,2), pady=(0,5), sticky="nsew")
         self.confirm_frame.grid_columnconfigure(0, weight=1)
         self.confirm_frame.grid_rowconfigure(0, weight=1)
-        self.confirm_inputs_button = customtkinter.CTkButton(self.confirm_frame, 
-                                                             text="Confirm", 
+        self.confirm_inputs_button = customtkinter.CTkButton(self.confirm_frame,
+                                                             text="Confirm",
                                                              font=button_font,
                                                              width=80,
                                                              command=self.confirm_input)
         self.confirm_inputs_button.grid(row=0, column=0, padx=(0,0), pady=20)
-        
+
         # compute frame
         self.compute_frame = customtkinter.CTkFrame(self, height=300, corner_radius=0)
         self.compute_frame.grid(row=0, column=1, rowspan=2, padx=(3,5), pady=(10,5), sticky="nsew")
@@ -110,29 +112,29 @@ class MainApp(customtkinter.CTk):
                                                                text="Interpreted Input:",
                                                                font=font)
         self.input_confirmation_label.grid(row=0, column=0, padx=10, pady=(10,0))
-        self.input_confirmation_textbox = customtkinter.CTkTextbox(self.compute_frame, 
-                                                                   height=120, 
+        self.input_confirmation_textbox = customtkinter.CTkTextbox(self.compute_frame,
+                                                                   height=120,
                                                                    font=font)
         self.input_confirmation_textbox.grid(row=1, column=0, padx=10, pady=(10,0), sticky="nsew")
-        self.compute_params_button = customtkinter.CTkButton(self.compute_frame, 
-                                                             text="Compute Parameters", 
+        self.compute_params_button = customtkinter.CTkButton(self.compute_frame,
+                                                             text="Compute Parameters",
                                                              font=button_font,
                                                              command=self.compute_params)
         self.compute_params_button.grid(row=3, column=0, pady=(0,25))
-        
-        
+
+
         # set default values
         msg = self.create_interpretation_string()
         self.input_confirmation_textbox.insert("1.0", msg)
         self.compute_params_button.configure(state="disabled")
-        
+
         # set tooltip for compute button
         self.compute_button_tooltip = ToolTip(widget=self.compute_params_button,
                           msg="You need to confirm your inputs before computation.", delay=0,
                           parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
                           fg="#ffffff", bg="gray17", padx=3, pady=3)
-    
-    
+
+
     def remove_tooltip(self) -> None:
         if self.compute_button_tooltip.winfo_exists():
             # unbinding compute button bindings
@@ -144,37 +146,43 @@ class MainApp(customtkinter.CTk):
             self.compute_button_tooltip.destroy()
             # enabling the button
             self.compute_params_button.configure(state="normal")
-    
-    
-    def create_interpretation_string(self, 
-                                     function: Optional[str] = "...", 
-                                     var: Optional[str] = "...", 
+
+
+    def create_interpretation_string(self,
+                                     function: Optional[str] = "...",
+                                     var: Optional[str] = "...",
                                      consts: Optional[str] = "...",
                                      **kwargs: Optional[str]) -> str:
-        
+
         msg = f"Function: {function}\nIndependent Variable(s): {var}\nConstants to be fitted: {consts}"
         if kwargs is not None:
             for descr, val in kwargs.items():
                 msg += f"\n{descr}: {val}"
         return msg
-    
-    
-    def display_interpreted_input(self) -> None:
+
+
+    def display_interpreted_input(self, msg) -> None:
         # clear text Widget
         self.input_confirmation_textbox.delete("1.0", tkinter.END)
-        # create text string
-        msg = self.create_interpretation_string(function="a*t+b", var="t", consts="a,b", hello="world", bye="sanity")
         # add new text to widget
         self.input_confirmation_textbox.insert("1.0", msg)
-    
-    
+
+
     def confirm_input(self) -> None:
+        msg = self.create_interpretation_string(function=self.equation_entry.get(),
+                                                var=self.what_parameter_entry.get(),
+                                                consts="a,b",
+                                                hello="world",
+                                                bye="sanity")
+        self.display_interpreted_input(msg)
         self.remove_tooltip()
-        self.display_interpreted_input()
-        
-        
+
+        # self.equation_entry.get()
+        # self.file_name.get()
+        # self.what_parameter_entry.get()
+        # self.result_components_combobox.get()
+
+
+
     def compute_params(self) -> None:
         print(self.geometry())
-    
-    # def change_appearance_mode_event(self, new_appearance_mode: str):
-    #     customtkinter.set_appearance_mode(new_appearance_mode)
