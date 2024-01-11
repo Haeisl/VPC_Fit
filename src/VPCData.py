@@ -14,7 +14,7 @@ class VPCData(UserList):
         :type data: list, optional
         """
         super().__init__(data)
-        
+
     def __getitem__(self, idx):
         """returns the element of a given index in the data list
 
@@ -27,7 +27,7 @@ class VPCData(UserList):
             return self.__class__(self.data[idx])
         else:
             return self.data[idx]
-        
+
     def __setitem__(self, idx, value):
         """sets a given value at a given index in the data list
 
@@ -37,7 +37,7 @@ class VPCData(UserList):
         :type value: float
         """
         self.data[idx] = value
-        
+
     def __len__(self):
         """returns the length of the data list
 
@@ -45,7 +45,7 @@ class VPCData(UserList):
         :rtype: int
         """
         return len(self.data)
-    
+
     def __delitem__(self, idx):
         """deletes an element in the data list at a given index
 
@@ -53,7 +53,7 @@ class VPCData(UserList):
         :type idx: int
         """
         del self.data[idx]
-        
+
     def append(self, next):
         """appends a given list or value to the data list
 
@@ -65,7 +65,7 @@ class VPCData(UserList):
                 self.data.append(value)
         else:
             self.data.append(next)
-        
+
     def insert(self, idx, value):
         """inserts a given list or value at the desired index in the data list
 
@@ -79,7 +79,7 @@ class VPCData(UserList):
                 self.data.insert(idx + i, val)
         else:
             self.data.insert(idx, value)
-        
+
     def remove(self, value):
         """deletes the given value from the data list
 
@@ -90,7 +90,7 @@ class VPCData(UserList):
         if value not in self.data:
             raise ValueError("value not in list")
         self.data.remove(value)
-        
+
     def index(self, item, *args):
         """returns the index of a given element in the data list
 

@@ -22,13 +22,13 @@ class FileHandler():
     :return: _description_
     :rtype: _type_
     """
-    
+
     i = 0
-    
+
     FORMATS = ['EXCEL', 'CSV', 'XML']
-    
+
     MODES = ['READ', 'WRITE']
-    
+
     def __init__(self, path=None, mode=None, fileName="file_" + str(i), format=None, patientData=None):
         """Constructor method
 
@@ -59,7 +59,7 @@ class FileHandler():
         :rtype: FileHandler
         """
         return cls(path=path, mode='r')
-    
+
     @classmethod
     def WriteMode(cls, path, fileName, format, pData):
         """classmethod, returns a FileHandler class object in write mode
@@ -76,7 +76,7 @@ class FileHandler():
         :rtype: FileHandler
         """
         return cls(path=path, mode='w', fileName=fileName, format=format, patientData=pData)
-    
+
     @property
     def mode(self):
         """gets the mode of the object
@@ -85,7 +85,7 @@ class FileHandler():
         :rtype: str
         """
         return self._mode
-    
+
     @mode.setter
     def mode(self, mode):
         """sets the mode of the object to the given value
@@ -102,7 +102,7 @@ class FileHandler():
             self._mode = 'WRITE'
         else:
             raise ValueError("Unknown mode, specify 'read' or 'write'")
-    
+
     @property
     def path(self):
         """gets the path of the file to be read or write
@@ -111,7 +111,7 @@ class FileHandler():
         :rtype: str
         """
         return self._path
-    
+
     @path.setter
     def path(self, path):
         """sets the path of the file that is being read or written to
@@ -126,7 +126,7 @@ class FileHandler():
         if any(c in path for c in '<>"|?*'):
             raise ValueError("Illegal character in path")
         self._path = path
-        
+
     @property
     def fileName(self):
         """gets the name of the file to be written
@@ -135,7 +135,7 @@ class FileHandler():
         :rtype: str
         """
         return self._fileName
-    
+
     @fileName.setter
     def fileName(self, name):
         """sets the name of the file to be written to the input value
@@ -150,7 +150,7 @@ class FileHandler():
         if any(c in name for c in ',.'):
             raise ValueError("File name can't contain dots, commas, etc.")
         self._fileName = name
-                
+
     @property
     def fileFormat(self):
         """gets the format of the file
@@ -158,8 +158,8 @@ class FileHandler():
         :return: current file format of the object
         :rtype: str
         """
-        return self._fileFormat 
-    
+        return self._fileFormat
+
     @fileFormat.setter
     def fileFormat(self, fileFormat):
         """sets the format of the file to the input value
@@ -171,7 +171,7 @@ class FileHandler():
         if fileFormat not in self.FORMATS:
             raise ValueError("Unknown file format")
         self._fileFormat = fileFormat
-    
+
     def readFile(self):
         """reads data from a file and returns a dataframe
 
@@ -186,11 +186,11 @@ class FileHandler():
             raise ValueError("FileHandler not in read mode")
         if not Path(self.path).is_file():
             raise FileNotFoundError("Invalid Path; no file at destination")
-            
+
         suffix = Path(self.path).suffix.split('.')[1]
         if suffix == '':
             raise ValueError("No Fileextension found at path")
-        
+
         if suffix.upper() == 'XLSX':
             self.dataFrame = pd.read_excel(self.path)
         elif suffix.upper() == 'CSV':
@@ -199,9 +199,9 @@ class FileHandler():
             self.dataFrame = pd.read_xml(self.path)
         else:
             raise TypeError("Unknown File extension")
-        
+
         return self.dataFrame
-                
+
     def formatData(self, includeFirstRow:bool):
         """formats read data from a file to a list and transforms it to a VPCData object
 
@@ -214,21 +214,21 @@ class FileHandler():
         # if self.mode != 'READ':
         #    raise ValueError("Can't read file while not in read mode")
         # return self.dataFrame.values.tolist() if self.dataFrame is not None else []
-        
+
         if self.dataFrame is None:
             raise ValueError("No data could be read")
-        
+
         columnNames = self.dataFrame.columns.tolist()
         vpcDataList = []
-        
+
         if includeFirstRow:
             vpcDataList = [VPCData([name, *self.dataFrame[name].tolist()]) for name in columnNames]
         else:
             vpcDataList = [VPCData(self.dataFrame[name].tolist()) for name in columnNames]
-        
+
         return vpcDataList # , self.dataFrame
 
-    
+
     def writeFile(self, data):
         """writes the given data into a file
 
@@ -239,8 +239,8 @@ class FileHandler():
         """
         if self.mode != 'write':
             raise ValueError("Can't write while not in write mode")
-        
-        resPath = './results/res_' + str(FileHandler.i) 
+
+        resPath = './results/res_' + str(FileHandler.i)
         self.dataFrame = pd.DataFrame(data)
         if self.fileFormat == 'EXCEL':
             self.dataFrame.to_excel(resPath + '.xlsx', index=False)
@@ -251,7 +251,7 @@ class FileHandler():
         else:
             raise TypeError("Can't write to unknown Fileextension")
         FileHandler.i += 1
-        
+
     def validateData(self):
         """TODO
         read dataFrame / patientData and discard rows, if they are not fully populated
