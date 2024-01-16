@@ -7,7 +7,7 @@ from .ModelFitter import ModelFitter
 
 
 class ResultsWindow(tk.Toplevel):
-    """This is a class to handle the functionality of the interface in connection with the presentation of the results 
+    """This is a class to handle the functionality of the interface in connection with the presentation of the results
     """
     def __init__(self, mainWindow, fittedParams, expression, varNames, indepParam):
         """Constructor method
@@ -32,21 +32,21 @@ class ResultsWindow(tk.Toplevel):
         # buttons
         self.downloadButton = tk.Button(self, textvariable='Download', command=self.download)
         self.restartButton = tk.Button(self, textvariable='Restart', command=self.restart)
-        
+
         # wir haben fitted parameters
         # wir brauchen die equation
         # wir ersetzen die parameter a, b, c, d, ... mit fittedparams[0], ...[1], ...
-        
+
         try:
             for c in indepParam:
                 if c in varNames:
                     varNames.remove(c)
-            
+
             for var in varNames:
                 expression = expression.replace(var, str(fittedParams[varNames.index(var)]))
         except:
             expression = 'Something went wrong trying to display the fitted model,\n please check your input.'
-        
+
         self.finalEquation.set(expression)
         self.finalEquationLabel = tk.Label(self, textvariable=self.finalEquation)
 
@@ -54,10 +54,10 @@ class ResultsWindow(tk.Toplevel):
         self.finalEquationLabel.grid(column=0, row=0, sticky=tk.NSEW, padx=10, pady=10)
         self.downloadButton.grid(column=0, row=1, sticky=tk.NW, padx=10, pady=10)
         self.restartButton.grid(column=1, row=1, sticky=tk.NE, padx=10, pady=10)
-    
+
     def download():
         """opens filedialog for user to specify the location for the file with the results to be written if the user did not cancel the dialog
-        
+
         This function combines the functionality to write the results into a file and save it on the computer
         """
         fh = FileHandler.writeFile()
@@ -164,7 +164,7 @@ class MainApplication(tk.Tk):
         :rtype: bool
         """
         return P.isdigit() or P == ''
-    
+
     def browseFiles(self):
         """opens filedialog for user to specify the location of the file and sets file name and file path if the user did not cancel the dialog
         """
@@ -173,23 +173,23 @@ class MainApplication(tk.Tk):
             fn = fp.name.split('/')[-1]
             self.fileName.set(fn)
             self.filePath = fp.name
-    
+
     def computeParameters(self):
         """calculates the desired parameters based on the requirements provided by the user
         """
         FH = FileHandler.ReadMode(self.filePath)
         df = FH.readFile()
-        
+
         data = []
         for name in df.columns.values:
             data.append(df[name].to_numpy())
-        
+
         MF = ModelFitter()
         expression = self.equationEntry.get()
-        
+
         if self.parameterEntry.get() is not None:
             indepParam = [self.parameterEntry.get()]
-        
+
         fittedParams, varNames = MF.fit(expression, data, indepParam)
-        
+
         self.openResultsWindow(fittedParams, expression, varNames, indepParam)
