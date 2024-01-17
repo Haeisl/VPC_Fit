@@ -172,7 +172,7 @@ class FileHandler():
             raise ValueError("Unknown file format")
         self._fileFormat = fileFormat
 
-    def readFile(self):
+    def read_file(self):
         """reads data from a file and returns a data_frame
 
         :raises ValueError: object has so be in read mode
@@ -202,7 +202,7 @@ class FileHandler():
 
         return self.data_frame
 
-    def formatData(self, include_first_row:bool):
+    def format_data(self, include_first_row:bool):
         """formats read data from a file to a list and transforms it to a VPCData object
 
         :param include_first_row: -deprecated-
@@ -229,7 +229,7 @@ class FileHandler():
         return vpc_data_list # , self.data_frame
 
 
-    def writeFile(self, data):
+    def write_file(self, data):
         """writes the given data into a file
 
         :param data: data to be written to a file
@@ -252,7 +252,7 @@ class FileHandler():
             raise TypeError("Can't write to unknown Fileextension")
         FileHandler.i += 1
 
-    def validateData(self):
+    def validate_data(self):
         """TODO
         read data_frame / patient_data and discard rows, if they are not fully populated
         think of way other than discarding incomplete data

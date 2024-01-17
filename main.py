@@ -1,6 +1,6 @@
 from src.Interface import MainApplication
 from src.ModelFitter import ModelFitter
-from sympy import symbols
+from sympy import sympify
 
 from src.ctkInterface import MainApp
 

@@ -127,6 +127,12 @@ class MainApp(customtkinter.CTk):
                           parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
                           fg="#ffffff", bg="gray17", padx=3, pady=3)
 
+        # set tooltip for model equation entry
+        self.model_entry_tooltip = ToolTip(widget=self.equation_entry,
+                                           msg="LHS can be omitted, set independent variables in 'Additional' tab.", delay=0,
+                                           parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
+                                           fg="#ffffff", bg="gray17", padx=3, pady=3)
+
 
     def remove_tooltip(self) -> None:
         if self.compute_button_tooltip.winfo_exists():
@@ -166,12 +172,15 @@ class MainApp(customtkinter.CTk):
         if fp is None:
             return
         fn = fp.name.split('/')[-1]
-        new_file_name = (fn[:12] + '..') if len(fn) > 12 else fn
-        self.file_name.set(new_file_name)
+        displayed_name = (fn[:12] + '..') if len(fn) > 12 else fn
+        self.file_name.set(displayed_name)
         self.file_path = fp.name
 
 
     def confirm_input(self) -> None:
+        indep_vars = list(self.what_parameter_entry.get())
+        variables = ModelFitter.extract_variables(self.equation_entry.get())
+
         msg = self.create_interpretation_string(self.equation_entry.get(),
                                                 self.what_parameter_entry.get(),
                                                 "a,b",
@@ -180,6 +189,8 @@ class MainApp(customtkinter.CTk):
         self.display_interpreted_input(msg)
         self.remove_tooltip()
 
+
+
         # self.equation_entry.get()
         # self.file_name.get()
         # self.what_parameter_entry.get()
@@ -187,14 +198,13 @@ class MainApp(customtkinter.CTk):
 
 
     def compute_params(self) -> None:
-        FH = FileHandler.ReadMode(self.file_path)
-        df = FH.readFile()
-
+        FH = FileHandler.Read_Mode(self.file_path)
+        df = FH.read_file()
         data = []
         for name in df.columns.values:
             data.append(df[name].to_numpy())
 
-        MF = ModelFitter
+        MF = ModelFitter()
         expression = self.equation_entry.get()
 
         if not len(self.what_parameter_entry.get()) == 0:

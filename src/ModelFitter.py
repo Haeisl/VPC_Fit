@@ -21,7 +21,7 @@ class ModelFitter():
         self.equation = equation
         self.parameter = None
 
-    def fit(self, equation, data, prio=['t','x']):
+    def fit(self, equation, data, prio=['t'], variables=None):
         """returns the fitted parameters of the given equation based on the input data
 
         :param equation: the function equation entered by the user
@@ -29,10 +29,10 @@ class ModelFitter():
         :param data: the user's input measurement data
         :type data: list[VPCData]
         """
+        if variables is not None:
+            variables = self.extract_variables(equation, prio)
 
         x, y = data[0], data[1]
-
-        variables = self.extractVariables(equation, prio)
 
         objective = self.string_to_function(equation, variables)
 
@@ -66,7 +66,7 @@ class ModelFitter():
 
         return func
 
-    def extractVariables(self, input_str, prio):
+    def extract_variables(self, input_str, prio):
         """extracts variables out of a mathematical expression
         and sorts them such that 'x' would always be the first element
         and the rest according to the alphabet.
