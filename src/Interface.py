@@ -14,8 +14,14 @@ class ResultsWindow(tk.Toplevel):
 
         :param mainWindow: the underlying main interface window
         :type mainWindow: MainApplication class object
-        :param message: final equation with the calculated fitted parameters
-        :type message: list
+        :param fittedParams: 
+        :type fittedParams: 
+        :param expression: final equation with the calculated fitted parameters
+        ;type expression:
+        :param varNames:
+        :type varNames:
+        :param indepParam:
+        :type indepParam:
         """
         super().__init__(mainWindow)
         screenWidth = self.winfo_screenwidth()
@@ -64,7 +70,7 @@ class ResultsWindow(tk.Toplevel):
         file_path = tk.filedialog.askdirectory()
 
     def restart(self, mainWindow):
-        """sets the program to it's default state
+        """sets the program to its initial state in order to be able to start a new run 
         """
         self.destroy()
         mainWindow.destroy()
@@ -89,6 +95,7 @@ class MainApplication(tk.Tk):
         :param modelEquation: equation of the function to be fitted
         :type modelEquation: tk.StringVar()
         """
+
         tk.Tk.__init__(self)
         self.title('Virtual Patient Cohort Generator')
         self.filePath = None
@@ -150,8 +157,14 @@ class MainApplication(tk.Tk):
     def openResultsWindow(self, fittedParameters, expression, varNames, indepParam):
         """returns a ResultWindow object to present the resulting fitted parameters
 
-        :param parameters: the calculated parameters
-        :type parameters: list[float]
+        :param fittedParameters: the calculated parameters
+        :type fittedParameters: list[float]
+        :param expression:
+        :type expression:
+        :param varNames:
+        :type varNames:
+        :param indepParam:
+        :type indepParam:
         """
         resultsWindow = ResultsWindow(self, fittedParameters, expression, varNames, indepParam)
 
