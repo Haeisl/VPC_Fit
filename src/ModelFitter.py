@@ -15,7 +15,7 @@ class ModelFitter():
 
         :param equation: the equation of the function to be fitted
         :type equation: str
-        :param parameter: fitted parameter of the function
+        :param parameter: fitted parameter of the function, NONE in the inital state
         :type parameter: list[float], optional
         """
         self.equation = equation
@@ -28,6 +28,9 @@ class ModelFitter():
         :type equation: str
         :param data: the user's input measurement data
         :type data: list[VPCData]
+        :param prio: priority run variables that are searched first in the equation
+        :type prio: list[str]
+        :return: variables extracted from the equation, an array with the optimal fitted parameters and a 2-D array with the estimated approximate covariance of this array
         """
         if variables is not None:
             variables = self.extract_variables(equation, prio)
@@ -101,3 +104,36 @@ class ModelFitter():
 
     def validate_expression(self):
         pass
+
+
+    def fit_ODE(self, equation, data):
+        # given Data
+        xaxisData = data[0]
+        yaxisData = data[1]
+
+        # define ODE
+        def system_of_ODEs(x, t, equation):
+            p1 = equation[0]
+            p2 = equation[1]
+            dxdt = p1-p2*x
+            return dxdt
+        
+        # solve ODEs at xaxisData points
+        # and return calculated yaxisCalc using
+        # current values of the parameters
+        def model(xaxisData, *params):
+            # initial condition for ODEs
+            yaxis0 = 0.0
+            yaxisCalc = np.zeros(xaxisData.size)
+            for i in np.arange(0, len(xaxisData)):
+                if xaxisData[i] == 0.0:
+                    yaxisCalc[i] = yaxis0
+                else:
+                    xaxisSpan = np.linspace(0, xaxisData[i], 101)
+                    ySoln = odeint(system_of_ODEs, yaxis0, xaxisSpan, args = (params,))
+                    yaxisCalc[i] = ySoln[-1]
+            return yaxisCalc
+        
+        parameterSoln, pcov = curve_fit(model, xaxisData, yaxisData)
+
+        return parameterSoln, pcov
