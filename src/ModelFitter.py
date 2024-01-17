@@ -69,7 +69,7 @@ class ModelFitter():
 
         return func
 
-    def extract_variables(self, input_str, prio):
+    def extract_variables(self, input_str, prio) -> list:
         """extracts variables out of a mathematical expression
         and sorts them such that 'x' would always be the first element
         and the rest according to the alphabet.
@@ -117,7 +117,7 @@ class ModelFitter():
             p2 = equation[1]
             dxdt = p1-p2*x
             return dxdt
-        
+
         # solve ODEs at xaxisData points
         # and return calculated yaxisCalc using
         # current values of the parameters
@@ -133,7 +133,7 @@ class ModelFitter():
                     ySoln = odeint(system_of_ODEs, yaxis0, xaxisSpan, args = (params,))
                     yaxisCalc[i] = ySoln[-1]
             return yaxisCalc
-        
+
         parameterSoln, pcov = curve_fit(model, xaxisData, yaxisData)
 
         return parameterSoln, pcov

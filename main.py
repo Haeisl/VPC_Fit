@@ -8,6 +8,7 @@ def main():
     # app = MainApplication()
     # app.mainloop()
     app = MainApp()
+    app.bind_all("<1>", lambda event:event.widget.focus_set())
     app.mainloop()
 
 if __name__ == '__main__':

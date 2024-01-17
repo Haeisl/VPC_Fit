@@ -6,6 +6,8 @@ from .VPCData import VPCData
 from .ModelFitter import ModelFitter
 import customtkinter
 from tktooltip import ToolTip
+import re
+from typing import List, Tuple
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
@@ -129,7 +131,7 @@ class MainApp(customtkinter.CTk):
 
         # set tooltip for model equation entry
         self.model_entry_tooltip = ToolTip(widget=self.equation_entry,
-                                           msg="LHS can be omitted, set independent variables in 'Additional' tab.", delay=0,
+                                           msg="LHS will not be regarded and can be omitted.\nSet independent variables in 'Additional' tab.", delay=0,
                                            parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
                                            fg="#ffffff", bg="gray17", padx=3, pady=3)
 
@@ -167,6 +169,7 @@ class MainApp(customtkinter.CTk):
         # add new text to widget
         self.input_confirmation_textbox.insert("1.0", msg)
 
+
     def browse_files(self) -> None:
         fp = filedialog.askopenfile()
         if fp is None:
@@ -177,24 +180,77 @@ class MainApp(customtkinter.CTk):
         self.file_path = fp.name
 
 
+    def cut_off_lhs(self, equation:str) -> str:
+        ind = equation.find('=')
+        if ind != -1:
+            return equation[ind:].lstrip()
+        else:
+            return equation
+
+
+    def check_variables_consistent(self) -> str:
+        msg = ''
+        indep_vars = re.split(r',\s|,|;\s|;', self.what_parameter_entry.get())
+        indep_vars = ['t'] if indep_vars == [''] else indep_vars
+        variables = ModelFitter().extract_variables(input_str=self.equation_entry.get(), prio=[])
+
+        unfound_vars = []
+        for var in indep_vars:
+            if var not in variables:
+                unfound_vars.append(var)
+
+        if unfound_vars:
+            if len(unfound_vars) == 1:
+                msg += f'The following independent\nparameter was not found in\nthe model expression:\n{unfound_vars}\n\n'
+            else:
+                msg += f'The following independent\nparameters were not found in\nthe model expression:\n{unfound_vars}\n\n'
+
+        expression = self.cut_off_lhs(self.equation_entry.get())
+        assumed_comps = expression.count(',') + 1
+        given_comps = int(self.result_components_combobox.get())
+        if assumed_comps != given_comps:
+            if given_comps == 1:
+                msg += f'Entered model suggests\n{assumed_comps} component(s) but\n{given_comps} was provided\n\n'
+            else:
+                msg += f'Entered model suggests\n{assumed_comps} component(s) but\n{given_comps} were provided\n\n'
+
+        return msg
+
+
     def confirm_input(self) -> None:
-        indep_vars = list(self.what_parameter_entry.get())
-        variables = ModelFitter.extract_variables(self.equation_entry.get())
-
-        msg = self.create_interpretation_string(self.equation_entry.get(),
-                                                self.what_parameter_entry.get(),
-                                                "a,b",
-                                                hello="world",
-                                                bye="sanity")
-        self.display_interpreted_input(msg)
-        self.remove_tooltip()
-
-
+        error_msg = self.check_variables_consistent()
+        if error_msg:
+            self.display_interpreted_input(error_msg)
+        else:
+            msg = self.create_interpretation_string(self.equation_entry.get(),
+                                                    self.what_parameter_entry.get(),
+                                                    "a,b",
+                                                    hello="world",
+                                                    bye="sanity")
+            self.display_interpreted_input(msg)
+            self.remove_tooltip()
 
         # self.equation_entry.get()
         # self.file_name.get()
         # self.what_parameter_entry.get()
         # self.result_components_combobox.get()
+
+        if not True:
+            self.set_vars_to_compute()
+
+
+    def set_vars_to_compute(self,
+                            expression: str,
+                            data: List,
+                            independent_vars: List[str],
+                            result_comps: int,
+                            parameters_to_fit: List[str]) -> None:
+
+        self._expression = expression
+        self._data = data
+        self._independent_vars = independent_vars
+        self._result_comps = result_comps
+        self._parameters_to_fit = parameters_to_fit
 
 
     def compute_params(self) -> None:
@@ -211,4 +267,3 @@ class MainApp(customtkinter.CTk):
             independent_param = [self.what_parameter_entry.get()]
 
         fitted_params, variable_names = MF.fit(expression, data, independent_param)
-
