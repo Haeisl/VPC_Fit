@@ -15,7 +15,7 @@ class ModelFitter():
 
         :param equation: the equation of the function to be fitted
         :type equation: str
-        :param parameter: fitted parameter of the function
+        :param parameter: fitted parameter of the function, NONE in the inital state
         :type parameter: list[float], optional
         """
         self.equation = equation
@@ -28,6 +28,9 @@ class ModelFitter():
         :type equation: str
         :param data: the user's input measurement data
         :type data: list[VPCData]
+        :param prio: priority run variables that are searched first in the equation
+        :type prio: list[str]
+        :return: variables extracted from the equation, an array with the optimal fitted parameters and a 2-D array with the estimated approximate covariance of this array
         """
 
         x, y = data[0], data[1]
