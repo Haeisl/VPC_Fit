@@ -130,7 +130,7 @@ class ModelFitter():
                     yaxisCalc[i] = yaxis0
                 else:
                     xaxisSpan = np.linspace(0, xaxisData[i], 101)
-                    ySoln = scipy.optimize.odeint(system_of_ODEs, yaxis0, xaxisSpan, args = (params,))
+                    ySoln = odeint(system_of_ODEs, yaxis0, xaxisSpan, args = (params,))
                     yaxisCalc[i] = ySoln[-1]
             return yaxisCalc
         
