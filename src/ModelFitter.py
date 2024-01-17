@@ -104,3 +104,36 @@ class ModelFitter():
 
     def validate_expression(self):
         pass
+
+
+    def fit_ODE(self, equation, data):
+        # given Data
+        xaxisData = data[0]
+        yaxisData = data[1]
+
+        # define ODE
+        def system_of_ODEs(x, t, equation):
+            p1 = equation[0]
+            p2 = equation[1]
+            dxdt = p1-p2*x
+            return dxdt
+        
+        # solve ODEs at xaxisData points
+        # and return calculated yaxisCalc using
+        # current values of the parameters
+        def model(xaxisData, *params):
+            # initial condition for ODEs
+            yaxis0 = 0.0
+            yaxisCalc = np.zeros(xaxisData.size)
+            for i in np.arange(0, len(xaxisData)):
+                if xaxisData[i] == 0.0:
+                    yaxisCalc[i] = yaxis0
+                else:
+                    xaxisSpan = np.linspace(0, xaxisData[i], 101)
+                    ySoln = scipy.optimize.odeint(system_of_ODEs, yaxis0, xaxisSpan, args = (params,))
+                    yaxisCalc[i] = ySoln[-1]
+            return yaxisCalc
+        
+        parameterSoln, pcov = curve_fit(model, xaxisData, yaxisData)
+
+        return parameterSoln, pcov
