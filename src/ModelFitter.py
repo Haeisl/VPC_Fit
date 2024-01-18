@@ -108,8 +108,8 @@ class ModelFitter():
 
     def fit_ODE(self, equation, data):
         # given Data
-        xaxisData = data[0]
-        yaxisData = data[1]
+        x_axis_data = data[0]
+        y_axis_data = data[1]
 
         # define ODE
         def system_of_ODEs(x, t, equation):
@@ -121,19 +121,19 @@ class ModelFitter():
         # solve ODEs at xaxisData points
         # and return calculated yaxisCalc using
         # current values of the parameters
-        def model(xaxisData, *params):
+        def model(x_axis_data, *params):
             # initial condition for ODEs
-            yaxis0 = 0.0
-            yaxisCalc = np.zeros(xaxisData.size)
-            for i in np.arange(0, len(xaxisData)):
-                if xaxisData[i] == 0.0:
-                    yaxisCalc[i] = yaxis0
+            y_axis_0 = 0.0
+            y_axis_calc = np.zeros(x_axis_data.size)
+            for i in np.arange(0, len(x_axis_data)):
+                if x_axis_data[i] == 0.0:
+                    y_axis_calc[i] = y_axis_0
                 else:
-                    xaxisSpan = np.linspace(0, xaxisData[i], 101)
-                    ySoln = odeint(system_of_ODEs, yaxis0, xaxisSpan, args = (params,))
-                    yaxisCalc[i] = ySoln[-1]
-            return yaxisCalc
+                    x_axis_span = np.linspace(0, x_axis_data[i], 101)
+                    y_soln = odeint(system_of_ODEs, y_axis_0, x_axis_span, args = (params,))
+                    y_axis_calc[i] = y_soln[-1]
+            return y_axis_calc
 
-        parameterSoln, pcov = curve_fit(model, xaxisData, yaxisData)
+        parameter_soln, pcov = curve_fit(model, x_axis_data, y_axis_data)
 
-        return parameterSoln, pcov
+        return parameter_soln, pcov
