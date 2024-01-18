@@ -144,6 +144,8 @@ class MainApp(customtkinter.CTk):
 
 
     def remove_tooltip(self) -> None:
+        """removes the tooltip and enable the 'compute parameters' button 
+        """
         if self.compute_button_tooltip.winfo_exists():
             # unbinding compute button bindings
             self.compute_params_button.unbind("<Enter>")
@@ -161,6 +163,17 @@ class MainApp(customtkinter.CTk):
                                      var: Optional[str] = "...",
                                      consts: Optional[str] = "...",
                                      **kwargs: Optional[str]) -> str:
+        """creates the interpretation string of the user input
+
+        :param function: interpreted function, defaults to "..."
+        :type function: str, optional
+        :param var: interpreted independent variable(s), defaults to "..."
+        :type var: str, optional
+        :param consts: interpreted parameters to fit, defaults to "..."
+        :type consts: str, optional
+        :return: all together, interpreted input
+        :rtype: str
+        """
 
         msg = f"Function:\n\t{function}\nIndependent Variable(s):\n\t{var}\nConstants to be fitted:\n\t{consts}"
         if kwargs:
@@ -171,6 +184,11 @@ class MainApp(customtkinter.CTk):
 
 
     def display_interpreted_input(self, msg) -> None:
+        """shows the interpretation of the user input
+
+        :param msg: interpretation of the user input
+        :type msg: str
+        """
         # clear text Widget
         self.input_confirmation_textbox.delete("1.0", tkinter.END)
         # add new text to widget
@@ -235,10 +253,21 @@ class MainApp(customtkinter.CTk):
             else:
                 msg += f'Entered model suggests\n{assumed_comps} component(s) but\n{given_comps} were provided\n\n'
 
+        # neu, hast du nicht gemacht 
+        # bin verwirrt, weil das n error gibt ('object has no attribute 'file_path''), wenn ich keine Datei auswähle 
+        # aber genau darum gehts ja auch? der schreibts iwie nicht hin?
+        #if not self.file_path:
+        #    msg += f'Data is missing,\nplease select a file\n\n'
+        # nachtrag 1: okay, vllt liegt es nicht an den zwei zeilen, weil bei mir funktionierts auch net wenn ich das hier auskommentiere (selber error)
+        # nachtrag 2: noch verwirrter, weil jetzt funktioniert es wieder, wenn ich das oben auskommentiere, also liegts doch nur daran? habs deswegen jetzt auskommentiert
+        # ende
+
         return msg
 
 
     def confirm_input(self) -> None:
+        """displays the user's input and removes tooltip or displays errors in the input, if any are found
+        """
         error_msg = self.check_variables_consistent()
         if error_msg:
             self.display_interpreted_input(error_msg)
@@ -266,6 +295,19 @@ class MainApp(customtkinter.CTk):
                             independent_vars: List[str],
                             result_comps: int,
                             parameters_to_fit: List[str]) -> None:
+        """translates the user input accordingly in order to calculate with it
+
+        :param expression: entered expression 
+        :type expression: str
+        :param data: entered data
+        :type data: List
+        :param independent_vars: entered independent variable(s)
+        :type independent_vars: List[str]
+        :param result_comps: entered amount of result component(s)
+        :type result_comps: int
+        :param parameters_to_fit: entered parameters to fit the entered expression
+        :type parameters_to_fit: List[str]
+        """
 
         self._expression = expression
         self._data = data
@@ -275,6 +317,8 @@ class MainApp(customtkinter.CTk):
 
 
     def compute_params(self) -> None:
+        """starts the calculation process of the parameters to be fitted
+        """
         FH = FileHandler.Read_Mode(self.file_path)
         df = FH.read_file()
         data = []
