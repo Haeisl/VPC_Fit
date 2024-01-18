@@ -13,7 +13,14 @@ customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
 
 class MainApp(customtkinter.CTk):
+    """This is a class to handle the functionality and setup of the interface
+
+    :param customtkinter: tkinter extension to create modern looking user interfaces
+    :type customtkinter: CustomTkinter module
+    """
     def __init__(self):
+        """Constructor method to set up the main application
+        """
         super().__init__()
 
         # window configuration
@@ -171,6 +178,8 @@ class MainApp(customtkinter.CTk):
 
 
     def browse_files(self) -> None:
+        """opens a filedialog to let the user select a data file and sets the filepath and filename when selected
+        """
         fp = filedialog.askopenfile()
         if fp is None:
             return
@@ -181,6 +190,13 @@ class MainApp(customtkinter.CTk):
 
 
     def cut_off_lhs(self, equation:str) -> str:
+        """cuts off the left side of an equation if exists, is needed internally to check the input by the user
+
+        :param equation: entered equation by the user
+        :type equation: str
+        :return: entered equation without lhs
+        :rtype: str
+        """
         ind = equation.find('=')
         if ind != -1:
             return equation[ind:].lstrip()
@@ -189,6 +205,11 @@ class MainApp(customtkinter.CTk):
 
 
     def check_variables_consistent(self) -> str:
+        """checks the user input for errors
+
+        :return: message with possible errors, if founded
+        :rtype: str
+        """
         msg = ''
         indep_vars = re.split(r',\s|,|;\s|;', self.what_parameter_entry.get())
         indep_vars = ['t'] if indep_vars == [''] else indep_vars
