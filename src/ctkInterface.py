@@ -4,11 +4,11 @@ from typing import Optional, Tuple, Union
 from .FileHandler import FileHandler
 from .VPCData import VPCData
 from .ModelFitter import ModelFitter
-from .Validator import Validator
+from . import Validator
 import customtkinter
 from tktooltip import ToolTip
 import re
-from typing import List, Tuple
+from typing import Tuple
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
@@ -40,7 +40,7 @@ class MainApp(customtkinter.CTk):
 
         # variables that change through user interaction
         self.file_name = customtkinter.StringVar(self, "Browse...")
-        self.file_path = None
+        self.file_path = ''
 
         # main frame tabview
         self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
@@ -212,17 +212,18 @@ class MainApp(customtkinter.CTk):
             fg="#ffffff", bg="gray17", padx=3, pady=3)
 
         # set tooltip for model equation entry
+        # "LHS will not be regarded and can be omitted.\n"
+        # "Set independent variables in 'Additional' tab."
         self.model_entry_tooltip = ToolTip(
             widget=self.equation_entry,
-            msg=("LHS will not be regarded and can be omitted.\n"
-                 "Set independent variables in 'Additional' tab."),
+            msg=("Explicitly state mathematical operations."),
             delay=0,
             parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
             fg="#ffffff", bg="gray17", padx=3, pady=3)
 
 
-    def remove_tooltip(self) -> None:
-        """removes the tooltip and enable the 'compute parameters' button
+    def remove_compute_tooltip(self) -> None:
+        """removes the tooltip and enables the 'compute parameters' button
         """
         if self.compute_button_tooltip.winfo_exists():
             # unbinding compute button bindings
@@ -240,7 +241,7 @@ class MainApp(customtkinter.CTk):
         self,
         function: Optional[str] = "...",
         var: Optional[str] = "...",
-        consts: Optional[str] = "...",
+        consts: Optional[list[str]] = ["..."],
         **kwargs: Optional[str]
     ) -> str:
         """creates the interpretation string of the user input
@@ -256,7 +257,7 @@ class MainApp(customtkinter.CTk):
         """
 
         msg = f"Function:\n\t{function}\nIndependent Variable(s):\n" +\
-                f"\t{var}\nConstants to be fitted:\n\t{consts}"
+                f"\t{var}\nConstants to be fitted:\n\t{", ".join(str(c) for c in consts)}"
         if kwargs:
             msg += f"\n\nExtra:"
             for descr, val in kwargs.items():
@@ -289,73 +290,43 @@ class MainApp(customtkinter.CTk):
         self.file_path = fp.name
 
 
-    def cut_off_lhs(self, equation:str) -> str:
-        """cuts off the left side of an equation if exists
-        is needed internally to check the input by the user
-
-        :param equation: entered equation by the user
-        :type equation: str
-        :return: entered equation without lhs
-        :rtype: str
-        """
-        ind = equation.find('=')
-        if ind != -1:
-            return equation[ind:].lstrip()
-        else:
-            return equation.lstrip()
-
-
     def check_input_validity(self) -> str:
         """checks the user input for errors
 
-        :return: message with possible errors, if found
+        :return: message with errors, if found
         :rtype: str
         """
         msg = ''
-        if not Validator.are_variables_consistent(
+        unfound_vars = Validator.are_variables_consistent(
             entered_model=self.equation_entry.get(),
             entered_indep_var=self.what_parameter_entry.get()
+        )
+        if unfound_vars:
+            if len(unfound_vars) == 1:
+                msg += (f'The following independent\nparameter was not found in\n'
+                        f'the model expression:\n{unfound_vars}\n\n')
+            else:
+                msg += (f'The following independent\nparameters were not found in\n'
+                        f'the model expression:\n{unfound_vars}\n\n')
+
+        if not Validator.are_components_equal(
+            given_comps=int(self.result_components_combobox.get()),
+            expression=self.equation_entry.get()
         ):
-            msg += (f'The following independent\nparameter was not found in\n'
-                         f'the model expression:\n{1}\n\n')
-        # indep_vars = re.split(r',\s|,|;\s|;', self.what_parameter_entry.get())
-        # indep_vars = ['t'] if indep_vars == [''] else indep_vars
-        # variables = ModelFitter().extract_variables(input_str=self.equation_entry.get(), prio=[])
+            msg += (
+                f'Entered model suggests\n'
+                f'different # of components\n'
+                f'than # provided in\n'
+                f'\'additional\' tab\n\n'
+            )
 
-        # # check if the independent variables/symbols provided in the additional tab line up
-        # # with the expression in the model input in the basic tab
-        # unfound_vars = []
-        # for var in indep_vars:
-        #     if var not in variables:
-        #         unfound_vars.append(var)
+        if not Validator.does_file_path_exist(self.file_path):
+            msg += (
+                f'No file path given\n'
+                f'Or path doesn\'t exist\n\n'
+            )
 
-        # if unfound_vars:
-        #     if len(unfound_vars) == 1:
-        #         msg += (f'The following independent\nparameter was not found in\n'
-        #                 f'the model expression:\n{unfound_vars}\n\n')
-        #     else:
-        #         msg += (f'The following independent\nparameters were not found in\n'
-        #                 f'the model expression:\n{unfound_vars}\n\n')
-
-        # # a vector like function is assumed to be provided like 'x+1, y+1, z+1'
-        # # with commas separating the components
-        # # update msg string with info if expression doesn't match provided #components
-        # expression = self.cut_off_lhs(self.equation_entry.get())
-        # assumed_comps = expression.count(',') + 1
-        # given_comps = int(self.result_components_combobox.get())
-        # if assumed_comps != given_comps:
-        #     if given_comps == 1:
-        #         msg += (f'Entered model suggests\n{assumed_comps} component(s) but\n'
-        #                 f'{given_comps} was provided\n\n')
-        #     else:
-        #         msg += (f'Entered model suggests\n{assumed_comps} component(s) but\n'
-        #                 f'{given_comps} were provided\n\n')
-
-        # # update msg string if no file was selected
-        # if self.file_path is None:
-        #     msg += f'No sample data was provided\n\n'
-
-        # return msg
+        return msg
 
 
     def confirm_input(self) -> None:
@@ -365,66 +336,52 @@ class MainApp(customtkinter.CTk):
         error_msg = self.check_input_validity()
         if error_msg:
             self.display_interpreted_input(error_msg)
-        else:
-            msg = self.create_interpretation_string(
-                self.equation_entry.get(),
-                self.what_parameter_entry.get(),
-                "a,b", # constants
-            )
-            self.display_interpreted_input(msg)
-            self.remove_tooltip()
+            return
 
-        # self.equation_entry.get()
-        # self.file_name.get()
-        # self.what_parameter_entry.get()
-        # self.result_components_combobox.get()
+        expression = self.equation_entry.get()
+        ip = self.what_parameter_entry.get()
+        indep_param = 't' if ip == '' else ip
+        all_vars = Validator.extract_variables(expression)
+        constants = [c for c in all_vars if c not in indep_param]
+        res_comps = int(self.result_components_combobox.get())
 
-        if not True:
-            self.set_vars_to_compute()
+        msg = self.create_interpretation_string(
+            expression,
+            indep_param,
+            constants
+        )
+        self.display_interpreted_input(msg)
+        self.remove_compute_tooltip()
 
-
-    def set_vars_to_compute(
-        self,
-        expression: str,
-        data: List,
-        independent_vars: List[str],
-        result_comps: int,
-        parameters_to_fit: List[str]
-    ) -> None:
-        """translates the user input accordingly in order to calculate with it
-
-        :param expression: entered expression
-        :type expression: str
-        :param data: entered data
-        :type data: List
-        :param independent_vars: entered independent variable(s)
-        :type independent_vars: List[str]
-        :param result_comps: entered amount of result component(s)
-        :type result_comps: int
-        :param parameters_to_fit: entered parameters to fit the entered expression
-        :type parameters_to_fit: List[str]
-        """
-
+        # set internal vars to validated inputs
         self._expression = expression
-        self._data = data
-        self._independent_vars = independent_vars
-        self._result_comps = result_comps
-        self._parameters_to_fit = parameters_to_fit
+        self._data = None # TODO
+        self._independent_vars = indep_param
+        self._result_comps = res_comps
+        self._parameters_to_fit = constants
+        self._file_path = self.file_path
 
 
     def compute_params(self) -> None:
         """starts the calculation process of the parameters to be fitted
         """
-        FH = FileHandler.Read_Mode(self.file_path)
-        df = FH.read_file()
-        data = []
-        for name in df.columns.values:
-            data.append(df[name].to_numpy())
+        self._expression
+        self._data
+        self._independent_vars
+        self._result_comps
+        self._parameters_to_fit
+        self._file_path
 
-        MF = ModelFitter()
-        expression = self.equation_entry.get()
+        # FH = FileHandler.Read_Mode(self.file_path)
+        # df = FH.read_file()
+        # data = []
+        # for name in df.columns.values:
+        #     data.append(df[name].to_numpy())
 
-        if not len(self.what_parameter_entry.get()) == 0:
-            independent_param = [self.what_parameter_entry.get()]
+        # MF = ModelFitter()
+        # expression = self.equation_entry.get()
 
-        fitted_params, variable_names = MF.fit(expression, data, independent_param)
+        # if not len(self.what_parameter_entry.get()) == 0:
+        #     independent_param = [self.what_parameter_entry.get()]
+
+        # fitted_params, variable_names = MF.fit(expression, data, independent_param)
