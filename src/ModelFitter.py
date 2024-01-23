@@ -33,7 +33,7 @@ class ModelFitter():
         :return: variables extracted from the equation, an array with the optimal fitted parameters and a 2-D array with the estimated approximate covariance of this array
         """
         if variables is not None:
-            variables = self.extract_variables(equation, prio)
+            variables = self.extract_variables_sorted(equation, prio)
 
         x, y = data[0], data[1]
 
@@ -69,7 +69,7 @@ class ModelFitter():
 
         return func
 
-    def extract_variables(self, input_str, prio) -> list:
+    def extract_variables_sorted(self, input_str, prio) -> list:
         """extracts variables out of a mathematical expression
         and sorts them such that 'x' would always be the first element
         and the rest according to the alphabet.
