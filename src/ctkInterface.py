@@ -257,7 +257,7 @@ class MainApp(customtkinter.CTk):
         """
 
         msg = f"Function:\n\t{function}\nIndependent Variable(s):\n" +\
-                f"\t{var}\nConstants to be fitted:\n\t{", ".join(str(c) for c in consts)}"
+                f"\t{var}\nConstants to be fitted:\n\t{', '.join(str(c) for c in consts)}"
         if kwargs:
             msg += f"\n\nExtra:"
             for descr, val in kwargs.items():

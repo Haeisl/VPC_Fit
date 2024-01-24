@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import parse_expr, symbols, lambdify
+from sympy import parse_expr, symbols, lambdify, Function, Eq, dsolve, Derivative
 from scipy.optimize import curve_fit
 from scipy.optimize import minimize
 from scipy.integrate import odeint
@@ -137,3 +137,54 @@ class ModelFitter():
         parameter_soln, pcov = curve_fit(model, x_axis_data, y_axis_data)
 
         return parameter_soln, pcov
+    
+    def fit_ODE_gpt(equations):
+
+        # define symbolic variables and functions
+        t = symbols('t')
+        y = Function('y')
+        z = Function('z')
+
+        # allow users to input their own differential equations
+        eq1 = Eq(Derivative(y(t), t), -0.1 * y(t) + 0.2 * z(t))
+        eq2 = Eq(Derivative(z(t), t), -0.3 * y(t) + 0.4 * z(t))
+        
+        # solve the user-defined differential equations symbolically
+        solution = dsolve([eq1, eq2])
+
+        # extract the system of differential equations as functions
+        ode_system = [solution[0].rhs, solution[1].rhs]
+
+        # function to simulate the system of differential equations
+        def simulate_differential_equations(params, t):
+            y0 = [1.0, 0.0] # initial conditions
+            ode_params = {y(t).diff(t): params[0], z(t).diff(t): params[1]}
+            ode_substituted = [ode.subs(ode_params) for ode in ode_params]
+
+            def system(y, t):
+                return [ode.subs({y(t): y[0], z(t): y[1]}) for ode in ode_substituted]
+
+            solution = odeint(system, y0, t)
+            return solution[:, 0]
+        
+        # cost function for fitting
+        def cost_func(params, t, observed_data):
+            simulated_data = simulate_differential_equations(params, t)
+            return np.sum((simulated_data - observed_data)**2)
+        
+        # example usage, generate example data
+        t = np.linspace(0, 10, 100)
+        observed_data = simulate_differential_equations([0.1, 0.2], t) + np.random.normal(scale=0.1, size=len(t))
+
+        # define an initial guess for the parameters
+        initial_guess = [0.1, 0.2]
+
+        # minimize the cost function to fit the parameters
+        result = minimize(cost_func, initial_guess, args=(t, observed_data))
+
+        # extract the fitted parameters
+        fitted_params = result.x
+
+        # print the fitted parameters
+        print(f"Fitted Parameters:\n\t{fitted_params}")
+                
