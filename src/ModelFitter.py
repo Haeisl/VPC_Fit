@@ -137,7 +137,7 @@ class ModelFitter():
         parameter_soln, pcov = curve_fit(model, x_axis_data, y_axis_data)
 
         return parameter_soln, pcov
-    
+
     def fit_ODE_gpt(equations):
 
         # define symbolic variables and functions
@@ -148,7 +148,7 @@ class ModelFitter():
         # allow users to input their own differential equations
         eq1 = Eq(Derivative(y(t), t), -0.1 * y(t) + 0.2 * z(t))
         eq2 = Eq(Derivative(z(t), t), -0.3 * y(t) + 0.4 * z(t))
-        
+
         # solve the user-defined differential equations symbolically
         solution = dsolve([eq1, eq2])
 
@@ -166,12 +166,12 @@ class ModelFitter():
 
             solution = odeint(system, y0, t)
             return solution[:, 0]
-        
+
         # cost function for fitting
         def cost_func(params, t, observed_data):
             simulated_data = simulate_differential_equations(params, t)
             return np.sum((simulated_data - observed_data)**2)
-        
+
         # example usage, generate example data
         t = np.linspace(0, 10, 100)
         observed_data = simulate_differential_equations([0.1, 0.2], t) + np.random.normal(scale=0.1, size=len(t))
@@ -187,4 +187,3 @@ class ModelFitter():
 
         # print the fitted parameters
         print(f"Fitted Parameters:\n\t{fitted_params}")
-                

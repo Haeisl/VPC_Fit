@@ -14,8 +14,8 @@ class ResultsWindow(tk.Toplevel):
 
         :param mainWindow: the underlying main interface window
         :type mainWindow: MainApplication class object
-        :param fittedParams: 
-        :type fittedParams: 
+        :param fittedParams:
+        :type fittedParams:
         :param expression: final equation with the calculated fitted parameters
         ;type expression:
         :param varNames:
@@ -70,7 +70,7 @@ class ResultsWindow(tk.Toplevel):
         file_path = tk.filedialog.askdirectory()
 
     def restart(self, mainWindow):
-        """sets the program to its initial state in order to be able to start a new run 
+        """sets the program to its initial state in order to be able to start a new run
         """
         self.destroy()
         mainWindow.destroy()

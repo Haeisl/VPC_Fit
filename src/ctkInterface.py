@@ -1,14 +1,13 @@
-import tkinter
 from tkinter import filedialog
+from tkinter import Widget
 from typing import Optional, Tuple, Union
 from .FileHandler import FileHandler
 from .VPCData import VPCData
 from .ModelFitter import ModelFitter
+from .CTkResultInterface import ResultInterface
 from . import Validator
 import customtkinter
 from tktooltip import ToolTip
-import re
-from typing import Tuple
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
@@ -26,7 +25,13 @@ class MainApp(customtkinter.CTk):
 
         # window configuration
         self.title("Virtual Patient Cohorts - Fitting App")
-        self.geometry(f"{500}x{280}+{1000}+{600}")
+        window_width = 500
+        window_height = 280
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        center_x = int(screen_width/2 - window_width/2)
+        center_y = int(screen_height/2 - window_height/2)
+        self.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 
         # grid layout
         self.grid_columnconfigure(0, weight=1)
@@ -204,22 +209,58 @@ class MainApp(customtkinter.CTk):
         self.compute_params_button.configure(state="disabled")
 
         # set tooltip for compute button
-        self.compute_button_tooltip = ToolTip(
+        self.compute_button_tooltip = self.create_tooltip_for(
             widget=self.compute_params_button,
-            msg="You need to confirm your inputs before computation.",
-            delay=0,
-            parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
-            fg="#ffffff", bg="gray17", padx=3, pady=3)
+            msg="You need to confirm your inputs before computation."
+        )
 
         # set tooltip for model equation entry
         # "LHS will not be regarded and can be omitted.\n"
         # "Set independent variables in 'Additional' tab."
-        self.model_entry_tooltip = ToolTip(
+        self.model_entry_tooltip = self.create_tooltip_for(
             widget=self.equation_entry,
-            msg=("Explicitly state mathematical operations."),
+            msg=("Explicitly state mathematical operations.")
+        )
+
+
+    def create_tooltip_for(self, widget: Widget, msg: str) -> ToolTip:
+        return ToolTip(
+            widget=widget,
+            msg=msg,
             delay=0,
             parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
-            fg="#ffffff", bg="gray17", padx=3, pady=3)
+            fg="#ffffff", bg="gray17", padx=3, pady=3
+        )
+
+
+    def reset_state(self) -> None:
+        self.file_name.set("Browse...")
+
+        self.file_path = ''
+
+        self.equation_entry.delete(0, customtkinter.END)
+
+        self.what_parameter_entry.delete(0, customtkinter.END)
+
+        self.result_components_combobox.set("1")
+
+        self.input_confirmation_textbox.delete("1.0", customtkinter.END)
+        msg = self.create_interpretation_string()
+        self.input_confirmation_textbox.insert("1.0", msg)
+
+        self.compute_params_button.configure(state="disabled")
+
+        self.compute_button_tooltip = self.create_tooltip_for(
+            widget=self.compute_params_button,
+            msg="You need to confirm your inputs before computation.",
+        )
+
+        self._expression = None
+        self._data = None
+        self._independent_vars = None
+        self._result_comps = None
+        self._parameters_to_fit = None
+        self._file_path = None
 
 
     def remove_compute_tooltip(self) -> None:
@@ -265,14 +306,14 @@ class MainApp(customtkinter.CTk):
         return msg
 
 
-    def display_interpreted_input(self, msg) -> None:
+    def display_interpreted_input(self, msg: str) -> None:
         """shows the interpretation of the user input
 
         :param msg: interpretation of the user input
         :type msg: str
         """
         # clear text Widget
-        self.input_confirmation_textbox.delete("1.0", tkinter.END)
+        self.input_confirmation_textbox.delete("1.0", customtkinter.END)
         # add new text to widget
         self.input_confirmation_textbox.insert("1.0", msg)
 
@@ -371,6 +412,9 @@ class MainApp(customtkinter.CTk):
         self._result_comps
         self._parameters_to_fit
         self._file_path
+
+        result_window = ResultInterface(self)
+        result_window.attributes("-topmost", True)
 
         # FH = FileHandler.Read_Mode(self.file_path)
         # df = FH.read_file()

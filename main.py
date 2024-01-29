@@ -1,15 +1,21 @@
-from src.Interface import MainApplication
-from src.ModelFitter import ModelFitter
-from sympy import sympify
+from src.CTkInterface import MainApp
 
-from src.ctkInterface import MainApp
+
+def handle_leftclick(event):
+    widget = event.widget
+    if not widget:
+        pass
+    elif isinstance(widget, str):
+        pass
+    else:
+        widget.focus_set()
+
 
 def main():
-    # app = MainApplication()
-    # app.mainloop()
     app = MainApp()
-    app.bind_all("<1>", lambda event:event.widget.focus_set())
+    app.bind_all("<Button-1>", lambda event: handle_leftclick(event))
     app.mainloop()
+
 
 if __name__ == '__main__':
     main()

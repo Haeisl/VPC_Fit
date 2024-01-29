@@ -1,28 +1,8 @@
 from .VPCData import VPCData
 import pandas as pd
 from pathlib import Path
-# import xml.etree.ElementTree as ET
 
 class FileHandler():
-    """This is a class to handle files
-
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises FileNotFoundError: _description_
-    :raises ValueError: _description_
-    :raises TypeError: _description_
-    :raises ValueError: _description_
-    :raises ValueError: _description_
-    :raises TypeError: _description_
-    :return: _description_
-    :rtype: _type_
-    """
-
     i = 0
 
     FORMATS = ['EXCEL', 'CSV', 'XML']
@@ -152,25 +132,25 @@ class FileHandler():
         self._file_name = name
 
     @property
-    def fileFormat(self):
+    def file_format(self):
         """gets the format of the file
 
         :return: current file format of the object
         :rtype: str
         """
-        return self._fileFormat
+        return self._file_format
 
-    @fileFormat.setter
-    def fileFormat(self, fileFormat):
+    @file_format.setter
+    def file_format(self, file_format):
         """sets the format of the file to the input value
 
-        :param fileFormat: file format of the object
-        :type fileFormat: str
+        :param file_format: file format of the object
+        :type file_format: str
         :raises ValueError: input file format has to be in the pre-defined dict otherwise the given format is not supported
         """
-        if fileFormat not in self.FORMATS:
+        if file_format not in self.FORMATS:
             raise ValueError("Unknown file format")
-        self._fileFormat = fileFormat
+        self._file_format = file_format
 
     def read_file(self):
         """reads data from a file and returns a data_frame
@@ -242,14 +222,14 @@ class FileHandler():
 
         resPath = './results/res_' + str(FileHandler.i)
         self.data_frame = pd.data_frame(data)
-        if self.fileFormat == 'EXCEL':
+        if self.file_format == 'EXCEL':
             self.data_frame.to_excel(resPath + '.xlsx', index=False)
-        elif self.fileFormat == 'XML':
+        elif self.file_format == 'XML':
             self.data_frame.to_xml(resPath + '.xml', index=False)
-        elif self.fileFormat == 'CSV':
+        elif self.file_format == 'CSV':
             self.data_frame.to_csv(resPath + '.csv', index=False)
         else:
-            raise TypeError("Can't write to unknown Fileextension")
+            raise TypeError("Can't write to unknown file extension")
         FileHandler.i += 1
 
     def validate_data(self):
