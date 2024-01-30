@@ -36,6 +36,8 @@ def cut_off_lhs(equation:str) -> str:
     else:
         return equation.lstrip()
 
+
+# ins interface
 def are_variables_consistent(
     entered_model: str,
     entered_indep_var: str

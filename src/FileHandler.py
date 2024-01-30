@@ -1,4 +1,3 @@
-from .VPCData import VPCData
 import pandas as pd
 from pathlib import Path
 
@@ -30,7 +29,7 @@ class FileHandler():
         self.patient_data = patient_data
 
     @classmethod
-    def Read_Mode(cls, path):
+    def Read(cls, path):
         """classmethod, returns a FileHandler class object in read mode
 
         :param path: path to the file to be read
@@ -41,7 +40,7 @@ class FileHandler():
         return cls(path=path, mode='r')
 
     @classmethod
-    def Write_Mode(cls, path, file_name, format, pData):
+    def Write(cls, path, file_name, format, pData):
         """classmethod, returns a FileHandler class object in write mode
 
         :param path: path to the file to be written
@@ -152,6 +151,7 @@ class FileHandler():
             raise ValueError("Unknown file format")
         self._file_format = file_format
 
+
     def read_file(self):
         """reads data from a file and returns a data_frame
 
@@ -182,6 +182,7 @@ class FileHandler():
 
         return self.data_frame
 
+
     def format_data(self, include_first_row:bool):
         """formats read data from a file to a list and transforms it to a VPCData object
 
@@ -189,7 +190,7 @@ class FileHandler():
         :type include_first_row: bool
         :raises ValueError: object has to be in read mode
         :return: the transformed read data
-        :rtype: list[VPCData]
+        :rtype: list[list]
         """
         # if self.mode != 'READ':
         #    raise ValueError("Can't read file while not in read mode")
@@ -202,9 +203,9 @@ class FileHandler():
         vpc_data_list = []
 
         if include_first_row:
-            vpc_data_list = [VPCData([name, *self.data_frame[name].tolist()]) for name in column_names]
+            vpc_data_list = [list([name, *self.data_frame[name].tolist()]) for name in column_names]
         else:
-            vpc_data_list = [VPCData(self.data_frame[name].tolist()) for name in column_names]
+            vpc_data_list = [list(self.data_frame[name].tolist()) for name in column_names]
 
         return vpc_data_list # , self.data_frame
 
@@ -231,6 +232,7 @@ class FileHandler():
         else:
             raise TypeError("Can't write to unknown file extension")
         FileHandler.i += 1
+
 
     def validate_data(self):
         """TODO

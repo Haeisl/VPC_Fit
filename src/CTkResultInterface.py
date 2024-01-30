@@ -100,6 +100,7 @@ class ResultInterface(customtkinter.CTkToplevel):
     def save_as(self) -> None:
         self.saved_message.set("Saved to ./res/ ")
         self.save_button.configure(state="disabled")
+        # TODO save file lol
 
 
     def reset_app(self) -> None:

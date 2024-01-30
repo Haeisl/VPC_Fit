@@ -1,9 +1,9 @@
 import os
 import tkinter as tk
 from tkinter import filedialog
-from .FileHandler import FileHandler
+from ..src.FileHandler import FileHandler
 from .VPCData import VPCData
-from .ModelFitter import ModelFitter
+from ..src.ModelFitter import ModelFitter
 
 
 class ResultsWindow(tk.Toplevel):

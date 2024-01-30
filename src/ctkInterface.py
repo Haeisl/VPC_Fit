@@ -1,13 +1,15 @@
-from tkinter import filedialog
-from tkinter import Widget
+import customtkinter
+from tkinter import filedialog, Widget
+from tktooltip import ToolTip
 from typing import Optional, Tuple, Union
+from os.path import exists
+import re
+
 from .FileHandler import FileHandler
-from .VPCData import VPCData
+from .VPCModel import VPCModel
 from .ModelFitter import ModelFitter
 from .CTkResultInterface import ResultInterface
-from . import Validator
-import customtkinter
-from tktooltip import ToolTip
+
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
@@ -145,10 +147,11 @@ class MainApp(customtkinter.CTk):
         )
         self.result_components_combobox = customtkinter.CTkComboBox(
             self.tabview.tab("Additional"),
-            values=[str(i) for i in range(1,4)],
+            values=["auto", "1", "2", "3"],
             #variable=self.result_components,
             font=font,
-            width=80)
+            width=80
+        )
         self.result_components_combobox.grid(
             row=3, column=0,
             padx=10, pady=(0,10),
@@ -297,12 +300,12 @@ class MainApp(customtkinter.CTk):
         :rtype: str
         """
 
-        msg = f"Function:\n\t{function}\nIndependent Variable(s):\n" +\
-                f"\t{var}\nConstants to be fitted:\n\t{', '.join(str(c) for c in consts)}"
+        msg = f"Function:\n    {function}\nIndependent Variable(s):\n" +\
+                f"    {var}\nConstants to be fitted:\n    {', '.join(str(c) for c in consts)}"
         if kwargs:
             msg += f"\n\nExtra:"
             for descr, val in kwargs.items():
-                msg += f"\n{descr}:\n\t{val}\n"
+                msg += f"\n{descr}:\n    {val}\n"
         return msg
 
 
@@ -331,6 +334,35 @@ class MainApp(customtkinter.CTk):
         self.file_path = fp.name
 
 
+    def missing_independent_variables(self) -> list:
+        """returns list of all variables that were entered (t if nothing entered)
+        that are not present in model
+
+        :return: list of symbols
+        :rtype: list
+        """
+        indep_vars = re.split(r',\s|,|;\s|;', self.what_parameter_entry.get())
+        # default to t if nothing was explicitly entered
+        indep_vars = ['t'] if indep_vars == [''] else indep_vars
+
+        variables = self.model.symbols
+
+        missing_vars = []
+        for var in indep_vars:
+            if var not in variables:
+                missing_vars.append(var)
+
+        return missing_vars
+
+
+    def are_components_equal(self) -> bool:
+        if self.result_components_combobox.get() == 'auto':
+            return True
+        given = int(self.result_components_combobox.get())
+        assumed = self.model.expression_string.count(',') + 1
+        return given == assumed
+
+
     def check_input_validity(self) -> str:
         """checks the user input for errors
 
@@ -338,22 +370,24 @@ class MainApp(customtkinter.CTk):
         :rtype: str
         """
         msg = ''
-        unfound_vars = Validator.are_variables_consistent(
-            entered_model=self.equation_entry.get(),
-            entered_indep_var=self.what_parameter_entry.get()
-        )
-        if unfound_vars:
-            if len(unfound_vars) == 1:
+        missing_vars = self.missing_independent_variables()
+        if missing_vars:
+            if len(missing_vars) == 1:
                 msg += (f'The following independent\nparameter was not found in\n'
-                        f'the model expression:\n{unfound_vars}\n\n')
+                        f'the model expression:\n{missing_vars}\n\n')
             else:
                 msg += (f'The following independent\nparameters were not found in\n'
-                        f'the model expression:\n{unfound_vars}\n\n')
+                        f'the model expression:\n{missing_vars}\n\n')
 
-        if not Validator.are_components_equal(
-            given_comps=int(self.result_components_combobox.get()),
-            expression=self.equation_entry.get()
-        ):
+        valid = {str(i) for i in range(10)}
+        valid.add('auto')
+        if self.result_components_combobox.get() not in valid:
+            msg += (
+                f'Result Components\n'
+                f'have to be \'auto\'\n'
+                f'or 1-9\n\n'
+            )
+        elif not self.are_components_equal():
             msg += (
                 f'Entered model suggests\n'
                 f'different # of components\n'
@@ -361,11 +395,18 @@ class MainApp(customtkinter.CTk):
                 f'\'additional\' tab\n\n'
             )
 
-        if not Validator.does_file_path_exist(self.file_path):
+        if not exists(self.file_path):
             msg += (
                 f'No file path given\n'
                 f'Or path doesn\'t exist\n\n'
             )
+
+        if False:
+            # hier FileHandler benutzen, um:
+            # 1. check, ob File extension supported ist
+            # 2. File nicht leer
+            FileHandler.Read(self.file_path)
+            return
 
         return msg
 
@@ -374,28 +415,45 @@ class MainApp(customtkinter.CTk):
         """displays the user's input and removes tooltip
         or displays errors in the input, if any are found
         """
+        self.model = VPCModel(self.equation_entry.get())
+
         error_msg = self.check_input_validity()
         if error_msg:
             self.display_interpreted_input(error_msg)
             return
 
-        expression = self.equation_entry.get()
         ip = self.what_parameter_entry.get()
         indep_param = 't' if ip == '' else ip
-        all_vars = Validator.extract_variables(expression)
-        constants = [c for c in all_vars if c not in indep_param]
-        res_comps = int(self.result_components_combobox.get())
+
+        all_symbols = self.model.symbols
+        constants = [c for c in all_symbols if c not in indep_param]
+        if not constants:
+            self.display_interpreted_input(
+                f'No constants to fit'
+            )
+            return
+
+        combobox_entry = self.result_components_combobox.get()
+        auto_value = self.model.expression_string.count(',') + 1
+        res_comps = auto_value if combobox_entry == 'auto' else int(combobox_entry)
 
         msg = self.create_interpretation_string(
-            expression,
+            self.model.model_string,
             indep_param,
             constants
         )
+
+        # weg damit
+        if self.model.is_ode():
+            msg += f'\n\nHDGL!'
+        # bis hier
+
         self.display_interpreted_input(msg)
+
         self.remove_compute_tooltip()
 
         # set internal vars to validated inputs
-        self._expression = expression
+        self._model = self.model
         self._data = None # TODO
         self._independent_vars = indep_param
         self._result_comps = res_comps
@@ -416,7 +474,7 @@ class MainApp(customtkinter.CTk):
         result_window = ResultInterface(self)
         result_window.attributes("-topmost", True)
 
-        # FH = FileHandler.Read_Mode(self.file_path)
+        # FH = FileHandler.Read(self.file_path)
         # df = FH.read_file()
         # data = []
         # for name in df.columns.values:

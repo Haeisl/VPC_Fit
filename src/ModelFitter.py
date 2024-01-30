@@ -21,6 +21,7 @@ class ModelFitter():
         self.equation = equation
         self.parameter = None
 
+
     def fit(self, equation, data, prio=['t'], variables=None):
         """returns the fitted parameters of the given equation based on the input data
 
@@ -49,6 +50,7 @@ class ModelFitter():
 
         return result, variables
 
+
     def string_to_function(self, equation, variables):
         """returns a lambda function based on the equation given by the user
 
@@ -68,6 +70,7 @@ class ModelFitter():
         func = lambdify(sympy_vars, expr, 'sympy')
 
         return func
+
 
     def extract_variables_sorted(self, input_str, prio) -> list:
         """extracts variables out of a mathematical expression
@@ -102,9 +105,6 @@ class ModelFitter():
 
         return unique_vars
 
-    def validate_expression(self):
-        pass
-
 
     def fit_ODE(self, equation, data):
         # given Data
@@ -137,6 +137,7 @@ class ModelFitter():
         parameter_soln, pcov = curve_fit(model, x_axis_data, y_axis_data)
 
         return parameter_soln, pcov
+
 
     def fit_ODE_gpt(equations):
 
