@@ -50,7 +50,7 @@ class VPCModel():
             return equation[ind:].strip()
         else:
             return equation.strip()
-        
+
 
     def cut_off_rhs(self):
         equation = self._model_string
@@ -86,13 +86,13 @@ class VPCModel():
         :rtype: bool
         """
         # pattern d^2{variable}/d{other_variable}^2
-        second_derivative = r'\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b'
+        second_derivative = r"\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b"
         # pattern d{variable}/d{other_variable}
-        first_derivative = r'\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b'
+        first_derivative = r"\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b"
         # pattern y''
-        symbol_prime_prime = r'\b[a-zA-Z]+\'\'\b'
+        symbol_prime_prime = r"[a-zA-Z]+''"
         # pattern y'
-        symbol_prime = r'\b[a-zA-Z]+\'\b'
+        symbol_prime = r"[a-zA-Z]+'"
 
         patterns = [second_derivative, first_derivative, symbol_prime_prime, symbol_prime]
 
