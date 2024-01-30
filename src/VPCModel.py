@@ -50,6 +50,15 @@ class VPCModel():
             return equation[ind:].strip()
         else:
             return equation.strip()
+        
+
+    def cut_off_rhs(self):
+        equation = self._model_string
+        ind = equation.find('=')
+        if ind != -1:
+            return equation[:ind].strip()
+        else:
+            return equation.strip()
 
 
     def extract_symbols(self) -> list:
@@ -77,9 +86,9 @@ class VPCModel():
         :rtype: bool
         """
         # pattern d^2{variable}/d{other_variable}^2
-        second_derivative = r'\bd\^2([a-zA-Z]+)\/d((\?!\1)[a-zA-Z]+)\^2\b'
+        second_derivative = r'\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b'
         # pattern d{variable}/d{other_variable}
-        first_derivative = r'\bd([a-zA-Z]+)\/d((\?!\1)[a-zA-Z]+)\b'
+        first_derivative = r'\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b'
         # pattern y''
         symbol_prime_prime = r'\b[a-zA-Z]+\'\'\b'
         # pattern y'
@@ -90,7 +99,3 @@ class VPCModel():
         match = any(re.search(pattern, self._model_string) for pattern in patterns)
 
         return match
-
-
-# f(x) = a*t, t, 2
-# a*t, t, 2 -> anzahl ',' + 1 == res_comps
