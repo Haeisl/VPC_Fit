@@ -8,7 +8,7 @@ class FileHandler():
 
     MODES = ['READ', 'WRITE']
 
-    def __init__(self, path=None, mode=None, file_name="file_" + str(i), format=None, patient_data=None):
+    def __init__(self, path=None, file_name="file_" + str(i), format=None, patient_data=None):
         """Constructor method
 
         :param path: path to the file to be read or written, defaults to None
@@ -23,64 +23,9 @@ class FileHandler():
         :type patient_data: any, optional
         """
         self.path = path
-        self.mode = mode
         self.file_name = file_name
         self.format = format
         self.patient_data = patient_data
-
-    @classmethod
-    def Read(cls, path):
-        """classmethod, returns a FileHandler class object in read mode
-
-        :param path: path to the file to be read
-        :type path: str
-        :return: class object in read mode with the path to the respective file
-        :rtype: FileHandler
-        """
-        return cls(path=path, mode='r')
-
-    @classmethod
-    def Write(cls, path, file_name, format, pData):
-        """classmethod, returns a FileHandler class object in write mode
-
-        :param path: path to the file to be written
-        :type path: str
-        :param file_name: name of the file to be written
-        :type file_name: str
-        :param format: format of the file to be written
-        :type format: str
-        :param pData: data to be written
-        :type pData: any
-        :return: class object in write mode with the path, file_name, format and patient data for the respective file to be written
-        :rtype: FileHandler
-        """
-        return cls(path=path, mode='w', file_name=file_name, format=format, patient_data=pData)
-
-    @property
-    def mode(self):
-        """gets the mode of the object
-
-        :return: current mode of the object
-        :rtype: str
-        """
-        return self._mode
-
-    @mode.setter
-    def mode(self, mode):
-        """sets the mode of the object to the given value
-
-        :param mode: mode of the object
-        :type mode: str
-        :raises ValueError: input value can only be a string of 'read' or 'write'
-        """
-        if mode.upper() in self.MODES:
-            self._mode = mode.upper()
-        elif mode == 'r':
-            self._mode = 'READ'
-        elif mode == 'w':
-            self._mode = 'WRITE'
-        else:
-            raise ValueError("Unknown mode, specify 'read' or 'write'")
 
     @property
     def path(self):
@@ -155,15 +100,13 @@ class FileHandler():
     def read_file(self):
         """reads data from a file and returns a data_frame
 
-        :raises ValueError: object has so be in read mode
         :raises FileNotFoundError: objects path has to be valid
         :raises ValueError: file of the specified path must have a format
         :raises TypeError: objects format is unknown, data can't be read
         :return: the data read from the file
         :rtype: data_frame
         """
-        if not self.mode == 'READ':
-            raise ValueError("FileHandler not in read mode")
+
         if not Path(self.path).is_file():
             raise FileNotFoundError("Invalid Path; no file at destination")
 
@@ -192,8 +135,7 @@ class FileHandler():
         :return: the transformed read data
         :rtype: list[list]
         """
-        # if self.mode != 'READ':
-        #    raise ValueError("Can't read file while not in read mode")
+
         # return self.data_frame.values.tolist() if self.data_frame is not None else []
 
         if self.data_frame is None:
@@ -215,11 +157,8 @@ class FileHandler():
 
         :param data: data to be written to a file
         :type data: any
-        :raises ValueError: object has to be in write mode
         :raises TypeError: file format of the file to be written can only be one of the supported ones (excel, csv, xml)
         """
-        if self.mode != 'write':
-            raise ValueError("Can't write while not in write mode")
 
         resPath = './results/res_' + str(FileHandler.i)
         self.data_frame = pd.data_frame(data)
