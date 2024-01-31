@@ -6,15 +6,11 @@ class FileHandler():
 
     FORMATS = ['EXCEL', 'CSV', 'XML']
 
-    MODES = ['READ', 'WRITE']
-
     def __init__(self, path=None, file_name="file_" + str(i), format=None, patient_data=None):
         """Constructor method
 
         :param path: path to the file to be read or written, defaults to None
         :type path: str, optional
-        :param mode: mode of the object which can be either read or write, defaults to None
-        :type mode: str, optional
         :param file_name: name of the file to be written, defaults to file_+str(i)
         :type file_name: str, optional
         :param format: format of the file to be written, defaults to None
