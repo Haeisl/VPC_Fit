@@ -5,7 +5,7 @@ from typing import Optional, Tuple, Union
 from os.path import exists
 import re
 
-from .FileHandler import FileHandler
+from . import FileHandler
 from .VPCModel import VPCModel
 from .ModelFitter import ModelFitter
 from .CTkResultInterface import ResultInterface
@@ -405,7 +405,7 @@ class MainApp(customtkinter.CTk):
             # hier FileHandler benutzen, um:
             # 1. check, ob File extension supported ist
             # 2. File nicht leer
-            FileHandler.Read(self.file_path)
+            FileHandler.read_file(self.file_path)
             return
 
         return msg
