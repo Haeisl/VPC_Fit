@@ -6,7 +6,7 @@ class ResultInterface(customtkinter.CTkToplevel):
 
     def __init__(self, main_window):
         super().__init__(main_window)
-        self.master = main_window
+        self.main = main_window
         self.title_string = customtkinter.StringVar(self, "Virtual Patient Cohorts - Results")
 
         self.title(self.title_string.get())
@@ -53,7 +53,6 @@ class ResultInterface(customtkinter.CTkToplevel):
 
         # lower frame
         self.button_frame = customtkinter.CTkFrame(self, corner_radius=0)
-        # self.button_frame.grid_columnconfigure(2, weight=1)
         self.button_frame.grid(
             row=2, column=0,
             padx=0, pady=0,
@@ -98,11 +97,12 @@ class ResultInterface(customtkinter.CTkToplevel):
 
 
     def save_as(self) -> None:
+        self.main.save_results()
         self.saved_message.set("Saved to ./res/ ")
         self.save_button.configure(state="disabled")
         # TODO save file lol
 
 
     def reset_app(self) -> None:
-        self.master.reset_state()
+        self.main.reset_state()
         self.destroy()

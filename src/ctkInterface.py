@@ -218,11 +218,9 @@ class MainApp(customtkinter.CTk):
         )
 
         # set tooltip for model equation entry
-        # "LHS will not be regarded and can be omitted.\n"
-        # "Set independent variables in 'Additional' tab."
         self.model_entry_tooltip = self.create_tooltip_for(
             widget=self.equation_entry,
-            msg=("Explicitly state mathematical operations.")
+            msg="Explicitly state mathematical operations."
         )
 
 
@@ -258,7 +256,7 @@ class MainApp(customtkinter.CTk):
             msg="You need to confirm your inputs before computation.",
         )
 
-        self._expression = None
+        self._model = None
         self._data = None
         self._independent_vars = None
         self._result_comps = None
@@ -325,7 +323,8 @@ class MainApp(customtkinter.CTk):
         """opens a filedialog to let the user select a data file
         sets the filepath and filename when selected
         """
-        fp = filedialog.askopenfile()
+        filetypes = [("Excel files", "*.xlsx"), ("CSV files", "*.csv"), ("All", "*.*")]
+        fp = filedialog.askopenfile(filetypes=filetypes)
         if fp is None:
             return
         fn = fp.name.split('/')[-1]
@@ -370,43 +369,51 @@ class MainApp(customtkinter.CTk):
         :rtype: str
         """
         msg = ''
+
+        if self.equation_entry.get() == '':
+            msg += (
+                f'No model equation entered.\n\n'
+            )
+
         missing_vars = self.missing_independent_variables()
         if missing_vars:
             if len(missing_vars) == 1:
-                msg += (f'The following independent\nparameter was not found in\n'
-                        f'the model expression:\n{missing_vars}\n\n')
+                msg += (
+                    f'The following independent\nparameter was not found in\n'
+                    f'the model expression:\n{missing_vars}\n\n'
+                )
             else:
-                msg += (f'The following independent\nparameters were not found in\n'
-                        f'the model expression:\n{missing_vars}\n\n')
+                msg += (
+                    f'The following independent\nparameters were not found in\n'
+                    f'the model expression:\n{missing_vars}\n\n'
+                )
 
         valid = {str(i) for i in range(10)}
         valid.add('auto')
         if self.result_components_combobox.get() not in valid:
             msg += (
                 f'Result Components\n'
-                f'have to be \'auto\'\n'
-                f'or 1-9\n\n'
+                f'have to be \'auto\' or 1-9\n\n'
             )
         elif not self.are_components_equal():
             msg += (
                 f'Entered model suggests\n'
                 f'different # of components\n'
                 f'than # provided in\n'
-                f'\'additional\' tab\n\n'
+                f'\'additional\' tab.\n\n'
             )
 
         if not exists(self.file_path):
             msg += (
                 f'No file path given\n'
-                f'Or path doesn\'t exist\n\n'
+                f'or path doesn\'t exist.\n\n'
             )
 
-        if False:
-            # hier FileHandler benutzen, um:
-            # 1. check, ob File extension supported ist
-            # 2. File nicht leer
-            FileHandler.read_file(self.file_path)
-            return
+        if (self.file_path != '') and (not FileHandler.is_extension_supported(self.file_path)):
+            msg += (
+                f'Unsupported file extension.\n'
+                f'Use .xlsx or .csv\n\n'
+            )
 
         return msg
 
@@ -443,18 +450,16 @@ class MainApp(customtkinter.CTk):
             constants
         )
 
-        # weg damit
-        if self.model.is_ode():
-            msg += f'\n\nHDGL!'
-        # bis hier
-
         self.display_interpreted_input(msg)
 
         self.remove_compute_tooltip()
 
+        data = FileHandler.read_file(self.file_path)
+        data_list = FileHandler.dataframe_tolist(data, True)
+
         # set internal vars to validated inputs
         self._model = self.model
-        self._data = None # TODO
+        self._data = data_list
         self._independent_vars = indep_param
         self._result_comps = res_comps
         self._parameters_to_fit = constants
@@ -464,12 +469,17 @@ class MainApp(customtkinter.CTk):
     def compute_params(self) -> None:
         """starts the calculation process of the parameters to be fitted
         """
-        self._expression
+        # <-
+        self._model
         self._data
         self._independent_vars
         self._result_comps
         self._parameters_to_fit
         self._file_path
+
+        # ->
+        self._fitted_model
+        self._consts
 
         result_window = ResultInterface(self)
         result_window.attributes("-topmost", True)
@@ -487,3 +497,20 @@ class MainApp(customtkinter.CTk):
         #     independent_param = [self.what_parameter_entry.get()]
 
         # fitted_params, variable_names = MF.fit(expression, data, independent_param)
+
+    def save_results(self):
+        data = FileHandler.create_dataframe_from_for(
+            fitted_model = 'f(t) = ...',
+            model = 'f(t) = ...',
+            user_input_model = 'f(t) = ...',
+            parameter = '...',
+            user_input_parameter = '...',
+            consts = '...',
+            user_input_consts = '...',
+            user_input_path = 'path/to/data',
+            format = 'Excel'
+        )
+        try:
+            FileHandler.write_file(data, file_format='EXCEL')
+        except TypeError:
+            return
