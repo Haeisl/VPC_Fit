@@ -4,6 +4,7 @@ from tktooltip import ToolTip
 from typing import Optional, Tuple, Union
 from os.path import exists
 import re
+import inspect
 
 from . import FileHandler
 from .VPCModel import VPCModel
@@ -422,19 +423,18 @@ class MainApp(customtkinter.CTk):
         """displays the user's input and removes tooltip
         or displays errors in the input, if any are found
         """
-        self.model = VPCModel(self.equation_entry.get())
+
+        ip = self.what_parameter_entry.get()
+        indep_param = 't' if ip == '' else ip
+
+        self.model = VPCModel(self.equation_entry.get(), indep_param)
 
         error_msg = self.check_input_validity()
         if error_msg:
             self.display_interpreted_input(error_msg)
             return
 
-        ip = self.what_parameter_entry.get()
-        indep_param = 't' if ip == '' else ip
-
-        all_symbols = self.model.symbols
-        constants = [c for c in all_symbols if c not in indep_param]
-        if not constants:
+        if not self.model.constants:
             self.display_interpreted_input(
                 f'No constants to fit'
             )
@@ -446,8 +446,8 @@ class MainApp(customtkinter.CTk):
 
         msg = self.create_interpretation_string(
             self.model.model_string,
-            indep_param,
-            constants
+            self.model._independent_var,
+            self.model.constants
         )
 
         self.display_interpreted_input(msg)
@@ -457,12 +457,15 @@ class MainApp(customtkinter.CTk):
         data = FileHandler.read_file(self.file_path)
         data_list = FileHandler.dataframe_tolist(data, True)
 
+        print(inspect.getsource(self.model.model_string_to_function()))
+        print(inspect.signature(self.model.model_string_to_function()))
+
         # set internal vars to validated inputs
         self._model = self.model
         self._data = data_list
         self._independent_vars = indep_param
         self._result_comps = res_comps
-        self._parameters_to_fit = constants
+        self._parameters_to_fit = self.model.constants
         self._file_path = self.file_path
 
 
@@ -513,4 +516,4 @@ class MainApp(customtkinter.CTk):
         try:
             FileHandler.write_file(data, file_format='EXCEL')
         except TypeError:
-            return
+            return None

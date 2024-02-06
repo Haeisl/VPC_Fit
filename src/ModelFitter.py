@@ -1,16 +1,38 @@
 import numpy as np
 from sympy import parse_expr, symbols, lambdify, Function, Eq, dsolve, Derivative
 from scipy.optimize import curve_fit
-from scipy.optimize import minimize
-from scipy.integrate import odeint
+# from scipy.optimize import minimize
+# from scipy.integrate import odeint
+from .VPCModel import VPCModel
 import re
-import inspect
 
+
+def fit(model: VPCModel, data: list) -> None:
+    if model.is_ode():
+        fit_ode(model, data)
+    else:
+        fit_reg(model, data)
+
+
+def fit_ode(model: VPCModel, data: list) -> None:
+
+
+
+    model._set_fitted_consts()
+
+
+def fit_reg(model: VPCModel, data: list) -> None:
+
+
+
+    model._set_fitted_consts()
+
+# ###############################################################################################
 class ModelFitter():
     """This is a class to handle the model fitter
     """
 
-    def __init__(self, equation=None):
+    def __init__(self, model: VPCModel):
         """Constructor method
 
         :param equation: the equation of the function to be fitted
@@ -18,8 +40,7 @@ class ModelFitter():
         :param parameter: fitted parameter of the function, NONE in the inital state
         :type parameter: list[float], optional
         """
-        self.equation = equation
-        self.parameter = None
+        self.model = model
 
 
     def fit(self, equation, data, prio=['t'], variables=None):
@@ -51,7 +72,7 @@ class ModelFitter():
         return result, variables
 
 
-    def string_to_function(self, equation, variables):
+    def string_to_function(self, equation: str, variables):
         """returns a lambda function based on the equation given by the user
 
         :param equation: the function equation that the user enters for the fit

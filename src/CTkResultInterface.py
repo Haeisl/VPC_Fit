@@ -97,10 +97,11 @@ class ResultInterface(customtkinter.CTkToplevel):
 
 
     def save_as(self) -> None:
-        self.main.save_results()
-        self.saved_message.set("Saved to ./res/ ")
-        self.save_button.configure(state="disabled")
-        # TODO save file lol
+        if self.main.save_results() is not None:
+            self.saved_message.set("Saved to ./res/ ")
+            self.save_button.configure(state="disabled")
+        else:
+            self.saved_message.set("Something went wrong")
 
 
     def reset_app(self) -> None:
