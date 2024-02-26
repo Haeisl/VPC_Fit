@@ -4,7 +4,6 @@ import sympy
 
 
 class VPCModel():
-
     def __init__(self, model_string: str, independent_var: list) -> None:
         self._model_string = model_string
         self._independent_var = independent_var
@@ -14,29 +13,18 @@ class VPCModel():
         self._constants = None
         self._fitted_consts = None
 
+
     @property
     def model_string(self) -> str:
-        return self._model_string.strip()
-
-    @model_string.setter
-    def model_string(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set model string manually.")
+        return self.format_eq(self._model_string)
 
     @property
     def independent_var(self) -> list:
         return self._independent_var
 
-    @independent_var.setter
-    def independent_var(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set independent variable manually.")
-
     @property
     def model_function(self) -> Any:
         return self._model_function
-
-    @model_function.setter
-    def model_function(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set model function manually.")
 
     @property
     def expression_string(self) -> str:
@@ -44,19 +32,11 @@ class VPCModel():
             self._expression_string = self.cut_off_lhs()
         return self._expression_string
 
-    @expression_string.setter
-    def expression_string(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set expression string manually.")
-
     @property
     def symbols(self) -> list:
         if self._symbols is None:
             self._symbols = self.extract_symbols()
         return self._symbols
-
-    @symbols.setter
-    def symbols(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set symbols manually.")
 
     @property
     def constants(self) -> str:
@@ -64,47 +44,72 @@ class VPCModel():
             self._constants = [c for c in self._symbols if c not in self._independent_var]
         return self._constants
 
-    @constants.setter
-    def constants(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set constants manually.")
-
     @property
     def fitted_consts(self) -> dict:
         return self._fitted_consts
 
-    @fitted_consts.setter
-    def fitted_consts(self, _: Any) -> NoReturn:
-        raise TypeError("Cannot set constants manually.")
+    # No need to introduce custom setters just to raise an error, as they already do.
+    # @model_string.setter
+    # def model_string(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set model string manually.")
+
+    # @independent_var.setter
+    # def independent_var(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set independent variable manually.")
+
+    # @model_function.setter
+    # def model_function(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set model function manually.")
+
+    # @expression_string.setter
+    # def expression_string(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set expression string manually.")
+
+    # @symbols.setter
+    # def symbols(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set symbols manually.")
+
+    # @constants.setter
+    # def constants(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set constants manually.")
+
+    # @fitted_consts.setter
+    # def fitted_consts(self, _: Any) -> NoReturn:
+    #     raise TypeError("Cannot set constants manually.")
 
 
     def _set_fitted_consts(self, fitted_consts_dict: dict) -> None:
         self._fitted_consts = fitted_consts_dict
 
 
+    def format_eq(self, equation: str) -> str:
+        return equation.strip().replace('^', '**')
+
+
     def cut_off_lhs(self) -> str:
-        """cuts off the left side of an equation if exists
-        is needed internally to check the input by the user
+        """cuts off the left side of an equation including the equals sign if exists.
+        Needed internally to check the input by the user.
 
         :param equation: entered equation by the user
         :type equation: str
-        :return: entered equation without lhs
+        :return: entered equation without left hand side and '='
         :rtype: str
         """
         equation = self._model_string
         ind = equation.find('=')
         if ind != -1:
-            return equation[ind:].strip()
+            return self.format_eq(equation[ind+1:])
         else:
-            return equation.strip()
+            return self.format_eq(equation)
 
 
     def cut_off_rhs(self):
         equation = self._model_string
         ind = equation.find('=')
         if ind != -1:
-            return equation[:ind].strip()
+            return self.format_eq(equation[:ind])
         else:
-            return equation.strip()
+            return self.format_eq(equation)
 
 
     def extract_symbols(self, sorting_prio: list = None) -> list:
@@ -135,8 +140,8 @@ class VPCModel():
 
 
     def model_string_to_function(self):
-        """returns a lambda function based on the equation given by the user
-        """
+        """returns a lambda function based on the equation given by the user."""
+
         sorted_symbols = self.extract_symbols(self._independent_var)
         sympy_vars = sympy.symbols(sorted_symbols)
         expression = self._expression_string

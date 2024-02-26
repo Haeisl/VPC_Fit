@@ -72,15 +72,15 @@ def create_dataframe_from_for(
 
     elif format == 'CSV':
         data = pd.DataFrame({
-            '1': ['Fitted Model:',  'Interpreted:',         'Raw:'],
-            '2': [fitted_model,     'Model:',               'Entered Model:'],
-            '3': [None,             model,                  user_input_model],
-            '4': [None,             'Independent Var:',     'Entered Independent Var:'],
-            '5': [None,             parameter,              user_input_parameter],
-            '6': [None,             'Constants:',           'Entered Constants:'],
-            '7': [None,             consts,                 user_input_consts],
-            '8': [None,             None,                   'Entered Data:'],
-            '9': [None,             None,                   user_input_path],
+            '1': ['Fitted Model:',  'Interpreted',          'Raw'                       ],
+            '2': [fitted_model,     'Model:',               'Entered Model:'            ],
+            '3': [None,             model,                  user_input_model            ],
+            '4': [None,             'Independent Var:',     'Entered Independent Var:'  ],
+            '5': [None,             parameter,              user_input_parameter        ],
+            '6': [None,             'Constants:',           'Entered Constants:'        ],
+            '7': [None,             consts,                 user_input_consts           ],
+            '8': [None,             None,                   'Entered Data:'             ],
+            '9': [None,             None,                   user_input_path             ],
         })
 
     return data

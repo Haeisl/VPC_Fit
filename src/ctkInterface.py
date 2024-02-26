@@ -8,7 +8,6 @@ import inspect
 
 from . import FileHandler
 from .VPCModel import VPCModel
-from .ModelFitter import ModelFitter
 from .CTkResultInterface import ResultInterface
 
 
@@ -460,6 +459,8 @@ class MainApp(customtkinter.CTk):
         print(inspect.getsource(self.model.model_string_to_function()))
         print(inspect.signature(self.model.model_string_to_function()))
 
+        self.model.model_string = 't'
+
         # set internal vars to validated inputs
         self._model = self.model
         self._data = data_list
@@ -473,16 +474,16 @@ class MainApp(customtkinter.CTk):
         """starts the calculation process of the parameters to be fitted
         """
         # <-
-        self._model
-        self._data
-        self._independent_vars
-        self._result_comps
-        self._parameters_to_fit
-        self._file_path
+        # self._model
+        # self._data
+        # self._independent_vars
+        # self._result_comps
+        # self._parameters_to_fit
+        # self._file_path
 
-        # ->
-        self._fitted_model
-        self._consts
+        # # ->
+        # self._fitted_model
+        # self._consts
 
         result_window = ResultInterface(self)
         result_window.attributes("-topmost", True)
