@@ -1,6 +1,6 @@
-import re
-from typing import NoReturn, Any
-import sympy
+from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr as sym_parse_expr
+from re import search as re_search, finditer as re_finditer
+from typing import Any
 
 
 class VPCModel():
@@ -13,7 +13,7 @@ class VPCModel():
         self._constants = None
         self._fitted_consts = None
 
-
+    # following attributes/properties are read-only and not meant to be set like attribute = 'a'.
     @property
     def model_string(self) -> str:
         return self.format_eq(self._model_string)
@@ -47,35 +47,6 @@ class VPCModel():
     @property
     def fitted_consts(self) -> dict:
         return self._fitted_consts
-
-    # No need to introduce custom setters just to raise an error, as they already do.
-    # @model_string.setter
-    # def model_string(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set model string manually.")
-
-    # @independent_var.setter
-    # def independent_var(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set independent variable manually.")
-
-    # @model_function.setter
-    # def model_function(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set model function manually.")
-
-    # @expression_string.setter
-    # def expression_string(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set expression string manually.")
-
-    # @symbols.setter
-    # def symbols(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set symbols manually.")
-
-    # @constants.setter
-    # def constants(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set constants manually.")
-
-    # @fitted_consts.setter
-    # def fitted_consts(self, _: Any) -> NoReturn:
-    #     raise TypeError("Cannot set constants manually.")
 
 
     def _set_fitted_consts(self, fitted_consts_dict: dict) -> None:
@@ -121,7 +92,7 @@ class VPCModel():
         seen = set()
         unique_symbols = []
 
-        for match in re.finditer(r'\b[a-zA-Z]+\b|\b[a-zA-Z]\b', expression):
+        for match in re_finditer(r'\b[a-zA-Z]+\b|\b[a-zA-Z]\b', expression):
             symbol = match.group()
             if symbol not in seen:
                 seen.add(symbol)
@@ -143,14 +114,11 @@ class VPCModel():
         """returns a lambda function based on the equation given by the user."""
 
         sorted_symbols = self.extract_symbols(self._independent_var)
-        sympy_vars = sympy.symbols(sorted_symbols)
+        sympy_vars = sym_symbols(sorted_symbols)
         expression = self._expression_string
 
-        # for var, sym_var in zip(self._symbols, sympy_vars):
-        #     expression = expression.replace(var, str(sym_var))
-
-        parsed_expression = sympy.parse_expr(expression)
-        func = sympy.lambdify(sympy_vars, parsed_expression, 'sympy')
+        parsed_expression = sym_parse_expr(expression)
+        func = sym_lambdify(sympy_vars, parsed_expression, 'sympy')
 
         return func
 
@@ -172,6 +140,6 @@ class VPCModel():
 
         patterns = [second_derivative, first_derivative, symbol_prime_prime, symbol_prime]
 
-        match = any(re.search(pattern, self._model_string) for pattern in patterns)
+        match = any(re_search(pattern, self._model_string) for pattern in patterns)
 
         return match

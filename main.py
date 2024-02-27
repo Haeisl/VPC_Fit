@@ -1,8 +1,9 @@
 from src.CTkInterface import MainApp
+from tkinter import Event, Widget
 
 
-def handle_leftclick(event):
-    widget = event.widget
+def handle_leftclick(event: Event) -> None:
+    widget: Widget = event.widget
     if not widget:
         pass
     elif isinstance(widget, str):

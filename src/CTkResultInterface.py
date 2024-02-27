@@ -1,10 +1,14 @@
-from typing import Optional, Tuple, Union
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from src.CTkInterface import MainApp
+
 import customtkinter
 
 
 class ResultInterface(customtkinter.CTkToplevel):
 
-    def __init__(self, main_window):
+    def __init__(self, main_window: MainApp):
         super().__init__(main_window)
         self.main = main_window
         self.title_string = customtkinter.StringVar(self, "Virtual Patient Cohorts - Results")

@@ -1,8 +1,8 @@
 import numpy as np
 from sympy import parse_expr, symbols, lambdify, Function, Eq, dsolve, Derivative
 from scipy.optimize import curve_fit
-# from scipy.optimize import minimize
-# from scipy.integrate import odeint
+from scipy.optimize import minimize
+from scipy.integrate import odeint
 from .VPCModel import VPCModel
 import re
 

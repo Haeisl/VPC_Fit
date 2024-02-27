@@ -1,5 +1,15 @@
+import pytest
 from src.VPCModel import VPCModel
 
-def test_model() -> None:
-    model = VPCModel("f(x) = x + 1", ["x"])
-    assert model.model_string == "f(x) = x + 1"
+@pytest.fixture
+def quad_model_unclean() -> VPCModel:
+    return VPCModel("  f(t) = a*t^2 + b*t + c      ", ["t"])
+
+@pytest.fixture
+def quad_model_clean() -> VPCModel:
+    return VPCModel("f(t) = a*t**2 + b*t + c", ["t"])
+
+
+def test_model_string_getter(quad_model_unclean: VPCModel, quad_model_clean: VPCModel) -> None:
+    assert quad_model_unclean.model_string == "f(t) = a*t**2 + b*t + c"
+    assert quad_model_clean.model_string == "f(t) = a*t**2 + b*t + c"

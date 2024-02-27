@@ -95,9 +95,12 @@ def get_valid_filename() -> str:
 
 def write_file(data_frame: pd.DataFrame, file_format: str = 'EXCEL') -> None:
     relative_path = './res/'
+
     if not os.path.exists(relative_path):
         os.makedirs(relative_path)
+
     file_name = get_valid_filename()
+
     if file_format == 'EXCEL':
         file_name = file_name + '.xlsx'
         data_frame.to_excel(os.path.join(relative_path, file_name), index=False, header=False)

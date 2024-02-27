@@ -12,17 +12,27 @@ def is_extension_supported(file_path: str) -> bool:
 
 
 def read_file(file_path: str) -> pd.DataFrame:
+    if not Path(file_path).is_file():
+        raise FileNotFoundError('Invalid Path; no file at destination')
+
     suffix = Path(file_path).suffix.split('.')[1]
+    if suffix == '':
+        raise ValueError('No Fileextension found at path')
 
     if suffix.upper() == 'XLSX':
         data_frame = pd.read_excel(file_path)
     elif suffix.upper() == 'CSV':
         data_frame = pd.read_csv(file_path)
+    else:
+        raise TypeError('Unknown File extension')
 
     return data_frame
 
 
 def dataframe_tolist(data_frame: pd.DataFrame, include_first_row: bool) -> list[list]:
+    if data_frame is None:
+        raise ValueError('No data could be read')
+
     column_names = data_frame.columns.tolist()
 
     if include_first_row:
@@ -88,7 +98,7 @@ def create_dataframe_from_for(
 
 def get_valid_filename() -> str:
     now = datetime.now()
-    return now.strftime('%Y-%m-%d') + '-result-from-' + now.strftime('%H:%M:%S')
+    return now.strftime("%Y-%m-%d-result-from-%Hh%Mm%Ss")
 
 
 def write_file(data_frame: pd.DataFrame, file_format: str = 'EXCEL') -> None:

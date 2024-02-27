@@ -459,7 +459,7 @@ class MainApp(customtkinter.CTk):
         print(inspect.getsource(self.model.model_string_to_function()))
         print(inspect.signature(self.model.model_string_to_function()))
 
-        self.model.model_string = 't'
+        # self.model.model_string = 't'
 
         # set internal vars to validated inputs
         self._model = self.model
@@ -488,19 +488,6 @@ class MainApp(customtkinter.CTk):
         result_window = ResultInterface(self)
         result_window.attributes("-topmost", True)
 
-        # FH = FileHandler.Read(self.file_path)
-        # df = FH.read_file()
-        # data = []
-        # for name in df.columns.values:
-        #     data.append(df[name].to_numpy())
-
-        # MF = ModelFitter()
-        # expression = self.equation_entry.get()
-
-        # if not len(self.what_parameter_entry.get()) == 0:
-        #     independent_param = [self.what_parameter_entry.get()]
-
-        # fitted_params, variable_names = MF.fit(expression, data, independent_param)
 
     def save_results(self):
         data = FileHandler.create_dataframe_from_for(
@@ -516,5 +503,6 @@ class MainApp(customtkinter.CTk):
         )
         try:
             FileHandler.write_file(data, file_format='EXCEL')
+            return 0
         except TypeError:
             return None
