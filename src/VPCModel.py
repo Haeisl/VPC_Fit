@@ -1,19 +1,21 @@
+from ctypes import Union
+from dataclasses import dataclass
 from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr as sym_parse_expr
 from re import search as re_search, finditer as re_finditer
-from typing import Any
-
+from typing import Any, Optional
 
 class VPCModel():
-    def __init__(self, model_string: str, independent_var: list) -> None:
+    def __init__(self, model_string: str, independent_var: list[str]) -> None:
         self._model_string = model_string
         self._independent_var = independent_var
-        self._model_function = None
-        self._expression_string = None
-        self._symbols = None
-        self._constants = None
-        self._fitted_consts = None
 
-    # following attributes/properties are read-only and not meant to be set like attribute = 'a'.
+        self._expression_string: Optional[str] = None
+        self._symbols: Optional[list[str]] = None
+        self._constants: Optional[list[str]] = None
+
+        self._fitted_consts: Optional[dict[str, float]] = None # {'a': 1.437, 'b': 3.25, ...}
+        self._resulting_function: Optional[str] = None
+
     @property
     def model_string(self) -> str:
         return self.format_eq(self._model_string)
@@ -23,33 +25,37 @@ class VPCModel():
         return self._independent_var
 
     @property
-    def model_function(self) -> Any:
-        return self._model_function
-
-    @property
     def expression_string(self) -> str:
         if self._expression_string is None:
             self._expression_string = self.cut_off_lhs()
         return self._expression_string
 
     @property
-    def symbols(self) -> list:
+    def symbols(self) -> list[str]:
         if self._symbols is None:
             self._symbols = self.extract_symbols()
         return self._symbols
 
     @property
-    def constants(self) -> str:
+    def constants(self) -> list[str]:
+        if self._symbols is None:
+            self._symbols = self.extract_symbols()
         if self._constants is None:
             self._constants = [c for c in self._symbols if c not in self._independent_var]
         return self._constants
 
     @property
-    def fitted_consts(self) -> dict:
+    def fitted_consts(self) -> Optional[dict[str, float]]:
+        if self._fitted_consts is None:
+            return None
         return self._fitted_consts
 
+    @property
+    def resulting_function(self) -> Any:
+        return self._resulting_function
 
-    def _set_fitted_consts(self, fitted_consts_dict: dict) -> None:
+
+    def _set_fitted_consts(self, fitted_consts_dict: dict[str, float]) -> None:
         self._fitted_consts = fitted_consts_dict
 
 
@@ -83,7 +89,7 @@ class VPCModel():
             return self.format_eq(equation)
 
 
-    def extract_symbols(self, sorting_prio: list = None) -> list:
+    def extract_symbols(self, sorting_prio: Optional[list] = None) -> list[str]:
         expression = self._model_string
 
         if '=' in expression:

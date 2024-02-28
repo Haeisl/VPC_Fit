@@ -101,11 +101,13 @@ class ResultInterface(customtkinter.CTkToplevel):
 
 
     def save_as(self) -> None:
-        if self.main.save_results() is not None:
+        if self.main.save_results() != 1:
             self.saved_message.set("Saved to ./res/ ")
             self.save_button.configure(state="disabled")
         else:
-            self.saved_message.set("Something went wrong")
+            error_font = customtkinter.CTkFont(family="Arial", size=16, weight="bold")
+            self.saved_label.configure(text_color="red", font=error_font)
+            self.saved_message.set("Something\nwent wrong")
 
 
     def reset_app(self) -> None:

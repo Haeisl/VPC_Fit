@@ -27,12 +27,13 @@ class MainApp(customtkinter.CTk):
 
         # window configuration
         self.title("Virtual Patient Cohorts - Fitting App")
-        window_width = 500
-        window_height = 280
-        screen_width = self.winfo_screenwidth()
-        screen_height = self.winfo_screenheight()
-        center_x = int(screen_width/2 - window_width/2)
-        center_y = int(screen_height/2 - window_height/2)
+        window_width:   int  = 500
+        window_height:  int  = 280
+        screen_width:   int  = self.winfo_screenwidth()
+        screen_height:  int  = self.winfo_screenheight()
+        center_x:       int  = int(screen_width/2 - window_width/2)
+        center_y:       int  = int(screen_height/2 - window_height/2)
+
         self.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 
         # grid layout
@@ -454,12 +455,12 @@ class MainApp(customtkinter.CTk):
         self.remove_compute_tooltip()
 
         data = FileHandler.read_file(self.file_path)
-        data_list = FileHandler.dataframe_tolist(data, True)
+        data_list = FileHandler.dataframe_tolist(data, False)
 
         print(inspect.getsource(self.model.model_string_to_function()))
         print(inspect.signature(self.model.model_string_to_function()))
 
-        # self.model.model_string = 't'
+
 
         # set internal vars to validated inputs
         self._model = self.model
@@ -489,7 +490,7 @@ class MainApp(customtkinter.CTk):
         result_window.attributes("-topmost", True)
 
 
-    def save_results(self):
+    def save_results(self) -> int | None:
         data = FileHandler.create_dataframe_from_for(
             fitted_model = 'f(t) = ...',
             model = 'f(t) = ...',
@@ -505,4 +506,4 @@ class MainApp(customtkinter.CTk):
             FileHandler.write_file(data, file_format='EXCEL')
             return 0
         except TypeError:
-            return None
+            return 1

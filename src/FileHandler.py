@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
-from os.path import join, exists
+from os.path import join as os_path_join, exists as os_path_exists
 from os import makedirs
 
 
@@ -61,18 +61,18 @@ def create_dataframe_from_for(
             columns=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
         )
 
-        data.at[1,'A'] = 'Fitted Model:'
-        data.at[1,'C'] = fitted_model
-        data.at[4,'A'] = 'Interpreted Data'
-        data.at[4,'G'] = 'Raw Data'
-        data.at[6,'A'] = 'Model:'
-        data.at[6,'C'] = model
-        data.at[6,'G'] = 'Entered Model:'
-        data.at[6,'I'] = user_input_model
-        data.at[8,'A'] = 'Independent Var:'
-        data.at[8,'C'] = parameter
-        data.at[8,'G'] = 'Entered Independent Var:'
-        data.at[8,'I'] = user_input_parameter
+        data.at[1,'A']  = 'Fitted Model:'
+        data.at[1,'C']  = fitted_model
+        data.at[4,'A']  = 'Interpreted Data'
+        data.at[4,'G']  = 'Raw Data'
+        data.at[6,'A']  = 'Model:'
+        data.at[6,'C']  = model
+        data.at[6,'G']  = 'Entered Model:'
+        data.at[6,'I']  = user_input_model
+        data.at[8,'A']  = 'Independent Var:'
+        data.at[8,'C']  = parameter
+        data.at[8,'G']  = 'Entered Independent Var:'
+        data.at[8,'I']  = user_input_parameter
         data.at[10,'A'] = 'Constants:'
         data.at[10,'C'] = consts
         data.at[10,'G'] = 'Entered Constants:'
@@ -104,16 +104,16 @@ def get_valid_filename() -> str:
 def write_file(data_frame: pd.DataFrame, file_format: str = 'EXCEL') -> None:
     relative_path = './res/'
 
-    if not exists(relative_path):
+    if not os_path_exists(relative_path):
         makedirs(relative_path)
 
     file_name = get_valid_filename()
 
     if file_format == 'EXCEL':
         file_name = file_name + '.xlsx'
-        data_frame.to_excel(join(relative_path, file_name), index=False, header=False)
+        data_frame.to_excel(os_path_join(relative_path, file_name), index=False, header=False)
     elif file_format == 'CSV':
         file_name = file_name + '.csv'
-        data_frame.to_csv(join(relative_path, file_name), index=False, header=False, sep='\t')
+        data_frame.to_csv(os_path_join(relative_path, file_name), index=False, header=False, sep='\t')
     else:
         raise TypeError('Can\'t write to unknown file extension')
