@@ -282,9 +282,9 @@ class MainApp(customtkinter.CTk):
 
     def create_interpretation_string(
         self,
-        function: Optional[str] = "...",
-        var: Optional[str] = "...",
-        consts: Optional[list[str]] = ["..."],
+        function: str = "...",
+        var: list[str] = ["..."],
+        consts: list[str] = ["..."],
         **kwargs: Optional[str]
     ) -> str:
         """creates the interpretation string of the user input
@@ -299,8 +299,12 @@ class MainApp(customtkinter.CTk):
         :rtype: str
         """
 
-        msg = f"Function:\n    {function}\nIndependent Variable(s):\n" +\
-                f"    {var}\nConstants to be fitted:\n    {', '.join(str(c) for c in consts)}"
+        msg = f"Function:\n" +\
+            f"    {function}\n" +\
+            f"Independent Variable(s):\n" +\
+            f"    {', '.join(str(c) for c in var)}\n"+\
+            f"Constants to be fitted:\n"+\
+            f"    {', '.join(str(c) for c in consts)}"
         if kwargs:
             msg += f"\n\nExtra:"
             for descr, val in kwargs.items():
@@ -424,8 +428,8 @@ class MainApp(customtkinter.CTk):
         or displays errors in the input, if any are found
         """
 
-        ip = self.what_parameter_entry.get()
-        indep_param = 't' if ip == '' else ip
+        ip = self.what_parameter_entry.get().replace(' ', '').split(',')
+        indep_param = ['t'] if ip == [''] else ip
 
         self.model = VPCModel(self.equation_entry.get(), indep_param)
 
@@ -446,7 +450,7 @@ class MainApp(customtkinter.CTk):
 
         msg = self.create_interpretation_string(
             self.model.model_string,
-            self.model._independent_var,
+            self.model.independent_var,
             self.model.constants
         )
 

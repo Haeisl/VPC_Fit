@@ -15,17 +15,17 @@ def fit(model: VPCModel, data: list) -> None:
 
 
 def fit_ode(model: VPCModel, data: list) -> None:
+    pass
 
 
-
-    model._set_fitted_consts()
+    #model._set_fitted_consts()
 
 
 def fit_reg(model: VPCModel, data: list) -> None:
+    pass
 
 
-
-    model._set_fitted_consts()
+    #model._set_fitted_consts()
 
 # ###############################################################################################
 
