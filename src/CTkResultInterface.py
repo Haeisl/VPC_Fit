@@ -5,6 +5,8 @@ if TYPE_CHECKING:
 
 import customtkinter
 
+# import logging
+# logger = logging.getLogger("ResultInterface")
 
 class ResultInterface(customtkinter.CTkToplevel):
 

@@ -4,6 +4,10 @@ from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr a
 from re import search as re_search, finditer as re_finditer
 from typing import Any, Optional
 
+# import logging
+# logger = logging.getLogger("VPCModel")
+
+
 @dataclass
 class VPCModel():
     _model_string: str

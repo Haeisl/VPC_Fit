@@ -1,0 +1,65 @@
+{
+    "version": 1,
+    "handlers": {
+        "consoleHandler": {
+            "class": "logging.StreamHandler",
+            "level": "WARNING",
+            "formatter": "multilineFormatter",
+            "stream": "ext://sys.stdout"
+        },
+        "fileHandler": {
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "level": "WARNING",
+            "formatter": "detailedFormatter",
+            "filename": "",
+            "when": "midnight",
+            "interval": 1,
+            "backupCount": 7,
+            "encoding": "utf-8",
+            "utc": false
+        }
+    },
+    "formatters": {
+        "multilineFormatter":{
+            "()": "customFormatter.MultilineFormatter",
+            "format": "[%(asctime)s] %(levelname)-8s %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        },
+        "detailedFormatter": {
+            "()": "customFormatter.MultilineFormatter",
+            "format": "[%(asctime)s] %(levelname)-8s [%(name)s@%(funcName)s:%(lineno)d] %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        }
+    },
+    "loggers": {
+        "root": {
+            "level": "DEBUG",
+            "handlers": ["consoleHandler", "fileHandler"]
+        },
+        "Interface": {
+            "level": "DEBUG",
+            "qualname": "root.Interface",
+            "propagate": 1
+        },
+        "ResultInterface": {
+            "level": "DEBUG",
+            "qualname": "root.ResultInterface",
+            "propagate": 1
+        },
+        "FileHandler": {
+            "level": "DEBUG",
+            "qualname": "root.FileHandler",
+            "propagate": 1
+        },
+        "ModelFitter": {
+            "level": "DEBUG",
+            "qualname": "root.ModelFitter",
+            "propagate": 1
+        },
+        "VPCModel": {
+            "level": "DEBUG",
+            "qualname": "root.VPCModel",
+            "propagate": 1
+        }
+    }
+}

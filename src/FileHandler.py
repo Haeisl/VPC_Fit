@@ -1,8 +1,12 @@
+from typing import Union
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
 from os.path import join as os_path_join, exists as os_path_exists
 from os import makedirs
+
+# import logging
+# logger = logging.getLogger("FileHandler")
 
 
 def is_extension_supported(file_path: str) -> bool:
@@ -29,7 +33,9 @@ def read_file(file_path: str) -> pd.DataFrame:
     return data_frame
 
 
-def dataframe_tolist(data_frame: pd.DataFrame, include_first_row: bool) -> list[list]:
+def dataframe_tolist(
+    data_frame: pd.DataFrame, include_first_row: bool
+) -> list[list[Union[str, float, int]]]:
     if data_frame is None:
         raise ValueError('No data could be read')
 

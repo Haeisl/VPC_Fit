@@ -10,6 +10,9 @@ from . import FileHandler
 from .VPCModel import VPCModel
 from .CTkResultInterface import ResultInterface
 
+import logging
+logger = logging.getLogger("Interface")
+
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
@@ -20,19 +23,18 @@ class MainApp(customtkinter.CTk):
     :param customtkinter: tkinter extension to create modern looking user interfaces
     :type customtkinter: CustomTkinter module
     """
-    def __init__(self):
-        """Constructor method to set up the main application
-        """
+    def __init__(self) -> None:
+        """Constructor method to set up the main application"""
         super().__init__()
 
         # window configuration
         self.title("Virtual Patient Cohorts - Fitting App")
-        window_width:   int  = 500
-        window_height:  int  = 280
-        screen_width:   int  = self.winfo_screenwidth()
-        screen_height:  int  = self.winfo_screenheight()
-        center_x:       int  = int(screen_width/2 - window_width/2)
-        center_y:       int  = int(screen_height/2 - window_height/2)
+        window_width: int  = 500
+        window_height: int  = 280
+        screen_width: int  = self.winfo_screenwidth()
+        screen_height: int  = self.winfo_screenheight()
+        center_x: int  = int(screen_width/2 - window_width/2)
+        center_y: int  = int(screen_height/2 - window_height/2)
 
         self.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
 
@@ -48,7 +50,7 @@ class MainApp(customtkinter.CTk):
 
         # variables that change through user interaction
         self.file_name = customtkinter.StringVar(self, "Browse...")
-        self.file_path = ''
+        self.file_path: str = ""
 
         # main frame tabview
         self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
@@ -237,13 +239,9 @@ class MainApp(customtkinter.CTk):
 
     def reset_state(self) -> None:
         self.file_name.set("Browse...")
-
-        self.file_path = ''
-
+        self.file_path = ""
         self.equation_entry.delete(0, customtkinter.END)
-
         self.what_parameter_entry.delete(0, customtkinter.END)
-
         self.result_components_combobox.set("1")
 
         self.input_confirmation_textbox.delete("1.0", customtkinter.END)
@@ -257,16 +255,21 @@ class MainApp(customtkinter.CTk):
             msg="You need to confirm your inputs before computation.",
         )
 
-        self._model = None
-        self._data = None
-        self._independent_vars = None
-        self._result_comps = None
-        self._parameters_to_fit = None
-        self._file_path = None
+        attribute_names: list[str] = [
+            "_model", "_data", "_independent_vars",
+            "_result_comps", "_parameters_to_fit", "_file_path"
+        ]
+        for attr_name in attribute_names:
+            if hasattr(self, attr_name):
+                delattr(self, attr_name)
+            else:
+                raise AttributeError(f"tried to find Attribute {attr_name}, but nothing was found")
+
+        print("Successfully reset to initial state.")
 
 
     def remove_compute_tooltip(self) -> None:
-        """removes the tooltip and enables the 'compute parameters' button
+        """removes the tooltip and enables the "compute parameters" button
         """
         if self.compute_button_tooltip.winfo_exists():
             # unbinding compute button bindings
@@ -302,9 +305,9 @@ class MainApp(customtkinter.CTk):
         msg = f"Function:\n" +\
             f"    {function}\n" +\
             f"Independent Variable(s):\n" +\
-            f"    {', '.join(str(c) for c in var)}\n"+\
+            f"    {", ".join(str(c) for c in var)}\n"+\
             f"Constants to be fitted:\n"+\
-            f"    {', '.join(str(c) for c in consts)}"
+            f"    {", ".join(str(c) for c in consts)}"
         if kwargs:
             msg += f"\n\nExtra:"
             for descr, val in kwargs.items():
@@ -328,12 +331,20 @@ class MainApp(customtkinter.CTk):
         """opens a filedialog to let the user select a data file
         sets the filepath and filename when selected
         """
+        logger.info("Browse files button pressed")
         filetypes = [("Excel files", "*.xlsx"), ("CSV files", "*.csv"), ("All", "*.*")]
+        logger.debug(f"Starting filedialog")
         fp = filedialog.askopenfile(filetypes=filetypes)
+        logger.debug(
+            f"Completed filedialog with:\n"+
+            f"  {fp}"
+        )
+
         if fp is None:
             return
-        fn = fp.name.split('/')[-1]
-        displayed_name = (fn[:12] + '..') if len(fn) > 12 else fn
+
+        fn = fp.name.split("/")[-1]
+        displayed_name = (fn[:12] + "..") if len(fn) > 12 else fn
         self.file_name.set(displayed_name)
         self.file_path = fp.name
 
@@ -345,9 +356,9 @@ class MainApp(customtkinter.CTk):
         :return: list of symbols
         :rtype: list
         """
-        indep_vars = re.split(r',\s|,|;\s|;', self.what_parameter_entry.get())
+        indep_vars = re.split(r",\s|,|;\s|;", self.what_parameter_entry.get())
         # default to t if nothing was explicitly entered
-        indep_vars = ['t'] if indep_vars == [''] else indep_vars
+        indep_vars = ["t"] if indep_vars == [""] else indep_vars
 
         variables = self.model.symbols
 
@@ -360,10 +371,10 @@ class MainApp(customtkinter.CTk):
 
 
     def are_components_equal(self) -> bool:
-        if self.result_components_combobox.get() == 'auto':
+        if self.result_components_combobox.get() == "auto":
             return True
         given = int(self.result_components_combobox.get())
-        assumed = self.model.expression_string.count(',') + 1
+        assumed = self.model.expression_string.count(",") + 1
         return given == assumed
 
 
@@ -373,63 +384,63 @@ class MainApp(customtkinter.CTk):
         :return: message with errors, if found
         :rtype: str
         """
-        msg = ''
+        msg = ""
 
-        if self.equation_entry.get() == '':
+        if self.equation_entry.get() == "":
             msg += (
-                f'No model equation entered.\n\n'
+                f"No model equation entered.\n\n"
             )
 
         missing_vars = self.missing_independent_variables()
         if missing_vars:
             if len(missing_vars) == 1:
                 msg += (
-                    f'The following independent\nparameter was not found in\n'
-                    f'the model expression:\n{missing_vars}\n\n'
+                    f"The following independent\nparameter was not found in\n"
+                    f"the model expression:\n{missing_vars}\n\n"
                 )
             else:
                 msg += (
-                    f'The following independent\nparameters were not found in\n'
-                    f'the model expression:\n{missing_vars}\n\n'
+                    f"The following independent\nparameters were not found in\n"
+                    f"the model expression:\n{missing_vars}\n\n"
                 )
 
         valid = {str(i) for i in range(10)}
-        valid.add('auto')
+        valid.add("auto")
         if self.result_components_combobox.get() not in valid:
             msg += (
-                f'Result Components\n'
-                f'have to be \'auto\' or 1-9\n\n'
+                f"Result Components\n"
+                f"have to be \"auto\" or 1-9\n\n"
             )
         elif not self.are_components_equal():
             msg += (
-                f'Entered model suggests\n'
-                f'different # of components\n'
-                f'than # provided in\n'
-                f'\'additional\' tab.\n\n'
+                f"Entered model suggests\n"
+                f"different # of components\n"
+                f"than # provided in\n"
+                f"\"additional\" tab.\n\n"
             )
 
         if not exists(self.file_path):
             msg += (
-                f'No file path given\n'
-                f'or path doesn\'t exist.\n\n'
+                f"No file path given\n"
+                f"or path doesn\"t exist.\n\n"
             )
 
-        if (self.file_path != '') and (not FileHandler.is_extension_supported(self.file_path)):
+        if (self.file_path != "") and (not FileHandler.is_extension_supported(self.file_path)):
             msg += (
-                f'Unsupported file extension.\n'
-                f'Use .xlsx or .csv\n\n'
+                f"Unsupported file extension.\n"
+                f"Use .xlsx or .csv\n\n"
             )
 
         return msg
 
 
     def confirm_input(self) -> None:
-        """displays the user's input and removes tooltip
+        """displays the user"s input and removes tooltip
         or displays errors in the input, if any are found
         """
-
-        ip = self.what_parameter_entry.get().replace(' ', '').split(',')
-        indep_param = ['t'] if ip == [''] else ip
+        logger.info("Confirm button pressed")
+        ip = self.what_parameter_entry.get().replace(" ", "").split(",")
+        indep_param = ["t"] if ip == [""] else ip
 
         self.model = VPCModel(self.equation_entry.get(), indep_param)
 
@@ -440,13 +451,13 @@ class MainApp(customtkinter.CTk):
 
         if not self.model.constants:
             self.display_interpreted_input(
-                f'No constants to fit'
+                f"No constants to fit"
             )
             return
 
         combobox_entry = self.result_components_combobox.get()
-        auto_value = self.model.expression_string.count(',') + 1
-        res_comps = auto_value if combobox_entry == 'auto' else int(combobox_entry)
+        auto_value = self.model.expression_string.count(",") + 1
+        res_comps = auto_value if combobox_entry == "auto" else int(combobox_entry)
 
         msg = self.create_interpretation_string(
             self.model.model_string,
@@ -461,30 +472,35 @@ class MainApp(customtkinter.CTk):
         data = FileHandler.read_file(self.file_path)
         data_list = FileHandler.dataframe_tolist(data, False)
 
-        print(inspect.getsource(self.model.model_string_to_function()))
-        print(inspect.signature(self.model.model_string_to_function()))
-
-
+        logger.debug(
+            f"Dynamic lambda:\n" +
+            f"  {inspect.getsource(self.model.model_string_to_function()).strip()}"
+        )
 
         # set internal vars to validated inputs
-        self._model = self.model
-        self._data = data_list
-        self._independent_vars = indep_param
-        self._result_comps = res_comps
-        self._parameters_to_fit = self.model.constants
-        self._file_path = self.file_path
+        self._model: VPCModel = self.model
+        self._data: list[list[Union[str, int, float]]] = data_list
+        self._independent_vars: list[str] = indep_param
+        self._result_comps: int = res_comps
+        self._parameters_to_fit: list[str] = self.model.constants
+        self._file_path: str = self.file_path
+
+        logger.debug(
+            f"Internal variables:\n"+
+            f"  Model: {self._model}\n"+
+            f"  Data: {self._data}\n"+
+            f"  Independent vars: {self._independent_vars}\n"+
+            f"  Result components: {self._result_comps}\n"+
+            f"  Constants: {self._parameters_to_fit}\n"+
+            f"  File path: {self._file_path}"
+        )
 
 
     def compute_params(self) -> None:
         """starts the calculation process of the parameters to be fitted
         """
+        logger.info("compute parameters button pressed")
         # <-
-        # self._model
-        # self._data
-        # self._independent_vars
-        # self._result_comps
-        # self._parameters_to_fit
-        # self._file_path
 
         # # ->
         # self._fitted_model
@@ -494,20 +510,22 @@ class MainApp(customtkinter.CTk):
         result_window.attributes("-topmost", True)
 
 
-    def save_results(self) -> int | None:
+    def save_results(self) -> int:
         data = FileHandler.create_dataframe_from_for(
-            fitted_model = 'f(t) = ...',
-            model = 'f(t) = ...',
-            user_input_model = 'f(t) = ...',
-            parameter = '...',
-            user_input_parameter = '...',
-            consts = '...',
-            user_input_consts = '...',
-            user_input_path = 'path/to/data',
-            format = 'Excel'
+            fitted_model = "f(t) = ...",
+            model = "f(t) = ...",
+            user_input_model = "f(t) = ...",
+            parameter = "...",
+            user_input_parameter = "...",
+            consts = "...",
+            user_input_consts = "...",
+            user_input_path = "path/to/data",
+            format = "Excel"
         )
         try:
-            FileHandler.write_file(data, file_format='EXCEL')
+            logger.debug(f"attempting to write results file with: {data.to_string()}")
+            FileHandler.write_file(data, file_format="EXCEL")
             return 0
-        except TypeError:
+        except TypeError as e:
+            logger.error(f"error writing file {e}", exc_info=True)
             return 1
