@@ -265,7 +265,8 @@ class MainApp(customtkinter.CTk):
             else:
                 raise AttributeError(f"tried to find Attribute {attr_name}, but nothing was found")
 
-        print("Successfully reset to initial state.")
+        logger.info("Successfully reset to initial state.")
+        # print("Successfully reset to initial state.")
 
 
     def remove_compute_tooltip(self) -> None:
