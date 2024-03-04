@@ -6,8 +6,8 @@ from scipy.integrate import odeint
 from .VPCModel import VPCModel
 import re
 
-# import logging
-# logger = logging.getLogger("ModelFitter")
+import logging
+logger = logging.getLogger("ModelFitter")
 
 
 def fit(model: VPCModel, data: list) -> None:

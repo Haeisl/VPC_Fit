@@ -5,8 +5,8 @@ from datetime import datetime
 from os.path import join as os_path_join, exists as os_path_exists
 from os import makedirs
 
-# import logging
-# logger = logging.getLogger("FileHandler")
+import logging
+logger = logging.getLogger("FileHandler")
 
 
 def is_extension_supported(file_path: str) -> bool:
@@ -117,9 +117,20 @@ def write_file(data_frame: pd.DataFrame, file_format: str = 'EXCEL') -> None:
 
     if file_format == 'EXCEL':
         file_name = file_name + '.xlsx'
-        data_frame.to_excel(os_path_join(relative_path, file_name), index=False, header=False)
+        path = os_path_join(relative_path, file_name)
+        data_frame.to_excel(path, index=False, header=False)
+        logger.debug(
+            f"{file_format} file was written to:"
+            f"  {path}"
+        )
     elif file_format == 'CSV':
         file_name = file_name + '.csv'
-        data_frame.to_csv(os_path_join(relative_path, file_name), index=False, header=False, sep='\t')
+        path = os_path_join(relative_path, file_name)
+        data_frame.to_csv(path, index=False, header=False, sep='\t')
+        logger.debug(
+            f"{file_format} file was written to:"
+            f"  {path}"
+        )
     else:
+        logger.error(f"File format was: {file_format} but only 'EXCEL' and 'CSV' are supported")
         raise TypeError('Can\'t write to unknown file extension')

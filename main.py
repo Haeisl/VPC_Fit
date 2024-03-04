@@ -10,6 +10,14 @@ from tkinter import Event, Widget
 
 
 def setup_logging(debug: bool = False):
+    """logging should look like:
+        logger_name.level(
+            f"message {variable}"
+            f"  message {variable}"
+        )
+    including all those indentations
+    """
+
     log_folder = "logs"
     if not os.path.exists(log_folder):
         os.makedirs(log_folder)
@@ -29,6 +37,7 @@ def setup_logging(debug: bool = False):
             config["handlers"][handler]["level"] = "DEBUG"
 
     logging.config.dictConfig(config)
+
 
 
 def handle_leftclick(event: Event) -> None:

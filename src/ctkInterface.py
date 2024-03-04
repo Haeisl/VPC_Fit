@@ -487,12 +487,12 @@ class MainApp(customtkinter.CTk):
         self._file_path: str = self.file_path
 
         logger.debug(
-            f"Internal variables:\n"+
-            f"  Model: {self._model}\n"+
-            f"  Data: {self._data}\n"+
-            f"  Independent vars: {self._independent_vars}\n"+
-            f"  Result components: {self._result_comps}\n"+
-            f"  Constants: {self._parameters_to_fit}\n"+
+            f"Internal variables:\n"
+            f"  Model: {self._model}\n"
+            f"  Data: {self._data}\n"
+            f"  Independent vars: {self._independent_vars}\n"
+            f"  Result components: {self._result_comps}\n"
+            f"  Constants: {self._parameters_to_fit}\n"
             f"  File path: {self._file_path}"
         )
 
@@ -500,7 +500,7 @@ class MainApp(customtkinter.CTk):
     def compute_params(self) -> None:
         """starts the calculation process of the parameters to be fitted
         """
-        logger.info("compute parameters button pressed")
+        logger.info("Compute parameters button pressed")
         # <-
 
         # # ->
@@ -524,9 +524,12 @@ class MainApp(customtkinter.CTk):
             format = "Excel"
         )
         try:
-            logger.debug(f"attempting to write results file with: {data.to_string()}")
+            logger.debug(
+                f"Attempting to write results file with:"
+                f"  {data.to_string()}"
+            )
             FileHandler.write_file(data, file_format="EXCEL")
             return 0
         except TypeError as e:
-            logger.error(f"error writing file {e}", exc_info=True)
+            logger.error(f"Error writing file {e}", exc_info=True)
             return 1
