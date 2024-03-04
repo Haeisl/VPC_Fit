@@ -1,5 +1,7 @@
+from enum import Enum
 from typing import Union
 import pandas as pd
+import pandera as pa
 from pathlib import Path
 from datetime import datetime
 from os.path import join as os_path_join, exists as os_path_exists
@@ -9,26 +11,30 @@ import logging
 logger = logging.getLogger("FileHandler")
 
 
+class FileExtensions(Enum):
+    EXCEL = "XLSX"
+    CSV = "CSV"
+
+
 def is_extension_supported(file_path: str) -> bool:
-    supported = set(['XLSX', 'CSV'])
-    suffix = Path(file_path).suffix.split('.')[1]
-    return suffix.upper() in supported
+    suffix = Path(file_path).suffix.split(".")[1]
+    return suffix.upper() in [extension.value for extension in FileExtensions]
 
 
 def read_file(file_path: str) -> pd.DataFrame:
     if not Path(file_path).is_file():
-        raise FileNotFoundError('Invalid Path; no file at destination')
+        raise FileNotFoundError("Invalid Path; no file at destination")
 
-    suffix = Path(file_path).suffix.split('.')[1]
-    if suffix == '':
-        raise ValueError('No Fileextension found at path')
+    suffix = Path(file_path).suffix.split(".")[1]
+    if suffix == "":
+        raise ValueError("No Fileextension found at path")
 
-    if suffix.upper() == 'XLSX':
+    if suffix.upper() == FileExtensions.EXCEL.value:
         data_frame = pd.read_excel(file_path)
-    elif suffix.upper() == 'CSV':
+    elif suffix.upper() == FileExtensions.CSV.value:
         data_frame = pd.read_csv(file_path)
     else:
-        raise TypeError('Unknown File extension')
+        raise TypeError("Unknown File extension")
 
     return data_frame
 
@@ -37,7 +43,7 @@ def dataframe_tolist(
     data_frame: pd.DataFrame, include_first_row: bool
 ) -> list[list[Union[str, float, int]]]:
     if data_frame is None:
-        raise ValueError('No data could be read')
+        raise ValueError("No data could be read")
 
     column_names = data_frame.columns.tolist()
 
@@ -50,54 +56,61 @@ def dataframe_tolist(
 
 
 def create_dataframe_from_for(
-    fitted_model: str = 'f(t) = ...',
-    model: str = 'f(t) = ...',
-    user_input_model: str = 'f(t) = ...',
-    parameter: str = '...',
-    user_input_parameter: str = '...',
-    consts: str = '...',
-    user_input_consts: str = '...',
-    user_input_path: str = 'path/to/data',
-    format: str = 'Excel'
+    fitted_model: str = "f(t) = ...",
+    model: str = "f(t) = ...",
+    user_input_model: str = "f(t) = ...",
+    parameter: str = "...",
+    user_input_parameter: str = "...",
+    consts: str = "...",
+    user_input_consts: str = "...",
+    user_input_path: str = "path/to/data",
+    format: str = "EXCEL"
 ) -> pd.DataFrame:
 
-    if format == 'Excel':
+    if format.upper() == FileExtensions.EXCEL.name:
         data = pd.DataFrame(
             index=range(1, 13),
-            columns=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+            columns=["A", "B", "C", "D", "E", "F", "G", "H", "I"]
         )
 
-        data.at[1,'A']  = 'Fitted Model:'
-        data.at[1,'C']  = fitted_model
-        data.at[4,'A']  = 'Interpreted Data'
-        data.at[4,'G']  = 'Raw Data'
-        data.at[6,'A']  = 'Model:'
-        data.at[6,'C']  = model
-        data.at[6,'G']  = 'Entered Model:'
-        data.at[6,'I']  = user_input_model
-        data.at[8,'A']  = 'Independent Var:'
-        data.at[8,'C']  = parameter
-        data.at[8,'G']  = 'Entered Independent Var:'
-        data.at[8,'I']  = user_input_parameter
-        data.at[10,'A'] = 'Constants:'
-        data.at[10,'C'] = consts
-        data.at[10,'G'] = 'Entered Constants:'
-        data.at[10,'I'] = user_input_consts
-        data.at[12,'G'] = 'Entered Data:'
-        data.at[12,'I'] = user_input_path
+        data.at[1,"A"]  = "Fitted Model:"
+        data.at[1,"C"]  = fitted_model
+        data.at[4,"A"]  = "Interpreted Data"
+        data.at[4,"G"]  = "Raw Data"
+        data.at[6,"A"]  = "Model:"
+        data.at[6,"C"]  = model
+        data.at[6,"G"]  = "Entered Model:"
+        data.at[6,"I"]  = user_input_model
+        data.at[8,"A"]  = "Independent Var:"
+        data.at[8,"C"]  = parameter
+        data.at[8,"G"]  = "Entered Independent Var:"
+        data.at[8,"I"]  = user_input_parameter
+        data.at[10,"A"] = "Constants:"
+        data.at[10,"C"] = consts
+        data.at[10,"G"] = "Entered Constants:"
+        data.at[10,"I"] = user_input_consts
+        data.at[12,"G"] = "Entered Data:"
+        data.at[12,"I"] = user_input_path
 
-    elif format == 'CSV':
+    elif format.upper() == FileExtensions.CSV.name:
         data = pd.DataFrame({
-            '1': ['Fitted Model:',  'Interpreted',          'Raw'                       ],
-            '2': [fitted_model,     'Model:',               'Entered Model:'            ],
-            '3': [None,             model,                  user_input_model            ],
-            '4': [None,             'Independent Var:',     'Entered Independent Var:'  ],
-            '5': [None,             parameter,              user_input_parameter        ],
-            '6': [None,             'Constants:',           'Entered Constants:'        ],
-            '7': [None,             consts,                 user_input_consts           ],
-            '8': [None,             None,                   'Entered Data:'             ],
-            '9': [None,             None,                   user_input_path             ],
+            "1": ["Fitted Model:",  "Interpreted",          "Raw"                       ],
+            "2": [fitted_model,     "Model:",               "Entered Model:"            ],
+            "3": [None,             model,                  user_input_model            ],
+            "4": [None,             "Independent Var:",     "Entered Independent Var:"  ],
+            "5": [None,             parameter,              user_input_parameter        ],
+            "6": [None,             "Constants:",           "Entered Constants:"        ],
+            "7": [None,             consts,                 user_input_consts           ],
+            "8": [None,             None,                   "Entered Data:"             ],
+            "9": [None,             None,                   user_input_path             ],
         })
+    else:
+        logger.warning(
+            f"Writing empty DataFrame."
+            f"  Passed format was {format}, got converted to {format.upper()}"
+            f"  And checked against {[f.name for f in FileExtensions]} which resulted in no match."
+        )
+        data = pd.DataFrame()
 
     return data
 
@@ -107,30 +120,30 @@ def get_valid_filename() -> str:
     return now.strftime("%Y-%m-%d-result-from-%Hh%Mm%Ss")
 
 
-def write_file(data_frame: pd.DataFrame, file_format: str = 'EXCEL') -> None:
-    relative_path = './res/'
+def write_file(data_frame: pd.DataFrame, file_format: str = "EXCEL") -> None:
+    relative_path = "./res/"
 
     if not os_path_exists(relative_path):
         makedirs(relative_path)
 
     file_name = get_valid_filename()
 
-    if file_format == 'EXCEL':
-        file_name = file_name + '.xlsx'
+    if file_format == FileExtensions.EXCEL.name:
+        file_name = file_name + ".xlsx"
         path = os_path_join(relative_path, file_name)
         data_frame.to_excel(path, index=False, header=False)
         logger.debug(
             f"{file_format} file was written to:"
             f"  {path}"
         )
-    elif file_format == 'CSV':
-        file_name = file_name + '.csv'
+    elif file_format == FileExtensions.CSV.name:
+        file_name = file_name + ".csv"
         path = os_path_join(relative_path, file_name)
-        data_frame.to_csv(path, index=False, header=False, sep='\t')
+        data_frame.to_csv(path, index=False, header=False, sep="\t")
         logger.debug(
             f"{file_format} file was written to:"
             f"  {path}"
         )
     else:
         logger.error(f"File format was: {file_format} but only 'EXCEL' and 'CSV' are supported")
-        raise TypeError('Can\'t write to unknown file extension')
+        raise TypeError("Can\"t write to unknown file extension")
