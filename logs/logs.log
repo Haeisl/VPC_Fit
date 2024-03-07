@@ -1,120 +1,838 @@
-[2024-03-04 00:51:46] INFO     [root:64@main] Starting App
-[2024-03-04 00:51:53] INFO     [Interface:335@browse_files] Browse files button pressed
-[2024-03-04 00:51:53] DEBUG    [Interface:337@browse_files] Starting filedialog
-[2024-03-04 00:51:58] DEBUG    [Interface:339@browse_files] Completed filedialog with:
-[2024-03-04 00:51:58] DEBUG    [Interface:339@browse_files]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/empty.xlsx' mode='r' encoding='cp1252'>
-[2024-03-04 00:52:01] INFO     [Interface:442@confirm_input] Confirm button pressed
-[2024-03-04 00:52:02] DEBUG    [Interface:476@confirm_input] Dynamic lambda:
-[2024-03-04 00:52:02] DEBUG    [Interface:476@confirm_input]   def _lambdifygenerated(t, c):
-[2024-03-04 00:52:02] DEBUG    [Interface:476@confirm_input]     return c + t**2
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input] Internal variables:
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input]   Model: VPCModel(_model_string='t^2+c', _independent_var=['t'])
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input]   Data: []
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input]   Independent vars: ['t']
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input]   Result components: 1
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input]   Constants: ['c']
-[2024-03-04 00:52:02] DEBUG    [Interface:489@confirm_input]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/empty.xlsx
-[2024-03-04 00:52:06] INFO     [Interface:503@compute_params] compute parameters button pressed
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] attempting to write results file with:                    A    B           C    D    E    F                         G    H             I
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 1      Fitted Model:  NaN  f(t) = ...  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 2                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 3                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 4   Interpreted Data  NaN         NaN  NaN  NaN  NaN                  Raw Data  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 5                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 6             Model:  NaN  f(t) = ...  NaN  NaN  NaN            Entered Model:  NaN    f(t) = ...
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 7                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 8   Independent Var:  NaN         ...  NaN  NaN  NaN  Entered Independent Var:  NaN           ...
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 9                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 10        Constants:  NaN         ...  NaN  NaN  NaN        Entered Constants:  NaN           ...
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 11               NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 00:52:08] DEBUG    [Interface:527@save_results] 12               NaN  NaN         NaN  NaN  NaN  NaN             Entered Data:  NaN  path/to/data
-[2024-03-04 00:52:08] INFO     [ResultInterface:109@save_as] Successfully saved to ./res/
-[2024-03-04 00:52:11] INFO     [Interface:268@reset_state] Successfully reset to initial state.
-[2024-03-04 00:52:19] INFO     [root:68@main] App closed
-[2024-03-04 01:41:22] INFO     [root@main:65] Starting App
-[2024-03-04 01:41:28] INFO     [Interface@browse_files:335] Browse files button pressed
-[2024-03-04 01:41:28] DEBUG    [Interface@browse_files:337] Starting filedialog
-[2024-03-04 01:41:30] DEBUG    [Interface@browse_files:339] Completed filedialog with:
-[2024-03-04 01:41:30] DEBUG    [Interface@browse_files:339]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/empty.xlsx' mode='r' encoding='cp1252'>
-[2024-03-04 01:41:33] INFO     [Interface@confirm_input:442] Confirm button pressed
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:476] Dynamic lambda:
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:476]   def _lambdifygenerated(t, c):
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:476]     return c + t**2
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489] Internal variables:
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489]   Model: VPCModel(_model_string='t^2+c', _independent_var=['t'])
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489]   Data: []
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489]   Independent vars: ['t']
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489]   Result components: 1
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489]   Constants: ['c']
-[2024-03-04 01:41:33] DEBUG    [Interface@confirm_input:489]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/empty.xlsx
-[2024-03-04 01:41:34] INFO     [Interface@compute_params:503] Compute parameters button pressed
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:527] Attempting to write results file with:
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528]                      A    B           C    D    E    F                         G    H             I
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 1      Fitted Model:  NaN  f(t) = ...  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 2                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 3                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 4   Interpreted Data  NaN         NaN  NaN  NaN  NaN                  Raw Data  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 5                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 6             Model:  NaN  f(t) = ...  NaN  NaN  NaN            Entered Model:  NaN    f(t) = ...
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 7                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 8   Independent Var:  NaN         ...  NaN  NaN  NaN  Entered Independent Var:  NaN           ...
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 9                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 10        Constants:  NaN         ...  NaN  NaN  NaN        Entered Constants:  NaN           ...
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 11               NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 01:41:35] DEBUG    [Interface@save_results:528] 12               NaN  NaN         NaN  NaN  NaN  NaN             Entered Data:  NaN  path/to/data
-[2024-03-04 01:41:35] DEBUG    [FileHandler@write_file:122] EXCEL file was written to:
-[2024-03-04 01:41:35] DEBUG    [FileHandler@write_file:123]   ./res/2024-03-04-result-from-01h41m35s.xlsx
-[2024-03-04 01:41:37] INFO     [root@main:69] App closed
-[2024-03-04 02:05:24] INFO     [root@main:65] Starting App
-[2024-03-04 02:05:30] INFO     [Interface@browse_files:335] Browse files button pressed
-[2024-03-04 02:05:30] DEBUG    [Interface@browse_files:337] Starting filedialog
-[2024-03-04 02:05:34] DEBUG    [Interface@browse_files:339] Completed filedialog with:
-[2024-03-04 02:05:34] DEBUG    [Interface@browse_files:339]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/ubunga.xlsx' mode='r' encoding='cp1252'>
-[2024-03-04 02:05:36] INFO     [Interface@confirm_input:442] Confirm button pressed
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:476] Dynamic lambda:
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:476]   def _lambdifygenerated(t, c):
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:476]     return c + t**2
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489] Internal variables:
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489]   Model: VPCModel(_model_string='t^2+c', _independent_var=['t'])
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489]   Data: [[3], [4]]
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489]   Independent vars: ['t']
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489]   Result components: 1
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489]   Constants: ['c']
-[2024-03-04 02:05:36] DEBUG    [Interface@confirm_input:489]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/ubunga.xlsx
-[2024-03-04 02:05:38] INFO     [Interface@compute_params:503] Compute parameters button pressed
-[2024-03-04 02:05:39] INFO     [Interface@reset_state:268] Successfully reset to initial state.
-[2024-03-04 02:05:43] INFO     [root@main:69] App closed
-[2024-03-04 02:06:45] INFO     [root@main:65] Starting App
-[2024-03-04 02:06:50] INFO     [Interface@browse_files:335] Browse files button pressed
-[2024-03-04 02:06:50] DEBUG    [Interface@browse_files:337] Starting filedialog
-[2024-03-04 02:06:53] DEBUG    [Interface@browse_files:339] Completed filedialog with:
-[2024-03-04 02:06:53] DEBUG    [Interface@browse_files:339]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/empty.xlsx' mode='r' encoding='cp1252'>
-[2024-03-04 02:06:53] INFO     [Interface@confirm_input:442] Confirm button pressed
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:476] Dynamic lambda:
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:476]   def _lambdifygenerated(t, c):
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:476]     return c + t**2
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489] Internal variables:
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489]   Model: VPCModel(_model_string='t^2+c', _independent_var=['t'])
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489]   Data: []
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489]   Independent vars: ['t']
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489]   Result components: 1
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489]   Constants: ['c']
-[2024-03-04 02:06:54] DEBUG    [Interface@confirm_input:489]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/empty.xlsx
-[2024-03-04 02:06:55] INFO     [Interface@compute_params:503] Compute parameters button pressed
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] Attempting to write results file with:                     A    B           C    D    E    F                         G    H             I
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 1      Fitted Model:  NaN  f(t) = ...  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 2                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 3                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 4   Interpreted Data  NaN         NaN  NaN  NaN  NaN                  Raw Data  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 5                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 6             Model:  NaN  f(t) = ...  NaN  NaN  NaN            Entered Model:  NaN    f(t) = ...
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 7                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 8   Independent Var:  NaN         ...  NaN  NaN  NaN  Entered Independent Var:  NaN           ...
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 9                NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 10        Constants:  NaN         ...  NaN  NaN  NaN        Entered Constants:  NaN           ...
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 11               NaN  NaN         NaN  NaN  NaN  NaN                       NaN  NaN           NaN
-[2024-03-04 02:06:56] DEBUG    [Interface@save_results:527] 12               NaN  NaN         NaN  NaN  NaN  NaN             Entered Data:  NaN  path/to/data
-[2024-03-04 02:06:56] DEBUG    [FileHandler@write_file:122] EXCEL file was written to:
-[2024-03-04 02:06:56] DEBUG    [FileHandler@write_file:123]   ./res/2024-03-04-result-from-02h06m56s.xlsx
-[2024-03-04 02:06:57] INFO     [Interface@reset_state:268] Successfully reset to initial state.
-[2024-03-04 02:06:58] INFO     [root@main:69] App closed
+[2024-03-07 15:47:49] INFO     [root@main:73] Starting App
+[2024-03-07 15:47:53] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:47:53] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:47:56] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:47:56] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:47:56] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1, 3], [4.0, 4, 7]]
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:47:57] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-07 15:48:16] INFO     [root@main:77] App closed
+[2024-03-07 15:48:44] INFO     [root@main:73] Starting App
+[2024-03-07 15:48:45] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:48:45] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:48:47] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:48:47] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:48:53] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490]   Data: [[[1.0, 0.5, 1.0]], [[2.0, 12.0, 0.13]], [[2.1, 1.0, 3.0]], [[4, 4, 7]]]
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:48:53] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-07 15:53:52] INFO     [root@main:73] Starting App
+[2024-03-07 15:53:56] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:53:56] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:53:59] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:53:59] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:53:59] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:54:00] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-07 15:54:18] INFO     [root@main:73] Starting App
+[2024-03-07 15:54:19] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:54:19] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:54:22] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:54:22] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:54:22] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:54:27] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:54:27] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-07 15:54:32] INFO     [root@main:77] App closed
+[2024-03-07 15:54:51] INFO     [root@main:73] Starting App
+[2024-03-07 15:55:12] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:55:12] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:55:17] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:55:17] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:55:18] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:55:18] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-07 15:55:45] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:55:45] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:56:06] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:56:06] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:56:07] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490]   Data: [[4, 1.0, 0.5, 1.0], [5, 2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [3, 4, 4, 7]]
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:56:07] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 15:56:13] INFO     [root@main:77] App closed
+[2024-03-07 15:56:22] INFO     [root@main:73] Starting App
+[2024-03-07 15:56:25] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:56:25] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:56:28] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:56:28] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:56:29] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 15:56:29] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 15:56:36] INFO     [root@main:77] App closed
+[2024-03-07 15:56:55] INFO     [root@main:73] Starting App
+[2024-03-07 15:56:56] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 15:56:56] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 15:56:59] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 15:56:59] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/empty.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 15:57:03] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:09:36] INFO     [root@main:73] Starting App
+[2024-03-07 16:09:40] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:09:40] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:09:43] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:09:43] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:09:43] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:09:43] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:09:46] INFO     [root@main:77] App closed
+[2024-03-07 16:09:51] INFO     [root@main:73] Starting App
+[2024-03-07 16:09:54] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:09:54] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:09:56] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:09:56] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:09:56] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490]   Data: [[1, 'a', 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:09:57] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:09:59] INFO     [root@main:77] App closed
+[2024-03-07 16:11:19] INFO     [root@main:73] Starting App
+[2024-03-07 16:11:21] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:11:21] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:11:23] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:11:23] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:11:23] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:11:26] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:11:28] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:11:28] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:11:30] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:11:30] DEBUG    [Interface@browse_files:340]   None
+[2024-03-07 16:11:41] INFO     [root@main:73] Starting App
+[2024-03-07 16:11:44] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:11:44] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:11:46] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:11:46] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:11:47] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:11:47] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:11:54] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:11:54] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:11:56] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:11:56] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:11:57] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:12:10] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:12:10] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:12:12] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:12:12] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:12:12] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:12:21] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490]   Data: [[1, 2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:12:21] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:12:23] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:12:23] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:12:24] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:12:24] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:12:24] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490]   Data: [[1, 2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:12:24] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:12:29] INFO     [root@main:77] App closed
+[2024-03-07 16:12:37] INFO     [root@main:73] Starting App
+[2024-03-07 16:12:40] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:12:40] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:12:42] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:12:42] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:12:43] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490]   Data: [[1, 2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:12:43] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:12:53] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:04] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:08] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:13:08] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:13:10] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:13:10] DEBUG    [Interface@browse_files:340]   None
+[2024-03-07 16:13:15] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490]   Data: [[1, 2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:13:15] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:13:22] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:37] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:48] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:55] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490]   Data: [[1, 2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:13:55] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:14:00] INFO     [root@main:77] App closed
+[2024-03-07 16:14:09] INFO     [root@main:73] Starting App
+[2024-03-07 16:14:12] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:14:12] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:14:15] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:14:15] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:14:15] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490]   Data: [[1, 2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:14:15] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:14:24] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490]   Data: [[1, -2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:14:24] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:14:36] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490]   Data: [[1, -2, 1], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:14:36] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:14:50] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:14:50] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:15:02] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490]   Data: [[2, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:15:02] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:25:17] INFO     [root@main:73] Starting App
+[2024-03-07 16:25:22] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:25:22] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:25:25] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:25:25] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:25:25] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490]   Data: [[2, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:25:25] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:25:31] INFO     [root@main:77] App closed
+[2024-03-07 16:25:36] INFO     [root@main:73] Starting App
+[2024-03-07 16:25:37] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:25:37] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:25:40] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:25:40] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:25:43] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:25:43] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:25:45] INFO     [root@main:77] App closed
+[2024-03-07 16:31:22] INFO     [root@main:73] Starting App
+[2024-03-07 16:31:25] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:31:25] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:31:28] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:31:28] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:31:29] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:31:30] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:45:06] INFO     [root@main:73] Starting App
+[2024-03-07 16:45:09] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:45:09] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:45:12] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:45:12] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:45:14] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:45:14] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:45:19] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:45:19] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:45:41] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:45:41] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:45:43] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:45:43] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:45:43] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:45:43] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:45:44] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:45:44] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:46:21] INFO     [root@main:73] Starting App
+[2024-03-07 16:46:24] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:46:24] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:46:27] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:46:27] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:46:27] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:46:27] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:46:32] INFO     [root@main:77] App closed
+[2024-03-07 16:47:12] INFO     [root@main:73] Starting App
+[2024-03-07 16:47:15] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:47:15] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:47:18] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:47:18] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:47:19] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:47:19] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:48:15] INFO     [root@main:73] Starting App
+[2024-03-07 16:48:18] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:48:18] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:48:21] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:48:21] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:48:21] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:48:22] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:54:50] INFO     [root@main:73] Starting App
+[2024-03-07 16:54:55] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:54:55] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:54:57] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:54:57] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:54:58] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:54:59] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:55:09] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:55:09] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:55:18] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2, 2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:55:18] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:55:36] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.53, 2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:55:36] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:55:50] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:55:50] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:55:58] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 16:55:58] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 16:56:02] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 16:56:02] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 16:56:03] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:03] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:13] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [3, 4, 4, 7]]
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:13] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:26] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [3, 4, 4, 7]]
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:26] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:27] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [3, 4, 4, 7]]
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:27] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:36] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:36] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:37] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:37] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:39] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 16:56:39] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 16:56:39] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:01:43] INFO     [root@main:73] Starting App
+[2024-03-07 17:01:47] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:01:47] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:01:52] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:01:52] DEBUG    [Interface@browse_files:340]   None
+[2024-03-07 17:01:53] INFO     [root@main:77] App closed
+[2024-03-07 17:02:32] INFO     [root@main:73] Starting App
+[2024-03-07 17:02:34] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:02:34] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:02:36] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:02:36] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:02:39] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:02:40] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:02:51] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:02:51] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:03:13] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490]   Data: [[1, 1.0, -2.14, 1.0], [2, 2.0, 12.0, 0.13], [3, 2.1, 1.0, 3.0], [4, 4, 4, 7]]
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:03:13] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:04:04] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:04:04] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:09:36] INFO     [root@main:73] Starting App
+[2024-03-07 17:09:39] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:09:39] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:09:41] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:09:41] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:09:41] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:09:41] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:10:27] INFO     [root@main:77] App closed
+[2024-03-07 17:14:56] INFO     [root@main:73] Starting App
+[2024-03-07 17:14:59] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:14:59] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:15:02] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:15:02] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:15:03] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, nan], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:15:03] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:19:35] INFO     [root@main:73] Starting App
+[2024-03-07 17:19:38] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:19:38] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:19:40] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:19:40] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:19:41] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:19:43] INFO     [root@main:77] App closed
+[2024-03-07 17:19:49] INFO     [root@main:73] Starting App
+[2024-03-07 17:19:52] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:19:52] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:19:54] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:19:54] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:19:54] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, -2.14, 1.0], [2.0, 12.0, 0.13], [2.1, 1.0, 3.0], [4, 4, 7]]
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-07 17:19:55] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:20:01] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:20:05] INFO     [root@main:77] App closed
+[2024-03-07 17:23:19] INFO     [root@main:73] Starting App
+[2024-03-07 17:23:24] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-07 17:23:24] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-07 17:23:26] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-07 17:23:26] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:23:27] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-07 17:23:29] INFO     [root@main:77] App closed
+[2024-03-07 17:50:19] INFO     [root@main:73] Starting App
+[2024-03-07 17:50:21] INFO     [root@main:77] App closed
+[2024-03-07 17:50:25] INFO     [root@main:73] Starting App
+[2024-03-07 17:50:37] INFO     [Interface@browse_files:338] Browse files button pressed
+[2024-03-07 17:50:37] DEBUG    [Interface@browse_files:340] Starting filedialog
+[2024-03-07 17:50:40] DEBUG    [Interface@browse_files:342] Completed filedialog with:
+[2024-03-07 17:50:40] DEBUG    [Interface@browse_files:342]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:50:41] INFO     [Interface@confirm_input:445] Confirm button pressed
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:479] Dynamic lambda:
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:479]   def _lambdifygenerated(t, a, c):
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:479]     return a + c*t + t**2
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493] Internal variables:
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493]   Model: VPCModel(_model_string='f(t) = t^2 + t*c + a', _independent_var=['t'])
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493]   Data: [[1.0, -2.14, 12.0], [2, 12, 13], [2.1, 1.0, 1.0], [4, 4, 345]]
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493]   Independent vars: ['t']
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493]   Result components: 1
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493]   Constants: ['a', 'c']
+[2024-03-07 17:50:42] DEBUG    [Interface@confirm_input:493]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:51:00] INFO     [root@main:77] App closed
+[2024-03-07 17:52:13] INFO     [root@main:73] Starting App
+[2024-03-07 17:52:23] INFO     [Interface@browse_files:338] Browse files button pressed
+[2024-03-07 17:52:23] DEBUG    [Interface@browse_files:340] Starting filedialog
+[2024-03-07 17:52:26] DEBUG    [Interface@browse_files:342] Completed filedialog with:
+[2024-03-07 17:52:26] DEBUG    [Interface@browse_files:342]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:52:26] INFO     [Interface@confirm_input:445] Confirm button pressed
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:479] Dynamic lambda:
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:479]   def _lambdifygenerated(t, a, c):
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:479]     return a*t + c + t**2
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493] Internal variables:
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   Model: VPCModel(_model_string='f(t) = t^2 + a*t + c', _independent_var=['t'])
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   Data: [[1.0, -2.14, 12.0], [2, 12, 13], [2.1, 1.0, 1.0], [4, 4, 345]]
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   Lambda: <function _lambdifygenerated at 0x000001B0553AB420>
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   Independent vars: ['t']
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   Result components: 1
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   Constants: ['a', 'c']
+[2024-03-07 17:52:27] DEBUG    [Interface@confirm_input:493]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:52:43] INFO     [root@main:77] App closed
+[2024-03-07 17:53:18] INFO     [root@main:73] Starting App
+[2024-03-07 17:53:27] INFO     [Interface@browse_files:338] Browse files button pressed
+[2024-03-07 17:53:27] DEBUG    [Interface@browse_files:340] Starting filedialog
+[2024-03-07 17:53:29] DEBUG    [Interface@browse_files:342] Completed filedialog with:
+[2024-03-07 17:53:29] DEBUG    [Interface@browse_files:342]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:53:29] INFO     [Interface@confirm_input:445] Confirm button pressed
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:479] Dynamic lambda <function _lambdifygenerated at 0x000002509BA3B420> with:
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:479]   def _lambdifygenerated(t, a, c):
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:479]     return a*t + c + t**2
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493] Internal variables:
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   Model: VPCModel(_model_string='f(t) = t^2 + a*t + c', _independent_var=['t'])
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   Data: [[1.0, -2.14, 12.0], [2, 12, 13], [2.1, 1.0, 1.0], [4, 4, 345]]
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   Lambda: <function _lambdifygenerated at 0x000002509BA3B420>
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   Independent vars: ['t']
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   Result components: 1
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   Constants: ['a', 'c']
+[2024-03-07 17:53:29] DEBUG    [Interface@confirm_input:493]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-07 17:54:01] INFO     [root@main:77] App closed
+[2024-03-07 17:59:30] INFO     [root@main:73] Starting App
+[2024-03-07 17:59:34] INFO     [Interface@browse_files:338] Browse files button pressed
+[2024-03-07 17:59:34] DEBUG    [Interface@browse_files:340] Starting filedialog
+[2024-03-07 17:59:37] DEBUG    [Interface@browse_files:342] Completed filedialog with:
+[2024-03-07 17:59:37] DEBUG    [Interface@browse_files:342]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx' mode='r' encoding='cp1252'>
+[2024-03-07 17:59:38] INFO     [Interface@confirm_input:445] Confirm button pressed
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:479] Dynamic lambda <function _lambdifygenerated at 0x0000022B796AB380> with:
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:479]   def _lambdifygenerated(t, a, b):
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:479]     return a*t + b
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493] Internal variables:
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   Model: VPCModel(_model_string='t*a + b', _independent_var=['t'])
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   Data: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [11.721920867042517, 10.11183571525994, 19.06284577049346, 20.437410350242818, 19.89537099665441, 29.25793503424717, 30.62751178522986, 30.39691432180961, 37.33855558878511, 38.324210704234574, 43.73146961559773, 50.07029092843749, 45.52715688595937, 48.6488089249609, 54.68506066411875, 57.56624421113716, 64.9702921027021, 61.989359410563424, 66.88426336407, 69.70681039634414, 71.46296517202379, 74.75633652555955, 84.19204677639867, 82.87790036707882, 88.22864744925405, 91.0853888190387, 89.85978294972548, 93.1886533343542, 97.45468567997415, 98.73448312479212, 109.33081759951816, 111.65242689564269, 113.36138861479252, 116.52413307822795, 120.93471147859393, 123.35279546025282, 128.71230967541686, 131.4907913036272, 132.3138690951326, 129.73231136223748, 140.65793201211912, 138.39324583164526, 146.05796656907773, 150.0926634706916, 146.6133267422676, 150.51330937194845, 156.58836773225585, 161.47074565899499, 164.25314662404077, 166.9604606912667, 164.40736158317003, 174.10188143677317, 174.5947800142864, 176.69463097524255, 181.99051726777645, 187.7709278698556, 185.85829235586192, 190.8161299175169, 192.4607001219596, 197.9019560414029, 201.82001670400496, 205.3999112171423, 204.3049686931388, 206.88047238014153], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [999, 998, 997, 996, 995, 994, 993, 992, 991, 990, 989, 988, 987, 986, 985, 984, 983, 982, 981, 980, 979, 978, 977, 976, 975, 974, 973, 972, 971, 970, 969, 968, 967, 966, 965, 964, 963, 962, 961, 960, 959, 958, 957, 956, 955, 954, 953, 952, 951, 950, 949, 948, 947, 946, 945, 944, 943, 942, 941, 940, 939, 938, 937, 936]]
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   Lambda: <function _lambdifygenerated at 0x0000022B796AB380>
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   Independent vars: ['t']
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   Result components: 1
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   Constants: ['a', 'b']
+[2024-03-07 17:59:38] DEBUG    [Interface@confirm_input:493]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx
+[2024-03-07 17:59:49] INFO     [Interface@confirm_input:445] Confirm button pressed
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:479] Dynamic lambda <function _lambdifygenerated at 0x0000022B79B625C0> with:
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:479]   def _lambdifygenerated(t, a, b):
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:479]     return a*t + b
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493] Internal variables:
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   Model: VPCModel(_model_string='t*a + b', _independent_var=['t'])
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   Data: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [11.721920867042517, 10.11183571525994, 19.06284577049346, 20.437410350242818, 19.89537099665441, 29.25793503424717, 30.62751178522986, 30.39691432180961, 37.33855558878511, 38.324210704234574, 43.73146961559773, 50.07029092843749, 45.52715688595937, 48.6488089249609, 54.68506066411875, 57.56624421113716, 64.9702921027021, 61.989359410563424, 66.88426336407, 69.70681039634414, 71.46296517202379, 74.75633652555955, 84.19204677639867, 82.87790036707882, 88.22864744925405, 91.0853888190387, 89.85978294972548, 93.1886533343542, 97.45468567997415, 98.73448312479212, 109.33081759951816, 111.65242689564269, 113.36138861479252, 116.52413307822795, 120.93471147859393, 123.35279546025282, 128.71230967541686, 131.4907913036272, 132.3138690951326, 129.73231136223748, 140.65793201211912, 138.39324583164526, 146.05796656907773, 150.0926634706916, 146.6133267422676, 150.51330937194845, 156.58836773225585, 161.47074565899499, 164.25314662404077, 166.9604606912667, 164.40736158317003, 174.10188143677317, 174.5947800142864, 176.69463097524255, 181.99051726777645, 187.7709278698556, 185.85829235586192, 190.8161299175169, 192.4607001219596, 197.9019560414029, 201.82001670400496, 205.3999112171423, 204.3049686931388, 206.88047238014153], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [999, 998, 997, 996, 995, 994, 993, 992, 991, 990, 989, 988, 987, 986, 985, 984, 983, 982, 981, 980, 979, 978, 977, 976, 975, 974, 973, 972, 971, 970, 969, 968, 967, 966, 965, 964, 963, 962, 961, 960, 959, 958, 957, 956, 955, 954, 953, 952, 951, 950, 949, 948, 947, 946, 945, 944, 943, 942, 941, 940, 939, 938, 937, 936]]
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   Lambda: <function _lambdifygenerated at 0x0000022B79B625C0>
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   Independent vars: ['t']
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   Result components: 1
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   Constants: ['a', 'b']
+[2024-03-07 17:59:49] DEBUG    [Interface@confirm_input:493]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx
+[2024-03-07 17:59:52] INFO     [Interface@compute_params:508] Compute parameters button pressed
+[2024-03-07 17:59:52] INFO     [ModelFitter@fit:19] Model was determined to not be an ODE.

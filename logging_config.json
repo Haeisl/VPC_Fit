@@ -9,7 +9,7 @@
         },
         "fileHandler": {
             "class": "logging.handlers.TimedRotatingFileHandler",
-            "level": "WARNING",
+            "level": "DEBUG",
             "formatter": "detailedFormatter",
             "filename": "",
             "when": "midnight",

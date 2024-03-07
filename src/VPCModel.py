@@ -1,11 +1,12 @@
 from ctypes import Union
 from dataclasses import dataclass
 from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr as sym_parse_expr
+from sympy import FunctionClass
 from re import search as re_search, finditer as re_finditer
 from typing import Any, Optional
 
-import logging
-logger = logging.getLogger("VPCModel")
+# import logging
+# logger = logging.getLogger("VPCModel")
 
 
 @dataclass
@@ -15,11 +16,13 @@ class VPCModel():
 
     def __post_init__(self) -> None:
         self._expression_string: str = self.cut_off_lhs()
+        self._model_function: FunctionClass = self.model_string_to_function()
         self._symbols: list[str] = self.extract_symbols(self._independent_var)
         self._constants: list[str] = [c for c in self._symbols if c not in self._independent_var]
 
         self._fitted_consts: Optional[dict[str, float]] = None # {'a': 1.437, 'b': 3.25, ...}
         self._resulting_function: Optional[str] = None
+
 
     @property
     def model_string(self) -> str:
@@ -32,6 +35,10 @@ class VPCModel():
     @property
     def expression_string(self) -> str:
         return self._expression_string
+
+    @property
+    def model_function(self) -> FunctionClass:
+        return self._model_function
 
     @property
     def symbols(self) -> list[str]:
@@ -111,7 +118,7 @@ class VPCModel():
         return unique_symbols
 
 
-    def model_string_to_function(self):
+    def model_string_to_function(self) -> FunctionClass:
         """returns a lambda function based on the equation given by the user."""
 
         sorted_symbols = self.extract_symbols(self._independent_var)
@@ -119,7 +126,7 @@ class VPCModel():
         expression = self._expression_string
 
         parsed_expression = sym_parse_expr(expression)
-        func = sym_lambdify(sympy_vars, parsed_expression, 'sympy')
+        func: FunctionClass = sym_lambdify(sympy_vars, parsed_expression, 'sympy')
 
         return func
 

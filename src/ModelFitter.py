@@ -1,3 +1,4 @@
+from typing import Union
 import numpy as np
 from sympy import parse_expr, symbols, lambdify, Function, Eq, dsolve, Derivative
 from scipy.optimize import curve_fit
@@ -10,25 +11,35 @@ import logging
 logger = logging.getLogger("ModelFitter")
 
 
-def fit(model: VPCModel, data: list) -> None:
+def fit(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
     if model.is_ode():
+        logger.info(f"Model was determined to be an ODE.")
         fit_ode(model, data)
     else:
+        logger.info(f"Model was determined to not be an ODE.")
         fit_reg(model, data)
 
 
-def fit_ode(model: VPCModel, data: list) -> None:
+def fit_ode(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
     pass
 
 
-    #model._set_fitted_consts()
+    # model._set_fitted_consts()
 
 
-def fit_reg(model: VPCModel, data: list) -> None:
-    pass
+def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
 
+    objective = model.model_function
 
-    #model._set_fitted_consts()
+    # muss dynamischer
+    running_var_vals = data[0]
+    model_vals = data[1]
+
+    popt, pcov = curve_fit(objective, running_var_vals, model_vals)
+
+    print(popt)
+
+    # model._set_fitted_consts()
 
 # ###############################################################################################
 

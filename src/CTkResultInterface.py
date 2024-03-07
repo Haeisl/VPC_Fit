@@ -103,7 +103,7 @@ class ResultInterface(customtkinter.CTkToplevel):
 
 
     def save_as(self) -> None:
-        if self.main.save_results() != 1:
+        if self.main.save_results() == 0:
             self.saved_message.set("Saved to ./res/ ")
             self.save_button.configure(state="disabled")
         else:

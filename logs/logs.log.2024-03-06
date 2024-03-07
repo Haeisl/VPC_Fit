@@ -1,0 +1,125 @@
+[2024-03-06 17:48:03] WARNING  [FileHandler@create_dataframe_from_for:74] Did not get a fitted model string.
+[2024-03-06 17:48:44] INFO     [root@main:73] Starting App
+[2024-03-06 17:49:06] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-06 17:49:06] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-06 17:49:09] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-06 17:49:09] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-06 17:49:10] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:477]     return c + t**2
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t^2+c', _independent_var=['t'])
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490]   Data: [[0, 1], [12, 13], [1, 3], [4, 7]]
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-06 17:49:10] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:49:13] INFO     [Interface@compute_params:504] Compute parameters button pressed
+[2024-03-06 17:49:14] WARNING  [FileHandler@create_dataframe_from_for:74] Did not get a fitted model string.
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] Attempting to write results file with:                     A    B       C    D    E    F                         G    H                                                                             I
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 1      Fitted Model:  NaN     N/A  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 2                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 3                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 4   Interpreted Data  NaN     NaN  NaN  NaN  NaN                  Raw Data  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 5                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 6             Model:  NaN  t**2+c  NaN  NaN  NaN            Entered Model:  NaN                                                                         t^2+c
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 7                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 8   Independent Var:  NaN     [t]  NaN  NaN  NaN  Entered Independent Var:  NaN                                                                              
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 9                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 10        Constants:  NaN     [c]  NaN  NaN  NaN        Entered Constants:  NaN                                                                           [c]
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 11               NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:49:14] DEBUG    [Interface@save_results:528] 12               NaN  NaN     NaN  NaN  NaN  NaN             Entered Data:  NaN  C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:49:14] DEBUG    [FileHandler@write_file:142] FileExtensions.EXCEL file was written to:  ./res/2024-03-06-result-from-17h49m.xlsx
+[2024-03-06 17:49:15] INFO     [root@main:77] App closed
+[2024-03-06 17:51:16] INFO     [root@main:73] Starting App
+[2024-03-06 17:51:17] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-06 17:51:17] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-06 17:52:25] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-06 17:52:25] DEBUG    [Interface@browse_files:340]   None
+[2024-03-06 17:52:28] INFO     [root@main:73] Starting App
+[2024-03-06 17:52:32] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-06 17:52:32] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-06 17:52:35] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-06 17:52:35] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-06 17:52:37] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:477]     return c + t**2
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t^2+c', _independent_var=['t'])
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490]   Data: [[1, 0, 1], [2, 12, 13], ['2.1', 1, 3], [4, 4, 7]]
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-06 17:52:37] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:52:39] INFO     [Interface@compute_params:504] Compute parameters button pressed
+[2024-03-06 17:52:40] WARNING  [FileHandler@create_dataframe_from_for:74] Did not get a fitted model string.
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] Attempting to write results file with:
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528]                      A    B       C    D    E    F                         G    H                                                                             I
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 1      Fitted Model:  NaN     N/A  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 2                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 3                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 4   Interpreted Data  NaN     NaN  NaN  NaN  NaN                  Raw Data  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 5                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 6             Model:  NaN  t**2+c  NaN  NaN  NaN            Entered Model:  NaN                                                                         t^2+c
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 7                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 8   Independent Var:  NaN     [t]  NaN  NaN  NaN  Entered Independent Var:  NaN                                                                              
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 9                NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 10        Constants:  NaN     [c]  NaN  NaN  NaN        Entered Constants:  NaN                                                                           [c]
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 11               NaN  NaN     NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:52:40] DEBUG    [Interface@save_results:528] 12               NaN  NaN     NaN  NaN  NaN  NaN             Entered Data:  NaN  C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:52:40] DEBUG    [FileHandler@write_file:142] FileExtensions.EXCEL file was written to:  ./res/2024-03-06-result-from-17h52m.xlsx
+[2024-03-06 17:52:41] INFO     [Interface@reset_state:269] Successfully reset to initial state.
+[2024-03-06 17:52:42] INFO     [root@main:77] App closed
+[2024-03-06 17:55:12] INFO     [root@main:73] Starting App
+[2024-03-06 17:55:13] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-06 17:55:13] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-06 17:55:16] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-06 17:55:16] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-06 17:55:20] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1, 3], [4.0, 4, 7]]
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-06 17:55:20] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:55:34] INFO     [root@main:77] App closed
+[2024-03-06 17:57:41] INFO     [root@main:73] Starting App
+[2024-03-06 17:57:45] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-06 17:57:45] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-06 17:57:47] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-06 17:57:47] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-06 17:57:48] INFO     [Interface@confirm_input:443] Confirm button pressed
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:477] Dynamic lambda:
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:477]   def _lambdifygenerated(t, c):
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:477]     return c + t
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490] Internal variables:
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490]   Model: VPCModel(_model_string='t+c', _independent_var=['t'])
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490]   Data: [[1.0, 0.5, 1.0], [2.0, 12.0, 0.13], [2.1, 1, 3], [4.0, 4, 7]]
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490]   Independent vars: ['t']
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490]   Result components: 1
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490]   Constants: ['c']
+[2024-03-06 17:57:49] DEBUG    [Interface@confirm_input:490]   File path: C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:57:49] INFO     [Interface@compute_params:504] Compute parameters button pressed
+[2024-03-06 17:57:50] WARNING  [FileHandler@create_dataframe_from_for:74] Did not get a fitted model string.
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] Attempting to write results file with:
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528]                    A    B    C    D    E    F                         G    H                                                                             I
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 1      Fitted Model:  NaN  N/A  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 2                NaN  NaN  NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 3                NaN  NaN  NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 4   Interpreted Data  NaN  NaN  NaN  NaN  NaN                  Raw Data  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 5                NaN  NaN  NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 6             Model:  NaN  t+c  NaN  NaN  NaN            Entered Model:  NaN                                                                           t+c
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 7                NaN  NaN  NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 8   Independent Var:  NaN  [t]  NaN  NaN  NaN  Entered Independent Var:  NaN                                                                              
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 9                NaN  NaN  NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 10        Constants:  NaN  [c]  NaN  NaN  NaN        Entered Constants:  NaN                                                                           [c]
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 11               NaN  NaN  NaN  NaN  NaN  NaN                       NaN  NaN                                                                           NaN
+[2024-03-06 17:57:50] DEBUG    [Interface@save_results:528] 12               NaN  NaN  NaN  NaN  NaN  NaN             Entered Data:  NaN  C:/Users/David/Desktop/VPC-Praktikum/VirtualPatientCohorts/misc/testing.xlsx
+[2024-03-06 17:57:50] DEBUG    [FileHandler@write_file:142] FileExtensions.EXCEL file was written to:  ./res/2024-03-06-result-from-17h57m.xlsx
+[2024-03-06 17:57:53] INFO     [root@main:77] App closed

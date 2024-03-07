@@ -1,7 +1,7 @@
 from enum import Enum
-from typing import Union
+from typing import Optional, Union
 import pandas as pd
-import pandera as pa
+from itertools import combinations
 from pathlib import Path
 from datetime import datetime
 from os.path import join as os_path_join, exists as os_path_exists
@@ -27,47 +27,60 @@ def read_file(file_path: str) -> pd.DataFrame:
 
     suffix = Path(file_path).suffix.split(".")[1]
     if suffix == "":
-        raise ValueError("No Fileextension found at path")
+        raise ValueError("No file extension found at path")
 
     if suffix.upper() == FileExtensions.EXCEL.value:
         data_frame = pd.read_excel(file_path)
     elif suffix.upper() == FileExtensions.CSV.value:
         data_frame = pd.read_csv(file_path)
     else:
-        raise TypeError("Unknown File extension")
+        raise TypeError("Invalid file extension")
 
     return data_frame
 
 
 def dataframe_tolist(
-    data_frame: pd.DataFrame, include_first_row: bool
-) -> list[list[Union[str, float, int]]]:
+    data_frame: pd.DataFrame
+) -> list[list[Union[float, int]]]:
     if data_frame is None:
-        raise ValueError("No data could be read")
+        raise ValueError("DataFrame can't be None.")
+
+    if data_frame.empty:
+        raise ValueError("DataFrame is empty.")
+
+    if data_frame.isnull().values.any():
+        raise ValueError("DataFrame has empty cells.")
 
     column_names = data_frame.columns.tolist()
 
-    if include_first_row:
-        data_list = [[name, *data_frame[name].tolist()] for name in column_names]
-    else:
-        data_list = [data_frame[name].tolist() for name in column_names]
+    # if the names of the columns are ever relevant
+    # first_row = [name for name in column_names]
+
+    data_list = [data_frame[name].tolist() for name in column_names]
+
+    if not all(isinstance(x, (int, float)) for inner in data_list for x in inner):
+        raise ValueError("Provided data needs to only consist of numbers.")
 
     return data_list
 
 
 def create_dataframe_from_for(
-    fitted_model: str = "f(t) = ...",
+    fitted_model: Optional[str],
     model: str = "f(t) = ...",
     user_input_model: str = "f(t) = ...",
-    parameter: str = "...",
+    parameter: list[str] = ["..."],
     user_input_parameter: str = "...",
-    consts: str = "...",
-    user_input_consts: str = "...",
+    consts: list[str] = ["..."],
+    user_input_consts: list[str] = ["..."],
     user_input_path: str = "path/to/data",
-    format: str = "EXCEL"
+    format: FileExtensions = FileExtensions.EXCEL
 ) -> pd.DataFrame:
 
-    if format.upper() == FileExtensions.EXCEL.name:
+    if fitted_model is None:
+        logger.warning(f"Did not get a fitted model string.")
+        fitted_model = "N/A"
+
+    if format == FileExtensions.EXCEL:
         data = pd.DataFrame(
             index=range(1, 13),
             columns=["A", "B", "C", "D", "E", "F", "G", "H", "I"]
@@ -92,7 +105,7 @@ def create_dataframe_from_for(
         data.at[12,"G"] = "Entered Data:"
         data.at[12,"I"] = user_input_path
 
-    elif format.upper() == FileExtensions.CSV.name:
+    elif format == FileExtensions.CSV:
         data = pd.DataFrame({
             "1": ["Fitted Model:",  "Interpreted",          "Raw"                       ],
             "2": [fitted_model,     "Model:",               "Entered Model:"            ],
@@ -107,8 +120,8 @@ def create_dataframe_from_for(
     else:
         logger.warning(
             f"Writing empty DataFrame."
-            f"  Passed format was {format}, got converted to {format.upper()}"
-            f"  And checked against {[f.name for f in FileExtensions]} which resulted in no match."
+            f"  Passed format was {format}"
+            f"  And checked against {[f for f in FileExtensions]} which resulted in no match."
         )
         data = pd.DataFrame()
 
@@ -117,10 +130,10 @@ def create_dataframe_from_for(
 
 def get_valid_filename() -> str:
     now = datetime.now()
-    return now.strftime("%Y-%m-%d-result-from-%Hh%Mm%Ss")
+    return now.strftime("%Y-%m-%d-result-from-%Hh%Mm")
 
 
-def write_file(data_frame: pd.DataFrame, file_format: str = "EXCEL") -> None:
+def write_file(data_frame: pd.DataFrame, file_format: FileExtensions = FileExtensions.EXCEL) -> None:
     relative_path = "./res/"
 
     if not os_path_exists(relative_path):
@@ -128,7 +141,7 @@ def write_file(data_frame: pd.DataFrame, file_format: str = "EXCEL") -> None:
 
     file_name = get_valid_filename()
 
-    if file_format == FileExtensions.EXCEL.name:
+    if file_format == FileExtensions.EXCEL:
         file_name = file_name + ".xlsx"
         path = os_path_join(relative_path, file_name)
         data_frame.to_excel(path, index=False, header=False)
@@ -136,7 +149,7 @@ def write_file(data_frame: pd.DataFrame, file_format: str = "EXCEL") -> None:
             f"{file_format} file was written to:"
             f"  {path}"
         )
-    elif file_format == FileExtensions.CSV.name:
+    elif file_format == FileExtensions.CSV:
         file_name = file_name + ".csv"
         path = os_path_join(relative_path, file_name)
         data_frame.to_csv(path, index=False, header=False, sep="\t")

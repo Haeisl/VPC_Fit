@@ -1,14 +1,17 @@
 import customtkinter
 from tkinter import filedialog, Widget
+from sympy import FunctionClass
 from tktooltip import ToolTip
-from typing import Optional, Tuple, Union
+from typing import  Optional, Union
 from os.path import exists
 import re
 import inspect
 
 from . import FileHandler
+from .FileHandler import FileExtensions
 from .VPCModel import VPCModel
 from .CTkResultInterface import ResultInterface
+from . import ModelFitter
 
 import logging
 logger = logging.getLogger("Interface")
@@ -471,16 +474,17 @@ class MainApp(customtkinter.CTk):
         self.remove_compute_tooltip()
 
         data = FileHandler.read_file(self.file_path)
-        data_list = FileHandler.dataframe_tolist(data, False)
+        data_list = FileHandler.dataframe_tolist(data)
 
         logger.debug(
-            f"Dynamic lambda:\n" +
-            f"  {inspect.getsource(self.model.model_string_to_function()).strip()}"
+            f"Dynamic lambda {self.model.model_function} with:\n"
+            f"  {inspect.getsource(self.model.model_function).strip()}"
         )
 
         # set internal vars to validated inputs
         self._model: VPCModel = self.model
-        self._data: list[list[Union[str, int, float]]] = data_list
+        self._data: list[list[Union[int, float]]] = data_list
+        self._lambda_func: FunctionClass = self.model.model_function
         self._independent_vars: list[str] = indep_param
         self._result_comps: int = res_comps
         self._parameters_to_fit: list[str] = self.model.constants
@@ -490,6 +494,7 @@ class MainApp(customtkinter.CTk):
             f"Internal variables:\n"
             f"  Model: {self._model}\n"
             f"  Data: {self._data}\n"
+            f"  Lambda: {self._lambda_func}\n"
             f"  Independent vars: {self._independent_vars}\n"
             f"  Result components: {self._result_comps}\n"
             f"  Constants: {self._parameters_to_fit}\n"
@@ -501,11 +506,8 @@ class MainApp(customtkinter.CTk):
         """starts the calculation process of the parameters to be fitted
         """
         logger.info("Compute parameters button pressed")
-        # <-
 
-        # # ->
-        # self._fitted_model
-        # self._consts
+        ModelFitter.fit(self._model, self._data)
 
         result_window = ResultInterface(self)
         result_window.attributes("-topmost", True)
@@ -513,22 +515,22 @@ class MainApp(customtkinter.CTk):
 
     def save_results(self) -> int:
         data = FileHandler.create_dataframe_from_for(
-            fitted_model = "f(t) = ...",
-            model = "f(t) = ...",
-            user_input_model = "f(t) = ...",
-            parameter = "...",
-            user_input_parameter = "...",
-            consts = "...",
-            user_input_consts = "...",
-            user_input_path = "path/to/data",
-            format = "Excel"
+            fitted_model = self._model.resulting_function,
+            model = self._model.model_string,
+            user_input_model = self.equation_entry.get(),
+            parameter = self._independent_vars,
+            user_input_parameter = self.what_parameter_entry.get(),
+            consts = self._parameters_to_fit,
+            user_input_consts = self._model.constants,
+            user_input_path = self.file_path,
+            format = FileExtensions.EXCEL
         )
         try:
             logger.debug(
-                f"Attempting to write results file with:"
-                f"  {data.to_string()}"
+                f"Attempting to write results file with:\n"
+                f"{data.to_string()}"
             )
-            FileHandler.write_file(data, file_format="EXCEL")
+            FileHandler.write_file(data, file_format=FileExtensions.EXCEL)
             return 0
         except TypeError as e:
             logger.error(f"Error writing file {e}", exc_info=True)
