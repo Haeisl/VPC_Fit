@@ -1,12 +1,14 @@
+# standard library imports
+import argparse
 import json
 import logging
 import logging.config
 import logging.handlers
-import os
-import pathlib
-import argparse
-from src.CTkInterface import MainApp
+from pathlib import Path
 from tkinter import Event, Widget
+
+# local imports
+from src.CTkInterface import MainApp
 
 
 def setup_logging(debug: bool = False):
@@ -18,26 +20,22 @@ def setup_logging(debug: bool = False):
     including all those indentations
     """
 
-    log_folder = "logs"
-    if not os.path.exists(log_folder):
-        os.makedirs(log_folder)
+    log_folder = Path("./logs")
+    log_folder.mkdir(exist_ok=True)
 
-    filename = "logs.log"
+    log_file = log_folder / "logs.log"
 
-    log_filename = os.path.join(log_folder, filename)
-
-    config_file = pathlib.Path("logging_config.json")
+    config_file = Path("logging_config.json")
     with open(config_file) as json_file:
         config = json.load(json_file)
 
-    config["handlers"]["fileHandler"]["filename"] = log_filename
+    config["handlers"]["fileHandler"]["filename"] = log_file
 
     if debug:
         for handler in config["handlers"]:
             config["handlers"][handler]["level"] = "DEBUG"
 
     logging.config.dictConfig(config)
-
 
 
 def handle_leftclick(event: Event) -> None:
@@ -75,6 +73,7 @@ def main():
     app.bind_all("<Button-1>", lambda event: handle_leftclick(event))
     app.mainloop()
     root_logger.info("App closed")
+
 
 if __name__ == "__main__":
     main()

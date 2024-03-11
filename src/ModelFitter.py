@@ -1,13 +1,19 @@
+# standard library imports
+import logging
+import re
 from typing import Union
+
+# related third party imports
 import numpy as np
-from sympy import parse_expr, symbols, lambdify, Function, Eq, dsolve, Derivative
+from scipy.integrate import odeint
 from scipy.optimize import curve_fit
 from scipy.optimize import minimize
-from scipy.integrate import odeint
-from .VPCModel import VPCModel
-import re
+from sympy import parse_expr, symbols, lambdify, Function, Eq, dsolve, Derivative
 
-import logging
+# local imports
+from src.VPCModel import VPCModel
+
+
 logger = logging.getLogger("ModelFitter")
 
 
@@ -40,6 +46,7 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
     print(popt)
 
     # model._set_fitted_consts()
+
 
 # ###############################################################################################
 

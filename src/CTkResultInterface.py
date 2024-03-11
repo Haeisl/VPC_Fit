@@ -1,15 +1,25 @@
+# standard library imports
 from __future__ import annotations
+import logging
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from src.CTkInterface import MainApp
 
+# related third party imports
 import customtkinter
 
-import logging
+
 logger = logging.getLogger("ResultInterface")
 
-class ResultInterface(customtkinter.CTkToplevel):
 
+class ResultInterface(customtkinter.CTkToplevel):
+    """_summary_
+
+    _extended_summary_
+
+    :param customtkinter: _description_
+    :type customtkinter: _type_
+    """
     def __init__(self, main_window: MainApp):
         super().__init__(main_window)
         self.main = main_window
@@ -101,7 +111,6 @@ class ResultInterface(customtkinter.CTkToplevel):
             sticky="nsew"
         )
 
-
     def save_as(self) -> None:
         if self.main.save_results() == 0:
             self.saved_message.set("Saved to ./res/ ")
@@ -110,7 +119,6 @@ class ResultInterface(customtkinter.CTkToplevel):
             error_font = customtkinter.CTkFont(family="Arial", size=16, weight="bold")
             self.saved_label.configure(text_color="red", font=error_font)
             self.saved_message.set("Something\nwent wrong")
-
 
     def reset_app(self) -> None:
         self.main.reset_state()

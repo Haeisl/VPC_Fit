@@ -1,15 +1,15 @@
-from enum import Enum
-from typing import Optional, Union
-import pandas as pd
-from itertools import combinations
-from pathlib import Path
-from datetime import datetime
-from os.path import join as os_path_join, exists as os_path_exists
-from os import makedirs
-
+# standard library imports
 import logging
-logger = logging.getLogger("FileHandler")
+from datetime import datetime
+from enum import Enum
+from pathlib import Path
+from typing import Optional, Union
 
+# related third party imports
+import pandas as pd
+
+
+logger = logging.getLogger("FileHandler")
 
 class FileExtensions(Enum):
     EXCEL = "XLSX"
@@ -134,24 +134,23 @@ def get_valid_filename() -> str:
 
 
 def write_file(data_frame: pd.DataFrame, file_format: FileExtensions = FileExtensions.EXCEL) -> None:
-    relative_path = "./res/"
+    relative_path = Path("./res/")
 
-    if not os_path_exists(relative_path):
-        makedirs(relative_path)
+    relative_path.mkdir(exist_ok=True)
 
     file_name = get_valid_filename()
 
     if file_format == FileExtensions.EXCEL:
-        file_name = file_name + ".xlsx"
-        path = os_path_join(relative_path, file_name)
+        file_name += ".xlsx"
+        path = relative_path / file_name
         data_frame.to_excel(path, index=False, header=False)
         logger.debug(
             f"{file_format} file was written to:"
             f"  {path}"
         )
     elif file_format == FileExtensions.CSV:
-        file_name = file_name + ".csv"
-        path = os_path_join(relative_path, file_name)
+        file_name += ".csv"
+        path = relative_path / file_name
         data_frame.to_csv(path, index=False, header=False, sep="\t")
         logger.debug(
             f"{file_format} file was written to:"

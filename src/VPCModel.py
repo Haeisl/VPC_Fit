@@ -1,13 +1,15 @@
-from ctypes import Union
+# standard library imports
+import logging
 from dataclasses import dataclass
-from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr as sym_parse_expr
-from sympy import FunctionClass
 from re import search as re_search, finditer as re_finditer
-from typing import Any, Optional
+from typing import Optional
 
-# import logging
-# logger = logging.getLogger("VPCModel")
+# related third party imports
+from sympy import FunctionClass
+from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr as sym_parse_expr
 
+
+logger = logging.getLogger("VPCModel")
 
 @dataclass
 class VPCModel():
@@ -22,7 +24,6 @@ class VPCModel():
 
         self._fitted_consts: Optional[dict[str, float]] = None # {'a': 1.437, 'b': 3.25, ...}
         self._resulting_function: Optional[str] = None
-
 
     @property
     def model_string(self) -> str:
@@ -56,14 +57,11 @@ class VPCModel():
     def resulting_function(self) -> Optional[str]:
         return self._resulting_function
 
-
     def _set_fitted_consts(self, fitted_consts_dict: dict[str, float]) -> None:
         self._fitted_consts = fitted_consts_dict
 
-
     def format_eq(self, equation: str) -> str:
         return equation.strip().replace('^', '**')
-
 
     def cut_off_lhs(self) -> str:
         """cuts off the left side of an equation including the equals sign if exists.
@@ -81,7 +79,6 @@ class VPCModel():
         else:
             return self.format_eq(equation)
 
-
     def cut_off_rhs(self):
         equation = self._model_string
         ind = equation.find('=')
@@ -89,7 +86,6 @@ class VPCModel():
             return self.format_eq(equation[:ind])
         else:
             return self.format_eq(equation)
-
 
     def extract_symbols(self, sorting_prio: Optional[list] = None) -> list[str]:
         expression = self._model_string
@@ -117,7 +113,6 @@ class VPCModel():
 
         return unique_symbols
 
-
     def model_string_to_function(self) -> FunctionClass:
         """returns a lambda function based on the equation given by the user."""
 
@@ -129,7 +124,6 @@ class VPCModel():
         func: FunctionClass = sym_lambdify(sympy_vars, parsed_expression, 'sympy')
 
         return func
-
 
     def is_ode(self) -> bool:
         """checks whether self._model_string is an ODE of at most 2nd order.

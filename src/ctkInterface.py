@@ -1,24 +1,30 @@
-import customtkinter
+# standard library imports
+import inspect
+import logging
+import re
+from pathlib import Path
 from tkinter import filedialog, Widget
+from typing import  Optional, Union
+
+# related third party imports
+import customtkinter
 from sympy import FunctionClass
 from tktooltip import ToolTip
-from typing import  Optional, Union
-from os.path import exists
-import re
-import inspect
 
-from . import FileHandler
-from .FileHandler import FileExtensions
-from .VPCModel import VPCModel
-from .CTkResultInterface import ResultInterface
-from . import ModelFitter
+# local imports
+from src import FileHandler
+from src import ModelFitter
+from src.CTkResultInterface import ResultInterface
+from src.FileHandler import FileExtensions
+from src.VPCModel import VPCModel
 
-import logging
+
 logger = logging.getLogger("Interface")
 
 
 customtkinter.set_appearance_mode("Dark")
 customtkinter.set_default_color_theme("green")
+
 
 class MainApp(customtkinter.CTk):
     """This is a class to handle the functionality and setup of the interface
@@ -211,7 +217,6 @@ class MainApp(customtkinter.CTk):
             pady=(20,25)
         )
 
-
         # set default values
         msg = self.create_interpretation_string()
         self.input_confirmation_textbox.insert("1.0", msg)
@@ -229,7 +234,6 @@ class MainApp(customtkinter.CTk):
             msg="Explicitly state mathematical operations."
         )
 
-
     def create_tooltip_for(self, widget: Widget, msg: str) -> ToolTip:
         return ToolTip(
             widget=widget,
@@ -238,7 +242,6 @@ class MainApp(customtkinter.CTk):
             parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
             fg="#ffffff", bg="gray17", padx=3, pady=3
         )
-
 
     def reset_state(self) -> None:
         self.file_name.set("Browse...")
@@ -271,7 +274,6 @@ class MainApp(customtkinter.CTk):
         logger.info("Successfully reset to initial state.")
         # print("Successfully reset to initial state.")
 
-
     def remove_compute_tooltip(self) -> None:
         """removes the tooltip and enables the "compute parameters" button
         """
@@ -285,7 +287,6 @@ class MainApp(customtkinter.CTk):
             self.compute_button_tooltip.destroy()
             # enabling the button
             self.compute_params_button.configure(state="normal")
-
 
     def create_interpretation_string(
         self,
@@ -305,7 +306,6 @@ class MainApp(customtkinter.CTk):
         :return: all together, interpreted input
         :rtype: str
         """
-
         msg = f"Function:\n" +\
             f"    {function}\n" +\
             f"Independent Variable(s):\n" +\
@@ -318,7 +318,6 @@ class MainApp(customtkinter.CTk):
                 msg += f"\n{descr}:\n    {val}\n"
         return msg
 
-
     def display_interpreted_input(self, msg: str) -> None:
         """shows the interpretation of the user input
 
@@ -329,7 +328,6 @@ class MainApp(customtkinter.CTk):
         self.input_confirmation_textbox.delete("1.0", customtkinter.END)
         # add new text to widget
         self.input_confirmation_textbox.insert("1.0", msg)
-
 
     def browse_files(self) -> None:
         """opens a filedialog to let the user select a data file
@@ -352,7 +350,6 @@ class MainApp(customtkinter.CTk):
         self.file_name.set(displayed_name)
         self.file_path = fp.name
 
-
     def missing_independent_variables(self) -> list:
         """returns list of all variables that were entered (t if nothing entered)
         that are not present in model
@@ -373,14 +370,12 @@ class MainApp(customtkinter.CTk):
 
         return missing_vars
 
-
     def are_components_equal(self) -> bool:
         if self.result_components_combobox.get() == "auto":
             return True
         given = int(self.result_components_combobox.get())
         assumed = self.model.expression_string.count(",") + 1
         return given == assumed
-
 
     def check_input_validity(self) -> str:
         """checks the user input for errors
@@ -389,12 +384,10 @@ class MainApp(customtkinter.CTk):
         :rtype: str
         """
         msg = ""
-
         if self.equation_entry.get() == "":
             msg += (
                 f"No model equation entered.\n\n"
             )
-
         missing_vars = self.missing_independent_variables()
         if missing_vars:
             if len(missing_vars) == 1:
@@ -407,7 +400,6 @@ class MainApp(customtkinter.CTk):
                     f"The following independent\nparameters were not found in\n"
                     f"the model expression:\n{missing_vars}\n\n"
                 )
-
         valid = {str(i) for i in range(10)}
         valid.add("auto")
         if self.result_components_combobox.get() not in valid:
@@ -422,21 +414,17 @@ class MainApp(customtkinter.CTk):
                 f"than # provided in\n"
                 f"\"additional\" tab.\n\n"
             )
-
-        if not exists(self.file_path):
+        if not Path(self.file_path).exists():
             msg += (
                 f"No file path given\n"
                 f"or path doesn\"t exist.\n\n"
             )
-
         if (self.file_path != "") and (not FileHandler.is_extension_supported(self.file_path)):
             msg += (
                 f"Unsupported file extension.\n"
                 f"Use .xlsx or .csv\n\n"
             )
-
         return msg
-
 
     def confirm_input(self) -> None:
         """displays the user"s input and removes tooltip
@@ -501,7 +489,6 @@ class MainApp(customtkinter.CTk):
             f"  File path: {self._file_path}"
         )
 
-
     def compute_params(self) -> None:
         """starts the calculation process of the parameters to be fitted
         """
@@ -511,7 +498,6 @@ class MainApp(customtkinter.CTk):
 
         result_window = ResultInterface(self)
         result_window.attributes("-topmost", True)
-
 
     def save_results(self) -> int:
         data = FileHandler.create_dataframe_from_for(
