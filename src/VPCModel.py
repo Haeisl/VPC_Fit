@@ -22,7 +22,7 @@ class VPCModel():
         self._symbols: list[str] = self.extract_symbols(self._independent_var)
         self._constants: list[str] = [c for c in self._symbols if c not in self._independent_var]
 
-        self._fitted_consts: Optional[dict[str, float]] = None # {'a': 1.437, 'b': 3.25, ...}
+        self._fitted_consts: Optional[dict[str, float]] = None # {"a": 1.437, "b": 3.25, ...}
         self._resulting_function: Optional[str] = None
 
     @property
@@ -61,7 +61,7 @@ class VPCModel():
         self._fitted_consts = fitted_consts_dict
 
     def format_eq(self, equation: str) -> str:
-        return equation.strip().replace('^', '**')
+        return equation.strip().replace("^", "**")
 
     def cut_off_lhs(self) -> str:
         """cuts off the left side of an equation including the equals sign if exists.
@@ -69,11 +69,11 @@ class VPCModel():
 
         :param equation: entered equation by the user
         :type equation: str
-        :return: entered equation without left hand side and '='
+        :return: entered equation without left hand side and "="
         :rtype: str
         """
         equation = self._model_string
-        ind = equation.find('=')
+        ind = equation.find("=")
         if ind != -1:
             return self.format_eq(equation[ind+1:])
         else:
@@ -81,7 +81,7 @@ class VPCModel():
 
     def cut_off_rhs(self):
         equation = self._model_string
-        ind = equation.find('=')
+        ind = equation.find("=")
         if ind != -1:
             return self.format_eq(equation[:ind])
         else:
@@ -90,13 +90,13 @@ class VPCModel():
     def extract_symbols(self, sorting_prio: Optional[list] = None) -> list[str]:
         expression = self._model_string
 
-        if '=' in expression:
+        if "=" in expression:
             expression = self.cut_off_lhs()
 
         seen = set()
         unique_symbols = []
 
-        for match in re_finditer(r'\b[a-zA-Z]+\b|\b[a-zA-Z]\b', expression):
+        for match in re_finditer(r"\b[a-zA-Z]+\b|\b[a-zA-Z]\b", expression):
             symbol = match.group()
             if symbol not in seen:
                 seen.add(symbol)
@@ -121,7 +121,7 @@ class VPCModel():
         expression = self._expression_string
 
         parsed_expression = sym_parse_expr(expression)
-        func: FunctionClass = sym_lambdify(sympy_vars, parsed_expression, 'sympy')
+        func: FunctionClass = sym_lambdify(sympy_vars, parsed_expression, ["scipy", "numpy"])
 
         return func
 
