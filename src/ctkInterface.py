@@ -508,6 +508,8 @@ class MainApp(customtkinter.CTk):
 
         result_window = ResultInterface(self)
         result_window.set_result_label_text(result_message)
+        fitted = VPCModel(self._model.resulting_function, self._independent_vars)
+        result_window.show_graph(self._data, fitted.model_function)
         result_window.attributes("-topmost", True)
 
     def save_results(self) -> int:

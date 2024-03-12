@@ -26,7 +26,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.title_string = customtkinter.StringVar(self, "Virtual Patient Cohorts - Results")
 
         self.title(self.title_string.get())
-        window_width = 350
+        window_width = 425
         window_height = 200
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
@@ -109,6 +109,31 @@ class ResultInterface(customtkinter.CTkToplevel):
             padx=(0,10), pady=10,
             sticky="nsew"
         )
+        self.show_graph_button = customtkinter.CTkButton(
+            self.button_frame,
+            text="📈"
+        )
+        self.show_graph_button.grid(
+            row=0, column=3,
+            padx=(10,20), pady=10
+        )
+
+    def show_graph(self, data, function):
+        import matplotlib.pyplot as plt
+        import numpy as np
+        y = []
+        for x in data[0]:
+            y.append(function(x))
+        plt.scatter(data[0], data[1], label="Data Points", color="blue", marker="o")
+        plt.plot(data[0], y, label='Fitted Function', color='red')
+        plt.xlabel('x-axis')
+        plt.ylabel('y-axis')
+        plt.legend()
+        plt.grid(True)
+
+        # Show the plot
+        plt.show()
+
 
     def set_result_label_text(self, message: str) -> None:
         self.result_label.insert(1.0, message)
