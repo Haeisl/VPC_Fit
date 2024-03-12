@@ -372,13 +372,14 @@ class MainApp(customtkinter.CTk):
 
     def are_components_equal(self) -> bool:
         if self.result_components_combobox.get() == "auto":
-            return True
-        given = int(self.result_components_combobox.get())
-        assumed = self.model.expression_string.count(",") + 1
+            given = self.model.components
+        else:
+            given = int(self.result_components_combobox.get())
+        assumed = self.model.components
         return given == assumed
 
-    def check_input_validity(self) -> str:
-        """checks the user input for errors
+    def check_inputs_populated(self) -> str:
+        """checks the user input for missing inputs.
 
         :return: message with errors, if found
         :rtype: str
@@ -387,6 +388,26 @@ class MainApp(customtkinter.CTk):
         if self.equation_entry.get() == "":
             msg += (
                 f"No model equation entered.\n\n"
+            )
+        valid = {str(i) for i in range(10)}
+        valid.add("auto")
+        if self.result_components_combobox.get() not in valid:
+            msg += (
+                f"Result Components\n"
+                f"have to be \"auto\" or 1-9\n\n"
+            )
+        if (not Path(self.file_path).exists()) or self.file_path == "":
+            msg += (
+                f"No file path given\n"
+                f"or path doesn\'t exist.\n\n"
+            )
+        return msg
+
+    def check_inputs_sensible(self) -> str:
+        msg = ""
+        if not self.model.constants:
+            msg += (
+                f"No constants to fit"
             )
         missing_vars = self.missing_independent_variables()
         if missing_vars:
@@ -400,29 +421,17 @@ class MainApp(customtkinter.CTk):
                     f"The following independent\nparameters were not found in\n"
                     f"the model expression:\n{missing_vars}\n\n"
                 )
-        valid = {str(i) for i in range(10)}
-        valid.add("auto")
-        if self.result_components_combobox.get() not in valid:
-            msg += (
-                f"Result Components\n"
-                f"have to be \"auto\" or 1-9\n\n"
-            )
-        elif not self.are_components_equal():
+        if not self.are_components_equal():
             msg += (
                 f"Entered model suggests\n"
                 f"different # of components\n"
                 f"than # provided in\n"
                 f"\"additional\" tab.\n\n"
             )
-        if not Path(self.file_path).exists():
-            msg += (
-                f"No file path given\n"
-                f"or path doesn\"t exist.\n\n"
-            )
         if (self.file_path != "") and (not FileHandler.is_extension_supported(self.file_path)):
             msg += (
                 f"Unsupported file extension.\n"
-                f"Use .xlsx or .csv\n\n"
+                f"Use .xlsx or .csv files\n\n"
             )
         return msg
 
@@ -431,34 +440,27 @@ class MainApp(customtkinter.CTk):
         or displays errors in the input, if any are found
         """
         logger.info("Confirm button pressed")
-        ip = self.what_parameter_entry.get().replace(" ", "").split(",")
-        indep_param = ["t"] if ip == [""] else ip
-
-        self.model = VPCModel(self.equation_entry.get(), indep_param)
-
-        error_msg = self.check_input_validity()
+        error_msg = ""
+        error_msg += self.check_inputs_populated()
         if error_msg:
             self.display_interpreted_input(error_msg)
             return
 
-        if not self.model.constants:
-            self.display_interpreted_input(
-                f"No constants to fit"
-            )
-            return
+        ip = self.what_parameter_entry.get().replace(" ", "").split(",")
+        indep_param = ["t"] if ip == [""] else ip
+        self.model = VPCModel(self.equation_entry.get(), indep_param)
 
-        combobox_entry = self.result_components_combobox.get()
-        auto_value = self.model.expression_string.count(",") + 1
-        res_comps = auto_value if combobox_entry == "auto" else int(combobox_entry)
+        error_msg += self.check_inputs_sensible()
+        if error_msg:
+            self.display_interpreted_input(error_msg)
+            return
 
         msg = self.create_interpretation_string(
             self.model.model_string,
             self.model.independent_var,
             self.model.constants
         )
-
         self.display_interpreted_input(msg)
-
         self.remove_compute_tooltip()
 
         data = FileHandler.read_file(self.file_path)
@@ -468,13 +470,12 @@ class MainApp(customtkinter.CTk):
             f"Dynamic lambda {self.model.model_function} with:\n"
             f"  {inspect.getsource(self.model.model_function).strip()}"
         )
-
         # set internal vars to validated inputs
         self._model: VPCModel = self.model
         self._data: list[list[Union[int, float]]] = data_list
         self._lambda_func: FunctionClass = self.model.model_function
         self._independent_vars: list[str] = indep_param
-        self._result_comps: int = res_comps
+        self._result_comps: int = self.model.components
         self._parameters_to_fit: list[str] = self.model.constants
         self._file_path: str = self.file_path
 
@@ -496,27 +497,39 @@ class MainApp(customtkinter.CTk):
 
         ModelFitter.fit(self._model, self._data)
 
+        result_message = (
+            f"Fitted model equation:\n"
+            f"  {self.model.resulting_function}\n\n"
+            f"Fitted constants:\n"
+            f"{"  " + "\n  ".join(
+                str(pair[0]) + " = " + str(pair[1]) for pair in self.model.fitted_consts.items()
+            )}"
+        )
+
         result_window = ResultInterface(self)
+        result_window.set_result_label_text(result_message)
         result_window.attributes("-topmost", True)
 
     def save_results(self) -> int:
+        format = FileExtensions.EXCEL
         data = FileHandler.create_dataframe_from_for(
-            fitted_model = self._model.resulting_function,
-            model = self._model.model_string,
-            user_input_model = self.equation_entry.get(),
-            parameter = self._independent_vars,
-            user_input_parameter = self.what_parameter_entry.get(),
-            consts = self._parameters_to_fit,
-            user_input_consts = self._model.constants,
-            user_input_path = self.file_path,
-            format = FileExtensions.EXCEL
+            fitted_model=self._model.resulting_function,
+            fitted_consts=self._model.fitted_consts,
+            model=self._model.model_string,
+            user_input_model=self.equation_entry.get(),
+            parameter=self._independent_vars,
+            user_input_parameter=self.what_parameter_entry.get(),
+            consts=self._parameters_to_fit,
+            user_input_consts=self._model.constants,
+            user_input_path=self.file_path,
+            format=format
         )
         try:
             logger.debug(
                 f"Attempting to write results file with:\n"
                 f"{data.to_string()}"
             )
-            FileHandler.write_file(data, file_format=FileExtensions.EXCEL)
+            FileHandler.write_file(data, file_format=format)
             return 0
         except TypeError as e:
             logger.error(f"Error writing file {e}", exc_info=True)

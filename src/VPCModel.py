@@ -1,12 +1,12 @@
 # standard library imports
 import logging
 from dataclasses import dataclass
-from re import search as re_search, finditer as re_finditer
+from re import search, finditer
 from typing import Optional
 
 # related third party imports
 from sympy import FunctionClass
-from sympy import lambdify as sym_lambdify, symbols as sym_symbols, parse_expr as sym_parse_expr
+from sympy import lambdify, symbols, parse_expr
 
 
 logger = logging.getLogger("VPCModel")
@@ -21,6 +21,7 @@ class VPCModel():
         self._model_function: FunctionClass = self.model_string_to_function()
         self._symbols: list[str] = self.extract_symbols(self._independent_var)
         self._constants: list[str] = [c for c in self._symbols if c not in self._independent_var]
+        self._components: int = self.expression_string.count(",") + 1
 
         self._fitted_consts: Optional[dict[str, float]] = None # {"a": 1.437, "b": 3.25, ...}
         self._resulting_function: Optional[str] = None
@@ -50,7 +51,13 @@ class VPCModel():
         return self._constants
 
     @property
-    def fitted_consts(self) -> Optional[dict[str, float]]:
+    def components(self) -> int:
+        return self._components
+
+    @property
+    def fitted_consts(self) -> dict[str, float]:
+        if self._fitted_consts is None:
+            return {}
         return self._fitted_consts
 
     @property
@@ -59,6 +66,9 @@ class VPCModel():
 
     def _set_fitted_consts(self, fitted_consts_dict: dict[str, float]) -> None:
         self._fitted_consts = fitted_consts_dict
+
+    def _set_resulting_function(self, fitted_function: str) -> None:
+        self._resulting_function = fitted_function
 
     def format_eq(self, equation: str) -> str:
         return equation.strip().replace("^", "**")
@@ -96,7 +106,7 @@ class VPCModel():
         seen = set()
         unique_symbols = []
 
-        for match in re_finditer(r"\b[a-zA-Z]+\b|\b[a-zA-Z]\b", expression):
+        for match in finditer(r"\b[a-zA-Z]+\b|\b[a-zA-Z]\b", expression):
             symbol = match.group()
             if symbol not in seen:
                 seen.add(symbol)
@@ -117,11 +127,11 @@ class VPCModel():
         """returns a lambda function based on the equation given by the user."""
 
         sorted_symbols = self.extract_symbols(self._independent_var)
-        sympy_vars = sym_symbols(sorted_symbols)
+        sympy_vars = symbols(sorted_symbols)
         expression = self._expression_string
 
-        parsed_expression = sym_parse_expr(expression)
-        func: FunctionClass = sym_lambdify(sympy_vars, parsed_expression, ["scipy", "numpy"])
+        parsed_expression = parse_expr(expression)
+        func: FunctionClass = lambdify(sympy_vars, parsed_expression, ["scipy", "numpy"])
 
         return func
 
@@ -142,6 +152,6 @@ class VPCModel():
 
         patterns = [second_derivative, first_derivative, symbol_prime_prime, symbol_prime]
 
-        match = any(re_search(pattern, self._model_string) for pattern in patterns)
+        match = any(search(pattern, self._model_string) for pattern in patterns)
 
         return match

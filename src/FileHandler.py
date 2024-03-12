@@ -39,9 +39,7 @@ def read_file(file_path: str) -> pd.DataFrame:
     return data_frame
 
 
-def dataframe_tolist(
-    data_frame: pd.DataFrame
-) -> list[list[Union[float, int]]]:
+def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[Union[float, int]]]:
     if data_frame is None:
         raise ValueError("DataFrame can't be None.")
 
@@ -66,6 +64,7 @@ def dataframe_tolist(
 
 def create_dataframe_from_for(
     fitted_model: Optional[str],
+    fitted_consts: Optional[Union[dict[str, float], str]],
     model: str = "f(t) = ...",
     user_input_model: str = "f(t) = ...",
     parameter: list[str] = ["..."],
@@ -79,31 +78,34 @@ def create_dataframe_from_for(
     if fitted_model is None:
         logger.warning(f"Did not get a fitted model string.")
         fitted_model = "N/A"
+        fitted_consts = "N/A"
 
     if format == FileExtensions.EXCEL:
         data = pd.DataFrame(
-            index=range(1, 13),
-            columns=["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+            index=range(1, 9),
+            columns=["A", "B", "C", "D", "E"]
         )
 
         data.at[1,"A"]  = "Fitted Model:"
-        data.at[1,"C"]  = fitted_model
+        data.at[1,"B"]  = fitted_model
+        data.at[2,"A"]  = "Fitted Constants:"
+        data.at[2,"B"]  = fitted_consts
         data.at[4,"A"]  = "Interpreted Data"
-        data.at[4,"G"]  = "Raw Data"
-        data.at[6,"A"]  = "Model:"
-        data.at[6,"C"]  = model
-        data.at[6,"G"]  = "Entered Model:"
-        data.at[6,"I"]  = user_input_model
-        data.at[8,"A"]  = "Independent Var:"
-        data.at[8,"C"]  = parameter
-        data.at[8,"G"]  = "Entered Independent Var:"
-        data.at[8,"I"]  = user_input_parameter
-        data.at[10,"A"] = "Constants:"
-        data.at[10,"C"] = consts
-        data.at[10,"G"] = "Entered Constants:"
-        data.at[10,"I"] = user_input_consts
-        data.at[12,"G"] = "Entered Data:"
-        data.at[12,"I"] = user_input_path
+        data.at[4,"D"]  = "Raw Data"
+        data.at[5,"A"]  = "Model:"
+        data.at[5,"B"]  = model
+        data.at[5,"D"]  = "Entered Model:"
+        data.at[5,"E"]  = user_input_model
+        data.at[6,"A"]  = "Independent Var:"
+        data.at[6,"B"]  = parameter
+        data.at[6,"D"]  = "Entered Independent Var:"
+        data.at[6,"E"]  = user_input_parameter
+        data.at[7,"A"] = "Constants:"
+        data.at[7,"B"] = consts
+        data.at[7,"D"] = "Entered Constants:"
+        data.at[7,"E"] = user_input_consts
+        data.at[8,"D"] = "Entered Data:"
+        data.at[8,"E"] = user_input_path
 
     elif format == FileExtensions.CSV:
         data = pd.DataFrame({

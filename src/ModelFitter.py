@@ -34,19 +34,53 @@ def fit_ode(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
 
 
 def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
+    if check_model_is_vector(model, len(data)):
+        # assumption: first col for independent var, rest for results for components in order
+        formatted_function = lambda *args: np.array(model.model_function(*args)).ravel()
+        running_var_vals = np.array(data[0])
+        model_res_vals = np.ravel(list(zip(*data[1:])))
+        popt, pcov = curve_fit(
+            f=formatted_function,
+            xdata=running_var_vals,
+            ydata=model_res_vals,
+            p0=np.ones(len(model.constants))
+        )
+    else:
+        # assumption: first col for independent var, second for results
+        running_var_vals = np.array(data[0])
+        model_res_vals = np.array(data[1])
+        popt, pcov = curve_fit(
+            f=model.model_function,
+            xdata=running_var_vals,
+            ydata=model_res_vals,
+            p0=np.ones(len(model.constants))
+        )
 
-    objective = model.model_function
+    fitted_consts = dict(zip(model.constants, popt))
+    set_model_information(model, fitted_consts)
 
-    # muss dynamischer
-    running_var_vals = data[0]
-    model_vals = data[1]
 
-    popt, pcov = curve_fit(objective, running_var_vals, model_vals)
+def check_model_is_vector(model: VPCModel, columns: int) -> bool:
+    has_invalid_dimensions: bool = model.components + 1 != columns
+    if model.components < 1:
+        raise Exception("Model components are unexpectedly not int or less than 1.")
+    if has_invalid_dimensions:
+        raise Exception("Model components need to be 1 less than provided data columns.")
 
-    print(popt)
+    is_vector = model.components > 1
+    return is_vector
 
-    # model._set_fitted_consts()
 
+def set_model_information(model: VPCModel, fitted_consts: dict[str, float]) -> None:
+    model._set_fitted_consts(fitted_consts)
+    res_func = model.model_string
+    for constant in fitted_consts:
+        res_func = res_func.replace(constant, f"{fitted_consts[constant]:.2f}")
+    res_func = res_func.replace("**", "^")
+    res_func = res_func.replace("+-", "-")
+    res_func = res_func.replace("+", " + ")
+    res_func = res_func.replace("-", " - ")
+    model._set_resulting_function(res_func)
 
 # ###############################################################################################
 

@@ -1,2 +1,703 @@
-[2024-03-11 15:13:50] INFO     [root@main:73] Starting App
-[2024-03-11 15:14:03] INFO     [root@main:77] App closed
+[2024-03-12 15:41:44] INFO     [root@main:71] Starting App
+[2024-03-12 15:42:34] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:42:34] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:42:42] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:42:42] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:42:45] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x00000129BA4E7740> with:
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:462]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x00000129BA4E7740>
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 15:42:45] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 15:42:49] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:42:49] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:43:46] INFO     [root@main:75] App closed
+[2024-03-12 15:48:41] INFO     [root@main:71] Starting App
+[2024-03-12 15:48:49] INFO     [root@main:75] App closed
+[2024-03-12 15:49:08] INFO     [root@main:71] Starting App
+[2024-03-12 15:49:14] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:49:14] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:49:17] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:49:17] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/empty.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:49:17] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:20] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:49:20] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:49:22] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:49:22] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:49:22] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C0A214EE80> with:
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   Data: [[1.0, -2.14, 12.0], [2, 12, 13], [2.1, 1.0, 1.0], [4, 4, 345]]
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C0A214EE80>
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:49:22] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-12 15:49:24] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C0A214F560> with:
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   Data: [[1.0, -2.14, 12.0], [2, 12, 13], [2.1, 1.0, 1.0], [4, 4, 345]]
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C0A214F560>
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:49:24] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-12 15:49:28] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:49:28] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:49:32] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:49:32] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:49:37] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:49:37] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/ubunga.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:49:38] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C0A214FD80> with:
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   Data: [[3], [4]]
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C0A214FD80>
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:49:38] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/ubunga.xlsx
+[2024-03-12 15:49:39] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:49:39] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:49:46] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C0A214E8E0> with:
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   Data: [[3], [4]]
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C0A214E8E0>
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:49:46] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/ubunga.xlsx
+[2024-03-12 15:49:52] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:49:52] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:49:54] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:49:54] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/empty.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:49:54] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:55] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:49:55] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:49:58] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:49:58] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:49:58] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C0A214FE20> with:
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   Data: [[1.0, -2.14, 12.0], [2, 12, 13], [2.1, 1.0, 1.0], [4, 4, 345]]
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C0A214FE20>
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:49:58] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/testing.xlsx
+[2024-03-12 15:50:00] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:50:00] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:50:02] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:50:02] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:50:05] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:50:05] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:50:05] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C0A214FC40> with:
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   Data: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [14.686604395536943, 13.303049289500978, 20.328073404276502, 23.598617860942113, 28.026947507180445, 24.550140201656387, 28.792832038683343, 33.71202271556991, 37.03735626359895, 36.973989746122555, 41.20062040600229, 43.81166002166074, 47.0120519302442, 52.12939345602817, 52.371559954739176, 55.906857256159974, 57.74671523712806, 64.26403016853806, 64.2815623302923, 74.06785531256264, 76.59564631976666, 76.69957919707107, 84.16045094280219, 80.4873652295391, 87.64260335793924, 92.30549704015031, 88.57900613942898, 98.86739368425494, 101.41915010791178, 105.60841989249738, 109.25052949326317, 107.66808475265694, 114.08833590648247, 114.78564484220831, 117.63373983273215, 121.39340327526403, 123.29204087241592, 131.42616960301743, 131.49319573177516, 138.2824469718847, 132.82147146500913, 144.4860262863414, 140.0814255762161, 146.9907227790457, 150.24640200937893, 151.9720342005695, 158.88927415743726, 160.81322770844642, 164.79148581085116, 163.07868390301678, 170.51935385633126, 174.24281664104535, 177.39345873733322, 181.48626501533866, 180.3923354781485, 183.18533876855537, 185.19669547309522, 189.85981684626998, 197.99257406196818, 195.92288497502506, 196.74701823342318, 198.6777085800585, 201.93600261012446, 212.30520412998976]]
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C0A214FC40>
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:50:05] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx
+[2024-03-12 15:50:06] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:50:06] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:50:21] INFO     [root@main:75] App closed
+[2024-03-12 15:50:57] INFO     [root@main:71] Starting App
+[2024-03-12 15:51:04] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:51:04] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:51:07] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:51:07] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:51:07] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x0000025F4CF6F560> with:
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   Data: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [14.686604395536943, 13.303049289500978, 20.328073404276502, 23.598617860942113, 28.026947507180445, 24.550140201656387, 28.792832038683343, 33.71202271556991, 37.03735626359895, 36.973989746122555, 41.20062040600229, 43.81166002166074, 47.0120519302442, 52.12939345602817, 52.371559954739176, 55.906857256159974, 57.74671523712806, 64.26403016853806, 64.2815623302923, 74.06785531256264, 76.59564631976666, 76.69957919707107, 84.16045094280219, 80.4873652295391, 87.64260335793924, 92.30549704015031, 88.57900613942898, 98.86739368425494, 101.41915010791178, 105.60841989249738, 109.25052949326317, 107.66808475265694, 114.08833590648247, 114.78564484220831, 117.63373983273215, 121.39340327526403, 123.29204087241592, 131.42616960301743, 131.49319573177516, 138.2824469718847, 132.82147146500913, 144.4860262863414, 140.0814255762161, 146.9907227790457, 150.24640200937893, 151.9720342005695, 158.88927415743726, 160.81322770844642, 164.79148581085116, 163.07868390301678, 170.51935385633126, 174.24281664104535, 177.39345873733322, 181.48626501533866, 180.3923354781485, 183.18533876855537, 185.19669547309522, 189.85981684626998, 197.99257406196818, 195.92288497502506, 196.74701823342318, 198.6777085800585, 201.93600261012446, 212.30520412998976]]
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x0000025F4CF6F560>
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:51:08] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx
+[2024-03-12 15:51:08] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:51:08] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:51:16] INFO     [root@main:75] App closed
+[2024-03-12 15:52:10] INFO     [root@main:71] Starting App
+[2024-03-12 15:52:13] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:52:13] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:52:15] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:52:15] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:52:15] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000001B511993560> with:
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   Data: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [14.686604395536943, 13.303049289500978, 20.328073404276502, 23.598617860942113, 28.026947507180445, 24.550140201656387, 28.792832038683343, 33.71202271556991, 37.03735626359895, 36.973989746122555, 41.20062040600229, 43.81166002166074, 47.0120519302442, 52.12939345602817, 52.371559954739176, 55.906857256159974, 57.74671523712806, 64.26403016853806, 64.2815623302923, 74.06785531256264, 76.59564631976666, 76.69957919707107, 84.16045094280219, 80.4873652295391, 87.64260335793924, 92.30549704015031, 88.57900613942898, 98.86739368425494, 101.41915010791178, 105.60841989249738, 109.25052949326317, 107.66808475265694, 114.08833590648247, 114.78564484220831, 117.63373983273215, 121.39340327526403, 123.29204087241592, 131.42616960301743, 131.49319573177516, 138.2824469718847, 132.82147146500913, 144.4860262863414, 140.0814255762161, 146.9907227790457, 150.24640200937893, 151.9720342005695, 158.88927415743726, 160.81322770844642, 164.79148581085116, 163.07868390301678, 170.51935385633126, 174.24281664104535, 177.39345873733322, 181.48626501533866, 180.3923354781485, 183.18533876855537, 185.19669547309522, 189.85981684626998, 197.99257406196818, 195.92288497502506, 196.74701823342318, 198.6777085800585, 201.93600261012446, 212.30520412998976]]
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000001B511993560>
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:52:16] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx
+[2024-03-12 15:52:16] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:52:16] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:52:30] INFO     [root@main:75] App closed
+[2024-03-12 15:52:42] INFO     [root@main:71] Starting App
+[2024-03-12 15:52:46] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 15:52:46] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 15:52:48] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 15:52:48] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 15:52:49] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:462] Dynamic lambda <function _lambdifygenerated at 0x000002C8D9E0B560> with:
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:462]   def _lambdifygenerated(t, a):
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:462]     return a + t
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476] Internal variables:
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   Model: VPCModel(_model_string='t+a', _independent_var=['t'])
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   Data: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64], [14.686604395536943, 13.303049289500978, 20.328073404276502, 23.598617860942113, 28.026947507180445, 24.550140201656387, 28.792832038683343, 33.71202271556991, 37.03735626359895, 36.973989746122555, 41.20062040600229, 43.81166002166074, 47.0120519302442, 52.12939345602817, 52.371559954739176, 55.906857256159974, 57.74671523712806, 64.26403016853806, 64.2815623302923, 74.06785531256264, 76.59564631976666, 76.69957919707107, 84.16045094280219, 80.4873652295391, 87.64260335793924, 92.30549704015031, 88.57900613942898, 98.86739368425494, 101.41915010791178, 105.60841989249738, 109.25052949326317, 107.66808475265694, 114.08833590648247, 114.78564484220831, 117.63373983273215, 121.39340327526403, 123.29204087241592, 131.42616960301743, 131.49319573177516, 138.2824469718847, 132.82147146500913, 144.4860262863414, 140.0814255762161, 146.9907227790457, 150.24640200937893, 151.9720342005695, 158.88927415743726, 160.81322770844642, 164.79148581085116, 163.07868390301678, 170.51935385633126, 174.24281664104535, 177.39345873733322, 181.48626501533866, 180.3923354781485, 183.18533876855537, 185.19669547309522, 189.85981684626998, 197.99257406196818, 195.92288497502506, 196.74701823342318, 198.6777085800585, 201.93600261012446, 212.30520412998976]]
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   Lambda: <function _lambdifygenerated at 0x000002C8D9E0B560>
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   Independent vars: ['t']
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   Result components: 1
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   Constants: ['a']
+[2024-03-12 15:52:49] DEBUG    [Interface@confirm_input:476]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/LIN REG TEST.xlsx
+[2024-03-12 15:52:49] INFO     [Interface@compute_params:490] Compute parameters button pressed
+[2024-03-12 15:52:49] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 15:53:04] INFO     [Interface@reset_state:274] Successfully reset to initial state.
+[2024-03-12 15:53:08] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:53:19] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:55:28] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:55:31] INFO     [Interface@confirm_input:438] Confirm button pressed
+[2024-03-12 15:55:42] INFO     [root@main:75] App closed
+[2024-03-12 16:04:29] INFO     [root@main:71] Starting App
+[2024-03-12 16:04:30] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:04:35] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:04:36] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:05:00] INFO     [root@main:75] App closed
+[2024-03-12 16:05:16] INFO     [root@main:71] Starting App
+[2024-03-12 16:05:20] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:05:38] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:05:38] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:05:42] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:05:42] DEBUG    [Interface@browse_files:340]   None
+[2024-03-12 16:05:42] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:05:52] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:06:52] INFO     [root@main:71] Starting App
+[2024-03-12 16:06:54] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:07:11] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:07:11] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:07:20] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:07:20] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='D:/Downloads/mpam-fe.exe' mode='r' encoding='cp1252'>
+[2024-03-12 16:07:20] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:07:27] INFO     [root@main:75] App closed
+[2024-03-12 16:27:31] INFO     [root@main:71] Starting App
+[2024-03-12 16:28:33] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:28:33] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:28:58] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:28:58] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:29:00] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x0000021A9CFDB880> with:
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x0000021A9CFDB880>
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:29:00] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:29:01] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:29:01] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:29:19] INFO     [root@main:75] App closed
+[2024-03-12 16:32:49] INFO     [root@main:71] Starting App
+[2024-03-12 16:32:54] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:32:54] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:32:56] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:32:56] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:32:57] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x0000022524E0F880> with:
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x0000022524E0F880>
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:32:57] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:32:58] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:32:58] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:33:25] INFO     [root@main:75] App closed
+[2024-03-12 16:33:49] INFO     [root@main:71] Starting App
+[2024-03-12 16:33:52] INFO     [root@main:75] App closed
+[2024-03-12 16:33:59] INFO     [root@main:71] Starting App
+[2024-03-12 16:34:01] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:34:01] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:34:04] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:34:04] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:34:04] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001D149AAF880> with:
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001D149AAF880>
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:34:04] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:34:05] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:34:05] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:34:31] INFO     [root@main:75] App closed
+[2024-03-12 16:34:42] INFO     [root@main:71] Starting App
+[2024-03-12 16:34:45] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:34:45] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:34:47] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:34:47] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:34:48] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001ADA44CB920> with:
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001ADA44CB920>
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:34:48] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:34:50] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:34:50] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:34:58] INFO     [root@main:75] App closed
+[2024-03-12 16:35:16] INFO     [root@main:71] Starting App
+[2024-03-12 16:35:19] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:35:19] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:35:21] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:35:21] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:35:21] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001C69717B880> with:
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001C69717B880>
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:35:22] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:35:22] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:35:22] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:35:30] INFO     [root@main:75] App closed
+[2024-03-12 16:35:56] INFO     [root@main:71] Starting App
+[2024-03-12 16:36:00] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:36:00] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:36:03] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:36:03] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:36:03] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x0000022C61E13880> with:
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x0000022C61E13880>
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:36:03] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:36:04] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:36:04] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:36:17] INFO     [root@main:75] App closed
+[2024-03-12 16:36:33] INFO     [root@main:71] Starting App
+[2024-03-12 16:36:36] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:36:36] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:36:38] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:36:38] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:36:39] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001C9496FF880> with:
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001C9496FF880>
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:36:39] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:36:40] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:36:40] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:36:59] INFO     [root@main:75] App closed
+[2024-03-12 16:37:33] INFO     [root@main:71] Starting App
+[2024-03-12 16:37:36] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:37:36] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:37:39] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:37:39] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:37:39] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001FD730DB880> with:
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001FD730DB880>
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:37:40] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:37:40] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:37:40] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:38:06] INFO     [root@main:75] App closed
+[2024-03-12 16:44:59] INFO     [root@main:71] Starting App
+[2024-03-12 16:45:02] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:45:02] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:45:04] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:45:04] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:45:05] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000002CD804DB920> with:
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000002CD804DB920>
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:45:05] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:45:06] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:45:06] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:47:17] INFO     [root@main:71] Starting App
+[2024-03-12 16:47:22] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:47:22] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:47:24] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:47:24] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:47:24] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000002074F77F9C0> with:
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000002074F77F9C0>
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:47:24] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:47:25] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:47:25] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:47:33] INFO     [root@main:75] App closed
+[2024-03-12 16:47:59] INFO     [root@main:71] Starting App
+[2024-03-12 16:48:09] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:48:09] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:48:11] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:48:11] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:48:11] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001E1DEFBB920> with:
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001E1DEFBB920>
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:48:11] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:48:12] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:48:12] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:48:25] INFO     [root@main:75] App closed
+[2024-03-12 16:50:19] INFO     [root@main:71] Starting App
+[2024-03-12 16:50:22] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:50:22] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:50:25] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:50:25] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:50:25] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x00000265BC73B920> with:
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x00000265BC73B920>
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:50:25] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:50:26] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:50:26] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:50:41] INFO     [root@main:75] App closed
+[2024-03-12 16:51:11] INFO     [root@main:71] Starting App
+[2024-03-12 16:51:14] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:51:14] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:51:17] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:51:17] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:51:17] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x00000191E4CC3920> with:
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x00000191E4CC3920>
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:51:18] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:51:18] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:51:18] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:51:28] INFO     [root@main:75] App closed
+[2024-03-12 16:51:46] INFO     [root@main:71] Starting App
+[2024-03-12 16:51:49] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:51:49] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:51:51] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:51:51] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:51:52] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000002F77D69F920> with:
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000002F77D69F920>
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:51:52] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:51:52] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:51:52] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:52:05] INFO     [root@main:75] App closed
+[2024-03-12 16:52:26] INFO     [root@main:71] Starting App
+[2024-03-12 16:52:29] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:52:29] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:52:31] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:52:31] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:52:32] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x0000020E8B17B920> with:
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x0000020E8B17B920>
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:52:32] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:52:32] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:52:32] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] Attempting to write results file with:
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526]                    A    B                                           C    D    E    F                         G    H                                                              I
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 1      Fitted Model:  NaN  f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 2                NaN  NaN                                         NaN  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 3                NaN  NaN                                         NaN  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 4   Interpreted Data  NaN                                         NaN  NaN  NaN  NaN                  Raw Data  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 5                NaN  NaN                                         NaN  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 6             Model:  NaN                  f(t) = a*t**3+b*t**2+c*t+d  NaN  NaN  NaN            Entered Model:  NaN                                       f(t) = a*t^3+b*t^2+c*t+d
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 7                NaN  NaN                                         NaN  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 8   Independent Var:  NaN                                         [t]  NaN  NaN  NaN  Entered Independent Var:  NaN                                                               
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 9                NaN  NaN                                         NaN  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 10        Constants:  NaN                                [a, b, c, d]  NaN  NaN  NaN        Entered Constants:  NaN                                                   [a, b, c, d]
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 11               NaN  NaN                                         NaN  NaN  NaN  NaN                       NaN  NaN                                                            NaN
+[2024-03-12 16:52:51] DEBUG    [Interface@save_results:526] 12               NaN  NaN                                         NaN  NaN  NaN  NaN             Entered Data:  NaN  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:52:51] DEBUG    [FileHandler@write_file:145] FileExtensions.EXCEL file was written to:  res\2024-03-12-result-from-16h52m.xlsx
+[2024-03-12 16:52:53] INFO     [root@main:75] App closed
+[2024-03-12 16:54:35] INFO     [root@main:71] Starting App
+[2024-03-12 16:54:38] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:54:38] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:54:40] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:54:40] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:54:40] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x00000264918DB920> with:
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x00000264918DB920>
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:54:40] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:54:41] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:54:41] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:54:42] DEBUG    [Interface@save_results:526] Attempting to write results file with:
+[2024-03-12 16:54:42] DEBUG    [Interface@save_results:526]                1                                           2                           3                         4     5                   6             7              8                                                              9
+[2024-03-12 16:54:42] DEBUG    [Interface@save_results:526] 0  Fitted Model:  f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83                        None                      None  None                None          None           None                                                           None
+[2024-03-12 16:54:42] DEBUG    [Interface@save_results:526] 1    Interpreted                                      Model:  f(t) = a*t**3+b*t**2+c*t+d          Independent Var:   [t]          Constants:  [a, b, c, d]           None                                                           None
+[2024-03-12 16:54:42] DEBUG    [Interface@save_results:526] 2            Raw                              Entered Model:    f(t) = a*t^3+b*t^2+c*t+d  Entered Independent Var:        Entered Constants:  [a, b, c, d]  Entered Data:  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:54:42] DEBUG    [FileHandler@write_file:145] FileExtensions.EXCEL file was written to:  res\2024-03-12-result-from-16h54m.xlsx
+[2024-03-12 16:56:51] INFO     [root@main:71] Starting App
+[2024-03-12 16:56:57] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:56:57] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:57:00] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:57:00] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:57:00] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x00000124004DF920> with:
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x00000124004DF920>
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:57:01] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:57:01] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:57:01] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:57:02] DEBUG    [Interface@save_results:527] Attempting to write results file with:
+[2024-03-12 16:57:02] DEBUG    [Interface@save_results:527]                1                                           2                           3                         4     5                   6             7              8                                                              9
+[2024-03-12 16:57:02] DEBUG    [Interface@save_results:527] 0  Fitted Model:  f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83                        None                      None  None                None          None           None                                                           None
+[2024-03-12 16:57:02] DEBUG    [Interface@save_results:527] 1    Interpreted                                      Model:  f(t) = a*t**3+b*t**2+c*t+d          Independent Var:   [t]          Constants:  [a, b, c, d]           None                                                           None
+[2024-03-12 16:57:02] DEBUG    [Interface@save_results:527] 2            Raw                              Entered Model:    f(t) = a*t^3+b*t^2+c*t+d  Entered Independent Var:        Entered Constants:  [a, b, c, d]  Entered Data:  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:57:02] DEBUG    [FileHandler@write_file:153] FileExtensions.CSV file was written to:  res\2024-03-12-result-from-16h57m.csv
+[2024-03-12 16:57:03] INFO     [root@main:75] App closed
+[2024-03-12 16:58:16] INFO     [root@main:71] Starting App
+[2024-03-12 16:58:19] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 16:58:19] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 16:58:22] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 16:58:22] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 16:58:23] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001CA5A3AF920> with:
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001CA5A3AF920>
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 16:58:23] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:58:23] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 16:58:23] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 16:58:24] DEBUG    [Interface@save_results:527] Attempting to write results file with:
+[2024-03-12 16:58:24] DEBUG    [Interface@save_results:527]                1                                           2                           3                         4     5                   6             7              8                                                              9
+[2024-03-12 16:58:24] DEBUG    [Interface@save_results:527] 0  Fitted Model:  f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83                        None                      None  None                None          None           None                                                           None
+[2024-03-12 16:58:24] DEBUG    [Interface@save_results:527] 1    Interpreted                                      Model:  f(t) = a*t**3+b*t**2+c*t+d          Independent Var:   [t]          Constants:  [a, b, c, d]           None                                                           None
+[2024-03-12 16:58:24] DEBUG    [Interface@save_results:527] 2            Raw                              Entered Model:    f(t) = a*t^3+b*t^2+c*t+d  Entered Independent Var:        Entered Constants:  [a, b, c, d]  Entered Data:  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 16:58:24] DEBUG    [FileHandler@write_file:153] FileExtensions.CSV file was written to:  res\2024-03-12-result-from-16h58m.csv
+[2024-03-12 17:04:29] INFO     [root@main:71] Starting App
+[2024-03-12 17:04:32] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 17:04:32] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 17:04:34] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 17:04:34] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 17:04:34] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001F6AF94F920> with:
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001F6AF94F920>
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 17:04:35] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 17:04:35] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 17:04:35] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] Attempting to write results file with:
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527]                    A                                           B    C                         D                                                              E    F    G    H    I
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 1      Fitted Model:  f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 2                NaN                                         NaN  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 3                NaN                                         NaN  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 4   Interpreted Data                                         NaN  NaN                  Raw Data                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 5                NaN                                         NaN  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 6             Model:                  f(t) = a*t**3+b*t**2+c*t+d  NaN            Entered Model:                                       f(t) = a*t^3+b*t^2+c*t+d  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 7                NaN                                         NaN  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 8   Independent Var:                                         [t]  NaN  Entered Independent Var:                                                                 NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 9                NaN                                         NaN  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 10        Constants:                                [a, b, c, d]  NaN        Entered Constants:                                                   [a, b, c, d]  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 11               NaN                                         NaN  NaN                       NaN                                                            NaN  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [Interface@save_results:527] 12               NaN                                         NaN  NaN             Entered Data:  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx  NaN  NaN  NaN  NaN
+[2024-03-12 17:04:36] DEBUG    [FileHandler@write_file:145] FileExtensions.EXCEL file was written to:  res\2024-03-12-result-from-17h04m.xlsx
+[2024-03-12 17:06:49] INFO     [root@main:71] Starting App
+[2024-03-12 17:06:51] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 17:06:51] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 17:06:54] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 17:06:54] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 17:06:54] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x0000020D004DB920> with:
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x0000020D004DB920>
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 17:06:54] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 17:06:55] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 17:06:55] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] Attempting to write results file with:
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527]                   A                                           B    C                         D                                                              E
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 1     Fitted Model:  f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83  NaN                       NaN                                                            NaN
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 2               NaN                                         NaN  NaN                       NaN                                                            NaN
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 3  Interpreted Data                                         NaN  NaN                  Raw Data                                                            NaN
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 4            Model:                  f(t) = a*t**3+b*t**2+c*t+d  NaN            Entered Model:                                       f(t) = a*t^3+b*t^2+c*t+d
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 5  Independent Var:                                         [t]  NaN  Entered Independent Var:                                                               
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 6        Constants:                                [a, b, c, d]  NaN        Entered Constants:                                                   [a, b, c, d]
+[2024-03-12 17:06:56] DEBUG    [Interface@save_results:527] 7               NaN                                         NaN  NaN             Entered Data:  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 17:06:56] DEBUG    [FileHandler@write_file:145] FileExtensions.EXCEL file was written to:  res\2024-03-12-result-from-17h06m.xlsx
+[2024-03-12 17:12:25] INFO     [root@main:71] Starting App
+[2024-03-12 17:12:27] INFO     [Interface@browse_files:336] Browse files button pressed
+[2024-03-12 17:12:27] DEBUG    [Interface@browse_files:338] Starting filedialog
+[2024-03-12 17:12:30] DEBUG    [Interface@browse_files:340] Completed filedialog with:
+[2024-03-12 17:12:30] DEBUG    [Interface@browse_files:340]   <_io.TextIOWrapper name='C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx' mode='r' encoding='cp1252'>
+[2024-03-12 17:12:30] INFO     [Interface@confirm_input:442] Confirm button pressed
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:469] Dynamic lambda <function _lambdifygenerated at 0x000001F5B441B920> with:
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:469]   def _lambdifygenerated(t, a, b, c, d):
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:469]     return a*t**3 + b*t**2 + c*t + d
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482] Internal variables:
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   Model: VPCModel(_model_string='f(t) = a*t^3+b*t^2+c*t+d', _independent_var=['t'])
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   Data: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84], [5.395966448858118, 6.285301698894117, 11.135169209927207, 33.233608648378464, 82.50086966993987, 171.95238259999286, 312.12337501061904, 516.964085024584, 797.8160418675449, 1166.4773411424644, 1635.1054996314895, 2217.8338761278296, 2921.580755752563, 3762.7188517173836, 4752.39307381196, 5901.652570613687, 7221.867607830367, 8727.388421214773, 10427.736844549934, 12336.31996211831, 14466.468046191812, 16826.13083136853, 19431.871205201227, 22292.523060941323, 25422.475845669025, 28831.811078623836, 32532.180952910967, 36536.28388663784, 40857.3205707782, 45507.57894856818, 50496.3908380071, 55837.09831573112, 61541.728897531895, 67623.42532835998, 74091.81538197072, 80960.56315714626, 88242.88971382317, 95947.45098598489, 104088.3203104652, 112676.92186905156, 121726.1751288625, 131247.58473753868, 141251.9717958954, 151752.95146332038, 162761.3456483238, 174291.691049734, 186352.13788488557, 198956.29830758067, 212118.63701708958, 225846.65720366646, 240156.5148822, 255056.13668519343, 270562.12093536323, 286683.7593196966, 303431.19127416844, 320821.047005707, 338861.9748687346, 357567.668124369, 376948.20243958203, 397016.20893521624, 417785.71582900384, 439267.5803263202, 461472.3591369092, 484413.64678179723, 508102.68646489806, 532550.7792031971, 557772.5649106055, 583776.4549912931, 610578.4156740637, 638186.5166763404, 666616.5954530184, 695877.439311127, 725982.7586252533, 756943.7270449409, 788772.7700473954, 821480.1978745532, 855082.9167266769, 889586.6080473684, 925008.9349095272, 961357.7708327972, 998645.6467243701, 1036887.2866916236, 1076091.7708098176, 1116272.6775429721, 1157442.168272355]]
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   Lambda: <function _lambdifygenerated at 0x000001F5B441B920>
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   Independent vars: ['t']
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   Result components: 1
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   Constants: ['a', 'b', 'c', 'd']
+[2024-03-12 17:12:30] DEBUG    [Interface@confirm_input:482]   File path: C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 17:12:31] INFO     [Interface@compute_params:496] Compute parameters button pressed
+[2024-03-12 17:12:31] INFO     [ModelFitter@fit:25] Model was determined to not be an ODE.
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] Attempting to write results file with:
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528]                    A                                                                                                     B    C                         D                                                              E
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 1      Fitted Model:                                                            f(t) = 2.00*t^3 - 4.00*t^2 + 3.01*t + 5.83  NaN                       NaN                                                            NaN
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 2  Fitted Constants:  {'a': 2.0000006136183495, 'b': -4.000118163135089, 'c': 3.0102486919491067, 'd': 5.8276461643133946}  NaN                       NaN                                                            NaN
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 3                NaN                                                                                                   NaN  NaN                       NaN                                                            NaN
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 4   Interpreted Data                                                                                                   NaN  NaN                  Raw Data                                                            NaN
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 5             Model:                                                                            f(t) = a*t**3+b*t**2+c*t+d  NaN            Entered Model:                                       f(t) = a*t^3+b*t^2+c*t+d
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 6   Independent Var:                                                                                                   [t]  NaN  Entered Independent Var:                                                               
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 7         Constants:                                                                                          [a, b, c, d]  NaN        Entered Constants:                                                   [a, b, c, d]
+[2024-03-12 17:12:32] DEBUG    [Interface@save_results:528] 8                NaN                                                                                                   NaN  NaN             Entered Data:  C:/Users/David/Desktop/VPC-Praktikum/VPC_Fit/misc/Mappe1.xlsx
+[2024-03-12 17:12:32] DEBUG    [FileHandler@write_file:149] FileExtensions.EXCEL file was written to:  res\2024-03-12-result-from-17h12m.xlsx
+[2024-03-12 17:13:42] INFO     [Interface@reset_state:274] Successfully reset to initial state.
+[2024-03-12 17:13:45] INFO     [root@main:75] App closed

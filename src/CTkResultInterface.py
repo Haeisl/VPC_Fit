@@ -54,11 +54,10 @@ class ResultInterface(customtkinter.CTkToplevel):
             padx=0, pady=0,
             sticky="nsew"
         )
-        self.result_label = customtkinter.CTkLabel(
+        self.result_label = customtkinter.CTkTextbox(
             self.results_frame,
-            text="Werbung\nWerbung\nWerbung\nWerbung\nWerbung\nWerbung",
             font=result_font,
-            bg_color="gray23"
+            #bg_color="gray23"
         )
         self.result_label.grid(
             row=0, column=0,
@@ -110,6 +109,9 @@ class ResultInterface(customtkinter.CTkToplevel):
             padx=(0,10), pady=10,
             sticky="nsew"
         )
+
+    def set_result_label_text(self, message: str) -> None:
+        self.result_label.insert(1.0, message)
 
     def save_as(self) -> None:
         if self.main.save_results() == 0:
