@@ -29,9 +29,9 @@ class ResultInterface(customtkinter.CTkToplevel):
         super().__init__(main_window)
         self.main = main_window
         self.title_string = customtkinter.StringVar(self, "Virtual Patient Cohorts - Results")
-        self.model = model
-        self.fitted_model = fitted_model
-        self.data = data 
+        # self.model = model
+        # self.fitted_model = fitted_model
+        # self.data = data
 
 
         self.title(self.title_string.get())
