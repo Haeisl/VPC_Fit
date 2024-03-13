@@ -55,7 +55,7 @@ class MainApp(customtkinter.CTk):
 
         # font that is used
         font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
-        button_font = customtkinter.CTkFont(family="Arial", size=14)
+        button_font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
 
         # variables that change through user interaction
         self.file_name = customtkinter.StringVar(self, "Browse...")
@@ -507,10 +507,10 @@ class MainApp(customtkinter.CTk):
         )
 
         result_window = ResultInterface(self)
+        result_window.attributes("-topmost", True)
         result_window.set_result_label_text(result_message)
         fitted = VPCModel(self._model.resulting_function, self._independent_vars)
-        result_window.show_graph(self._data, fitted.model_function)
-        result_window.attributes("-topmost", True)
+        result_window.set_vars(self._data, fitted.model_function)
 
     def save_results(self) -> int:
         format = FileExtensions.EXCEL

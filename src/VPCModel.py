@@ -61,7 +61,9 @@ class VPCModel():
         return self._fitted_consts
 
     @property
-    def resulting_function(self) -> Optional[str]:
+    def resulting_function(self) -> str:
+        if self._resulting_function is None:
+            return ""
         return self._resulting_function
 
     def _set_fitted_consts(self, fitted_consts_dict: dict[str, float]) -> None:

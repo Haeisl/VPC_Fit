@@ -1,6 +1,8 @@
 # standard library imports
 from __future__ import annotations
 import logging
+import matplotlib.pyplot as plt
+from PIL import Image
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from src.CTkInterface import MainApp
@@ -27,7 +29,7 @@ class ResultInterface(customtkinter.CTkToplevel):
 
         self.title(self.title_string.get())
         window_width = 425
-        window_height = 200
+        window_height = 210
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
         center_x = int(screen_width/2 - window_width/2)
@@ -39,10 +41,10 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure((0,1), weight=1)
 
-        result_font = customtkinter.CTkFont(family="Arial", size=16, weight="bold")
-        button_font = customtkinter.CTkFont(family="Arial", size=14)
-        symbol_font = customtkinter.CTkFont(size=25)
-        saved_font = customtkinter.CTkFont(family="Arial", size=16, weight="bold", slant="italic")
+        result_font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
+        button_font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
+        symbol_font = customtkinter.CTkFont(size=25, weight="bold")
+        saved_font = customtkinter.CTkFont(family="Arial", size=14, weight="bold", slant="italic")
 
         # upper frame
         self.results_frame = customtkinter.CTkFrame(self, corner_radius=0)
@@ -68,6 +70,7 @@ class ResultInterface(customtkinter.CTkToplevel):
 
         # lower frame
         self.button_frame = customtkinter.CTkFrame(self, corner_radius=0)
+        self.button_frame.grid_columnconfigure(2, weight=1)
         self.button_frame.grid(
             row=2, column=0,
             padx=0, pady=0,
@@ -82,9 +85,8 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.reset_button._set_dimensions(width=40, height=30)
         self.reset_button.grid(
             row=0, column=0,
-            padx=(10,20), pady=10
+            padx=(20,10), pady=10
         )
-
         self.save_button = customtkinter.CTkButton(
             self.button_frame,
             text="Save",
@@ -94,7 +96,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.save_button._set_dimensions(width=120, height=36)
         self.save_button.grid(
             row=0, column=1,
-            padx=(20,10), pady=10
+            padx=(20,0), pady=10
         )
         self.saved_message = customtkinter.StringVar(self, "")
         self.saved_label = customtkinter.CTkLabel(
@@ -106,34 +108,49 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.saved_label.grid(
             row=0, column=2,
             ipadx=5, ipady=5,
-            padx=(0,10), pady=10,
+            padx=(10,10), pady=7,
             sticky="nsew"
+        )
+        # chart_bright = "chart-simple-solid-white.png"
+        # chart_dark = "chart-simple-solid-black.png"
+        # chart_line_bright = "chart-line-bright.png"
+        # chart_line_dark = "chart-line-dark.png"
+        # signal_dark = "signal-solid.png"
+        signal_bright = "signal-solid-bright.png"
+        graph_image = customtkinter.CTkImage(
+            dark_image=Image.open(signal_bright),
+            size=(35,28)
         )
         self.show_graph_button = customtkinter.CTkButton(
             self.button_frame,
-            text="📈"
+            #text="\U0001F4C8",
+            text="",
+            image=graph_image,
+            anchor="n",
+            command=self.show_graph
         )
+        self.show_graph_button._set_dimensions(width=40, height=30)
         self.show_graph_button.grid(
             row=0, column=3,
-            padx=(10,20), pady=10
+            padx=(0,20), pady=10,
+            sticky="e"
         )
 
-    def show_graph(self, data, function):
-        import matplotlib.pyplot as plt
-        import numpy as np
+    def set_vars(self, data, function):
+        self.data = data
+        self.function = function
+
+    def show_graph(self):
         y = []
-        for x in data[0]:
-            y.append(function(x))
-        plt.scatter(data[0], data[1], label="Data Points", color="blue", marker="o")
-        plt.plot(data[0], y, label='Fitted Function', color='red')
+        for x in self.data[0]:
+            y.append(self.function(x))
+        plt.scatter(self.data[0], self.data[1], label="Data Points", color="blue", marker="o")
+        plt.plot(self.data[0], y, label='Fitted Function', color='red')
         plt.xlabel('x-axis')
         plt.ylabel('y-axis')
         plt.legend()
         plt.grid(True)
-
-        # Show the plot
         plt.show()
-
 
     def set_result_label_text(self, message: str) -> None:
         self.result_label.insert(1.0, message)
@@ -143,7 +160,7 @@ class ResultInterface(customtkinter.CTkToplevel):
             self.saved_message.set("Saved to ./res/ ")
             self.save_button.configure(state="disabled")
         else:
-            error_font = customtkinter.CTkFont(family="Arial", size=16, weight="bold")
+            error_font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
             self.saved_label.configure(text_color="red", font=error_font)
             self.saved_message.set("Something\nwent wrong")
 
