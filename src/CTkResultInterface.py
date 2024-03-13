@@ -10,6 +10,9 @@ if TYPE_CHECKING:
 # related third party imports
 import customtkinter
 
+# local imports
+from src import VPCModel
+
 
 logger = logging.getLogger("ResultInterface")
 
@@ -22,10 +25,14 @@ class ResultInterface(customtkinter.CTkToplevel):
     :param customtkinter: _description_
     :type customtkinter: _type_
     """
-    def __init__(self, main_window: MainApp):
+    def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data):
         super().__init__(main_window)
         self.main = main_window
         self.title_string = customtkinter.StringVar(self, "Virtual Patient Cohorts - Results")
+        self.model = model
+        self.fitted_model = fitted_model
+        self.data = data 
+
 
         self.title(self.title_string.get())
         window_width = 425
@@ -136,9 +143,9 @@ class ResultInterface(customtkinter.CTkToplevel):
             sticky="e"
         )
 
-    def set_vars(self, data, function):
-        self.data = data
-        self.function = function
+    # def set_vars(self, data, function):
+    #     self.data = data
+    #     self.function = function
 
     def show_graph(self):
         y = []
