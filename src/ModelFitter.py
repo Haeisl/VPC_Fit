@@ -62,13 +62,9 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
 
 def check_model_is_vector(model: VPCModel, columns: int) -> bool:
     has_invalid_dimensions: bool = model.components + 1 != columns
-    if model.components < 1:
-        raise Exception("Model components are unexpectedly not int or less than 1.")
     if has_invalid_dimensions:
         raise Exception("Model components need to be 1 less than provided data columns.")
-
-    is_vector = model.components > 1
-    return is_vector
+    return model.is_vector()
 
 
 def set_model_information(model: VPCModel, fitted_consts: dict[str, float]) -> None:

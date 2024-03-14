@@ -157,3 +157,8 @@ class VPCModel():
         match = any(search(pattern, self._model_string) for pattern in patterns)
 
         return match
+
+    def is_vector(self) -> bool:
+        if self.components < 1:
+            raise Exception("Model components are unexpectedly less than 1.")
+        return self.components > 1

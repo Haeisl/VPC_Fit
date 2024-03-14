@@ -65,7 +65,9 @@ class MainApp(customtkinter.CTk):
         self.main_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.main_frame.grid(row=0, column=0, padx=(5,2), pady=(5,5), sticky="nsew")
         self.main_frame.grid_rowconfigure(2, weight=1)
-        self.tabview = customtkinter.CTkTabview(self.main_frame, width=200, height=100)
+        self.tabview = customtkinter.CTkTabview(
+            self.main_frame, width=200, height=100, text_color="white"
+        )
         self.tabview.grid(row=0, column=0, padx=10, pady=5, sticky="nsew")
         self.tabview.add("Basic")
         self.tabview.add("Additional")
@@ -116,7 +118,8 @@ class MainApp(customtkinter.CTk):
             textvariable=self.file_name,
             font=button_font,
             width=80,
-            command=self.browse_files
+            command=self.browse_files,
+            text_color="white"
         )
         self.data_input_button.grid(
             row=2, column=1,
@@ -175,7 +178,8 @@ class MainApp(customtkinter.CTk):
             self.main_frame,
             text="Confirm",
             font=button_font,
-            command=self.confirm_input
+            command=self.confirm_input,
+            text_color="white"
         )
         self.confirm_inputs_button.grid(
             row=3, column=0,
@@ -210,7 +214,8 @@ class MainApp(customtkinter.CTk):
             self.compute_frame,
             text="Compute Parameters",
             font=button_font,
-            command=self.compute_params
+            command=self.compute_params,
+            text_color="white"
         )
         self.compute_params_button.grid(
             row=3, column=0,
@@ -306,12 +311,14 @@ class MainApp(customtkinter.CTk):
         :return: all together, interpreted input
         :rtype: str
         """
-        msg = f"Function:\n" +\
-            f"    {function}\n" +\
-            f"Independent Variable(s):\n" +\
-            f"    {", ".join(str(c) for c in var)}\n"+\
-            f"Constants to be fitted:\n"+\
+        msg = (
+            f"Function:\n"
+            f"    {function}\n"
+            f"Independent Variable(s):\n"
+            f"    {", ".join(str(c) for c in var)}\n"
+            f"Constants to be fitted:\n"
             f"    {", ".join(str(c) for c in consts)}"
+        )
         if kwargs:
             msg += f"\n\nExtra:"
             for descr, val in kwargs.items():
@@ -497,20 +504,15 @@ class MainApp(customtkinter.CTk):
 
         ModelFitter.fit(self._model, self._data)
 
-        result_message = (
-            f"Fitted model equation:\n"
-            f"  {self.model.resulting_function}\n\n"
-            f"Fitted constants:\n"
-            f"{"  " + "\n  ".join(
-                str(pair[0]) + " = " + str(pair[1]) for pair in self.model.fitted_consts.items()
-            )}"
-        )
-
-        result_window = ResultInterface(self)
-        result_window.attributes("-topmost", True)
-        result_window.set_result_label_text(result_message)
         fitted = VPCModel(self._model.resulting_function, self._independent_vars)
-        result_window.set_vars(self._data, fitted.model_function)
+
+        result_window = ResultInterface(
+            main_window=self,
+            model=self._model,
+            fitted_model=fitted,
+            data=self._data
+        )
+        result_window.attributes("-topmost", True)
 
     def save_results(self) -> int:
         format = FileExtensions.EXCEL

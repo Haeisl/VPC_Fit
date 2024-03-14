@@ -1,17 +1,18 @@
 # standard library imports
 from __future__ import annotations
 import logging
-import matplotlib.pyplot as plt
-from PIL import Image
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 if TYPE_CHECKING:
     from src.CTkInterface import MainApp
 
 # related third party imports
 import customtkinter
+import matplotlib.pyplot as plt
+from PIL import Image
+from sympy import FunctionClass
 
 # local imports
-from src import VPCModel
+from src.VPCModel import VPCModel
 
 
 logger = logging.getLogger("ResultInterface")
@@ -25,14 +26,13 @@ class ResultInterface(customtkinter.CTkToplevel):
     :param customtkinter: _description_
     :type customtkinter: _type_
     """
-    def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data):
+    def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data: list[list[Union[int, float]]]):
         super().__init__(main_window)
         self.main = main_window
+        self.model = model
+        self.fitted_model = fitted_model
+        self.data = data
         self.title_string = customtkinter.StringVar(self, "Virtual Patient Cohorts - Results")
-        # self.model = model
-        # self.fitted_model = fitted_model
-        # self.data = data
-
 
         self.title(self.title_string.get())
         window_width = 425
@@ -42,7 +42,6 @@ class ResultInterface(customtkinter.CTkToplevel):
         center_x = int(screen_width/2 - window_width/2)
         center_y = int(screen_height/2 - window_height/2)
         self.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
-
         self.resizable(width=False, height=False)
 
         self.grid_columnconfigure(0, weight=1)
@@ -87,7 +86,8 @@ class ResultInterface(customtkinter.CTkToplevel):
             self.button_frame,
             text="\u21BA",
             font=symbol_font,
-            command=self.reset_app
+            command=self.reset_app,
+            text_color="white"
         )
         self.reset_button._set_dimensions(width=40, height=30)
         self.reset_button.grid(
@@ -98,7 +98,8 @@ class ResultInterface(customtkinter.CTkToplevel):
             self.button_frame,
             text="Save",
             font=button_font,
-            command=self.save_as
+            command=self.save_as,
+            text_color="white"
         )
         self.save_button._set_dimensions(width=120, height=36)
         self.save_button.grid(
@@ -118,19 +119,13 @@ class ResultInterface(customtkinter.CTkToplevel):
             padx=(10,10), pady=7,
             sticky="nsew"
         )
-        # chart_bright = "chart-simple-solid-white.png"
-        # chart_dark = "chart-simple-solid-black.png"
-        # chart_line_bright = "chart-line-bright.png"
-        # chart_line_dark = "chart-line-dark.png"
-        # signal_dark = "signal-solid.png"
-        signal_bright = "signal-solid-bright.png"
+        chart_line_bright = "chart-line-bright.png"
         graph_image = customtkinter.CTkImage(
-            dark_image=Image.open(signal_bright),
-            size=(35,28)
+            dark_image=Image.open(chart_line_bright),
+            size=(26,26)
         )
         self.show_graph_button = customtkinter.CTkButton(
             self.button_frame,
-            #text="\U0001F4C8",
             text="",
             image=graph_image,
             anchor="n",
@@ -140,27 +135,38 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.show_graph_button.grid(
             row=0, column=3,
             padx=(0,20), pady=10,
+            ipady=1,
             sticky="e"
         )
 
-    # def set_vars(self, data, function):
-    #     self.data = data
-    #     self.function = function
+        self.set_result_label_text()
 
-    def show_graph(self):
-        y = []
+    def show_graph(self) -> None:
+        func: FunctionClass = self.fitted_model.model_function
+        xdata: list[Union[int,float]] = self.data[0]
+        original_ydata: list[Union[int,float]] = self.data[1]
+        fitted_y: list[Union[int,float]] = []
         for x in self.data[0]:
-            y.append(self.function(x))
-        plt.scatter(self.data[0], self.data[1], label="Data Points", color="blue", marker="o")
-        plt.plot(self.data[0], y, label='Fitted Function', color='red')
-        plt.xlabel('x-axis')
-        plt.ylabel('y-axis')
+            fitted_y.append(func(x))
+
+        plt.scatter(xdata, original_ydata, label="Data Points", color="blue", marker="o")
+        plt.plot(xdata, fitted_y, label="Fitted Function", color="red")
+        plt.xlabel("x-axis")
+        plt.ylabel("y-axis")
         plt.legend()
         plt.grid(True)
         plt.show()
 
-    def set_result_label_text(self, message: str) -> None:
-        self.result_label.insert(1.0, message)
+    def set_result_label_text(self) -> None:
+        result_message = (
+            f"Fitted model equation:\n"
+            f"  {self.model.resulting_function}\n\n"
+            f"Fitted constants:\n"
+            f"{"  " + "\n  ".join(
+                str(pair[0]) + " = " + str(pair[1]) for pair in self.model.fitted_consts.items()
+            )}"
+        )
+        self.result_label.insert(1.0, result_message)
 
     def save_as(self) -> None:
         if self.main.save_results() == 0:
