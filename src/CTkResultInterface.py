@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 
 # related third party imports
 import customtkinter
+import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 from sympy import FunctionClass
@@ -129,7 +130,7 @@ class ResultInterface(customtkinter.CTkToplevel):
             text="",
             image=graph_image,
             anchor="n",
-            command=self.show_graph
+            command=self.graph_residuals
         )
         self.show_graph_button._set_dimensions(width=40, height=30)
         self.show_graph_button.grid(
@@ -141,21 +142,53 @@ class ResultInterface(customtkinter.CTkToplevel):
 
         self.set_result_label_text()
 
-    def show_graph(self) -> None:
-        func: FunctionClass = self.fitted_model.model_function
-        xdata: list[Union[int,float]] = self.data[0]
-        original_ydata: list[Union[int,float]] = self.data[1]
-        fitted_y: list[Union[int,float]] = []
-        for x in self.data[0]:
-            fitted_y.append(func(x))
+    # def show_graph(self) -> None:
+    #     func: FunctionClass = self.fitted_model.model_function
+    #     xdata: list[Union[int,float]] = self.data[0]
+    #     original_ydata: list[Union[int,float]] = self.data[1]
+    #     fitted_y: list[Union[int,float]] = []
+    #     for x in self.data[0]:
+    #         fitted_y.append(func(x))
 
-        plt.scatter(xdata, original_ydata, label="Data Points", color="blue", marker="o")
-        plt.plot(xdata, fitted_y, label="Fitted Function", color="red")
-        plt.xlabel("x-axis")
-        plt.ylabel("y-axis")
-        plt.legend()
-        plt.grid(True)
-        plt.show()
+    #     plt.scatter(xdata, original_ydata, label="Data Points", color="blue", marker="o")
+    #     plt.plot(xdata, fitted_y, label="Fitted Function", color="red")
+    #     plt.xlabel("x-axis")
+    #     plt.ylabel("y-axis")
+    #     plt.legend()
+    #     plt.grid(True)
+    #     plt.show()
+
+    def process_lists(self, lst: Union[list, list[list]]) -> list:
+        if len(lst) == 1 and isinstance(lst[0], list):
+            return lst[0]
+        elif all(isinstance(sub_lst, list) for sub_lst in lst):
+            return list(zip(*lst))
+        else:
+            raise ValueError("Got invalid input list.")
+
+    def graph_residuals(self) -> None:
+        func: FunctionClass = self.fitted_model.model_function
+        formatted_func = lambda tuple: func(*tuple)
+        num_indep_vars = len(self.model.independent_var)
+        xdata: list[list[float]] = self.data[:num_indep_vars]
+        formatted_xdata = self.process_lists(xdata)
+        ydata: list[list[float]] = self.data[num_indep_vars:]
+        formatted_ydata = self.process_lists(ydata)
+        predicted_values: list[tuple] = []
+        if isinstance(formatted_xdata[0], tuple):
+            predicted_values = [formatted_func(formatted_xdata[i]) for i in range(len(formatted_xdata))]
+        else:
+            predicted_values = [func(formatted_xdata[i]) for i in range(len(formatted_xdata))]
+        residuals: list[Union[tuple, float]] = []
+        if isinstance(formatted_ydata[0], tuple) and isinstance(predicted_values[0], tuple) and len(formatted_ydata[0]) == len(predicted_values[0]):
+            res = dict().fromkeys(range(len(formatted_ydata)))
+            for i in range(len(formatted_ydata[0])):
+                for j in range(len(formatted_ydata)):
+                    res[i] = formatted_ydata[j][i] - predicted_values[j][i]
+        print(formatted_xdata)
+        print(formatted_ydata)
+        print(predicted_values)
+        print(res)
 
     def set_result_label_text(self) -> None:
         result_message = (

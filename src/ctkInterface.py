@@ -239,13 +239,19 @@ class MainApp(customtkinter.CTk):
             msg="Explicitly state mathematical operations."
         )
 
+        self.what_parameter_entry_tooltip = self.create_tooltip_for(
+            widget=self.what_parameter_entry,
+            msg="Order needs to match order of independent variable columns in provided data."
+        )
+
     def create_tooltip_for(self, widget: Widget, msg: str) -> ToolTip:
         return ToolTip(
             widget=widget,
             msg=msg,
-            delay=0,
+            delay=1.0,
             parent_kwargs={"bg": "gray14", "padx": 2, "pady": 2},
-            fg="#ffffff", bg="gray17", padx=3, pady=3
+            fg="#ffffff", bg="gray17", padx=3, pady=3,
+            width=300
         )
 
     def reset_state(self) -> None:

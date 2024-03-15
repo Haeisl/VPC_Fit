@@ -31,7 +31,7 @@ class VPCModel():
         return self.format_eq(self._model_string)
 
     @property
-    def independent_var(self) -> list:
+    def independent_var(self) -> list[str]:
         return self._independent_var
 
     @property

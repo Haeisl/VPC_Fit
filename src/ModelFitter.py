@@ -34,11 +34,12 @@ def fit_ode(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
 
 
 def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
-    if check_model_is_vector(model, len(data)):
+    num_indep_vars = len(model.independent_var)
+    if check_model_is_valid_vector(model, len(data)):
         # assumption: first col for independent var, rest for results for components in order
-        formatted_function = lambda *args: np.array(model.model_function(*args)).ravel()
-        running_var_vals = np.array(data[0])
-        model_res_vals = np.ravel(list(zip(*data[1:])))
+        formatted_function = lambda indep, *args: np.ravel(model.model_function(*indep, *args))
+        running_var_vals = tuple(np.array(data[i]) for i in range(num_indep_vars))
+        model_res_vals = np.ravel(list(zip(*data[num_indep_vars:])))
         popt, pcov = curve_fit(
             f=formatted_function,
             xdata=running_var_vals,
@@ -47,10 +48,11 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
         )
     else:
         # assumption: first col for independent var, second for results
-        running_var_vals = np.array(data[0])
-        model_res_vals = np.array(data[1])
+        formatted_function = lambda indep, *args: model.model_function(*indep, *args)
+        running_var_vals = tuple(np.array(data[i]) for i in range(num_indep_vars))
+        model_res_vals = np.array(data[num_indep_vars])
         popt, pcov = curve_fit(
-            f=model.model_function,
+            f=formatted_function,
             xdata=running_var_vals,
             ydata=model_res_vals,
             p0=np.ones(len(model.constants))
@@ -60,11 +62,18 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
     set_model_information(model, fitted_consts)
 
 
-def check_model_is_vector(model: VPCModel, columns: int) -> bool:
-    has_invalid_dimensions: bool = model.components + 1 != columns
+def check_model_is_valid_vector(model: VPCModel, columns: int) -> bool:
+    num_indep_vars = len(model.independent_var)
+    has_invalid_dimensions: bool = model.components + num_indep_vars != columns
     if has_invalid_dimensions:
-        raise Exception("Model components need to be 1 less than provided data columns.")
+        raise Exception("Each model component needs its own data column.")
     return model.is_vector()
+
+
+def evaluate_fit(pcov):
+    variances = np.diag(pcov)
+    std_devs = np.sqrt(variances)
+    confidence_intervals = 1.96 * std_devs
 
 
 def set_model_information(model: VPCModel, fitted_consts: dict[str, float]) -> None:
