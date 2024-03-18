@@ -518,7 +518,8 @@ class MainApp(customtkinter.CTk):
             fitted_model=fitted,
             data=self._data
         )
-        result_window.attributes("-topmost", True)
+        # result_window.lift()
+        result_window.focus_set()
 
     def save_results(self) -> int:
         format = FileExtensions.EXCEL

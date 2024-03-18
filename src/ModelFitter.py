@@ -39,7 +39,7 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
         # assumption: first col for independent var, rest for results for components in order
         formatted_function = lambda indep, *args: np.ravel(model.model_function(*indep, *args))
         running_var_vals = tuple(np.array(data[i]) for i in range(num_indep_vars))
-        model_res_vals = np.ravel(list(zip(*data[num_indep_vars:])))
+        model_res_vals = np.array(list(zip(*data[num_indep_vars:]))).T.ravel()
         popt, pcov = curve_fit(
             f=formatted_function,
             xdata=running_var_vals,
@@ -57,7 +57,6 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
             ydata=model_res_vals,
             p0=np.ones(len(model.constants))
         )
-
     fitted_consts = dict(zip(model.constants, popt))
     set_model_information(model, fitted_consts)
 

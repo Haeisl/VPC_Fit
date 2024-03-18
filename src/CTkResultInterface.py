@@ -1,7 +1,9 @@
 # standard library imports
 from __future__ import annotations
 import logging
-from typing import TYPE_CHECKING, Union
+from itertools import cycle
+from pathlib import Path
+from typing import TYPE_CHECKING, Callable, Dict, List, Sequence, Tuple, Union
 if TYPE_CHECKING:
     from src.CTkInterface import MainApp
 
@@ -44,6 +46,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         center_y = int(screen_height/2 - window_height/2)
         self.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
         self.resizable(width=False, height=False)
+        self.grab_set()
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure((0,1), weight=1)
@@ -121,8 +124,13 @@ class ResultInterface(customtkinter.CTkToplevel):
             sticky="nsew"
         )
         chart_line_bright = "chart-line-bright.png"
+        chart_disabled = "chart-line-disabled.png"
         graph_image = customtkinter.CTkImage(
             dark_image=Image.open(chart_line_bright),
+            size=(26,26)
+        )
+        disabled_image = customtkinter.CTkImage(
+            dark_image=Image.open(chart_disabled),
             size=(26,26)
         )
         self.show_graph_button = customtkinter.CTkButton(
@@ -140,25 +148,13 @@ class ResultInterface(customtkinter.CTkToplevel):
             sticky="e"
         )
 
+        if self.fitted_model.is_ode():
+            self.show_graph_button.configure(state="disabled", image=disabled_image)
+            self.main.create_tooltip_for(self.show_graph_button, "Can't show graph for ODE models")
+
         self.set_result_label_text()
 
-    # def show_graph(self) -> None:
-    #     func: FunctionClass = self.fitted_model.model_function
-    #     xdata: list[Union[int,float]] = self.data[0]
-    #     original_ydata: list[Union[int,float]] = self.data[1]
-    #     fitted_y: list[Union[int,float]] = []
-    #     for x in self.data[0]:
-    #         fitted_y.append(func(x))
-
-    #     plt.scatter(xdata, original_ydata, label="Data Points", color="blue", marker="o")
-    #     plt.plot(xdata, fitted_y, label="Fitted Function", color="red")
-    #     plt.xlabel("x-axis")
-    #     plt.ylabel("y-axis")
-    #     plt.legend()
-    #     plt.grid(True)
-    #     plt.show()
-
-    def process_lists(self, lst: Union[list, list[list]]) -> list:
+    def process_lists(self, lst: List[List[float]]) -> Union[List[float], List[Tuple[float, ...]]]:
         if len(lst) == 1 and isinstance(lst[0], list):
             return lst[0]
         elif all(isinstance(sub_lst, list) for sub_lst in lst):
@@ -166,29 +162,61 @@ class ResultInterface(customtkinter.CTkToplevel):
         else:
             raise ValueError("Got invalid input list.")
 
+    def create_difference_dict(self, list1, list2) -> dict[int,List[float]]:
+        if len(list1) != len(list2):
+            raise ValueError("Input lists must have the same length.")
+
+        diff_dict: dict[int,List] = {}
+
+        for i, (tuple1, tuple2) in enumerate(zip(list1, list2)):
+            if len(tuple1) != len(tuple2):
+                raise ValueError(f"Tuples at index {i} have different lengths.")
+            for j, (elem1, elem2) in enumerate(zip(tuple1, tuple2)):
+                if j not in diff_dict:
+                    diff_dict[j] = []
+                diff_dict[j].append(elem2 - elem1)
+
+        return diff_dict
+
     def graph_residuals(self) -> None:
         func: FunctionClass = self.fitted_model.model_function
-        formatted_func = lambda tuple: func(*tuple)
-        num_indep_vars = len(self.model.independent_var)
-        xdata: list[list[float]] = self.data[:num_indep_vars]
-        formatted_xdata = self.process_lists(xdata)
-        ydata: list[list[float]] = self.data[num_indep_vars:]
-        formatted_ydata = self.process_lists(ydata)
-        predicted_values: list[tuple] = []
-        if isinstance(formatted_xdata[0], tuple):
-            predicted_values = [formatted_func(formatted_xdata[i]) for i in range(len(formatted_xdata))]
+        num_indep_vars: int = len(self.model.independent_var)
+        xdata: List[List[float]] = self.data[:num_indep_vars]
+        ydata: List[List[float]] = self.data[num_indep_vars:]
+        formatted_func: Callable = lambda tuple: func(*tuple)
+        formatted_xdata: Union[List[float], List[Tuple[float, ...]]] = self.process_lists(xdata)
+        formatted_ydata: Union[List[float], List[Tuple[float, ...]]] = self.process_lists(ydata)
+        if all(isinstance(xdata, tuple) for xdata in formatted_xdata):
+            predicted_values: List[Union[float, Tuple[float, ...]]] = [
+                formatted_func(xdata) for xdata in formatted_xdata
+            ]
         else:
-            predicted_values = [func(formatted_xdata[i]) for i in range(len(formatted_xdata))]
-        residuals: list[Union[tuple, float]] = []
-        if isinstance(formatted_ydata[0], tuple) and isinstance(predicted_values[0], tuple) and len(formatted_ydata[0]) == len(predicted_values[0]):
-            res = dict().fromkeys(range(len(formatted_ydata)))
-            for i in range(len(formatted_ydata[0])):
-                for j in range(len(formatted_ydata)):
-                    res[i] = formatted_ydata[j][i] - predicted_values[j][i]
-        print(formatted_xdata)
-        print(formatted_ydata)
-        print(predicted_values)
-        print(res)
+            predicted_values = [func(xdata) for xdata in formatted_xdata]
+
+        if self.fitted_model.is_vector():
+            diff_dict: Dict[int,List[float]] = self.create_difference_dict(formatted_ydata, predicted_values)
+            n = len(diff_dict[0]) # assuming all lists have the same length (they should)
+            colors = ["b", "g", "r", "c", "m", "y", "k"]
+            color_cycle = cycle(colors)
+            for key, values in diff_dict.items():
+                color = next(color_cycle)
+                plt.scatter(range(n), values, label=f"Residuals of Component {key}", color=color)
+                plt.xticks(range(n), [str(label) for label in formatted_xdata], rotation="vertical")
+                plt.xlabel("X Data")
+                plt.ylabel("Residuals")
+        else:
+            n = len(formatted_ydata)
+            residuals = [y - p for y, p in zip(formatted_ydata, predicted_values)] # type: ignore
+            print(predicted_values)
+            plt.scatter(predicted_values, residuals, label="Residuals")
+            plt.xlabel("Predicted Values")
+            plt.ylabel("Residuals")
+        plt.axhline(y=0, color="black", linestyle="--")
+        plt.title("Residual Plot")
+        plt.grid(True)
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
 
     def set_result_label_text(self) -> None:
         result_message = (
