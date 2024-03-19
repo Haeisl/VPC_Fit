@@ -4,7 +4,6 @@ import logging
 import re
 from pathlib import Path
 from tkinter import filedialog, Widget
-from typing import  Optional, Union
 
 # related third party imports
 import customtkinter
@@ -304,7 +303,7 @@ class MainApp(customtkinter.CTk):
         function: str = "...",
         var: list[str] = ["..."],
         consts: list[str] = ["..."],
-        **kwargs: Optional[str]
+        **kwargs: str | None
     ) -> str:
         """creates the interpretation string of the user input
 
@@ -485,7 +484,7 @@ class MainApp(customtkinter.CTk):
         )
         # set internal vars to validated inputs
         self._model: VPCModel = self.model
-        self._data: list[list[Union[int, float]]] = data_list
+        self._data: list[list[int | float]] = data_list
         self._lambda_func: FunctionClass = self.model.model_function
         self._independent_vars: list[str] = indep_param
         self._result_comps: int = self.model.components

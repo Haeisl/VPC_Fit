@@ -1,7 +1,5 @@
 # standard library imports
 import logging
-import re
-from typing import Union
 
 # related third party imports
 import numpy as np
@@ -17,23 +15,43 @@ from src.VPCModel import VPCModel
 logger = logging.getLogger("ModelFitter")
 
 
-def fit(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
+"""
+This module provides functions to fit a model to data.
+
+The fitting routines are based on the assumption that the model is of type VPCModel
+with provided data consisting of a list of lists where each sub-list is a column from a datasheet.
+"""
+
+
+def fit(model: VPCModel, data: list[list[int | float]]) -> None:
+    """Main entry function. Fitting a model to data, using slightly different routines for models
+    that are differential equation. Should be able to handle most regular functions
+    and ODEs up to second order.
+
+    :param model: The model that is supposed to be fitted.
+    :type model: VPCModel
+    :param data: The data the model is supposed to be fitted to.
+    :type data: list[list[int  |  float]]
+    """
     if model.is_ode():
-        logger.info(f"Model was determined to be an ODE.")
-        fit_ode(model, data)
+        _fit_ode(model, data)
     else:
-        logger.info(f"Model was determined to not be an ODE.")
-        fit_reg(model, data)
+        _fit_reg(model, data)
 
 
-def fit_ode(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
+def _fit_ode(model: VPCModel, data: list[list[int | float]]) -> None:
     pass
 
 
-    # model._set_fitted_consts()
+def _fit_reg(model: VPCModel, data: list[list[int | float]]) -> None:
+    """Fitting function for models that are not ODEs. Attempts to fit the model to the data and
+    sets the internal variables of the model to the fitted values.
 
-
-def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
+    :param model: The model that is supposed to be fitted.
+    :type model: VPCModel
+    :param data: The data the model is supposed to be fitted to.
+    :type data: list[list[int  |  float]]
+    """
     num_indep_vars = len(model.independent_var)
     if check_model_is_valid_vector(model, len(data)):
         # assumption: first col for independent var, rest for results for components in order
@@ -62,6 +80,20 @@ def fit_reg(model: VPCModel, data: list[list[Union[int, float]]]) -> None:
 
 
 def check_model_is_valid_vector(model: VPCModel, columns: int) -> bool:
+    """Checks if the model is valid when comparing it the the sample data.
+    A model is an invalid if there are not enough columns in the data to account for all
+    independent variables and the result components.
+
+    :param model: The model that is to be checked.
+    :type model: VPCModel
+    :param columns: The number of columns in the provided data.
+    :type columns: int
+    :raises Exception: If there are too few or too many columns in the data.
+    Too few make it impossible to fit the model, too many make it ambiguous as to what the extra
+    columns are supposed to mean, or which columns are even to be regarded and which ones not.
+    :return: Whether the model is a vector.
+    :rtype: bool
+    """
     num_indep_vars = len(model.independent_var)
     has_invalid_dimensions: bool = model.components + num_indep_vars != columns
     if has_invalid_dimensions:
@@ -70,12 +102,24 @@ def check_model_is_valid_vector(model: VPCModel, columns: int) -> bool:
 
 
 def evaluate_fit(pcov):
+    """Function to evaluate the goodness of the fit.
+
+    :param pcov: Covariance matrix of the fit.
+    :type pcov: 2D-array
+    """
     variances = np.diag(pcov)
     std_devs = np.sqrt(variances)
     confidence_intervals = 1.96 * std_devs
 
 
 def set_model_information(model: VPCModel, fitted_consts: dict[str, float]) -> None:
+    """Set the fitted model information to the models internal variables.
+
+    :param model: The fitted model that gets its information set.
+    :type model: VPCModel
+    :param fitted_consts: The fitted model constants.
+    :type fitted_consts: dict[str, float]
+    """
     model._set_fitted_consts(fitted_consts)
     res_func = model.model_string
     for constant in fitted_consts:

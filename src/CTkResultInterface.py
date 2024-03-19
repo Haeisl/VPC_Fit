@@ -2,8 +2,7 @@
 from __future__ import annotations
 import logging
 from itertools import cycle
-from pathlib import Path
-from typing import TYPE_CHECKING, Callable, Dict, List, Sequence, Tuple, Union
+from typing import TYPE_CHECKING, Callable
 if TYPE_CHECKING:
     from src.CTkInterface import MainApp
 
@@ -29,7 +28,7 @@ class ResultInterface(customtkinter.CTkToplevel):
     :param customtkinter: _description_
     :type customtkinter: _type_
     """
-    def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data: list[list[Union[int, float]]]):
+    def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data: list[list[int | float]]):
         super().__init__(main_window)
         self.main = main_window
         self.model = model
@@ -154,7 +153,7 @@ class ResultInterface(customtkinter.CTkToplevel):
 
         self.set_result_label_text()
 
-    def process_lists(self, lst: List[List[float]]) -> Union[List[float], List[Tuple[float, ...]]]:
+    def process_lists(self, lst: list[list[float]]) -> list[float] | list[tuple[float, ...]]:
         if len(lst) == 1 and isinstance(lst[0], list):
             return lst[0]
         elif all(isinstance(sub_lst, list) for sub_lst in lst):
@@ -162,11 +161,11 @@ class ResultInterface(customtkinter.CTkToplevel):
         else:
             raise ValueError("Got invalid input list.")
 
-    def create_difference_dict(self, list1, list2) -> dict[int,List[float]]:
+    def create_difference_dict(self, list1, list2) -> dict[int,list[float]]:
         if len(list1) != len(list2):
             raise ValueError("Input lists must have the same length.")
 
-        diff_dict: dict[int,List] = {}
+        diff_dict: dict[int,list] = {}
 
         for i, (tuple1, tuple2) in enumerate(zip(list1, list2)):
             if len(tuple1) != len(tuple2):
@@ -181,20 +180,20 @@ class ResultInterface(customtkinter.CTkToplevel):
     def graph_residuals(self) -> None:
         func: FunctionClass = self.fitted_model.model_function
         num_indep_vars: int = len(self.model.independent_var)
-        xdata: List[List[float]] = self.data[:num_indep_vars]
-        ydata: List[List[float]] = self.data[num_indep_vars:]
+        xdata: list[list[float]] = self.data[:num_indep_vars]
+        ydata: list[list[float]] = self.data[num_indep_vars:]
         formatted_func: Callable = lambda tuple: func(*tuple)
-        formatted_xdata: Union[List[float], List[Tuple[float, ...]]] = self.process_lists(xdata)
-        formatted_ydata: Union[List[float], List[Tuple[float, ...]]] = self.process_lists(ydata)
+        formatted_xdata: list[float] | list[tuple[float, ...]] = self.process_lists(xdata)
+        formatted_ydata: list[float] | list[tuple[float, ...]] = self.process_lists(ydata)
         if all(isinstance(xdata, tuple) for xdata in formatted_xdata):
-            predicted_values: List[Union[float, Tuple[float, ...]]] = [
+            predicted_values: list[float] | list[tuple[float, ...]] = [
                 formatted_func(xdata) for xdata in formatted_xdata
             ]
         else:
             predicted_values = [func(xdata) for xdata in formatted_xdata]
 
         if self.fitted_model.is_vector():
-            diff_dict: Dict[int,List[float]] = self.create_difference_dict(formatted_ydata, predicted_values)
+            diff_dict: dict[int,list[float]] = self.create_difference_dict(formatted_ydata, predicted_values)
             n = len(diff_dict[0]) # assuming all lists have the same length (they should)
             colors = ["b", "g", "r", "c", "m", "y", "k"]
             color_cycle = cycle(colors)
@@ -207,7 +206,6 @@ class ResultInterface(customtkinter.CTkToplevel):
         else:
             n = len(formatted_ydata)
             residuals = [y - p for y, p in zip(formatted_ydata, predicted_values)] # type: ignore
-            print(predicted_values)
             plt.scatter(predicted_values, residuals, label="Residuals")
             plt.xlabel("Predicted Values")
             plt.ylabel("Residuals")

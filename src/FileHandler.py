@@ -3,7 +3,6 @@ import logging
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Optional, Union
 
 # related third party imports
 import pandas as pd
@@ -11,12 +10,27 @@ import pandas as pd
 
 logger = logging.getLogger("FileHandler")
 
+
+"""
+This module provides basic functionality to convert data stored in .xlsx or .csv files into python
+lists.
+"""
+
+
 class FileExtensions(Enum):
+    """Enum class that has all valid file extension names and suffixes."""
     EXCEL = "XLSX"
     CSV = "CSV"
 
 
 def is_extension_supported(file_path: str) -> bool:
+    """Function to determine whether a file extension at the given path is supported.
+
+    :param file_path: Path pointing to the file.
+    :type file_path: str
+    :return: True if supported, False otherwise.
+    :rtype: bool
+    """
     suffix = Path(file_path).suffix.split(".")[1]
     return suffix.upper() in [extension.value for extension in FileExtensions]
 
@@ -39,7 +53,7 @@ def read_file(file_path: str) -> pd.DataFrame:
     return data_frame
 
 
-def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[Union[float, int]]]:
+def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[float | int]]:
     if data_frame is None:
         raise ValueError("DataFrame can't be None.")
 
@@ -63,8 +77,8 @@ def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[Union[float, int]]]:
 
 
 def create_dataframe_from_for(
-    fitted_model: Optional[str],
-    fitted_consts: Optional[Union[dict[str, float], str]],
+    fitted_model: str | None,
+    fitted_consts: dict[str, float] | str | None,
     model: str = "f(t) = ...",
     user_input_model: str = "f(t) = ...",
     parameter: list[str] = ["..."],
