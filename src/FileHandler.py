@@ -36,24 +36,53 @@ def is_extension_supported(file_path: str) -> bool:
 
 
 def read_file(file_path: str) -> pd.DataFrame:
+    """Function to read a ``.csv`` or ``.xlsx`` file from a given path
+    and return its value as a ``pd.DataFrame``.
+
+    Uses pathlib's ``is_file()`` method to assure there is a file at the given path.
+    Then tries to obtain the file's suffix and checks for ``.csv`` or ``.xlsx`` formats,
+    for which the corresponding pandas read method is called.
+
+    :param file_path: String for path to the file that is to be read.
+    :type file_path: str
+    :raises FileNotFoundError: If there is no file at ``file_path``\
+    according to pathlib's ``is_file()`` method.
+    :raises ValueError: If the file at the provided path has no suffix.
+    :raises TypeError: If the file at the provided path is not either an excel table or csv file.
+    :return: A ``pd.DataFrame`` containing all information that is read from the excel or csv file.
+    :rtype: pd.DataFrame
+    """
     if not Path(file_path).is_file():
-        raise FileNotFoundError("Invalid Path; no file at destination")
+        raise FileNotFoundError("Invalid Path; no file at destination.")
 
-    suffix = Path(file_path).suffix.split(".")[1]
+    suffix = Path(file_path).suffix
     if suffix == "":
-        raise ValueError("No file extension found at path")
+        raise ValueError("No file extension found at path.")
 
-    if suffix.upper() == FileExtensions.EXCEL.value:
+    if suffix.split(".")[1].upper() == FileExtensions.EXCEL.value:
         data_frame = pd.read_excel(file_path)
-    elif suffix.upper() == FileExtensions.CSV.value:
+    elif suffix.split(".")[1].upper() == FileExtensions.CSV.value:
         data_frame = pd.read_csv(file_path)
     else:
-        raise TypeError("Invalid file extension")
+        raise TypeError("Invalid file extension.")
 
     return data_frame
 
 
 def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[float | int]]:
+    """Takes a ``pd.DataFrame`` and returns a ``list`` containing a separate ``list``
+    for every column in the original DataFrame. The values in the inner ``list`` are the ``int``
+    or ``float`` values that are in this column.
+
+    :param data_frame: The ``pd.DataFrame`` that is to be read.
+    :type data_frame: pd.DataFrame
+    :raises ValueError: If the provided data frame is ``None``.
+    :raises ValueError: If the provided data frame is empty.
+    :raises ValueError: If there are empty cells in the data frame.
+    :raises ValueError: If there are non-``int`` or non-``float`` values in the data.
+    :return: A list of lists of each column's data.
+    :rtype: list[list[float | int]]
+    """
     if data_frame is None:
         raise ValueError("DataFrame can't be None.")
 
@@ -88,7 +117,35 @@ def create_dataframe_from_for(
     user_input_path: str = "path/to/data",
     format: FileExtensions = FileExtensions.EXCEL
 ) -> pd.DataFrame:
+    """Creates a ``pd.DataFrame`` for the specified ``format``, i.e. either Excel or CSV.
+    The data frame contains information about the user inputs into the program and what the program
+    made of those. It also contains the fit of the model if possible. If no fitted model string was
+    given, a warning will be logged and the field in the data frame will read 'N/A'.
 
+    :param fitted_model: The fitted model as a ``str``.
+    :type fitted_model: str | None
+    :param fitted_consts: The dictionary of the constants as keys of type ``str`` and their value\
+    as ``float``. Alternatively just a string containing the same information.
+    :type fitted_consts: dict[str, float] | str | None
+    :param model: The model the program worked with, defaults to "f(t) = ..."
+    :type model: str, optional
+    :param user_input_model: The exact model the user entered, defaults to "f(t) = ..."
+    :type user_input_model: str, optional
+    :param parameter: The independent variable the program worked with, defaults to ["..."]
+    :type parameter: list[str], optional
+    :param user_input_parameter: The exact independent variables the user entered, defaults to "..."
+    :type user_input_parameter: str, optional
+    :param consts: The constants the program worked with, defaults to ["..."]
+    :type consts: list[str], optional
+    :param user_input_consts: The exact constants the user entered, defaults to ["..."]
+    :type user_input_consts: list[str], optional
+    :param user_input_path: The path to the data the user provided, defaults to "path/to/data"
+    :type user_input_path: str, optional
+    :param format: The format for which the data frame is constructed, defaults to FileExtensions.EXCEL
+    :type format: FileExtensions, optional
+    :return: A data frame containing all input and output information.
+    :rtype: pd.DataFrame
+    """
     if fitted_model is None:
         logger.warning(f"Did not get a fitted model string.")
         fitted_model = "N/A"
@@ -145,11 +202,28 @@ def create_dataframe_from_for(
 
 
 def get_valid_filename() -> str:
+    """Helper function to create a valid, hopefully non duplicate, string to use as a file name.
+
+    :return: Stringified time from ``datetime.now()`` in the form of %Y-%m-%d-result-from-%Hh%Mm.
+    :rtype: str
+    """
     now = datetime.now()
     return now.strftime("%Y-%m-%d-result-from-%Hh%Mm")
 
 
 def write_file(data_frame: pd.DataFrame, file_format: FileExtensions = FileExtensions.EXCEL) -> None:
+    """Writes the provided ``pd.DataFrame`` as either .xlsx or .csv
+    to the hard-coded program's ``/res/`` directory.
+
+    If there is no ``./res/`` directory relative to where the program was started from,
+    that directory will be created.
+
+    :param data_frame: The data frame that is to be written.
+    :type data_frame: pd.DataFrame
+    :param file_format: What format the written file should have, defaults to FileExtensions.EXCEL.
+    :type file_format: FileExtensions, optional
+    :raises TypeError: If the provided ``file_format`` was neither Excel nor CSV.
+    """
     relative_path = Path("./res/")
 
     relative_path.mkdir(exist_ok=True)
@@ -174,4 +248,4 @@ def write_file(data_frame: pd.DataFrame, file_format: FileExtensions = FileExten
         )
     else:
         logger.error(f"File format was: {file_format} but only 'EXCEL' and 'CSV' are supported")
-        raise TypeError("Can\"t write to unknown file extension")
+        raise TypeError("Can't write to unknown file extension")

@@ -24,7 +24,8 @@ with provided data consisting of a list of lists where each sub-list is a column
 
 
 def fit(model: VPCModel, data: list[list[int | float]]) -> None:
-    """Main entry function. Fitting a model to data, using slightly different routines for models
+    """Main entry function for fitting.
+    Fitting a model to data, using slightly different routines for models
     that are differential equation. Should be able to handle most regular functions
     and ODEs up to second order.
 
@@ -88,8 +89,8 @@ def check_model_is_valid_vector(model: VPCModel, columns: int) -> bool:
     :type model: VPCModel
     :param columns: The number of columns in the provided data.
     :type columns: int
-    :raises Exception: If there are too few or too many columns in the data.
-    Too few make it impossible to fit the model, too many make it ambiguous as to what the extra
+    :raises Exception: If there are too few or too many columns in the data.\
+    Too few make it impossible to fit the model, too many make it ambiguous as to what the extra\
     columns are supposed to mean, or which columns are even to be regarded and which ones not.
     :return: Whether the model is a vector.
     :rtype: bool

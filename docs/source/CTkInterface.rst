@@ -1,7 +1,7 @@
-ModelFitter module
-==================
+CTkInterface module
+===================
 
-.. automodule:: src.ModelFitter
+.. automodule:: src.CTkInterface
    :members:
    :undoc-members:
    :special-members: __init__

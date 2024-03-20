@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTkResultInterface module &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FileHandler module" href="FileHandler.html" />
+    <link rel="prev" title="CTkInterface module" href="CTkInterface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CTkResultInterface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface"><code class="docutils literal notranslate"><span class="pre">ResultInterface</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.__init__"><code class="docutils literal notranslate"><span class="pre">ResultInterface.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.create_difference_dict"><code class="docutils literal notranslate"><span class="pre">ResultInterface.create_difference_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.graph_residuals"><code class="docutils literal notranslate"><span class="pre">ResultInterface.graph_residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.process_lists"><code class="docutils literal notranslate"><span class="pre">ResultInterface.process_lists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.reset_app"><code class="docutils literal notranslate"><span class="pre">ResultInterface.reset_app()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.save_as"><code class="docutils literal notranslate"><span class="pre">ResultInterface.save_as()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.set_result_label_text"><code class="docutils literal notranslate"><span class="pre">ResultInterface.set_result_label_text()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CTkResultInterface module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CTkResultInterface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src.CTkResultInterface">
+<span id="ctkresultinterface-module"></span><h1>CTkResultInterface module<a class="headerlink" href="#module-src.CTkResultInterface" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.CTkResultInterface.</span></span><span class="sig-name descname"><span class="pre">ResultInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><span class="pre">MainApp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitted_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkToplevel</span></code></p>
+<p>Interface for results created by <code class="docutils literal notranslate"><span class="pre">ModelFitter</span></code>.</p>
+<p>Provides a way to save results locally and view a plot of the residuals of the fit if possible.</p>
+<p>Uses a <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> extension called <code class="docutils literal notranslate"><span class="pre">customtkinter</span></code> to achieve a modern look.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><span class="pre">MainApp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitted_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.__init__" title="Link to this definition"></a></dt>
+<dd><p>Setup of the result interface window, arranging widgets and setting values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_window</strong> (<a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><em>MainApp</em></a>) – Parent window.</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – Model that was fitted to the sample data.</p></li>
+<li><p><strong>fitted_model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – Fitted model as a means to get easy access to the fitted model’s lambda function.</p></li>
+<li><p><strong>data</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>  |  </em><em>float</em><em>]</em><em>]</em>) – The data the input was fitted to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.create_difference_dict">
+<span class="sig-name descname"><span class="pre">create_difference_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_actual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_predicted</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.create_difference_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.create_difference_dict" title="Link to this definition"></a></dt>
+<dd><p>Used to compute the differences (residuals) of two input lists created by <code class="docutils literal notranslate"><span class="pre">process_lists()</span></code>.
+Stores the differences at each index in a dictionary with index:difference pairs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_actual</strong> (<em>list</em><em>[</em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>...</em><em>]</em><em>]</em>) – list of the actual values.</p></li>
+<li><p><strong>list_predicted</strong> (<em>list</em><em>[</em><em>tuple</em><em>[</em><em>float</em><em>, </em><em>...</em><em>]</em><em>]</em>) – list of the predicted values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If the input lists somehow have different lengths.</p></li>
+<li><p><strong>ValueError</strong> – If a pair of tuples somehow have different lengths.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with the differences at their corresponding index.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[int,list[float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.graph_residuals">
+<span class="sig-name descname"><span class="pre">graph_residuals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.graph_residuals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.graph_residuals" title="Link to this definition"></a></dt>
+<dd><p>Method that uses matplotlib to graph the residuals of the fitted model against
+the input data after the graph button is pressed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.process_lists">
+<span class="sig-name descname"><span class="pre">process_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.process_lists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.process_lists" title="Link to this definition"></a></dt>
+<dd><p>Converts a list of lists of floats into a list of floats,
+if there is only a single sub-list.</p>
+<p>If there are multiple sub-lists inside the input list, will zip them
+and return a list of tuples of floats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lst</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>float</em><em>]</em><em>]</em>) – List that is to be converted, typically the data the model was fitted to, or part of it.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If there are types other than <code class="docutils literal notranslate"><span class="pre">list</span></code> in the outer list.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of floats or list of tuples of floats.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[float] | list[tuple[float, …]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.reset_app">
+<span class="sig-name descname"><span class="pre">reset_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.reset_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.reset_app" title="Link to this definition"></a></dt>
+<dd><p>Method that calls the parent’s <code class="docutils literal notranslate"><span class="pre">reset_state()</span></code> method to reset the app to an
+initial state after the reset button is pressed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.save_as">
+<span class="sig-name descname"><span class="pre">save_as</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.save_as"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.save_as" title="Link to this definition"></a></dt>
+<dd><p>Method that calls the parent’s <code class="docutils literal notranslate"><span class="pre">save_results()</span></code> method and
+sets the saved_message_label’s value accordingly after the save button is pressed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.set_result_label_text">
+<span class="sig-name descname"><span class="pre">set_result_label_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.set_result_label_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.set_result_label_text" title="Link to this definition"></a></dt>
+<dd><p>Method that sets the text inside the results textbox.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="CTkInterface.html" class="btn btn-neutral float-left" title="CTkInterface module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FileHandler.html" class="btn btn-neutral float-right" title="FileHandler module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

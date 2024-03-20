@@ -1,8 +1,9 @@
 # standard library imports
 from __future__ import annotations
 import logging
+from collections.abc import Callable
 from itertools import cycle
-from typing import TYPE_CHECKING, Callable
+from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from src.CTkInterface import MainApp
 
@@ -21,14 +22,24 @@ logger = logging.getLogger("ResultInterface")
 
 
 class ResultInterface(customtkinter.CTkToplevel):
-    """_summary_
+    """Interface for results created by ``ModelFitter``.
 
-    _extended_summary_
+    Provides a way to save results locally and view a plot of the residuals of the fit if possible.
 
-    :param customtkinter: _description_
-    :type customtkinter: _type_
+    Uses a ``tkinter`` extension called ``customtkinter`` to achieve a modern look.
     """
     def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data: list[list[int | float]]):
+        """Setup of the result interface window, arranging widgets and setting values.
+
+        :param main_window: Parent window.
+        :type main_window: MainApp
+        :param model: Model that was fitted to the sample data.
+        :type model: VPCModel
+        :param fitted_model: Fitted model as a means to get easy access to the fitted model's lambda function.
+        :type fitted_model: VPCModel
+        :param data: The data the input was fitted to.
+        :type data: list[list[int  |  float]]
+        """
         super().__init__(main_window)
         self.main = main_window
         self.model = model
@@ -154,6 +165,18 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.set_result_label_text()
 
     def process_lists(self, lst: list[list[float]]) -> list[float] | list[tuple[float, ...]]:
+        """Converts a list of lists of floats into a list of floats,
+        if there is only a single sub-list.
+
+        If there are multiple sub-lists inside the input list, will zip them
+        and return a list of tuples of floats.
+
+        :param lst: List that is to be converted, typically the data the model was fitted to, or part of it.
+        :type lst: list[list[float]]
+        :raises ValueError: If there are types other than ``list`` in the outer list.
+        :return: List of floats or list of tuples of floats.
+        :rtype: list[float] | list[tuple[float, ...]]
+        """
         if len(lst) == 1 and isinstance(lst[0], list):
             return lst[0]
         elif all(isinstance(sub_lst, list) for sub_lst in lst):
@@ -161,13 +184,25 @@ class ResultInterface(customtkinter.CTkToplevel):
         else:
             raise ValueError("Got invalid input list.")
 
-    def create_difference_dict(self, list1, list2) -> dict[int,list[float]]:
-        if len(list1) != len(list2):
+    def create_difference_dict(self, list_actual, list_predicted) -> dict[int,list[float]]:
+        """Used to compute the differences (residuals) of two input lists created by ``process_lists()``.
+        Stores the differences at each index in a dictionary with index:difference pairs.
+
+        :param list_actual: list of the actual values.
+        :type list_actual: list[tuple[float, ...]]
+        :param list_predicted: list of the predicted values.
+        :type list_predicted: list[tuple[float, ...]]
+        :raises ValueError: If the input lists somehow have different lengths.
+        :raises ValueError: If a pair of tuples somehow have different lengths.
+        :return: Dictionary with the differences at their corresponding index.
+        :rtype: dict[int,list[float]]
+        """
+        if len(list_actual) != len(list_predicted):
             raise ValueError("Input lists must have the same length.")
 
         diff_dict: dict[int,list] = {}
 
-        for i, (tuple1, tuple2) in enumerate(zip(list1, list2)):
+        for i, (tuple1, tuple2) in enumerate(zip(list_actual, list_predicted)):
             if len(tuple1) != len(tuple2):
                 raise ValueError(f"Tuples at index {i} have different lengths.")
             for j, (elem1, elem2) in enumerate(zip(tuple1, tuple2)):
@@ -178,6 +213,9 @@ class ResultInterface(customtkinter.CTkToplevel):
         return diff_dict
 
     def graph_residuals(self) -> None:
+        """Method that uses matplotlib to graph the residuals of the fitted model against
+        the input data after the graph button is pressed.
+        """
         func: FunctionClass = self.fitted_model.model_function
         num_indep_vars: int = len(self.model.independent_var)
         xdata: list[list[float]] = self.data[:num_indep_vars]
@@ -217,6 +255,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         plt.show()
 
     def set_result_label_text(self) -> None:
+        """Method that sets the text inside the results textbox."""
         result_message = (
             f"Fitted model equation:\n"
             f"  {self.model.resulting_function}\n\n"
@@ -228,6 +267,9 @@ class ResultInterface(customtkinter.CTkToplevel):
         self.result_label.insert(1.0, result_message)
 
     def save_as(self) -> None:
+        """Method that calls the parent's ``save_results()`` method and
+        sets the saved_message_label's value accordingly after the save button is pressed.
+        """
         if self.main.save_results() == 0:
             self.saved_message.set("Saved to ./res/ ")
             self.save_button.configure(state="disabled")
@@ -237,5 +279,8 @@ class ResultInterface(customtkinter.CTkToplevel):
             self.saved_message.set("Something\nwent wrong")
 
     def reset_app(self) -> None:
+        """Method that calls the parent's ``reset_state()`` method to reset the app to an
+        initial state after the reset button is pressed.
+        """
         self.main.reset_state()
         self.destroy()

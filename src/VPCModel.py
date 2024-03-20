@@ -270,11 +270,11 @@ class VPCModel():
         patterns = [
             (
                 re.compile(r"\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b"),
-                "Pattern d^2()/d()^2"
+                "Pattern d^2(a)/d(b)^2"
             ),
             (
                 re.compile(r"\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b"),
-                "Pattern d()/d()"
+                "Pattern d(a)/d(b)"
             ),
             (
                 re.compile(r"[a-zA-Z]+''"),
@@ -283,17 +283,16 @@ class VPCModel():
             (
                 re.compile(r"[a-zA-Z]+'"),
                 "Pattern ()''"
-            ),
+            )
         ]
 
         for pattern, pattern_name in patterns:
             match = search(pattern=pattern, string=self._model_string)
             if match:
-                logger.debug(f"Match found with: {pattern}, function determined to be an ODE.")
+                logger.debug(f"Match found with: {pattern_name}, function determined to be an ODE.")
                 return True
         logger.debug("No match found, function determined to not be an ODE.")
         return False
-
 
     def is_vector(self) -> bool:
         """Determine whether the function is a vector based on the number of its components.

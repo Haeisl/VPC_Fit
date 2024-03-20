@@ -1,5 +1,5 @@
 ModelFitter module
-===================
+==================
 
 .. automodule:: src.ModelFitter
    :members:

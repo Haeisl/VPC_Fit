@@ -1,7 +1,7 @@
-Interface module
-=================
+VPCModel module
+===============
 
-.. automodule:: src.Interface
+.. automodule:: src.VPCModel
    :members:
    :undoc-members:
    :special-members: __init__

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FileHandler module &mdash; Virtual Patient Cohorts 2023 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>FileHandler module &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dca6b923"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="VPCData module" href="VPCData.html" />
-    <link rel="prev" title="ModelFitter module" href="ModelFitter.html" /> 
+    <link rel="next" title="ModelFitter module" href="ModelFitter.html" />
+    <link rel="prev" title="CTkResultInterface module" href="CTkResultInterface.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,33 +46,26 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">FileHandler module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#src.FileHandler.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.FORMATS"><code class="docutils literal notranslate"><span class="pre">FileHandler.FORMATS</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.MODES"><code class="docutils literal notranslate"><span class="pre">FileHandler.MODES</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.ReadMode"><code class="docutils literal notranslate"><span class="pre">FileHandler.ReadMode()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.WriteMode"><code class="docutils literal notranslate"><span class="pre">FileHandler.WriteMode()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.__init__"><code class="docutils literal notranslate"><span class="pre">FileHandler.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.fileFormat"><code class="docutils literal notranslate"><span class="pre">FileHandler.fileFormat</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.fileName"><code class="docutils literal notranslate"><span class="pre">FileHandler.fileName</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.formatData"><code class="docutils literal notranslate"><span class="pre">FileHandler.formatData()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.i"><code class="docutils literal notranslate"><span class="pre">FileHandler.i</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.mode"><code class="docutils literal notranslate"><span class="pre">FileHandler.mode</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.path"><code class="docutils literal notranslate"><span class="pre">FileHandler.path</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.readFile"><code class="docutils literal notranslate"><span class="pre">FileHandler.readFile()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.validateData"><code class="docutils literal notranslate"><span class="pre">FileHandler.validateData()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.FileHandler.FileHandler.writeFile"><code class="docutils literal notranslate"><span class="pre">FileHandler.writeFile()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FileHandler module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.FileExtensions"><code class="docutils literal notranslate"><span class="pre">FileExtensions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.FileHandler.FileExtensions.CSV"><code class="docutils literal notranslate"><span class="pre">FileExtensions.CSV</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.FileHandler.FileExtensions.EXCEL"><code class="docutils literal notranslate"><span class="pre">FileExtensions.EXCEL</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.create_dataframe_from_for"><code class="docutils literal notranslate"><span class="pre">create_dataframe_from_for()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.dataframe_tolist"><code class="docutils literal notranslate"><span class="pre">dataframe_tolist()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.get_valid_filename"><code class="docutils literal notranslate"><span class="pre">get_valid_filename()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.is_extension_supported"><code class="docutils literal notranslate"><span class="pre">is_extension_supported()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.logger"><code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.read_file"><code class="docutils literal notranslate"><span class="pre">read_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.write_file"><code class="docutils literal notranslate"><span class="pre">write_file()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="VPCData.html">VPCData module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Interface.html">Interface module</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
 </ul>
 
         </div>
@@ -87,7 +82,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">modules</a></li>
       <li class="breadcrumb-item active">FileHandler module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/FileHandler.rst.txt" rel="nofollow"> View page source</a>
@@ -99,231 +93,166 @@
            <div itemprop="articleBody">
              
   <section id="module-src.FileHandler">
-<span id="filehandler-module"></span><h1>FileHandler module<a class="headerlink" href="#module-src.FileHandler" title="Permalink to this heading"></a></h1>
+<span id="filehandler-module"></span><h1>FileHandler module<a class="headerlink" href="#module-src.FileHandler" title="Link to this heading"></a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">FileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'file_0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patientData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This is a class to handle files</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>FileNotFoundError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>TypeError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>ValueError</strong> – _description_</p></li>
-<li><p><strong>TypeError</strong> – _description_</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>_description_</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_type_</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="src.FileHandler.FileExtensions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">FileExtensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileExtensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileExtensions" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enum class that has all valid file extension names and suffixes.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.FORMATS">
-<span class="sig-name descname"><span class="pre">FORMATS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['EXCEL',</span> <span class="pre">'CSV',</span> <span class="pre">'XML']</span></em><a class="headerlink" href="#src.FileHandler.FileHandler.FORMATS" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.FileHandler.FileExtensions.CSV">
+<span class="sig-name descname"><span class="pre">CSV</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CSV'</span></em><a class="headerlink" href="#src.FileHandler.FileExtensions.CSV" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.MODES">
-<span class="sig-name descname"><span class="pre">MODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['READ',</span> <span class="pre">'WRITE']</span></em><a class="headerlink" href="#src.FileHandler.FileHandler.MODES" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.FileHandler.FileExtensions.EXCEL">
+<span class="sig-name descname"><span class="pre">EXCEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'XLSX'</span></em><a class="headerlink" href="#src.FileHandler.FileExtensions.EXCEL" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.ReadMode">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.ReadMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.ReadMode" title="Permalink to this definition"></a></dt>
-<dd><p>classmethod, returns a FileHandler class object in read mode</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – path to the file to be read</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>class object in read mode with the path to the respective file</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#src.FileHandler.FileHandler" title="src.FileHandler.FileHandler">FileHandler</a></p>
-</dd>
-</dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.WriteMode">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WriteMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pData</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.WriteMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.WriteMode" title="Permalink to this definition"></a></dt>
-<dd><p>classmethod, returns a FileHandler class object in write mode</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.FileHandler.create_dataframe_from_for">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">create_dataframe_from_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitted_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitted_consts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'f(t)</span> <span class="pre">=</span> <span class="pre">...'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_input_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'f(t)</span> <span class="pre">=</span> <span class="pre">...'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['...']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_input_parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'...'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['...']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_input_consts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['...']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_input_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'path/to/data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.FileHandler.FileExtensions" title="src.FileHandler.FileExtensions"><span class="pre">FileExtensions</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FileExtensions.EXCEL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/src/FileHandler.html#create_dataframe_from_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.create_dataframe_from_for" title="Link to this definition"></a></dt>
+<dd><p>Creates a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> for the specified <code class="docutils literal notranslate"><span class="pre">format</span></code>, i.e. either Excel or CSV.
+The data frame contains information about the user inputs into the program and what the program
+made of those. It also contains the fit of the model if possible. If no fitted model string was
+given, a warning will be logged and the field in the data frame will read ‘N/A’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em>) – path to the file to be written</p></li>
-<li><p><strong>fileName</strong> (<em>str</em>) – name of the file to be written</p></li>
-<li><p><strong>format</strong> (<em>str</em>) – format of the file to be written</p></li>
-<li><p><strong>pData</strong> (<em>any</em>) – data to be written</p></li>
+<li><p><strong>fitted_model</strong> (<em>str</em><em> | </em><em>None</em>) – The fitted model as a <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
+<li><p><strong>fitted_consts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>] </em><em>| </em><em>str</em><em> | </em><em>None</em>) – The dictionary of the constants as keys of type <code class="docutils literal notranslate"><span class="pre">str</span></code> and their value    as <code class="docutils literal notranslate"><span class="pre">float</span></code>. Alternatively just a string containing the same information.</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The model the program worked with, defaults to “f(t) = …”</p></li>
+<li><p><strong>user_input_model</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The exact model the user entered, defaults to “f(t) = …”</p></li>
+<li><p><strong>parameter</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The independent variable the program worked with, defaults to [”…”]</p></li>
+<li><p><strong>user_input_parameter</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The exact independent variables the user entered, defaults to “…”</p></li>
+<li><p><strong>consts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The constants the program worked with, defaults to [”…”]</p></li>
+<li><p><strong>user_input_consts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The exact constants the user entered, defaults to [”…”]</p></li>
+<li><p><strong>user_input_path</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The path to the data the user provided, defaults to “path/to/data”</p></li>
+<li><p><strong>format</strong> (<a class="reference internal" href="#src.FileHandler.FileExtensions" title="src.FileHandler.FileExtensions"><em>FileExtensions</em></a><em>(</em><em>, </em><em>optional</em><em>)</em>) – The format for which the data frame is constructed, defaults to FileExtensions.EXCEL</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>class object in write mode with the path, fileName, format and patient data for the respective file to be written</p>
+<dd class="field-even"><p>A data frame containing all input and output information.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#src.FileHandler.FileHandler" title="src.FileHandler.FileHandler">FileHandler</a></p>
+<dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fileName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'file_0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patientData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Constructor method</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.FileHandler.dataframe_tolist">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">dataframe_tolist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/FileHandler.html#dataframe_tolist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.dataframe_tolist" title="Link to this definition"></a></dt>
+<dd><p>Takes a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> and returns a <code class="docutils literal notranslate"><span class="pre">list</span></code> containing a separate <code class="docutils literal notranslate"><span class="pre">list</span></code>
+for every column in the original DataFrame. The values in the inner <code class="docutils literal notranslate"><span class="pre">list</span></code> are the <code class="docutils literal notranslate"><span class="pre">int</span></code>
+or <code class="docutils literal notranslate"><span class="pre">float</span></code> values that are in this column.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – path to the file to be read or written, defaults to None</p></li>
-<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – mode of the object which can be either read or write, defaults to None</p></li>
-<li><p><strong>fileName</strong> (<em>str</em><em>, </em><em>optional</em>) – name of the file to be written, defaults to file_+str(i)</p></li>
-<li><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – format of the file to be written, defaults to None</p></li>
-<li><p><strong>patientData</strong> (<em>any</em><em>, </em><em>optional</em>) – data to be read from or written to the file, defaults to None</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.fileFormat">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fileFormat</span></span><a class="headerlink" href="#src.FileHandler.FileHandler.fileFormat" title="Permalink to this definition"></a></dt>
-<dd><p>gets the format of the file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>current file format of the object</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.fileName">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fileName</span></span><a class="headerlink" href="#src.FileHandler.FileHandler.fileName" title="Permalink to this definition"></a></dt>
-<dd><p>gets the name of the file to be written</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>current fileName of the object</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.formatData">
-<span class="sig-name descname"><span class="pre">formatData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">includeFirstRow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.formatData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.formatData" title="Permalink to this definition"></a></dt>
-<dd><p>formats read data from a file to a list and transforms it to a VPCData object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>includeFirstRow</strong> (<em>bool</em>) – -deprecated-</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – object has to be in read mode</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the transformed read data</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="VPCData.html#src.VPCData.VPCData" title="src.VPCData.VPCData">VPCData</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.i">
-<span class="sig-name descname"><span class="pre">i</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#src.FileHandler.FileHandler.i" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.mode">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#src.FileHandler.FileHandler.mode" title="Permalink to this definition"></a></dt>
-<dd><p>gets the mode of the object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>current mode of the object</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.path">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#src.FileHandler.FileHandler.path" title="Permalink to this definition"></a></dt>
-<dd><p>gets the path of the file to be read or write</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>current path of the object</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.readFile">
-<span class="sig-name descname"><span class="pre">readFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.readFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.readFile" title="Permalink to this definition"></a></dt>
-<dd><p>reads data from a file and returns a dataframe</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ValueError</strong> – object has so be in read mode</p></li>
-<li><p><strong>FileNotFoundError</strong> – objects path has to be valid</p></li>
-<li><p><strong>ValueError</strong> – file of the specified path must have a format</p></li>
-<li><p><strong>TypeError</strong> – objects format is unknown, data can’t be read</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the data read from the file</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dataframe</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.validateData">
-<span class="sig-name descname"><span class="pre">validateData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.validateData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.validateData" title="Permalink to this definition"></a></dt>
-<dd><p>TODO
-read dataFrame / patientData and discard rows, if they are not fully populated
-think of way other than discarding incomplete data</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="src.FileHandler.FileHandler.writeFile">
-<span class="sig-name descname"><span class="pre">writeFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileHandler.writeFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileHandler.writeFile" title="Permalink to this definition"></a></dt>
-<dd><p>writes the given data into a file</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>any</em>) – data to be written to a file</p>
+<dd class="field-odd"><p><strong>data_frame</strong> (<em>pd.DataFrame</em>) – The <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> that is to be read.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>ValueError</strong> – object has to be in write mode</p></li>
-<li><p><strong>TypeError</strong> – file format of the file to be written can only be one of the supported ones (excel, csv, xml)</p></li>
+<li><p><strong>ValueError</strong> – If the provided data frame is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>ValueError</strong> – If the provided data frame is empty.</p></li>
+<li><p><strong>ValueError</strong> – If there are empty cells in the data frame.</p></li>
+<li><p><strong>ValueError</strong> – If there are non-<code class="docutils literal notranslate"><span class="pre">int</span></code> or non-<code class="docutils literal notranslate"><span class="pre">float</span></code> values in the data.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of lists of each column’s data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[list[float | int]]</p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="src.FileHandler.get_valid_filename">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">get_valid_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/FileHandler.html#get_valid_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.get_valid_filename" title="Link to this definition"></a></dt>
+<dd><p>Helper function to create a valid, hopefully non duplicate, string to use as a file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Stringified time from <code class="docutils literal notranslate"><span class="pre">datetime.now()</span></code> in the form of %Y-%m-%d-result-from-%Hh%Mm.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.FileHandler.is_extension_supported">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">is_extension_supported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/src/FileHandler.html#is_extension_supported"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.is_extension_supported" title="Link to this definition"></a></dt>
+<dd><p>Function to determine whether a file extension at the given path is supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path pointing to the file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if supported, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="src.FileHandler.logger">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">FileHandler</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#src.FileHandler.logger" title="Link to this definition"></a></dt>
+<dd><p>This module provides basic functionality to convert data stored in .xlsx or .csv files into python
+lists.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.FileHandler.read_file">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/src/FileHandler.html#read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.read_file" title="Link to this definition"></a></dt>
+<dd><p>Function to read a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> or <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> file from a given path
+and return its value as a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>.</p>
+<p>Uses pathlib’s <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> method to assure there is a file at the given path.
+Then tries to obtain the file’s suffix and checks for <code class="docutils literal notranslate"><span class="pre">.csv</span></code> or <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> formats,
+for which the corresponding pandas read method is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – String for path to the file that is to be read.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If there is no file at <code class="docutils literal notranslate"><span class="pre">file_path</span></code>    according to pathlib’s <code class="docutils literal notranslate"><span class="pre">is_file()</span></code> method.</p></li>
+<li><p><strong>ValueError</strong> – If the file at the provided path has no suffix.</p></li>
+<li><p><strong>TypeError</strong> – If the file at the provided path is not either an excel table or csv file.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> containing all information that is read from the excel or csv file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.FileHandler.write_file">
+<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">write_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.FileHandler.FileExtensions" title="src.FileHandler.FileExtensions"><span class="pre">FileExtensions</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FileExtensions.EXCEL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/FileHandler.html#write_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.write_file" title="Link to this definition"></a></dt>
+<dd><p>Writes the provided <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> as either .xlsx or .csv
+to the hard-coded program’s <code class="docutils literal notranslate"><span class="pre">/res/</span></code> directory.</p>
+<p>If there is no <code class="docutils literal notranslate"><span class="pre">./res/</span></code> directory relative to where the program was started from,
+that directory will be created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_frame</strong> (<em>pd.DataFrame</em>) – The data frame that is to be written.</p></li>
+<li><p><strong>file_format</strong> (<a class="reference internal" href="#src.FileHandler.FileExtensions" title="src.FileHandler.FileExtensions"><em>FileExtensions</em></a><em>, </em><em>optional</em>) – What format the written file should have, defaults to FileExtensions.EXCEL.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If the provided <code class="docutils literal notranslate"><span class="pre">file_format</span></code> was neither Excel nor CSV.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -332,14 +261,14 @@ think of way other than discarding incomplete data</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ModelFitter.html" class="btn btn-neutral float-left" title="ModelFitter module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="VPCData.html" class="btn btn-neutral float-right" title="VPCData module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="CTkResultInterface.html" class="btn btn-neutral float-left" title="CTkResultInterface module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ModelFitter.html" class="btn btn-neutral float-right" title="ModelFitter module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

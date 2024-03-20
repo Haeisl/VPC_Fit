@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ModelFitter module &mdash; Virtual Patient Cohorts 2023 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>ModelFitter module &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dca6b923"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FileHandler module" href="FileHandler.html" />
-    <link rel="prev" title="modules" href="modules.html" /> 
+    <link rel="next" title="VPCModel module" href="VPCModel.html" />
+    <link rel="prev" title="FileHandler module" href="FileHandler.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,22 +46,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ModelFitter module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#src.ModelFitter.ModelFitter"><code class="docutils literal notranslate"><span class="pre">ModelFitter</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#src.ModelFitter.ModelFitter.__init__"><code class="docutils literal notranslate"><span class="pre">ModelFitter.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.ModelFitter.ModelFitter.fit"><code class="docutils literal notranslate"><span class="pre">ModelFitter.fit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#src.ModelFitter.ModelFitter.stringToFunction"><code class="docutils literal notranslate"><span class="pre">ModelFitter.stringToFunction()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ModelFitter module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.check_model_is_valid_vector"><code class="docutils literal notranslate"><span class="pre">check_model_is_valid_vector()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.evaluate_fit"><code class="docutils literal notranslate"><span class="pre">evaluate_fit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.logger"><code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.set_model_information"><code class="docutils literal notranslate"><span class="pre">set_model_information()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VPCData.html">VPCData module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Interface.html">Interface module</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
 </ul>
 
         </div>
@@ -76,7 +75,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">modules</a></li>
       <li class="breadcrumb-item active">ModelFitter module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/ModelFitter.rst.txt" rel="nofollow"> View page source</a>
@@ -88,45 +86,80 @@
            <div itemprop="articleBody">
              
   <section id="module-src.ModelFitter">
-<span id="modelfitter-module"></span><h1>ModelFitter module<a class="headerlink" href="#module-src.ModelFitter" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">ModelFitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This is a class to handle the model fitter</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Constructor method</p>
+<span id="modelfitter-module"></span><h1>ModelFitter module<a class="headerlink" href="#module-src.ModelFitter" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ModelFitter.check_model_is_valid_vector">
+<span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">check_model_is_valid_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/src/ModelFitter.html#check_model_is_valid_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.check_model_is_valid_vector" title="Link to this definition"></a></dt>
+<dd><p>Checks if the model is valid when comparing it the the sample data.
+A model is an invalid if there are not enough columns in the data to account for all
+independent variables and the result components.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>equation</strong> (<em>str</em>) – the equation of the function to be fitted</p></li>
-<li><p><strong>parameter</strong> (<em>any</em><em>, </em><em>optional</em>) – fitted parameter of the function</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – The model that is to be checked.</p></li>
+<li><p><strong>columns</strong> (<em>int</em>) – The number of columns in the provided data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If there are too few or too many columns in the data.    Too few make it impossible to fit the model, too many make it ambiguous as to what the extra    columns are supposed to mean, or which columns are even to be regarded and which ones not.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the model is a vector.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ModelFitter.evaluate_fit">
+<span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">evaluate_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pcov</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#evaluate_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.evaluate_fit" title="Link to this definition"></a></dt>
+<dd><p>Function to evaluate the goodness of the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pcov</strong> (<em>2D-array</em>) – Covariance matrix of the fit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ModelFitter.fit">
+<span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/ModelFitter.html#fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.fit" title="Link to this definition"></a></dt>
+<dd><p>Main entry function for fitting.
+Fitting a model to data, using slightly different routines for models
+that are differential equation. Should be able to handle most regular functions
+and ODEs up to second order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – The model that is supposed to be fitted.</p></li>
+<li><p><strong>data</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>  |  </em><em>float</em><em>]</em><em>]</em>) – The data the model is supposed to be fitted to.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter.fit" title="Permalink to this definition"></a></dt>
-<dd><p>returns the fitted parameters of the given equation based on the input data</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="src.ModelFitter.logger">
+<span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">ModelFitter</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#src.ModelFitter.logger" title="Link to this definition"></a></dt>
+<dd><p>This module provides functions to fit a model to data.</p>
+<p>The fitting routines are based on the assumption that the model is of type VPCModel
+with provided data consisting of a list of lists where each sub-list is a column from a datasheet.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.ModelFitter.set_model_information">
+<span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">set_model_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitted_consts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/ModelFitter.html#set_model_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.set_model_information" title="Link to this definition"></a></dt>
+<dd><p>Set the fitted model information to the models internal variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>list</em><em>[</em><a class="reference internal" href="VPCData.html#src.VPCData.VPCData" title="src.VPCData.VPCData"><em>VPCData</em></a><em>]</em>) – the user’s input measurement data</p></li>
-<li><p><strong>equation</strong> (<em>str</em>) – the function equation entered by the user</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – The fitted model that gets its information set.</p></li>
+<li><p><strong>fitted_consts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em>) – The fitted model constants.</p></li>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="src.ModelFitter.ModelFitter.stringToFunction">
-<span class="sig-name descname"><span class="pre">stringToFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/ModelFitter.html#ModelFitter.stringToFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.ModelFitter.stringToFunction" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -135,14 +168,14 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="FileHandler.html" class="btn btn-neutral float-right" title="FileHandler module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="FileHandler.html" class="btn btn-neutral float-left" title="FileHandler module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="VPCModel.html" class="btn btn-neutral float-right" title="VPCModel module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

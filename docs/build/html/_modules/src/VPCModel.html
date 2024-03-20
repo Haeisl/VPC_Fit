@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.VPCModel &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6fefd858"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.VPCModel</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.VPCModel</h1><div class="highlight"><pre>
+<span></span><span class="c1"># standard library imports</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">search</span><span class="p">,</span> <span class="n">finditer</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># related third party imports</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">FunctionClass</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">lambdify</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">parse_expr</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;VPCModel&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VPCModel">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">VPCModel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dataclass to store a model and extract relevant information from it.&quot;&quot;&quot;</span>
+
+    <span class="n">_model_string</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_independent_var</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set some internal variables post initialization of the model.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_expression_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cut_off_lhs</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model_function</span><span class="p">:</span> <span class="n">FunctionClass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_string_to_function</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expression_string</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fitted_consts</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># {&quot;a&quot;: 1.437, &quot;b&quot;: 3.25, ...}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resulting_function</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">model_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the model string of the class instance.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: The model string without leading/trailing spaces and some character replacements.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_eq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">independent_var</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the list of independent variables of the class instance.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: List of all independent variables of the model.</span>
+<span class="sd">        :rtype: list[str]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">expression_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the expression string (right-hand side) of the class instance.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: The expression string of the model.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expression_string</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">model_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FunctionClass</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the lambdified model function of the class instance.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: FunctionClass / lambda expression of the model function.</span>
+<span class="sd">        :rtype: sympy.FunctionClass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_function</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the list of symbols that are in the expression of the class instance.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: List of all symbols in the model expression.</span>
+<span class="sd">        :rtype: list[str]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_symbols</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">constants</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the list of constants in the model expression that are to be fitted.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: List of all constants in the model expression.</span>
+<span class="sd">        :rtype: list[str]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the number of components the result has, i.e. if it is a vector.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: Number of components of the model expression.</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fitted_consts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the dictionary of fitted constants of the function.</span>
+<span class="sd">        If this value is not set at the time of accessing it through this property,</span>
+<span class="sd">        an empty dictionary will be returned.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: Dictionary with constant:value as its pairs.</span>
+<span class="sd">        :rtype: dict[str, float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted_consts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fitted_consts</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resulting_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to return the stringified function with the computed constants in it.</span>
+<span class="sd">        If this value is not set at the time of accessing it through this property,</span>
+<span class="sd">        an empty string will be returned.</span>
+
+<span class="sd">        A property without an accompanying setter is used to prohibit setting this value.</span>
+
+<span class="sd">        :return: The string of the final/resulting function after the fit.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resulting_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resulting_function</span>
+
+    <span class="k">def</span> <span class="nf">_set_fitted_consts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitted_consts_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Function to set the computed fitted constants to its internal variable.</span>
+
+<span class="sd">        :param fitted_consts_dict: Dictionary of {&#39;const_name&#39;: value}</span>
+<span class="sd">        :type fitted_consts_dict: dict[str, float]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fitted_consts</span> <span class="o">=</span> <span class="n">fitted_consts_dict</span>
+
+    <span class="k">def</span> <span class="nf">_set_resulting_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitted_function</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Function to set the computed fitted function to its internal variable.</span>
+
+<span class="sd">        :param fitted_function: The fitted function string.</span>
+<span class="sd">        :type fitted_function: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resulting_function</span> <span class="o">=</span> <span class="n">fitted_function</span>
+
+<div class="viewcode-block" id="VPCModel.format_eq">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.format_eq">[docs]</a>
+    <span class="k">def</span> <span class="nf">format_eq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equation</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Replaces some characters for others in a string. Strips leading and trailing spaces.</span>
+
+<span class="sd">        :param equation: The string in which characters will be replaced.</span>
+<span class="sd">        :type equation: str</span>
+<span class="sd">        :return: Stripped input string with replaced characters.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">equation</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;^&quot;</span><span class="p">,</span> <span class="s2">&quot;**&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VPCModel.cut_off_lhs">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.cut_off_lhs">[docs]</a>
+    <span class="k">def</span> <span class="nf">cut_off_lhs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cuts off the left hand side of an equation, indicated by an equals sign.</span>
+<span class="sd">        Also strips leading and trailing spaces and replaces some characters if needed.</span>
+
+<span class="sd">        :return: Model equation without left hand side, including the equals sign.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">equation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">equation</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ind</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_eq</span><span class="p">(</span><span class="n">equation</span><span class="p">[</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_eq</span><span class="p">(</span><span class="n">equation</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VPCModel.cut_off_rhs">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.cut_off_rhs">[docs]</a>
+    <span class="k">def</span> <span class="nf">cut_off_rhs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cuts off the right hand side of an equation, indicated by an equals sign.</span>
+<span class="sd">        Also strips leading and trailing spaces and replaces some characters if needed.</span>
+
+<span class="sd">        :return: Model equation without right hand side, including the equals sign.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">equation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">equation</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ind</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_eq</span><span class="p">(</span><span class="n">equation</span><span class="p">[:</span><span class="n">ind</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_eq</span><span class="p">(</span><span class="n">equation</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VPCModel.extract_symbols">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.extract_symbols">[docs]</a>
+    <span class="k">def</span> <span class="nf">extract_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sorting_prio</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract all unique symbols out of the model equations right-hand side.</span>
+
+<span class="sd">        Unique symbols are single or multi-character sequences consisting of letters.</span>
+<span class="sd">        If a sorting prio is given, the characters in it are returned at the front of the output,</span>
+<span class="sd">        the rest is ordered alphabetically.</span>
+
+<span class="sd">        :param sorting_prio: Characters to be placed at the start of the output , defaults to None</span>
+<span class="sd">        :type sorting_prio: list[str] | None, optional</span>
+<span class="sd">        :return: All unique symbols in the expression on the right-hand of the equation.</span>
+<span class="sd">        :rtype: list[str]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">expression</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span>
+
+        <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">expression</span><span class="p">:</span>
+            <span class="n">expression</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cut_off_lhs</span><span class="p">()</span>
+
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">unique_symbols</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b[a-zA-Z]+\b|\b[a-zA-Z]\b&quot;</span><span class="p">,</span> <span class="n">expression</span><span class="p">):</span>
+            <span class="n">symbol</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">symbol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+                <span class="n">unique_symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sorting_prio</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">custom_sort_key</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">prio</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">prio</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">char</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">char</span><span class="p">)</span>
+
+            <span class="n">unique_symbols</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">custom_sort_key</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sorting_prio</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">unique_symbols</span></div>
+
+
+<div class="viewcode-block" id="VPCModel.model_string_to_function">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.model_string_to_function">[docs]</a>
+    <span class="k">def</span> <span class="nf">model_string_to_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FunctionClass</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a lambda function based on the model equation.</span>
+
+<span class="sd">        Extracts all symbols from the expression and converts them to SymPy symbols.</span>
+<span class="sd">        Finally lambdifies the expression to return a callable model function.</span>
+
+<span class="sd">        :return: Lambdified model expression.</span>
+<span class="sd">        :rtype: FunctionClass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">sorted_symbols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span><span class="p">)</span>
+        <span class="n">expression</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expression_string</span>
+        <span class="n">sympy_vars</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="n">sorted_symbols</span><span class="p">)</span>
+        <span class="n">parsed_expression</span> <span class="o">=</span> <span class="n">parse_expr</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+        <span class="n">func</span><span class="p">:</span> <span class="n">FunctionClass</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">sympy_vars</span><span class="p">,</span> <span class="n">parsed_expression</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;scipy&quot;</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">func</span></div>
+
+
+<div class="viewcode-block" id="VPCModel.is_ode">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.is_ode">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_ode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines whether the model is an ODE of at most 2nd order.</span>
+
+<span class="sd">        :return: True if at most 2nd order ODE, False otherwise.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># # pattern d^2{variable}/d{other_variable}^2</span>
+        <span class="c1"># second_derivative = r&quot;\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b&quot;</span>
+        <span class="c1"># # pattern d{variable}/d{other_variable}</span>
+        <span class="c1"># first_derivative = r&quot;\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b&quot;</span>
+        <span class="c1"># # pattern y&#39;&#39;</span>
+        <span class="c1"># symbol_prime_prime = r&quot;[a-zA-Z]+&#39;&#39;&quot;</span>
+        <span class="c1"># # pattern y&#39;</span>
+        <span class="c1"># symbol_prime = r&quot;[a-zA-Z]+&#39;&quot;</span>
+
+        <span class="c1"># patterns = [second_derivative, first_derivative, symbol_prime_prime, symbol_prime]</span>
+
+        <span class="c1"># match = any(search(pattern, self._model_string) for pattern in patterns)</span>
+
+        <span class="c1"># return match</span>
+
+        <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;Pattern d^2(a)/d(b)^2&quot;</span>
+            <span class="p">),</span>
+            <span class="p">(</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;Pattern d(a)/d(b)&quot;</span>
+            <span class="p">),</span>
+            <span class="p">(</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-zA-Z]+&#39;&#39;&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;Pattern ()&#39;&quot;</span>
+            <span class="p">),</span>
+            <span class="p">(</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-zA-Z]+&#39;&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;Pattern ()&#39;&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">pattern_name</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Match found with: </span><span class="si">{</span><span class="n">pattern_name</span><span class="si">}</span><span class="s2">, function determined to be an ODE.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;No match found, function determined to not be an ODE.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="VPCModel.is_vector">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.is_vector">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determine whether the function is a vector based on the number of its components.</span>
+
+<span class="sd">        :raises Exception: If components are less than 1.</span>
+<span class="sd">        :return: True if the model is a vector, False otherwise.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Model components are unexpectedly less than 1.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">&gt;</span> <span class="mi">1</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

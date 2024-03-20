@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Virtual Patient Cohorts’s documentation! &mdash; Virtual Patient Cohorts 2023 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Welcome to Virtual Patient Cohorts’s documentation! &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dca6b923"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="modules" href="modules.html" /> 
+    <link rel="next" title="main" href="main.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,8 +45,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
 </ul>
 
         </div>
@@ -72,26 +78,100 @@
            <div itemprop="articleBody">
              
   <section id="welcome-to-virtual-patient-cohorts-s-documentation">
-<h1>Welcome to Virtual Patient Cohorts’s documentation!<a class="headerlink" href="#welcome-to-virtual-patient-cohorts-s-documentation" title="Permalink to this heading"></a></h1>
+<h1>Welcome to Virtual Patient Cohorts’s documentation!<a class="headerlink" href="#welcome-to-virtual-patient-cohorts-s-documentation" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="VPCData.html">VPCData module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Interface.html">Interface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.handle_leftclick"><code class="docutils literal notranslate"><span class="pre">handle_leftclick()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Unittests.html">Unittests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp"><code class="docutils literal notranslate"><span class="pre">MainApp</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.__init__"><code class="docutils literal notranslate"><span class="pre">MainApp.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.are_components_equal"><code class="docutils literal notranslate"><span class="pre">MainApp.are_components_equal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.browse_files"><code class="docutils literal notranslate"><span class="pre">MainApp.browse_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.check_inputs_populated"><code class="docutils literal notranslate"><span class="pre">MainApp.check_inputs_populated()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.check_inputs_sensible"><code class="docutils literal notranslate"><span class="pre">MainApp.check_inputs_sensible()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.compute_params"><code class="docutils literal notranslate"><span class="pre">MainApp.compute_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.confirm_input"><code class="docutils literal notranslate"><span class="pre">MainApp.confirm_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.create_interpretation_string"><code class="docutils literal notranslate"><span class="pre">MainApp.create_interpretation_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.create_tooltip_for"><code class="docutils literal notranslate"><span class="pre">MainApp.create_tooltip_for()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.display_interpreted_input"><code class="docutils literal notranslate"><span class="pre">MainApp.display_interpreted_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.missing_independent_variables"><code class="docutils literal notranslate"><span class="pre">MainApp.missing_independent_variables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.remove_compute_tooltip"><code class="docutils literal notranslate"><span class="pre">MainApp.remove_compute_tooltip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.reset_state"><code class="docutils literal notranslate"><span class="pre">MainApp.reset_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.save_results"><code class="docutils literal notranslate"><span class="pre">MainApp.save_results()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface"><code class="docutils literal notranslate"><span class="pre">ResultInterface</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.__init__"><code class="docutils literal notranslate"><span class="pre">ResultInterface.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.create_difference_dict"><code class="docutils literal notranslate"><span class="pre">ResultInterface.create_difference_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.graph_residuals"><code class="docutils literal notranslate"><span class="pre">ResultInterface.graph_residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.process_lists"><code class="docutils literal notranslate"><span class="pre">ResultInterface.process_lists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.reset_app"><code class="docutils literal notranslate"><span class="pre">ResultInterface.reset_app()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.save_as"><code class="docutils literal notranslate"><span class="pre">ResultInterface.save_as()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.set_result_label_text"><code class="docutils literal notranslate"><span class="pre">ResultInterface.set_result_label_text()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.FileExtensions"><code class="docutils literal notranslate"><span class="pre">FileExtensions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FileHandler.html#src.FileHandler.FileExtensions.CSV"><code class="docutils literal notranslate"><span class="pre">FileExtensions.CSV</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="FileHandler.html#src.FileHandler.FileExtensions.EXCEL"><code class="docutils literal notranslate"><span class="pre">FileExtensions.EXCEL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.create_dataframe_from_for"><code class="docutils literal notranslate"><span class="pre">create_dataframe_from_for()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.dataframe_tolist"><code class="docutils literal notranslate"><span class="pre">dataframe_tolist()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.get_valid_filename"><code class="docutils literal notranslate"><span class="pre">get_valid_filename()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.is_extension_supported"><code class="docutils literal notranslate"><span class="pre">is_extension_supported()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.logger"><code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.read_file"><code class="docutils literal notranslate"><span class="pre">read_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.write_file"><code class="docutils literal notranslate"><span class="pre">write_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.check_model_is_valid_vector"><code class="docutils literal notranslate"><span class="pre">check_model_is_valid_vector()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.evaluate_fit"><code class="docutils literal notranslate"><span class="pre">evaluate_fit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.logger"><code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.set_model_information"><code class="docutils literal notranslate"><span class="pre">set_model_information()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel"><code class="docutils literal notranslate"><span class="pre">VPCModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.__init__"><code class="docutils literal notranslate"><span class="pre">VPCModel.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.components"><code class="docutils literal notranslate"><span class="pre">VPCModel.components</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.constants"><code class="docutils literal notranslate"><span class="pre">VPCModel.constants</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.cut_off_lhs"><code class="docutils literal notranslate"><span class="pre">VPCModel.cut_off_lhs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.cut_off_rhs"><code class="docutils literal notranslate"><span class="pre">VPCModel.cut_off_rhs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.expression_string"><code class="docutils literal notranslate"><span class="pre">VPCModel.expression_string</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.extract_symbols"><code class="docutils literal notranslate"><span class="pre">VPCModel.extract_symbols()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.fitted_consts"><code class="docutils literal notranslate"><span class="pre">VPCModel.fitted_consts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.format_eq"><code class="docutils literal notranslate"><span class="pre">VPCModel.format_eq()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.independent_var"><code class="docutils literal notranslate"><span class="pre">VPCModel.independent_var</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.is_ode"><code class="docutils literal notranslate"><span class="pre">VPCModel.is_ode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.is_vector"><code class="docutils literal notranslate"><span class="pre">VPCModel.is_vector()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.model_function"><code class="docutils literal notranslate"><span class="pre">VPCModel.model_function</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.model_string"><code class="docutils literal notranslate"><span class="pre">VPCModel.model_string</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.model_string_to_function"><code class="docutils literal notranslate"><span class="pre">VPCModel.model_string_to_function()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.resulting_function"><code class="docutils literal notranslate"><span class="pre">VPCModel.resulting_function</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.symbols"><code class="docutils literal notranslate"><span class="pre">VPCModel.symbols</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -103,13 +183,13 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-right" title="modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="main.html" class="btn btn-neutral float-right" title="main" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

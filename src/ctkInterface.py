@@ -26,13 +26,15 @@ customtkinter.set_default_color_theme("green")
 
 
 class MainApp(customtkinter.CTk):
-    """This is a class to handle the functionality and setup of the interface
+    """Main interface of the program. Providing ways for the user to input information
+    that gets checked for to finally be able to fit a model to data.
 
-    :param customtkinter: tkinter extension to create modern looking user interfaces
-    :type customtkinter: CustomTkinter module
+    Uses a ``tkinter`` extension called ``customtkinter`` to achieve a modern look.
     """
     def __init__(self) -> None:
-        """Constructor method to set up the main application"""
+        """Setup of the main interface window seen after starting the program,
+        arranging widgets and setting default values.
+        """
         super().__init__()
 
         # window configuration
@@ -282,11 +284,9 @@ class MainApp(customtkinter.CTk):
                 raise AttributeError(f"tried to find Attribute {attr_name}, but nothing was found")
 
         logger.info("Successfully reset to initial state.")
-        # print("Successfully reset to initial state.")
 
     def remove_compute_tooltip(self) -> None:
-        """removes the tooltip and enables the "compute parameters" button
-        """
+        """Removes the tooltip and its bindings from and enables the 'compute parameters' button."""
         if self.compute_button_tooltip.winfo_exists():
             # unbinding compute button bindings
             self.compute_params_button.unbind("<Enter>")
@@ -305,15 +305,16 @@ class MainApp(customtkinter.CTk):
         consts: list[str] = ["..."],
         **kwargs: str | None
     ) -> str:
-        """creates the interpretation string of the user input
+        """Creates the interpretation string of the user input to be displayed at the right side
+        of the program.
 
-        :param function: interpreted function, defaults to "..."
+        :param function: Interpreted function, defaults to "...".
         :type function: str, optional
-        :param var: interpreted independent variable(s), defaults to "..."
+        :param var: Interpreted independent variables, defaults to "...".
         :type var: str, optional
-        :param consts: interpreted parameters to fit, defaults to "..."
+        :param consts: Interpreted parameters to fit, defaults to "...".
         :type consts: str, optional
-        :return: all together, interpreted input
+        :return: A multi-line f-string containing the entered information.
         :rtype: str
         """
         msg = (
@@ -331,7 +332,7 @@ class MainApp(customtkinter.CTk):
         return msg
 
     def display_interpreted_input(self, msg: str) -> None:
-        """shows the interpretation of the user input
+        """Shows the interpretation of the user input.
 
         :param msg: interpretation of the user input
         :type msg: str
@@ -342,8 +343,8 @@ class MainApp(customtkinter.CTk):
         self.input_confirmation_textbox.insert("1.0", msg)
 
     def browse_files(self) -> None:
-        """opens a filedialog to let the user select a data file
-        sets the filepath and filename when selected
+        """Opens a ``tkinter.filedialog`` to let the user select a file containing fitting data.
+        Sets internal variables to the file path and name when a file is successfully selected.
         """
         logger.info("Browse files button pressed")
         filetypes = [("Excel files", "*.xlsx"), ("CSV files", "*.csv"), ("All", "*.*")]
@@ -363,10 +364,11 @@ class MainApp(customtkinter.CTk):
         self.file_path = fp.name
 
     def missing_independent_variables(self) -> list:
-        """returns list of all variables that were entered (t if nothing entered)
-        that are not present in model
+        """Returns list of all characters or strings that were entered in the independent
+        parameter field that are not present in the model string.
+        If the field was left empty 't' is defaulted to.
 
-        :return: list of symbols
+        :return: List of missing symbols.
         :rtype: list
         """
         indep_vars = re.split(r",\s|,|;\s|;", self.what_parameter_entry.get())
@@ -383,6 +385,14 @@ class MainApp(customtkinter.CTk):
         return missing_vars
 
     def are_components_equal(self) -> bool:
+        """Checks whether the components assumed by the ``VPCModel`` model and given components
+        in the interface are the same.
+
+        Will default to ``True``, if the value in the result components field is left on 'auto'.
+
+        :return: Whether the given and assumed components match.
+        :rtype: bool
+        """
         if self.result_components_combobox.get() == "auto":
             given = self.model.components
         else:
@@ -391,9 +401,9 @@ class MainApp(customtkinter.CTk):
         return given == assumed
 
     def check_inputs_populated(self) -> str:
-        """checks the user input for missing inputs.
+        """Checks the various fields for missing user input.
 
-        :return: message with errors, if found
+        :return: Message with missing or invalid entried, empty if okay.
         :rtype: str
         """
         msg = ""
@@ -411,15 +421,21 @@ class MainApp(customtkinter.CTk):
         if (not Path(self.file_path).exists()) or self.file_path == "":
             msg += (
                 f"No file path given\n"
-                f"or path doesn\'t exist.\n\n"
+                f"or path doesn't exist.\n\n"
             )
         return msg
 
     def check_inputs_sensible(self) -> str:
+        """Checks whether the user input 'makes sense', e.g. if there are unfitted constants in the
+        model expression.
+
+        :return: Message with apparent issues in the user's input.
+        :rtype: str
+        """
         msg = ""
         if not self.model.constants:
             msg += (
-                f"No constants to fit"
+                f"No constants to fit."
             )
         missing_vars = self.missing_independent_variables()
         if missing_vars:
@@ -448,8 +464,12 @@ class MainApp(customtkinter.CTk):
         return msg
 
     def confirm_input(self) -> None:
-        """displays the user"s input and removes tooltip
-        or displays errors in the input, if any are found
+        """Runs ``check_inputs_populated()`` and ``check_inputs_sensible()``
+        and displays any strings returned by those to the user.
+
+        If no issues are present, displays the interpreted inputs to
+        the user for human validation, enables the 'compute' button and uses the input to set
+        various internal variables.
         """
         logger.info("Confirm button pressed")
         error_msg = ""
@@ -463,6 +483,21 @@ class MainApp(customtkinter.CTk):
         self.model = VPCModel(self.equation_entry.get(), indep_param)
 
         error_msg += self.check_inputs_sensible()
+
+        try:
+            data = FileHandler.read_file(self.file_path)
+            data_list = FileHandler.dataframe_tolist(data)
+        except Exception as e:
+            logger.error(
+                f"Error occurred when reading file, see:"
+                f"  {e}"
+            )
+            error_msg += (
+                f"Error reading input file.\n"
+                f"See logs for more info."
+            )
+            return
+
         if error_msg:
             self.display_interpreted_input(error_msg)
             return
@@ -472,11 +507,9 @@ class MainApp(customtkinter.CTk):
             self.model.independent_var,
             self.model.constants
         )
+
         self.display_interpreted_input(msg)
         self.remove_compute_tooltip()
-
-        data = FileHandler.read_file(self.file_path)
-        data_list = FileHandler.dataframe_tolist(data)
 
         logger.debug(
             f"Dynamic lambda {self.model.model_function} with:\n"
@@ -503,7 +536,8 @@ class MainApp(customtkinter.CTk):
         )
 
     def compute_params(self) -> None:
-        """starts the calculation process of the parameters to be fitted
+        """Runs ``ModelFitter.fit()`` on the model and data and opens a window with the results
+        on top of the current one.
         """
         logger.info("Compute parameters button pressed")
 
@@ -517,10 +551,14 @@ class MainApp(customtkinter.CTk):
             fitted_model=fitted,
             data=self._data
         )
-        # result_window.lift()
         result_window.focus_set()
 
     def save_results(self) -> int:
+        """Saves relevant inputs and outputs of the program in a file.
+
+        :return: 0 if ``FileHandler.write_file()`` finished normally, 1 otherwise.
+        :rtype: int
+        """
         format = FileExtensions.EXCEL
         data = FileHandler.create_dataframe_from_for(
             fitted_model=self._model.resulting_function,
@@ -542,5 +580,5 @@ class MainApp(customtkinter.CTk):
             FileHandler.write_file(data, file_format=format)
             return 0
         except TypeError as e:
-            logger.error(f"Error writing file {e}", exc_info=True)
+            logger.error(f"Error writing file, {e}", exc_info=True)
             return 1

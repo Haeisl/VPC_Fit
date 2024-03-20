@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.ModelFitter &mdash; Virtual Patient Cohorts 2023 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>src.ModelFitter &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=dca6b923"></script>
+        <script src="../../_static/documentation_options.js?v=6fefd858"></script>
         <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -41,8 +43,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VPCModel.html">VPCModel module</a></li>
 </ul>
 
         </div>
@@ -70,45 +76,334 @@
            <div itemprop="articleBody">
              
   <h1>Source code for src.ModelFitter</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">lambdify</span>
+<span></span><span class="c1"># standard library imports</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
-<div class="viewcode-block" id="ModelFitter"><a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.ModelFitter">[docs]</a><span class="k">class</span> <span class="nc">ModelFitter</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a class to handle the model fitter</span>
+<span class="c1"># related third party imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">parse_expr</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">lambdify</span><span class="p">,</span> <span class="n">Function</span><span class="p">,</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">dsolve</span><span class="p">,</span> <span class="n">Derivative</span>
+
+<span class="c1"># local imports</span>
+<span class="kn">from</span> <span class="nn">src.VPCModel</span> <span class="kn">import</span> <span class="n">VPCModel</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;ModelFitter&quot;</span><span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides functions to fit a model to data.</span>
+
+<span class="sd">The fitting routines are based on the assumption that the model is of type VPCModel</span>
+<span class="sd">with provided data consisting of a list of lists where each sub-list is a column from a datasheet.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="fit">
+<a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.fit">[docs]</a>
+<span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">VPCModel</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main entry function for fitting.</span>
+<span class="sd">    Fitting a model to data, using slightly different routines for models</span>
+<span class="sd">    that are differential equation. Should be able to handle most regular functions</span>
+<span class="sd">    and ODEs up to second order.</span>
+
+<span class="sd">    :param model: The model that is supposed to be fitted.</span>
+<span class="sd">    :type model: VPCModel</span>
+<span class="sd">    :param data: The data the model is supposed to be fitted to.</span>
+<span class="sd">    :type data: list[list[int  |  float]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">is_ode</span><span class="p">():</span>
+        <span class="n">_fit_ode</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_fit_reg</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ModelFitter.__init__"><a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.ModelFitter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor method</span>
 
-<span class="sd">        :param equation: the equation of the function to be fitted</span>
-<span class="sd">        :type equation: str</span>
-<span class="sd">        :param parameter: fitted parameter of the function</span>
-<span class="sd">        :type parameter: any, optional</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">equation</span> <span class="o">=</span> <span class="n">equation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="ModelFitter.fit"><a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.ModelFitter.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">equation</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns the fitted parameters of the given equation based on the input data </span>
+<span class="k">def</span> <span class="nf">_fit_ode</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">VPCModel</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
 
-<span class="sd">        :param data: the user&#39;s input measurement data</span>
-<span class="sd">        :type data: list[VPCData]</span>
-<span class="sd">        :param equation: the function equation entered by the user</span>
-<span class="sd">        :type equation: str</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
-    
-<div class="viewcode-block" id="ModelFitter.stringToFunction"><a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.ModelFitter.stringToFunction">[docs]</a>    <span class="k">def</span> <span class="nf">stringToFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">equation</span><span class="p">):</span>
-        <span class="c1"># T | Temporary, should be replaced with an earlier check</span>
-        <span class="c1"># E | maybe ask user what variable should stay?</span>
-        <span class="c1"># M | otherwise just assume &#39;t&#39; and throw error else</span>
-        <span class="c1"># P | </span>
-        <span class="n">t</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-        <span class="n">expr</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">equation</span><span class="p">)</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">func</span></div></div>
-        
+
+<span class="k">def</span> <span class="nf">_fit_reg</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">VPCModel</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fitting function for models that are not ODEs. Attempts to fit the model to the data and</span>
+<span class="sd">    sets the internal variables of the model to the fitted values.</span>
+
+<span class="sd">    :param model: The model that is supposed to be fitted.</span>
+<span class="sd">    :type model: VPCModel</span>
+<span class="sd">    :param data: The data the model is supposed to be fitted to.</span>
+<span class="sd">    :type data: list[list[int  |  float]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_indep_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">independent_var</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">check_model_is_valid_vector</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="c1"># assumption: first col for independent var, rest for results for components in order</span>
+        <span class="n">formatted_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">indep</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">model_function</span><span class="p">(</span><span class="o">*</span><span class="n">indep</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">))</span>
+        <span class="n">running_var_vals</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_indep_vars</span><span class="p">))</span>
+        <span class="n">model_res_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="n">num_indep_vars</span><span class="p">:])))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">=</span><span class="n">formatted_function</span><span class="p">,</span>
+            <span class="n">xdata</span><span class="o">=</span><span class="n">running_var_vals</span><span class="p">,</span>
+            <span class="n">ydata</span><span class="o">=</span><span class="n">model_res_vals</span><span class="p">,</span>
+            <span class="n">p0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># assumption: first col for independent var, second for results</span>
+        <span class="n">formatted_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">indep</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">model_function</span><span class="p">(</span><span class="o">*</span><span class="n">indep</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">running_var_vals</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_indep_vars</span><span class="p">))</span>
+        <span class="n">model_res_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">num_indep_vars</span><span class="p">])</span>
+        <span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span>
+            <span class="n">f</span><span class="o">=</span><span class="n">formatted_function</span><span class="p">,</span>
+            <span class="n">xdata</span><span class="o">=</span><span class="n">running_var_vals</span><span class="p">,</span>
+            <span class="n">ydata</span><span class="o">=</span><span class="n">model_res_vals</span><span class="p">,</span>
+            <span class="n">p0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="n">fitted_consts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span><span class="p">,</span> <span class="n">popt</span><span class="p">))</span>
+    <span class="n">set_model_information</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">fitted_consts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="check_model_is_valid_vector">
+<a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.check_model_is_valid_vector">[docs]</a>
+<span class="k">def</span> <span class="nf">check_model_is_valid_vector</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">VPCModel</span><span class="p">,</span> <span class="n">columns</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if the model is valid when comparing it the the sample data.</span>
+<span class="sd">    A model is an invalid if there are not enough columns in the data to account for all</span>
+<span class="sd">    independent variables and the result components.</span>
+
+<span class="sd">    :param model: The model that is to be checked.</span>
+<span class="sd">    :type model: VPCModel</span>
+<span class="sd">    :param columns: The number of columns in the provided data.</span>
+<span class="sd">    :type columns: int</span>
+<span class="sd">    :raises Exception: If there are too few or too many columns in the data.\</span>
+<span class="sd">    Too few make it impossible to fit the model, too many make it ambiguous as to what the extra\</span>
+<span class="sd">    columns are supposed to mean, or which columns are even to be regarded and which ones not.</span>
+<span class="sd">    :return: Whether the model is a vector.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_indep_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">independent_var</span><span class="p">)</span>
+    <span class="n">has_invalid_dimensions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span> <span class="o">+</span> <span class="n">num_indep_vars</span> <span class="o">!=</span> <span class="n">columns</span>
+    <span class="k">if</span> <span class="n">has_invalid_dimensions</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Each model component needs its own data column.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">is_vector</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="evaluate_fit">
+<a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.evaluate_fit">[docs]</a>
+<span class="k">def</span> <span class="nf">evaluate_fit</span><span class="p">(</span><span class="n">pcov</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to evaluate the goodness of the fit.</span>
+
+<span class="sd">    :param pcov: Covariance matrix of the fit.</span>
+<span class="sd">    :type pcov: 2D-array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">variances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">pcov</span><span class="p">)</span>
+    <span class="n">std_devs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variances</span><span class="p">)</span>
+    <span class="n">confidence_intervals</span> <span class="o">=</span> <span class="mf">1.96</span> <span class="o">*</span> <span class="n">std_devs</span></div>
+
+
+
+<div class="viewcode-block" id="set_model_information">
+<a class="viewcode-back" href="../../ModelFitter.html#src.ModelFitter.set_model_information">[docs]</a>
+<span class="k">def</span> <span class="nf">set_model_information</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">VPCModel</span><span class="p">,</span> <span class="n">fitted_consts</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the fitted model information to the models internal variables.</span>
+
+<span class="sd">    :param model: The fitted model that gets its information set.</span>
+<span class="sd">    :type model: VPCModel</span>
+<span class="sd">    :param fitted_consts: The fitted model constants.</span>
+<span class="sd">    :type fitted_consts: dict[str, float]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">_set_fitted_consts</span><span class="p">(</span><span class="n">fitted_consts</span><span class="p">)</span>
+    <span class="n">res_func</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model_string</span>
+    <span class="k">for</span> <span class="n">constant</span> <span class="ow">in</span> <span class="n">fitted_consts</span><span class="p">:</span>
+        <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fitted_consts</span><span class="p">[</span><span class="n">constant</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;**&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">)</span>
+    <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot; + &quot;</span><span class="p">)</span>
+    <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot; - &quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">_set_resulting_function</span><span class="p">(</span><span class="n">res_func</span><span class="p">)</span></div>
+
+
+<span class="c1"># ###############################################################################################</span>
+
+<span class="c1"># class ModelFitter():</span>
+<span class="c1">#     &quot;&quot;&quot;This is a class to handle the model fitter</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+
+<span class="c1">#     def __init__(self, model: VPCModel):</span>
+<span class="c1">#         &quot;&quot;&quot;Constructor method</span>
+
+<span class="c1">#         :param equation: the equation of the function to be fitted</span>
+<span class="c1">#         :type equation: str</span>
+<span class="c1">#         :param parameter: fitted parameter of the function, NONE in the inital state</span>
+<span class="c1">#         :type parameter: list[float], optional</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         self.model = model</span>
+
+
+<span class="c1">#     def fit(self, equation, data, prio=[&#39;t&#39;], variables=None):</span>
+<span class="c1">#         &quot;&quot;&quot;returns the fitted parameters of the given equation based on the input data</span>
+
+<span class="c1">#         :param equation: the function equation entered by the user</span>
+<span class="c1">#         :type equation: str</span>
+<span class="c1">#         :param data: the user&#39;s input measurement data</span>
+<span class="c1">#         :type data: list[VPCData]</span>
+<span class="c1">#         :param prio: priority run variables that are searched first in the equation</span>
+<span class="c1">#         :type prio: list[str]</span>
+<span class="c1">#         :return: variables extracted from the equation, an array with the optimal fitted parameters and a 2-D array with the estimated approximate covariance of this array</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         if variables is not None:</span>
+<span class="c1">#             variables = self.extract_variables_sorted(equation, prio)</span>
+
+<span class="c1">#         x, y = data[0], data[1]</span>
+
+<span class="c1">#         objective = self.string_to_function(equation, variables)</span>
+
+<span class="c1">#         # print(inspect.getsource(objective))</span>
+
+<span class="c1">#         # initGuess = np.ones(len(variables)-1)</span>
+<span class="c1">#         #, p0=initGuess</span>
+<span class="c1">#         result, _ = curve_fit(objective, x, y)</span>
+
+<span class="c1">#         print(result)</span>
+
+<span class="c1">#         return result, variables</span>
+
+
+<span class="c1">#     def string_to_function(self, equation: str, variables):</span>
+<span class="c1">#         &quot;&quot;&quot;returns a lambda function based on the equation given by the user</span>
+
+<span class="c1">#         :param equation: the function equation that the user enters for the fit</span>
+<span class="c1">#         :type equation: str</span>
+<span class="c1">#         :return: function given by the user as lambda expression</span>
+<span class="c1">#         :rtype: sympy.FunctionClass instance</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+
+<span class="c1">#         sympy_vars = symbols(variables)</span>
+
+<span class="c1">#         for var, sym_var in zip(variables, sympy_vars):</span>
+<span class="c1">#             equation = equation.replace(var, str(sym_var))</span>
+
+<span class="c1">#         expr = parse_expr(equation)</span>
+
+<span class="c1">#         func = lambdify(sympy_vars, expr, &#39;sympy&#39;)</span>
+
+<span class="c1">#         return func</span>
+
+
+<span class="c1">#     def extract_variables_sorted(self, input_str, prio) -&gt; list:</span>
+<span class="c1">#         &quot;&quot;&quot;extracts variables out of a mathematical expression</span>
+<span class="c1">#         and sorts them such that &#39;x&#39; would always be the first element</span>
+<span class="c1">#         and the rest according to the alphabet.</span>
+
+<span class="c1">#         :param input_str: input expression</span>
+<span class="c1">#         :type input_str: str</span>
+<span class="c1">#         :return: array of variables of the given expression</span>
+<span class="c1">#         :rtype: list(str)</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         # a, b -&gt; set() -&gt; {a, b} -&gt; tolist() -&gt; [a,b] | [b,a]</span>
+<span class="c1">#         # a*x**2+b*x+c</span>
+<span class="c1">#         # [a,x,b,c]</span>
+<span class="c1">#         # array gets sorted anyway, maybe change from set() + list to only set and then tolist()</span>
+<span class="c1">#         seen = set()</span>
+<span class="c1">#         unique_vars = []</span>
+
+<span class="c1">#         for match in re.finditer(r&#39;\b[a-zA-Z_]\w*\b|\b[a-zA-Z_]\b&#39;, input_str):</span>
+<span class="c1">#             variable_name = match.group()</span>
+<span class="c1">#             if variable_name not in seen:</span>
+<span class="c1">#                 seen.add(variable_name)</span>
+<span class="c1">#                 unique_vars.append(variable_name)</span>
+
+<span class="c1">#         def custom_sort_key(char, prio):</span>
+<span class="c1">#             if char in prio:</span>
+<span class="c1">#                 return (0, char)</span>
+<span class="c1">#             else:</span>
+<span class="c1">#                 return (1, char)</span>
+
+<span class="c1">#         unique_vars.sort(key=lambda x: custom_sort_key(x, prio))</span>
+
+<span class="c1">#         return unique_vars</span>
+
+
+<span class="c1">#     def fit_ODE(self, equation, data):</span>
+<span class="c1">#         # given Data</span>
+<span class="c1">#         x_axis_data = data[0]</span>
+<span class="c1">#         y_axis_data = data[1]</span>
+
+<span class="c1">#         # define ODE</span>
+<span class="c1">#         def system_of_ODEs(x, t, equation):</span>
+<span class="c1">#             p1 = equation[0]</span>
+<span class="c1">#             p2 = equation[1]</span>
+<span class="c1">#             dxdt = p1-p2*x</span>
+<span class="c1">#             return dxdt</span>
+
+<span class="c1">#         # solve ODEs at xaxisData points</span>
+<span class="c1">#         # and return calculated yaxisCalc using</span>
+<span class="c1">#         # current values of the parameters</span>
+<span class="c1">#         def model(x_axis_data, *params):</span>
+<span class="c1">#             # initial condition for ODEs</span>
+<span class="c1">#             y_axis_0 = 0.0</span>
+<span class="c1">#             y_axis_calc = np.zeros(x_axis_data.size)</span>
+<span class="c1">#             for i in np.arange(0, len(x_axis_data)):</span>
+<span class="c1">#                 if x_axis_data[i] == 0.0:</span>
+<span class="c1">#                     y_axis_calc[i] = y_axis_0</span>
+<span class="c1">#                 else:</span>
+<span class="c1">#                     x_axis_span = np.linspace(0, x_axis_data[i], 101)</span>
+<span class="c1">#                     y_soln = odeint(system_of_ODEs, y_axis_0, x_axis_span, args = (params,))</span>
+<span class="c1">#                     y_axis_calc[i] = y_soln[-1]</span>
+<span class="c1">#             return y_axis_calc</span>
+
+<span class="c1">#         parameter_soln, pcov = curve_fit(model, x_axis_data, y_axis_data)</span>
+
+<span class="c1">#         return parameter_soln, pcov</span>
+
+
+<span class="c1">#     def fit_ODE_gpt(equations):</span>
+
+<span class="c1">#         # define symbolic variables and functions</span>
+<span class="c1">#         t = symbols(&#39;t&#39;)</span>
+<span class="c1">#         y = Function(&#39;y&#39;)</span>
+<span class="c1">#         z = Function(&#39;z&#39;)</span>
+
+<span class="c1">#         # allow users to input their own differential equations</span>
+<span class="c1">#         eq1 = Eq(Derivative(y(t), t), -0.1 * y(t) + 0.2 * z(t))</span>
+<span class="c1">#         eq2 = Eq(Derivative(z(t), t), -0.3 * y(t) + 0.4 * z(t))</span>
+
+<span class="c1">#         # solve the user-defined differential equations symbolically</span>
+<span class="c1">#         solution = dsolve([eq1, eq2])</span>
+
+<span class="c1">#         # extract the system of differential equations as functions</span>
+<span class="c1">#         ode_system = [solution[0].rhs, solution[1].rhs]</span>
+
+<span class="c1">#         # function to simulate the system of differential equations</span>
+<span class="c1">#         def simulate_differential_equations(params, t):</span>
+<span class="c1">#             y0 = [1.0, 0.0] # initial conditions</span>
+<span class="c1">#             ode_params = {y(t).diff(t): params[0], z(t).diff(t): params[1]}</span>
+<span class="c1">#             ode_substituted = [ode.subs(ode_params) for ode in ode_params]</span>
+
+<span class="c1">#             def system(y, t):</span>
+<span class="c1">#                 return [ode.subs({y(t): y[0], z(t): y[1]}) for ode in ode_substituted]</span>
+
+<span class="c1">#             solution = odeint(system, y0, t)</span>
+<span class="c1">#             return solution[:, 0]</span>
+
+<span class="c1">#         # cost function for fitting</span>
+<span class="c1">#         def cost_func(params, t, observed_data):</span>
+<span class="c1">#             simulated_data = simulate_differential_equations(params, t)</span>
+<span class="c1">#             return np.sum((simulated_data - observed_data)**2)</span>
+
+<span class="c1">#         # example usage, generate example data</span>
+<span class="c1">#         t = np.linspace(0, 10, 100)</span>
+<span class="c1">#         observed_data = simulate_differential_equations([0.1, 0.2], t) + np.random.normal(scale=0.1, size=len(t))</span>
+
+<span class="c1">#         # define an initial guess for the parameters</span>
+<span class="c1">#         initial_guess = [0.1, 0.2]</span>
+
+<span class="c1">#         # minimize the cost function to fit the parameters</span>
+<span class="c1">#         result = minimize(cost_func, initial_guess, args=(t, observed_data))</span>
+
+<span class="c1">#         # extract the fitted parameters</span>
+<span class="c1">#         fitted_params = result.x</span>
+
+<span class="c1">#         # print the fitted parameters</span>
+<span class="c1">#         print(f&quot;Fitted Parameters:\n\t{fitted_params}&quot;)</span>
 </pre></div>
 
            </div>
@@ -118,7 +413,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Alisa Ebert, David Hasse.</p>
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

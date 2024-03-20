@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.CTkInterface &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=6fefd858"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VPCModel.html">VPCModel module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.CTkInterface</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.CTkInterface</h1><div class="highlight"><pre>
+<span></span><span class="c1"># standard library imports</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">Widget</span>
+
+<span class="c1"># related third party imports</span>
+<span class="kn">import</span> <span class="nn">customtkinter</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">FunctionClass</span>
+<span class="kn">from</span> <span class="nn">tktooltip</span> <span class="kn">import</span> <span class="n">ToolTip</span>
+
+<span class="c1"># local imports</span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">FileHandler</span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">ModelFitter</span>
+<span class="kn">from</span> <span class="nn">src.CTkResultInterface</span> <span class="kn">import</span> <span class="n">ResultInterface</span>
+<span class="kn">from</span> <span class="nn">src.FileHandler</span> <span class="kn">import</span> <span class="n">FileExtensions</span>
+<span class="kn">from</span> <span class="nn">src.VPCModel</span> <span class="kn">import</span> <span class="n">VPCModel</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Interface&quot;</span><span class="p">)</span>
+
+
+<span class="n">customtkinter</span><span class="o">.</span><span class="n">set_appearance_mode</span><span class="p">(</span><span class="s2">&quot;Dark&quot;</span><span class="p">)</span>
+<span class="n">customtkinter</span><span class="o">.</span><span class="n">set_default_color_theme</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MainApp">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp">[docs]</a>
+<span class="k">class</span> <span class="nc">MainApp</span><span class="p">(</span><span class="n">customtkinter</span><span class="o">.</span><span class="n">CTk</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main interface of the program. Providing ways for the user to input information</span>
+<span class="sd">    that gets checked for to finally be able to fit a model to data.</span>
+
+<span class="sd">    Uses a ``tkinter`` extension called ``customtkinter`` to achieve a modern look.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MainApp.__init__">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Setup of the main interface window seen after starting the program,</span>
+<span class="sd">        arranging widgets and setting default values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># window configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Virtual Patient Cohorts - Fitting App&quot;</span><span class="p">)</span>
+        <span class="n">window_width</span><span class="p">:</span> <span class="nb">int</span>  <span class="o">=</span> <span class="mi">500</span>
+        <span class="n">window_height</span><span class="p">:</span> <span class="nb">int</span>  <span class="o">=</span> <span class="mi">280</span>
+        <span class="n">screen_width</span><span class="p">:</span> <span class="nb">int</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
+        <span class="n">screen_height</span><span class="p">:</span> <span class="nb">int</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span>
+        <span class="n">center_x</span><span class="p">:</span> <span class="nb">int</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screen_width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">window_width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">center_y</span><span class="p">:</span> <span class="nb">int</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screen_height</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">window_height</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">window_width</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">window_height</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">center_x</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">center_y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># grid layout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_rowconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resizable</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># font that is used</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkFont</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+        <span class="n">button_font</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkFont</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+
+        <span class="c1"># variables that change through user interaction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Browse...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># main frame tabview</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="o">.</span><span class="n">grid_rowconfigure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkTabview</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">text_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">_segmented_button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="n">button_font</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># tabview &quot;Basic&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equation_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Model:&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+            <span class="n">compound</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equation_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span>
+            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkEntry</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">),</span>
+            <span class="n">placeholder_text</span><span class="o">=</span><span class="s2">&quot;f(t) = ...&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">178</span><span class="p">,</span>
+            <span class="n">justify</span><span class="o">=</span><span class="n">customtkinter</span><span class="o">.</span><span class="n">CENTER</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+            <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;ew&quot;</span><span class="p">,</span>
+            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_input_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Data:&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+            <span class="n">compound</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_input_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">35</span><span class="p">),</span>
+            <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_input_button</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Basic&quot;</span><span class="p">),</span>
+            <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">button_font</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">browse_files</span><span class="p">,</span>
+            <span class="n">text_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_input_button</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">35</span><span class="p">),</span>
+            <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># tabview &quot;Additional&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Independent Parameters:&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkEntry</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
+            <span class="n">placeholder_text</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">80</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Result Components:&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkComboBox</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">],</span>
+            <span class="c1">#variable=self.result_components,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">80</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Confirm button at the bottom of the left frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confirm_inputs_button</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Confirm&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">button_font</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">confirm_input</span><span class="p">,</span>
+            <span class="n">text_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confirm_inputs_button</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># compute frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="o">.</span><span class="n">grid_columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="o">.</span><span class="n">grid_rowconfigure</span><span class="p">((</span><span class="mi">2</span><span class="p">),</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Interpreted Input:&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkTextbox</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="mi">141</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nsew&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Compute Parameters&quot;</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">button_font</span><span class="p">,</span>
+            <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_params</span><span class="p">,</span>
+            <span class="n">text_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
+            <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set default values</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_interpretation_string</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;disabled&quot;</span><span class="p">)</span>
+
+        <span class="c1"># set tooltip for compute button</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_button_tooltip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_tooltip_for</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;You need to confirm your inputs before computation.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># set tooltip for model equation entry</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_entry_tooltip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_tooltip_for</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Explicitly state mathematical operations.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry_tooltip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_tooltip_for</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Order needs to match order of independent variable columns in provided data.&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainApp.create_tooltip_for">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.create_tooltip_for">[docs]</a>
+    <span class="k">def</span> <span class="nf">create_tooltip_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">Widget</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolTip</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ToolTip</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="n">widget</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span>
+            <span class="n">delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">parent_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;gray14&quot;</span><span class="p">,</span> <span class="s2">&quot;padx&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;pady&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+            <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;gray17&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="mi">300</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainApp.reset_state">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.reset_state">[docs]</a>
+    <span class="k">def</span> <span class="nf">reset_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;Browse...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_interpretation_string</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;disabled&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_button_tooltip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_tooltip_for</span><span class="p">(</span>
+            <span class="n">widget</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;You need to confirm your inputs before computation.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">attribute_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;_model&quot;</span><span class="p">,</span> <span class="s2">&quot;_data&quot;</span><span class="p">,</span> <span class="s2">&quot;_independent_vars&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_result_comps&quot;</span><span class="p">,</span> <span class="s2">&quot;_parameters_to_fit&quot;</span><span class="p">,</span> <span class="s2">&quot;_file_path&quot;</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attribute_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+                <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tried to find Attribute </span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">, but nothing was found&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully reset to initial state.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainApp.remove_compute_tooltip">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.remove_compute_tooltip">[docs]</a>
+    <span class="k">def</span> <span class="nf">remove_compute_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes the tooltip and its bindings from and enables the &#39;compute parameters&#39; button.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_button_tooltip</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
+            <span class="c1"># unbinding compute button bindings</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="s2">&quot;&lt;Enter&gt;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="s2">&quot;&lt;Leave&gt;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="s2">&quot;&lt;Motion&gt;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="s2">&quot;&lt;ButtonPress&gt;&quot;</span><span class="p">)</span>
+            <span class="c1"># destroying the tooltip</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_button_tooltip</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+            <span class="c1"># enabling the button</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainApp.create_interpretation_string">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.create_interpretation_string">[docs]</a>
+    <span class="k">def</span> <span class="nf">create_interpretation_string</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">function</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+        <span class="n">var</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
+        <span class="n">consts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the interpretation string of the user input to be displayed at the right side</span>
+<span class="sd">        of the program.</span>
+
+<span class="sd">        :param function: Interpreted function, defaults to &quot;...&quot;.</span>
+<span class="sd">        :type function: str, optional</span>
+<span class="sd">        :param var: Interpreted independent variables, defaults to &quot;...&quot;.</span>
+<span class="sd">        :type var: str, optional</span>
+<span class="sd">        :param consts: Interpreted parameters to fit, defaults to &quot;...&quot;.</span>
+<span class="sd">        :type consts: str, optional</span>
+<span class="sd">        :return: A multi-line f-string containing the entered information.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Function:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">function</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Independent Variable(s):</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">var</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Constants to be fitted:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">consts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Extra:&quot;</span>
+            <span class="k">for</span> <span class="n">descr</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">descr</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">    </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+
+<div class="viewcode-block" id="MainApp.display_interpreted_input">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.display_interpreted_input">[docs]</a>
+    <span class="k">def</span> <span class="nf">display_interpreted_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Shows the interpretation of the user input.</span>
+
+<span class="sd">        :param msg: interpretation of the user input</span>
+<span class="sd">        :type msg: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># clear text Widget</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
+        <span class="c1"># add new text to widget</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainApp.browse_files">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.browse_files">[docs]</a>
+    <span class="k">def</span> <span class="nf">browse_files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Opens a ``tkinter.filedialog`` to let the user select a file containing fitting data.</span>
+<span class="sd">        Sets internal variables to the file path and name when a file is successfully selected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Browse files button pressed&quot;</span><span class="p">)</span>
+        <span class="n">filetypes</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Excel files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.xlsx&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;CSV files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;All&quot;</span><span class="p">,</span> <span class="s2">&quot;*.*&quot;</span><span class="p">)]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting filedialog&quot;</span><span class="p">)</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfile</span><span class="p">(</span><span class="n">filetypes</span><span class="o">=</span><span class="n">filetypes</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Completed filedialog with:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span>
+            <span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">fp</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">fn</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">displayed_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">fn</span><span class="p">[:</span><span class="mi">12</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">12</span> <span class="k">else</span> <span class="n">fn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">displayed_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="MainApp.missing_independent_variables">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.missing_independent_variables">[docs]</a>
+    <span class="k">def</span> <span class="nf">missing_independent_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns list of all characters or strings that were entered in the independent</span>
+<span class="sd">        parameter field that are not present in the model string.</span>
+<span class="sd">        If the field was left empty &#39;t&#39; is defaulted to.</span>
+
+<span class="sd">        :return: List of missing symbols.</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">indep_vars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;,\s|,|;\s|;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="c1"># default to t if nothing was explicitly entered</span>
+        <span class="n">indep_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">indep_vars</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="n">indep_vars</span>
+
+        <span class="n">variables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">symbols</span>
+
+        <span class="n">missing_vars</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">indep_vars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+                <span class="n">missing_vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">missing_vars</span></div>
+
+
+<div class="viewcode-block" id="MainApp.are_components_equal">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.are_components_equal">[docs]</a>
+    <span class="k">def</span> <span class="nf">are_components_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether the components assumed by the ``VPCModel`` model and given components</span>
+<span class="sd">        in the interface are the same.</span>
+
+<span class="sd">        Will default to ``True``, if the value in the result components field is left on &#39;auto&#39;.</span>
+
+<span class="sd">        :return: Whether the given and assumed components match.</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
+            <span class="n">given</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">given</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">assumed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components</span>
+        <span class="k">return</span> <span class="n">given</span> <span class="o">==</span> <span class="n">assumed</span></div>
+
+
+<div class="viewcode-block" id="MainApp.check_inputs_populated">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.check_inputs_populated">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_inputs_populated</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks the various fields for missing user input.</span>
+
+<span class="sd">        :return: Message with missing or invalid entried, empty if okay.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;No model equation entered.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
+        <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Result Components</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;have to be </span><span class="se">\&quot;</span><span class="s2">auto</span><span class="se">\&quot;</span><span class="s2"> or 1-9</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;No file path given</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;or path doesn&#39;t exist.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+
+<div class="viewcode-block" id="MainApp.check_inputs_sensible">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.check_inputs_sensible">[docs]</a>
+    <span class="k">def</span> <span class="nf">check_inputs_sensible</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether the user input &#39;makes sense&#39;, e.g. if there are unfitted constants in the</span>
+<span class="sd">        model expression.</span>
+
+<span class="sd">        :return: Message with apparent issues in the user&#39;s input.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;No constants to fit.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">missing_vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">missing_independent_variables</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">missing_vars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_vars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;The following independent</span><span class="se">\n</span><span class="s2">parameter was not found in</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;the model expression:</span><span class="se">\n</span><span class="si">{</span><span class="n">missing_vars</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;The following independent</span><span class="se">\n</span><span class="s2">parameters were not found in</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;the model expression:</span><span class="se">\n</span><span class="si">{</span><span class="n">missing_vars</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">are_components_equal</span><span class="p">():</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Entered model suggests</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;different # of components</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;than # provided in</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">additional</span><span class="se">\&quot;</span><span class="s2"> tab.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">is_extension_supported</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)):</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Unsupported file extension.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Use .xlsx or .csv files</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">msg</span></div>
+
+
+<div class="viewcode-block" id="MainApp.confirm_input">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.confirm_input">[docs]</a>
+    <span class="k">def</span> <span class="nf">confirm_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs ``check_inputs_populated()`` and ``check_inputs_sensible()``</span>
+<span class="sd">        and displays any strings returned by those to the user.</span>
+
+<span class="sd">        If no issues are present, displays the interpreted inputs to</span>
+<span class="sd">        the user for human validation, enables the &#39;compute&#39; button and uses the input to set</span>
+<span class="sd">        various internal variables.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Confirm button pressed&quot;</span><span class="p">)</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">error_msg</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_inputs_populated</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">error_msg</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_interpreted_input</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">ip</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="n">indep_param</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">ip</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="n">ip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">VPCModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">indep_param</span><span class="p">)</span>
+
+        <span class="n">error_msg</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_inputs_sensible</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">dataframe_tolist</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Error occurred when reading file, see:&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">error_msg</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Error reading input file.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;See logs for more info.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">error_msg</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">display_interpreted_input</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_interpretation_string</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_string</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">independent_var</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_interpreted_input</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_compute_tooltip</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Dynamic lambda </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_function</span><span class="si">}</span><span class="s2"> with:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_function</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="c1"># set internal vars to validated inputs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">:</span> <span class="n">VPCModel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data_list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lambda_func</span><span class="p">:</span> <span class="n">FunctionClass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_independent_vars</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">indep_param</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result_comps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parameters_to_fit</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Internal variables:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  Model: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  Data: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  Lambda: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_lambda_func</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  Independent vars: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_independent_vars</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  Result components: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_result_comps</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  Constants: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_parameters_to_fit</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;  File path: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_path</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MainApp.compute_params">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.compute_params">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs ``ModelFitter.fit()`` on the model and data and opens a window with the results</span>
+<span class="sd">        on top of the current one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Compute parameters button pressed&quot;</span><span class="p">)</span>
+
+        <span class="n">ModelFitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+        <span class="n">fitted</span> <span class="o">=</span> <span class="n">VPCModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">resulting_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_vars</span><span class="p">)</span>
+
+        <span class="n">result_window</span> <span class="o">=</span> <span class="n">ResultInterface</span><span class="p">(</span>
+            <span class="n">main_window</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span>
+            <span class="n">fitted_model</span><span class="o">=</span><span class="n">fitted</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="p">)</span>
+        <span class="n">result_window</span><span class="o">.</span><span class="n">focus_set</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MainApp.save_results">
+<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.save_results">[docs]</a>
+    <span class="k">def</span> <span class="nf">save_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saves relevant inputs and outputs of the program in a file.</span>
+
+<span class="sd">        :return: 0 if ``FileHandler.write_file()`` finished normally, 1 otherwise.</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">create_dataframe_from_for</span><span class="p">(</span>
+            <span class="n">fitted_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">resulting_function</span><span class="p">,</span>
+            <span class="n">fitted_consts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">fitted_consts</span><span class="p">,</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">model_string</span><span class="p">,</span>
+            <span class="n">user_input_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="n">parameter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_independent_vars</span><span class="p">,</span>
+            <span class="n">user_input_parameter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span>
+            <span class="n">consts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parameters_to_fit</span><span class="p">,</span>
+            <span class="n">user_input_consts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">constants</span><span class="p">,</span>
+            <span class="n">user_input_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span>
+            <span class="nb">format</span><span class="o">=</span><span class="nb">format</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Attempting to write results file with:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="n">FileHandler</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error writing file, </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">1</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

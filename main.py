@@ -12,12 +12,15 @@ from src.CTkInterface import MainApp
 
 
 def setup_logging(debug: bool = False):
-    """logging should look like:
-        logger_name.level(
-            f"message {variable}"
-            f"  message {variable}"
-        )
-    including all those indentations
+    """Logging setup for the program.
+
+    Logs are saved in a ``./logs/`` directory relative to the current working directory,
+    which will be created if it's not present.
+    Logging config uses a 'logging_config.json' file in this module's directory.
+
+    :param debug: flag that gets passed through by argparse to enable logging on ``debug`` level,\
+    defaults to False
+    :type debug: bool, optional
     """
 
     log_folder = Path("./logs")
@@ -39,6 +42,13 @@ def setup_logging(debug: bool = False):
 
 
 def handle_leftclick(event: Event) -> None:
+    """Helper function to set the focus to the widget associated with the current event ``event``.
+
+    Is used to set the focus to whatever widget is clicked by the user.
+
+    :param event: The event, i.e. left mouse click.
+    :type event: Event
+    """
     widget: Widget = event.widget
     if not widget:
         pass
@@ -49,6 +59,11 @@ def handle_leftclick(event: Event) -> None:
 
 
 def main():
+    """Main function.
+
+    Setting up ``argparse`` to catch the ``--debug`` flag on startup, running ``setup_logging()``
+    and finally running the program, i.e. its ``mainloop()``.
+    """
     parser = argparse.ArgumentParser(
         prog="main.py",
         formatter_class=argparse.RawDescriptionHelpFormatter,

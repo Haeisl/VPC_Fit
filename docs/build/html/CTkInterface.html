@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTkInterface module &mdash; Virtual Patient Cohorts 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6fefd858"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CTkResultInterface module" href="CTkResultInterface.html" />
+    <link rel="prev" title="main" href="main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Virtual Patient Cohorts
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">main</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CTkInterface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.CTkInterface.MainApp"><code class="docutils literal notranslate"><span class="pre">MainApp</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.__init__"><code class="docutils literal notranslate"><span class="pre">MainApp.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.are_components_equal"><code class="docutils literal notranslate"><span class="pre">MainApp.are_components_equal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.browse_files"><code class="docutils literal notranslate"><span class="pre">MainApp.browse_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.check_inputs_populated"><code class="docutils literal notranslate"><span class="pre">MainApp.check_inputs_populated()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.check_inputs_sensible"><code class="docutils literal notranslate"><span class="pre">MainApp.check_inputs_sensible()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.compute_params"><code class="docutils literal notranslate"><span class="pre">MainApp.compute_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.confirm_input"><code class="docutils literal notranslate"><span class="pre">MainApp.confirm_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.create_interpretation_string"><code class="docutils literal notranslate"><span class="pre">MainApp.create_interpretation_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.create_tooltip_for"><code class="docutils literal notranslate"><span class="pre">MainApp.create_tooltip_for()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.display_interpreted_input"><code class="docutils literal notranslate"><span class="pre">MainApp.display_interpreted_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.missing_independent_variables"><code class="docutils literal notranslate"><span class="pre">MainApp.missing_independent_variables()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.remove_compute_tooltip"><code class="docutils literal notranslate"><span class="pre">MainApp.remove_compute_tooltip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.reset_state"><code class="docutils literal notranslate"><span class="pre">MainApp.reset_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkInterface.MainApp.save_results"><code class="docutils literal notranslate"><span class="pre">MainApp.save_results()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Virtual Patient Cohorts</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CTkInterface module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CTkInterface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src.CTkInterface">
+<span id="ctkinterface-module"></span><h1>CTkInterface module<a class="headerlink" href="#module-src.CTkInterface" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.CTkInterface.</span></span><span class="sig-name descname"><span class="pre">MainApp</span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTk</span></code></p>
+<p>Main interface of the program. Providing ways for the user to input information
+that gets checked for to finally be able to fit a model to data.</p>
+<p>Uses a <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> extension called <code class="docutils literal notranslate"><span class="pre">customtkinter</span></code> to achieve a modern look.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.__init__" title="Link to this definition"></a></dt>
+<dd><p>Setup of the main interface window seen after starting the program,
+arranging widgets and setting default values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.are_components_equal">
+<span class="sig-name descname"><span class="pre">are_components_equal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.are_components_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.are_components_equal" title="Link to this definition"></a></dt>
+<dd><p>Checks whether the components assumed by the <code class="docutils literal notranslate"><span class="pre">VPCModel</span></code> model and given components
+in the interface are the same.</p>
+<p>Will default to <code class="docutils literal notranslate"><span class="pre">True</span></code>, if the value in the result components field is left on ‘auto’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the given and assumed components match.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.browse_files">
+<span class="sig-name descname"><span class="pre">browse_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.browse_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.browse_files" title="Link to this definition"></a></dt>
+<dd><p>Opens a <code class="docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code> to let the user select a file containing fitting data.
+Sets internal variables to the file path and name when a file is successfully selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.check_inputs_populated">
+<span class="sig-name descname"><span class="pre">check_inputs_populated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.check_inputs_populated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.check_inputs_populated" title="Link to this definition"></a></dt>
+<dd><p>Checks the various fields for missing user input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Message with missing or invalid entried, empty if okay.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.check_inputs_sensible">
+<span class="sig-name descname"><span class="pre">check_inputs_sensible</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.check_inputs_sensible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.check_inputs_sensible" title="Link to this definition"></a></dt>
+<dd><p>Checks whether the user input ‘makes sense’, e.g. if there are unfitted constants in the
+model expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Message with apparent issues in the user’s input.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.compute_params">
+<span class="sig-name descname"><span class="pre">compute_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.compute_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.compute_params" title="Link to this definition"></a></dt>
+<dd><p>Runs <code class="docutils literal notranslate"><span class="pre">ModelFitter.fit()</span></code> on the model and data and opens a window with the results
+on top of the current one.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.confirm_input">
+<span class="sig-name descname"><span class="pre">confirm_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.confirm_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.confirm_input" title="Link to this definition"></a></dt>
+<dd><p>Runs <code class="docutils literal notranslate"><span class="pre">check_inputs_populated()</span></code> and <code class="docutils literal notranslate"><span class="pre">check_inputs_sensible()</span></code>
+and displays any strings returned by those to the user.</p>
+<p>If no issues are present, displays the interpreted inputs to
+the user for human validation, enables the ‘compute’ button and uses the input to set
+various internal variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.create_interpretation_string">
+<span class="sig-name descname"><span class="pre">create_interpretation_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'...'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['...']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">['...']</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.create_interpretation_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.create_interpretation_string" title="Link to this definition"></a></dt>
+<dd><p>Creates the interpretation string of the user input to be displayed at the right side
+of the program.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function</strong> (<em>str</em><em>, </em><em>optional</em>) – Interpreted function, defaults to “…”.</p></li>
+<li><p><strong>var</strong> (<em>str</em><em>, </em><em>optional</em>) – Interpreted independent variables, defaults to “…”.</p></li>
+<li><p><strong>consts</strong> (<em>str</em><em>, </em><em>optional</em>) – Interpreted parameters to fit, defaults to “…”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A multi-line f-string containing the entered information.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.create_tooltip_for">
+<span class="sig-name descname"><span class="pre">create_tooltip_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ToolTip</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.create_tooltip_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.create_tooltip_for" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.display_interpreted_input">
+<span class="sig-name descname"><span class="pre">display_interpreted_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.display_interpreted_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.display_interpreted_input" title="Link to this definition"></a></dt>
+<dd><p>Shows the interpretation of the user input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>str</em>) – interpretation of the user input</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.missing_independent_variables">
+<span class="sig-name descname"><span class="pre">missing_independent_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.missing_independent_variables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.missing_independent_variables" title="Link to this definition"></a></dt>
+<dd><p>Returns list of all characters or strings that were entered in the independent
+parameter field that are not present in the model string.
+If the field was left empty ‘t’ is defaulted to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of missing symbols.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.remove_compute_tooltip">
+<span class="sig-name descname"><span class="pre">remove_compute_tooltip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.remove_compute_tooltip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.remove_compute_tooltip" title="Link to this definition"></a></dt>
+<dd><p>Removes the tooltip and its bindings from and enables the ‘compute parameters’ button.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.reset_state">
+<span class="sig-name descname"><span class="pre">reset_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.reset_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.reset_state" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkInterface.MainApp.save_results">
+<span class="sig-name descname"><span class="pre">save_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/src/CTkInterface.html#MainApp.save_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkInterface.MainApp.save_results" title="Link to this definition"></a></dt>
+<dd><p>Saves relevant inputs and outputs of the program in a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0 if <code class="docutils literal notranslate"><span class="pre">FileHandler.write_file()</span></code> finished normally, 1 otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main.html" class="btn btn-neutral float-left" title="main" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CTkResultInterface.html" class="btn btn-neutral float-right" title="CTkResultInterface module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alisa Ebert, David Hasse.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

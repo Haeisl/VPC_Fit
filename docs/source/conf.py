@@ -13,9 +13,9 @@ sys.path.insert(0, os.path.abspath('../../src'))
 sys.path.insert(0, os.path.abspath('../..'))
 
 project = 'Virtual Patient Cohorts'
-copyright = '2023, Alisa Ebert, David Hasse'
+copyright = '2024, Alisa Ebert, David Hasse'
 author = 'Alisa Ebert, David Hasse'
-release = '2023'
+release = '2024'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -25,6 +25,7 @@ extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc"]
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+autodoc_mock_imports = ['CTkInterface.MainApp']
 
 
 # -- Options for HTML output -------------------------------------------------
