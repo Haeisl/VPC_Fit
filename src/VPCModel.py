@@ -20,6 +20,10 @@ class VPCModel():
 
     def __post_init__(self) -> None:
         """Set some internal variables post initialization of the model."""
+        if self._model_string == "":
+            raise ValueError("Can't instantiate VPCModel without a model string.")
+        if not self._independent_var:
+            raise ValueError("Can't instantiate VPCModel without an independent variable.")
 
         self._expression_string: str = self.cut_off_lhs()
         self._model_function: FunctionClass = self.model_string_to_function()
@@ -237,13 +241,15 @@ class VPCModel():
         :return: Lambdified model expression.
         :rtype: FunctionClass
         """
-
-        sorted_symbols: list[str] = self.extract_symbols(self._independent_var)
+        logger.info(f"Lambdifying expression...")
         expression: str = self._expression_string
+        logger.debug(f"Expression is: {expression}")
+        sorted_symbols: list[str] = self.extract_symbols(self._independent_var)
+        logger.debug(f"detected symbols in expression: {sorted_symbols}")
         sympy_vars = symbols(sorted_symbols)
         parsed_expression = parse_expr(expression)
         func: FunctionClass = lambdify(sympy_vars, parsed_expression, ["scipy", "numpy"])
-
+        logger.info(f"Success.")
         return func
 
     def is_ode(self) -> bool:
@@ -270,26 +276,26 @@ class VPCModel():
         patterns = [
             (
                 re.compile(r"\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b"),
-                "Pattern d^2(a)/d(b)^2"
+                "Pattern < d^2(a)/d(b)^2 >"
             ),
             (
                 re.compile(r"\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b"),
-                "Pattern d(a)/d(b)"
+                "Pattern < d(a)/d(b) >"
             ),
             (
                 re.compile(r"[a-zA-Z]+''"),
-                "Pattern ()'"
+                "Pattern < ()'' >"
             ),
             (
                 re.compile(r"[a-zA-Z]+'"),
-                "Pattern ()''"
+                "Pattern < ()' >"
             )
         ]
 
         for pattern, pattern_name in patterns:
             match = search(pattern=pattern, string=self._model_string)
             if match:
-                logger.debug(f"Match found with: {pattern_name}, function determined to be an ODE.")
+                logger.debug(f"Match found with {pattern_name}, function determined to be an ODE.")
                 return True
         logger.debug("No match found, function determined to not be an ODE.")
         return False

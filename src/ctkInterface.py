@@ -246,6 +246,15 @@ class MainApp(customtkinter.CTk):
         )
 
     def create_tooltip_for(self, widget: Widget, msg: str) -> ToolTip:
+        """Helper Function to create a ``ToolTip`` for and attach it to a ``tkinter.Widget``.
+
+        :param widget: The ``tkinter.Widget`` the ``ToolTip`` is binded to.
+        :type widget: Widget
+        :param msg: What the ``ToolTip`` should say.
+        :type msg: str
+        :return: A new ``ToolTip`` instance.
+        :rtype: ToolTip
+        """
         return ToolTip(
             widget=widget,
             msg=msg,
@@ -256,6 +265,11 @@ class MainApp(customtkinter.CTk):
         )
 
     def reset_state(self) -> None:
+        """Resets the program to an initial state without closing and reopening it.
+
+        :raises AttributeError: if one of the internal attributes that should have been set are\
+        not found and therefore couldn't be reset.
+        """
         self.file_name.set("Browse...")
         self.file_path = ""
         self.equation_entry.delete(0, customtkinter.END)
@@ -277,11 +291,13 @@ class MainApp(customtkinter.CTk):
             "_model", "_data", "_independent_vars",
             "_result_comps", "_parameters_to_fit", "_file_path"
         ]
+
         for attr_name in attribute_names:
             if hasattr(self, attr_name):
                 delattr(self, attr_name)
             else:
-                raise AttributeError(f"tried to find Attribute {attr_name}, but nothing was found")
+                logger.warning(f"tried to find Attribute {attr_name}, but nothing was found")
+                continue
 
         logger.info("Successfully reset to initial state.")
 
@@ -421,7 +437,7 @@ class MainApp(customtkinter.CTk):
         if (not Path(self.file_path).exists()) or self.file_path == "":
             msg += (
                 f"No file path given\n"
-                f"or path doesn't exist.\n\n"
+                f"or file doesn't exist.\n\n"
             )
         return msg
 
@@ -543,6 +559,8 @@ class MainApp(customtkinter.CTk):
 
         ModelFitter.fit(self._model, self._data)
 
+        if self._model.resulting_function == "":
+            return
         fitted = VPCModel(self._model.resulting_function, self._independent_vars)
 
         result_window = ResultInterface(

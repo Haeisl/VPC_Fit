@@ -1,3 +1,7 @@
+"""
+This module provides basic functionality to convert data stored in .xlsx or .csv files into python
+lists.
+"""
 # standard library imports
 import logging
 from datetime import datetime
@@ -9,12 +13,6 @@ import pandas as pd
 
 
 logger = logging.getLogger("FileHandler")
-
-
-"""
-This module provides basic functionality to convert data stored in .xlsx or .csv files into python
-lists.
-"""
 
 
 class FileExtensions(Enum):
@@ -31,8 +29,11 @@ def is_extension_supported(file_path: str) -> bool:
     :return: True if supported, False otherwise.
     :rtype: bool
     """
-    suffix = Path(file_path).suffix.split(".")[1]
-    return suffix.upper() in [extension.value for extension in FileExtensions]
+    suffix = Path(file_path).suffix
+    if suffix == "":
+        return False
+    extension = suffix.split(".")[1]
+    return extension.upper() in [valid_extension.value for valid_extension in FileExtensions]
 
 
 def read_file(file_path: str) -> pd.DataFrame:
@@ -62,7 +63,11 @@ def read_file(file_path: str) -> pd.DataFrame:
     if suffix.split(".")[1].upper() == FileExtensions.EXCEL.value:
         data_frame = pd.read_excel(file_path)
     elif suffix.split(".")[1].upper() == FileExtensions.CSV.value:
-        data_frame = pd.read_csv(file_path)
+        try:
+            data_frame = pd.read_csv(file_path)
+        except pd.errors.EmptyDataError:
+            logger.warning("FileHandler got an empty CSV file to read. Returning empty DataFrame.")
+            data_frame = pd.DataFrame()
     else:
         raise TypeError("Invalid file extension.")
 
@@ -106,8 +111,8 @@ def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[float | int]]:
 
 
 def create_dataframe_from_for(
-    fitted_model: str | None,
-    fitted_consts: dict[str, float] | str | None,
+    fitted_model: str | None = None,
+    fitted_consts: dict[str, float] | str | None = None,
     model: str = "f(t) = ...",
     user_input_model: str = "f(t) = ...",
     parameter: list[str] = ["..."],
@@ -211,7 +216,11 @@ def get_valid_filename() -> str:
     return now.strftime("%Y-%m-%d-result-from-%Hh%Mm")
 
 
-def write_file(data_frame: pd.DataFrame, file_format: FileExtensions = FileExtensions.EXCEL) -> None:
+def write_file(
+    data_frame: pd.DataFrame,
+    file_format: FileExtensions = FileExtensions.EXCEL,
+    destination: str = "./res/"
+    ) -> None:
     """Writes the provided ``pd.DataFrame`` as either .xlsx or .csv
     to the hard-coded program's ``/res/`` directory.
 
@@ -224,7 +233,7 @@ def write_file(data_frame: pd.DataFrame, file_format: FileExtensions = FileExten
     :type file_format: FileExtensions, optional
     :raises TypeError: If the provided ``file_format`` was neither Excel nor CSV.
     """
-    relative_path = Path("./res/")
+    relative_path = Path(destination)
 
     relative_path.mkdir(exist_ok=True)
 

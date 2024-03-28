@@ -59,7 +59,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.dataframe_tolist"><code class="docutils literal notranslate"><span class="pre">dataframe_tolist()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.get_valid_filename"><code class="docutils literal notranslate"><span class="pre">get_valid_filename()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.is_extension_supported"><code class="docutils literal notranslate"><span class="pre">is_extension_supported()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.logger"><code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.read_file"><code class="docutils literal notranslate"><span class="pre">read_file()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.FileHandler.write_file"><code class="docutils literal notranslate"><span class="pre">write_file()</span></code></a></li>
 </ul>
@@ -94,6 +93,8 @@
              
   <section id="module-src.FileHandler">
 <span id="filehandler-module"></span><h1>FileHandler module<a class="headerlink" href="#module-src.FileHandler" title="Link to this heading"></a></h1>
+<p>This module provides basic functionality to convert data stored in .xlsx or .csv files into python
+lists.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.FileHandler.FileExtensions">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">FileExtensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/FileHandler.html#FileExtensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.FileHandler.FileExtensions" title="Link to this definition"></a></dt>
@@ -123,14 +124,14 @@ given, a warning will be logged and the field in the data frame will read ‘N/A
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fitted_model</strong> (<em>str</em><em> | </em><em>None</em>) – The fitted model as a <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p></li>
 <li><p><strong>fitted_consts</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>] </em><em>| </em><em>str</em><em> | </em><em>None</em>) – The dictionary of the constants as keys of type <code class="docutils literal notranslate"><span class="pre">str</span></code> and their value    as <code class="docutils literal notranslate"><span class="pre">float</span></code>. Alternatively just a string containing the same information.</p></li>
-<li><p><strong>model</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The model the program worked with, defaults to “f(t) = …”</p></li>
-<li><p><strong>user_input_model</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The exact model the user entered, defaults to “f(t) = …”</p></li>
-<li><p><strong>parameter</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The independent variable the program worked with, defaults to [”…”]</p></li>
-<li><p><strong>user_input_parameter</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The exact independent variables the user entered, defaults to “…”</p></li>
-<li><p><strong>consts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The constants the program worked with, defaults to [”…”]</p></li>
-<li><p><strong>user_input_consts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The exact constants the user entered, defaults to [”…”]</p></li>
-<li><p><strong>user_input_path</strong> (<em>str</em><em>(</em><em>, </em><em>optional</em><em>)</em>) – The path to the data the user provided, defaults to “path/to/data”</p></li>
-<li><p><strong>format</strong> (<a class="reference internal" href="#src.FileHandler.FileExtensions" title="src.FileHandler.FileExtensions"><em>FileExtensions</em></a><em>(</em><em>, </em><em>optional</em><em>)</em>) – The format for which the data frame is constructed, defaults to FileExtensions.EXCEL</p></li>
+<li><p><strong>model</strong> (<em>str</em><em>, </em><em>optional</em>) – The model the program worked with, defaults to “f(t) = …”</p></li>
+<li><p><strong>user_input_model</strong> (<em>str</em><em>, </em><em>optional</em>) – The exact model the user entered, defaults to “f(t) = …”</p></li>
+<li><p><strong>parameter</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – The independent variable the program worked with, defaults to [”…”]</p></li>
+<li><p><strong>user_input_parameter</strong> (<em>str</em><em>, </em><em>optional</em>) – The exact independent variables the user entered, defaults to “…”</p></li>
+<li><p><strong>consts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – The constants the program worked with, defaults to [”…”]</p></li>
+<li><p><strong>user_input_consts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – The exact constants the user entered, defaults to [”…”]</p></li>
+<li><p><strong>user_input_path</strong> (<em>str</em><em>, </em><em>optional</em>) – The path to the data the user provided, defaults to “path/to/data”</p></li>
+<li><p><strong>format</strong> (<a class="reference internal" href="#src.FileHandler.FileExtensions" title="src.FileHandler.FileExtensions"><em>FileExtensions</em></a><em>, </em><em>optional</em>) – The format for which the data frame is constructed, defaults to FileExtensions.EXCEL</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -198,13 +199,6 @@ or <code class="docutils literal notranslate"><span class="pre">float</span></co
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="src.FileHandler.logger">
-<span class="sig-prename descclassname"><span class="pre">src.FileHandler.</span></span><span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">FileHandler</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#src.FileHandler.logger" title="Link to this definition"></a></dt>
-<dd><p>This module provides basic functionality to convert data stored in .xlsx or .csv files into python
-lists.</p>
 </dd></dl>
 
 <dl class="py function">

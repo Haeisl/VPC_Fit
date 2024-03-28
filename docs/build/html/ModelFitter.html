@@ -54,7 +54,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.check_model_is_valid_vector"><code class="docutils literal notranslate"><span class="pre">check_model_is_valid_vector()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.evaluate_fit"><code class="docutils literal notranslate"><span class="pre">evaluate_fit()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.logger"><code class="docutils literal notranslate"><span class="pre">logger</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#src.ModelFitter.set_model_information"><code class="docutils literal notranslate"><span class="pre">set_model_information()</span></code></a></li>
 </ul>
 </li>
@@ -87,6 +86,9 @@
              
   <section id="module-src.ModelFitter">
 <span id="modelfitter-module"></span><h1>ModelFitter module<a class="headerlink" href="#module-src.ModelFitter" title="Link to this heading"></a></h1>
+<p>This module provides functions to fit a model to data.</p>
+<p>The fitting routines are based on the assumption that the model is of type VPCModel
+with provided data consisting of a list of lists where each sub-list is a column from a datasheet.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.ModelFitter.check_model_is_valid_vector">
 <span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">check_model_is_valid_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/src/ModelFitter.html#check_model_is_valid_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.ModelFitter.check_model_is_valid_vector" title="Link to this definition"></a></dt>
@@ -138,14 +140,6 @@ and ODEs up to second order.</p>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="src.ModelFitter.logger">
-<span class="sig-prename descclassname"><span class="pre">src.ModelFitter.</span></span><span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">ModelFitter</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#src.ModelFitter.logger" title="Link to this definition"></a></dt>
-<dd><p>This module provides functions to fit a model to data.</p>
-<p>The fitting routines are based on the assumption that the model is of type VPCModel
-with provided data consisting of a list of lists where each sub-list is a column from a datasheet.</p>
 </dd></dl>
 
 <dl class="py function">

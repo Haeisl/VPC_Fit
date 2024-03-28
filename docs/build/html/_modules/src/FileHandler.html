@@ -76,7 +76,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for src.FileHandler</h1><div class="highlight"><pre>
-<span></span><span class="c1"># standard library imports</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides basic functionality to convert data stored in .xlsx or .csv files into python</span>
+<span class="sd">lists.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># standard library imports</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
@@ -87,12 +91,6 @@
 
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;FileHandler&quot;</span><span class="p">)</span>
-
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This module provides basic functionality to convert data stored in .xlsx or .csv files into python</span>
-<span class="sd">lists.</span>
-<span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="FileExtensions">
@@ -220,21 +218,21 @@
 <span class="sd">    as ``float``. Alternatively just a string containing the same information.</span>
 <span class="sd">    :type fitted_consts: dict[str, float] | str | None</span>
 <span class="sd">    :param model: The model the program worked with, defaults to &quot;f(t) = ...&quot;</span>
-<span class="sd">    :type model: str(, optional)</span>
+<span class="sd">    :type model: str, optional</span>
 <span class="sd">    :param user_input_model: The exact model the user entered, defaults to &quot;f(t) = ...&quot;</span>
-<span class="sd">    :type user_input_model: str(, optional)</span>
+<span class="sd">    :type user_input_model: str, optional</span>
 <span class="sd">    :param parameter: The independent variable the program worked with, defaults to [&quot;...&quot;]</span>
-<span class="sd">    :type parameter: list[str](, optional)</span>
+<span class="sd">    :type parameter: list[str], optional</span>
 <span class="sd">    :param user_input_parameter: The exact independent variables the user entered, defaults to &quot;...&quot;</span>
-<span class="sd">    :type user_input_parameter: str(, optional)</span>
+<span class="sd">    :type user_input_parameter: str, optional</span>
 <span class="sd">    :param consts: The constants the program worked with, defaults to [&quot;...&quot;]</span>
-<span class="sd">    :type consts: list[str](, optional)</span>
+<span class="sd">    :type consts: list[str], optional</span>
 <span class="sd">    :param user_input_consts: The exact constants the user entered, defaults to [&quot;...&quot;]</span>
-<span class="sd">    :type user_input_consts: list[str](, optional)</span>
+<span class="sd">    :type user_input_consts: list[str], optional</span>
 <span class="sd">    :param user_input_path: The path to the data the user provided, defaults to &quot;path/to/data&quot;</span>
-<span class="sd">    :type user_input_path: str(, optional)</span>
+<span class="sd">    :type user_input_path: str, optional</span>
 <span class="sd">    :param format: The format for which the data frame is constructed, defaults to FileExtensions.EXCEL</span>
-<span class="sd">    :type format: FileExtensions(, optional)</span>
+<span class="sd">    :type format: FileExtensions, optional</span>
 <span class="sd">    :return: A data frame containing all input and output information.</span>
 <span class="sd">    :rtype: pd.DataFrame</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -331,6 +331,15 @@
 <div class="viewcode-block" id="MainApp.create_tooltip_for">
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.create_tooltip_for">[docs]</a>
     <span class="k">def</span> <span class="nf">create_tooltip_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">:</span> <span class="n">Widget</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ToolTip</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper Function to create a ``ToolTip`` for and attach it to a ``tkinter.Widget``.</span>
+
+<span class="sd">        :param widget: The ``tkinter.Widget`` the ``ToolTip`` is binded to.</span>
+<span class="sd">        :type widget: Widget</span>
+<span class="sd">        :param msg: What the ``ToolTip`` should say.</span>
+<span class="sd">        :type msg: str</span>
+<span class="sd">        :return: A new ``ToolTip`` instance.</span>
+<span class="sd">        :rtype: ToolTip</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ToolTip</span><span class="p">(</span>
             <span class="n">widget</span><span class="o">=</span><span class="n">widget</span><span class="p">,</span>
             <span class="n">msg</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span>
@@ -344,6 +353,11 @@
 <div class="viewcode-block" id="MainApp.reset_state">
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.reset_state">[docs]</a>
     <span class="k">def</span> <span class="nf">reset_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resets the program to an initial state without closing and reopening it.</span>
+
+<span class="sd">        :raises AttributeError: if one of the internal attributes that should have been set are\</span>
+<span class="sd">        not found and therefore couldn&#39;t be reset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;Browse...&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
