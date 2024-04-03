@@ -184,7 +184,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         else:
             raise ValueError("Got invalid input list.")
 
-    def create_difference_dict(self, list_actual, list_predicted) -> dict[int,list[float]]:
+    def create_difference_dict(self, list_actual: list[tuple[float, ...]], list_predicted: list[tuple[float, ...]]) -> dict[int,list[float]]:
         """Used to compute the differences (residuals) of two input lists created by ``process_lists()``.
         Stores the differences at each index in a dictionary with index:difference pairs.
 
