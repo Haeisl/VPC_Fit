@@ -15,6 +15,7 @@ from src import FileHandler
 from src import ModelFitter
 from src.CTkResultInterface import ResultInterface
 from src.FileHandler import FileExtensions
+from src.ModelData import ModelData
 from src.VPCModel import VPCModel
 
 
@@ -127,7 +128,6 @@ class MainApp(customtkinter.CTk):
             padx=(0,20), pady=(5,35),
             sticky="w"
         )
-
         # tabview "Additional"
         self.what_parameter_label = customtkinter.CTkLabel(
             self.tabview.tab("Additional"),
@@ -150,30 +150,28 @@ class MainApp(customtkinter.CTk):
             padx=10, pady=(0,10),
             columnspan=2
         )
-        self.result_components_label = customtkinter.CTkLabel(
+        self.ode_initial_cond_label = customtkinter.CTkLabel(
             self.tabview.tab("Additional"),
-            text="Result Components:",
+            text="ODE initial conditions:",
             font=font
         )
-        self.result_components_label.grid(
+        self.ode_initial_cond_label.grid(
             row=2, column=0,
             padx=10,
             pady=(0,0),
             columnspan=2
         )
-        self.result_components_combobox = customtkinter.CTkComboBox(
+        self.ode_initial_value_entry = customtkinter.CTkEntry(
             self.tabview.tab("Additional"),
-            values=["auto", "1", "2", "3"],
-            #variable=self.result_components,
+            placeholder_text="t0, y0",
             font=font,
             width=80
         )
-        self.result_components_combobox.grid(
+        self.ode_initial_value_entry.grid(
             row=3, column=0,
             padx=10, pady=(0,10),
             columnspan=2
         )
-
         # Confirm button at the bottom of the left frame
         self.confirm_inputs_button = customtkinter.CTkButton(
             self.main_frame,
@@ -186,7 +184,6 @@ class MainApp(customtkinter.CTk):
             row=3, column=0,
             pady=(20,25)
         )
-
         # compute frame
         self.compute_frame = customtkinter.CTkFrame(self, height=300, corner_radius=0)
         self.compute_frame.grid(row=0, column=1, rowspan=2, padx=(3,5), pady=(5,5), sticky="nsew")
@@ -274,7 +271,7 @@ class MainApp(customtkinter.CTk):
         self.file_path = ""
         self.equation_entry.delete(0, customtkinter.END)
         self.what_parameter_entry.delete(0, customtkinter.END)
-        self.result_components_combobox.set("1")
+        self.ode_initial_value_entry.delete(0, customtkinter.END)
 
         self.input_confirmation_textbox.delete("1.0", customtkinter.END)
         msg = self.create_interpretation_string()
@@ -316,9 +313,7 @@ class MainApp(customtkinter.CTk):
 
     def create_interpretation_string(
         self,
-        function: str = "...",
-        var: list[str] = ["..."],
-        consts: list[str] = ["..."],
+        model: VPCModel | None = None,
         **kwargs: str | None
     ) -> str:
         """Creates the interpretation string of the user input to be displayed at the right side
@@ -333,13 +328,29 @@ class MainApp(customtkinter.CTk):
         :return: A multi-line f-string containing the entered information.
         :rtype: str
         """
+        if model is None:
+            function = "..."
+            var = ["..."]
+            consts = ["..."]
+            ode_msg = "..."
+            vector_msg = "..."
+        else:
+            function = model.model_string
+            var = model.independent_var
+            consts = model.constants
+            ode_msg = "Yes" if model.is_ode() else "No"
+            vector_msg = f"Yes, {model.components} components" if model.is_vector() else "No"
         msg = (
             f"Function:\n"
             f"    {function}\n"
             f"Independent Variable(s):\n"
             f"    {", ".join(str(c) for c in var)}\n"
             f"Constants to be fitted:\n"
-            f"    {", ".join(str(c) for c in consts)}"
+            f"    {", ".join(str(c) for c in consts)}\n\n"
+            f"ODE:\n"
+            f"    {ode_msg}\n"
+            f"Vector:\n"
+            f"    {vector_msg}"
         )
         if kwargs:
             msg += f"\n\nExtra:"
@@ -400,21 +411,17 @@ class MainApp(customtkinter.CTk):
 
         return missing_vars
 
-    def are_components_equal(self) -> bool:
-        """Checks whether the components assumed by the ``VPCModel`` model and given components
-        in the interface are the same.
-
-        Will default to ``True``, if the value in the result components field is left on 'auto'.
-
-        :return: Whether the given and assumed components match.
-        :rtype: bool
-        """
-        if self.result_components_combobox.get() == "auto":
-            given = self.model.components
-        else:
-            given = int(self.result_components_combobox.get())
-        assumed = self.model.components
-        return given == assumed
+    def is_initial_value_point(self) -> bool:
+        initial_value_string: str = self.ode_initial_value_entry.get()
+        if initial_value_string.count(",") != 1:
+            return False
+        initial_value_list: list[str] = initial_value_string.split(",")
+        for element in initial_value_list:
+            try:
+                float(element)
+            except ValueError:
+                return False
+        return True
 
     def check_inputs_populated(self) -> str:
         """Checks the various fields for missing user input.
@@ -426,13 +433,6 @@ class MainApp(customtkinter.CTk):
         if self.equation_entry.get() == "":
             msg += (
                 f"No model equation entered.\n\n"
-            )
-        valid = {str(i) for i in range(10)}
-        valid.add("auto")
-        if self.result_components_combobox.get() not in valid:
-            msg += (
-                f"Result Components\n"
-                f"have to be \"auto\" or 1-9\n\n"
             )
         if (not Path(self.file_path).exists()) or self.file_path == "":
             msg += (
@@ -465,12 +465,11 @@ class MainApp(customtkinter.CTk):
                     f"The following independent\nparameters were not found in\n"
                     f"the model expression:\n{missing_vars}\n\n"
                 )
-        if not self.are_components_equal():
+        if self.model.is_ode() and not self.is_initial_value_point():
             msg += (
-                f"Entered model suggests\n"
-                f"different # of components\n"
-                f"than # provided in\n"
-                f"\"additional\" tab.\n\n"
+                f"Initial values for ODE need\n"
+                f"to be exactly two floats,\n"
+                f"separated by commas.\n\n"
             )
         if (self.file_path != "") and (not FileHandler.is_extension_supported(self.file_path)):
             msg += (
@@ -500,6 +499,11 @@ class MainApp(customtkinter.CTk):
 
         error_msg += self.check_inputs_sensible()
 
+        if self.model.is_ode():
+            initial_value_string = self.ode_initial_value_entry.get()
+            initial_value_list = [float(val.strip()) for val in initial_value_string.split(",")]
+            self.model.set_initial_values(initial_value_list)
+
         try:
             data = FileHandler.read_file(self.file_path)
             data_list = FileHandler.dataframe_tolist(data)
@@ -518,11 +522,7 @@ class MainApp(customtkinter.CTk):
             self.display_interpreted_input(error_msg)
             return
 
-        msg = self.create_interpretation_string(
-            self.model.model_string,
-            self.model.independent_var,
-            self.model.constants
-        )
+        msg = self.create_interpretation_string(self.model)
 
         self.display_interpreted_input(msg)
         self.remove_compute_tooltip()
@@ -577,8 +577,7 @@ class MainApp(customtkinter.CTk):
         :return: 0 if ``FileHandler.write_file()`` finished normally, 1 otherwise.
         :rtype: int
         """
-        format = FileExtensions.EXCEL
-        data = FileHandler.create_dataframe_from_for(
+        model_data = ModelData(
             fitted_model=self._model.resulting_function,
             fitted_consts=self._model.fitted_consts,
             model=self._model.model_string,
@@ -588,6 +587,10 @@ class MainApp(customtkinter.CTk):
             consts=self._parameters_to_fit,
             user_input_consts=self._model.constants,
             user_input_path=self.file_path,
+        )
+        format = FileExtensions.EXCEL
+        data = FileHandler.create_dataframe_from_for(
+            model_data=model_data,
             format=format
         )
         try:

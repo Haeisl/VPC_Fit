@@ -14,7 +14,6 @@ logger = logging.getLogger("VPCModel")
 @dataclass
 class VPCModel():
     """Dataclass to store a model and extract relevant information from it."""
-
     _model_string: str
     _independent_var: list[str]
 
@@ -140,6 +139,9 @@ class VPCModel():
         if self._resulting_function is None:
             return ""
         return self._resulting_function
+
+    def set_initial_values(self, initial_values: list[float]) -> None:
+        self.initial_values = initial_values
 
     def _set_fitted_consts(self, fitted_consts_dict: dict[str, float]) -> None:
         """Function to set the computed fitted constants to its internal variable.

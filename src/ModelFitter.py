@@ -11,7 +11,9 @@ from typing import Any, Callable
 # related third party imports
 import numpy as np
 import numpy.typing as npt
+import sympy as sp
 from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 from scipy.optimize import curve_fit
 from scipy.optimize import minimize
 
@@ -34,7 +36,7 @@ def fit(model: VPCModel, data: list[list[int | float]]) -> None:
     :type data: list[list[int  |  float]]
     """
     if model.is_ode():
-        formatted_function, running_var_vals, model_res_vals = _fit_ode(model, data)
+        _fit_ode(model, data)
     else:
         formatted_function, running_var_vals, model_res_vals = _fit_reg(model, data)
 
@@ -55,34 +57,26 @@ def fit(model: VPCModel, data: list[list[int | float]]) -> None:
 def _fit_ode(
     model: VPCModel,
     data: list[list[int | float]]
-    ) -> tuple[Callable, tuple[npt.NDArray[Any], ...], npt.NDArray[Any]]:
-    """Fit a model to data assuming it's a system of ordinary differential equations (ODE).
-
-    :param model: The model that is supposed to be fitted.
-    :type model: VPCModel
-    :param data: The data the model is supposed to be fitted to.
-    :type data: list[list[int  |  float]]
-    :return: A tuple containing the formatted function, independent variable values, and model result values.
-    :rtype: tuple[Callable, tuple[npt.NDArray[Any], ...], npt.NDArray[Any]]
-    """
-    num_indep_vars = len(model.independent_var)
-    # Assuming the first column represents the independent variable
-    independent_variable = np.array(data[0])
-    # Assuming the rest of the columns represent dependent variables
-    dependent_variables = [np.array(col) for col in data[1:]]
-    initial_conditions = np.ones(num_indep_vars)  # Initial conditions for the ODE system
-    model_solution = odeint(model.model_function, initial_conditions, independent_variable)
-    formatted_function = lambda indep, *args: np.ravel(model_solution(indep, *args))
-    model_res_vals = np.ravel(dependent_variables)
-
-    return formatted_function, (independent_variable,), model_res_vals
+    ) -> None:
+    initial_value: list[float] = model.initial_values
+    raise NotImplementedError
 
 
 def _fit_reg(
     model: VPCModel,
     data: list[list[int | float]]
     ) -> tuple[Callable, tuple[npt.NDArray[Any], ...], npt.NDArray[Any]]:
-    """TODO: add docu"""
+    """Fitting routine that gets called when the underlying model is not an ordinary differential
+    equation. Returns all necessary parameters to call scipy's curve_fit() with.
+
+    :param model: The model that is to be fitted.
+    :type model: VPCModel
+    :param data: The provided data to which the model is fitted.
+    :type data: list[list[int  |  float]]
+    :return: Tuple consisting of a callable function, as well as values\
+    for the independent variable and their resulting data, taken from the provided input data
+    :rtype: tuple[Callable, tuple[npt.NDArray[Any], ...], npt.NDArray[Any]]
+    """
     num_indep_vars = len(model.independent_var)
     if check_model_is_valid_vector(model, len(data)):
         # assumption: first col for independent var, rest for results for components in order

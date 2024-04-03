@@ -11,6 +11,9 @@ from pathlib import Path
 # related third party imports
 import pandas as pd
 
+# local imports
+from src.ModelData import ModelData
+
 
 logger = logging.getLogger("FileHandler")
 
@@ -111,15 +114,7 @@ def dataframe_tolist(data_frame: pd.DataFrame) -> list[list[float | int]]:
 
 
 def create_dataframe_from_for(
-    fitted_model: str | None = None,
-    fitted_consts: dict[str, float] | str | None = None,
-    model: str = "f(t) = ...",
-    user_input_model: str = "f(t) = ...",
-    parameter: list[str] = ["..."],
-    user_input_parameter: str = "...",
-    consts: list[str] = ["..."],
-    user_input_consts: list[str] = ["..."],
-    user_input_path: str = "path/to/data",
+    model_data: ModelData,
     format: FileExtensions = FileExtensions.EXCEL
 ) -> pd.DataFrame:
     """Creates a ``pd.DataFrame`` for the specified ``format``, i.e. either Excel or CSV.
@@ -151,7 +146,7 @@ def create_dataframe_from_for(
     :return: A data frame containing all input and output information.
     :rtype: pd.DataFrame
     """
-    if fitted_model is None:
+    if model_data.fitted_model is None:
         logger.warning(f"Did not get a fitted model string.")
         fitted_model = "N/A"
         fitted_consts = "N/A"
@@ -169,31 +164,31 @@ def create_dataframe_from_for(
         data.at[4,"A"]  = "Interpreted Data"
         data.at[4,"D"]  = "Raw Data"
         data.at[5,"A"]  = "Model:"
-        data.at[5,"B"]  = model
+        data.at[5,"B"]  = model_data.model
         data.at[5,"D"]  = "Entered Model:"
-        data.at[5,"E"]  = user_input_model
+        data.at[5,"E"]  = model_data.user_input_model
         data.at[6,"A"]  = "Independent Var:"
-        data.at[6,"B"]  = parameter
+        data.at[6,"B"]  = model_data.parameter
         data.at[6,"D"]  = "Entered Independent Var:"
-        data.at[6,"E"]  = user_input_parameter
+        data.at[6,"E"]  = model_data.user_input_parameter
         data.at[7,"A"] = "Constants:"
-        data.at[7,"B"] = consts
+        data.at[7,"B"] = model_data.consts
         data.at[7,"D"] = "Entered Constants:"
-        data.at[7,"E"] = user_input_consts
+        data.at[7,"E"] = model_data.user_input_consts
         data.at[8,"D"] = "Entered Data:"
-        data.at[8,"E"] = user_input_path
+        data.at[8,"E"] = model_data.user_input_path
 
     elif format == FileExtensions.CSV:
         data = pd.DataFrame({
             "1": ["Fitted Model:",  "Interpreted",          "Raw"                       ],
             "2": [fitted_model,     "Model:",               "Entered Model:"            ],
-            "3": [None,             model,                  user_input_model            ],
+            "3": [None,             model_data.model,       model_data.user_input_model            ],
             "4": [None,             "Independent Var:",     "Entered Independent Var:"  ],
-            "5": [None,             parameter,              user_input_parameter        ],
+            "5": [None,             model_data.parameter,   model_data.user_input_parameter        ],
             "6": [None,             "Constants:",           "Entered Constants:"        ],
-            "7": [None,             consts,                 user_input_consts           ],
+            "7": [None,             model_data.consts,      model_data.user_input_consts           ],
             "8": [None,             None,                   "Entered Data:"             ],
-            "9": [None,             None,                   user_input_path             ],
+            "9": [None,             None,                   model_data.user_input_path             ],
         })
     else:
         logger.warning(
