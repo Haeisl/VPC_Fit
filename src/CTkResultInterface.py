@@ -184,7 +184,11 @@ class ResultInterface(customtkinter.CTkToplevel):
         else:
             raise ValueError("Got invalid input list.")
 
-    def create_difference_dict(self, list_actual: list[tuple[float, ...]], list_predicted: list[tuple[float, ...]]) -> dict[int,list[float]]:
+    def create_difference_dict(
+        self,
+        list_actual: list[tuple[float, ...]],
+        list_predicted: list[tuple[float, ...]]
+        ) -> dict[int,list[float]]:
         """Used to compute the differences (residuals) of two input lists created by ``process_lists()``.
         Stores the differences at each index in a dictionary with index:difference pairs.
 
@@ -231,7 +235,7 @@ class ResultInterface(customtkinter.CTkToplevel):
             predicted_values = [func(xdata) for xdata in formatted_xdata]
 
         if self.fitted_model.is_vector():
-            diff_dict: dict[int,list[float]] = self.create_difference_dict(formatted_ydata, predicted_values)
+            diff_dict: dict[int,list[float]] = self.create_difference_dict(formatted_ydata, predicted_values) # type: ignore
             n = len(diff_dict[0]) # assuming all lists have the same length (they should)
             colors = ["b", "g", "r", "c", "m", "y", "k"]
             color_cycle = cycle(colors)

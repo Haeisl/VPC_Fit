@@ -209,6 +209,15 @@ class VPCModel():
         :return: All unique symbols in the expression on the right-hand of the equation.
         :rtype: list[str]
         """
+        exclude = [
+            "sin",
+            "cos",
+            "tan",
+            "exp",
+            "log",
+            "sqrt",
+            "pi"
+        ]
         expression = self._model_string
 
         if "=" in expression:
@@ -232,7 +241,7 @@ class VPCModel():
 
             unique_symbols.sort(key=lambda c: custom_sort_key(c, sorting_prio))
 
-        return unique_symbols
+        return [s for s in unique_symbols if s not in exclude]
 
     def model_string_to_function(self) -> FunctionClass:
         """Create a lambda function based on the model equation.
@@ -250,7 +259,7 @@ class VPCModel():
         logger.debug(f"detected symbols in expression: {sorted_symbols}")
         sympy_vars = symbols(sorted_symbols)
         parsed_expression = parse_expr(expression)
-        func: FunctionClass = lambdify(sympy_vars, parsed_expression, ["scipy", "numpy"])
+        func: FunctionClass = lambdify(sympy_vars, parsed_expression, ["scipy","numpy"])
         logger.info(f"Success.")
         return func
 
