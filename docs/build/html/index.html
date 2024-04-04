@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelData.html">ModelData module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
 </ul>
@@ -91,7 +92,6 @@
 <li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp"><code class="docutils literal notranslate"><span class="pre">MainApp</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.__init__"><code class="docutils literal notranslate"><span class="pre">MainApp.__init__()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.are_components_equal"><code class="docutils literal notranslate"><span class="pre">MainApp.are_components_equal()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.browse_files"><code class="docutils literal notranslate"><span class="pre">MainApp.browse_files()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.check_inputs_populated"><code class="docutils literal notranslate"><span class="pre">MainApp.check_inputs_populated()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp.check_inputs_sensible"><code class="docutils literal notranslate"><span class="pre">MainApp.check_inputs_sensible()</span></code></a></li>
@@ -109,6 +109,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CTkResultInterface.html">CTkResultInterface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.FailedFitInterface"><code class="docutils literal notranslate"><span class="pre">FailedFitInterface</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.FailedFitInterface.__init__"><code class="docutils literal notranslate"><span class="pre">FailedFitInterface.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.FailedFitInterface.reset_app"><code class="docutils literal notranslate"><span class="pre">FailedFitInterface.reset_app()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface"><code class="docutils literal notranslate"><span class="pre">ResultInterface</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.__init__"><code class="docutils literal notranslate"><span class="pre">ResultInterface.__init__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="CTkResultInterface.html#src.CTkResultInterface.ResultInterface.create_difference_dict"><code class="docutils literal notranslate"><span class="pre">ResultInterface.create_difference_dict()</span></code></a></li>
@@ -127,7 +132,6 @@
 <li class="toctree-l3"><a class="reference internal" href="FileHandler.html#src.FileHandler.FileExtensions.EXCEL"><code class="docutils literal notranslate"><span class="pre">FileExtensions.EXCEL</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.create_dataframe_from_for"><code class="docutils literal notranslate"><span class="pre">create_dataframe_from_for()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.dataframe_tolist"><code class="docutils literal notranslate"><span class="pre">dataframe_tolist()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.get_valid_filename"><code class="docutils literal notranslate"><span class="pre">get_valid_filename()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.is_extension_supported"><code class="docutils literal notranslate"><span class="pre">is_extension_supported()</span></code></a></li>
@@ -135,11 +139,27 @@
 <li class="toctree-l2"><a class="reference internal" href="FileHandler.html#src.FileHandler.write_file"><code class="docutils literal notranslate"><span class="pre">write_file()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="ModelData.html">ModelData module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData"><code class="docutils literal notranslate"><span class="pre">ModelData</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.__init__"><code class="docutils literal notranslate"><span class="pre">ModelData.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.consts"><code class="docutils literal notranslate"><span class="pre">ModelData.consts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.create_dataframe_for"><code class="docutils literal notranslate"><span class="pre">ModelData.create_dataframe_for()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.fitted_consts"><code class="docutils literal notranslate"><span class="pre">ModelData.fitted_consts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.fitted_model"><code class="docutils literal notranslate"><span class="pre">ModelData.fitted_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.model"><code class="docutils literal notranslate"><span class="pre">ModelData.model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.parameter"><code class="docutils literal notranslate"><span class="pre">ModelData.parameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.user_input_consts"><code class="docutils literal notranslate"><span class="pre">ModelData.user_input_consts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.user_input_model"><code class="docutils literal notranslate"><span class="pre">ModelData.user_input_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.user_input_parameter"><code class="docutils literal notranslate"><span class="pre">ModelData.user_input_parameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ModelData.html#src.ModelData.ModelData.user_input_path"><code class="docutils literal notranslate"><span class="pre">ModelData.user_input_path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.check_model_is_valid_vector"><code class="docutils literal notranslate"><span class="pre">check_model_is_valid_vector()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.evaluate_fit"><code class="docutils literal notranslate"><span class="pre">evaluate_fit()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.fit"><code class="docutils literal notranslate"><span class="pre">fit()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ModelFitter.html#src.ModelFitter.set_model_information"><code class="docutils literal notranslate"><span class="pre">set_model_information()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a><ul>
@@ -160,6 +180,7 @@
 <li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.model_string"><code class="docutils literal notranslate"><span class="pre">VPCModel.model_string</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.model_string_to_function"><code class="docutils literal notranslate"><span class="pre">VPCModel.model_string_to_function()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.resulting_function"><code class="docutils literal notranslate"><span class="pre">VPCModel.resulting_function</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.set_fit_information"><code class="docutils literal notranslate"><span class="pre">VPCModel.set_fit_information()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel.symbols"><code class="docutils literal notranslate"><span class="pre">VPCModel.symbols</span></code></a></li>
 </ul>
 </li>

@@ -14,6 +14,7 @@ Welcome to Virtual Patient Cohorts's documentation!
    CTkInterface
    CTkResultInterface
    FileHandler
+   ModelData
    ModelFitter
    VPCModel
 

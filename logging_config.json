@@ -56,6 +56,11 @@
             "qualname": "root.FileHandler",
             "propagate": 1
         },
+        "ModelData": {
+            "level": "DEBUG",
+            "qualname": "root.ModelData",
+            "propagate": 1
+        },
         "ModelFitter": {
             "level": "DEBUG",
             "qualname": "root.ModelFitter",

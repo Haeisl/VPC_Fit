@@ -49,6 +49,11 @@
 <li class="toctree-l1"><a class="reference internal" href="main.html">main</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CTkInterface.html">CTkInterface module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CTkResultInterface module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.CTkResultInterface.FailedFitInterface"><code class="docutils literal notranslate"><span class="pre">FailedFitInterface</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.FailedFitInterface.__init__"><code class="docutils literal notranslate"><span class="pre">FailedFitInterface.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.FailedFitInterface.reset_app"><code class="docutils literal notranslate"><span class="pre">FailedFitInterface.reset_app()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface"><code class="docutils literal notranslate"><span class="pre">ResultInterface</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.__init__"><code class="docutils literal notranslate"><span class="pre">ResultInterface.__init__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#src.CTkResultInterface.ResultInterface.create_difference_dict"><code class="docutils literal notranslate"><span class="pre">ResultInterface.create_difference_dict()</span></code></a></li>
@@ -62,6 +67,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ModelData.html">ModelData module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ModelFitter.html">ModelFitter module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VPCModel.html">VPCModel module</a></li>
 </ul>
@@ -93,6 +99,27 @@
   <section id="module-src.CTkResultInterface">
 <span id="ctkresultinterface-module"></span><h1>CTkResultInterface module<a class="headerlink" href="#module-src.CTkResultInterface" title="Link to this heading"></a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="src.CTkResultInterface.FailedFitInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.CTkResultInterface.</span></span><span class="sig-name descname"><span class="pre">FailedFitInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><span class="pre">MainApp</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/CTkResultInterface.html#FailedFitInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.FailedFitInterface" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkToplevel</span></code></p>
+<p>Intereface for displaying a message for a failed fit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.FailedFitInterface.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><span class="pre">MainApp</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/CTkResultInterface.html#FailedFitInterface.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.FailedFitInterface.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the failed fit interface.
+:param main_window: Parent window.
+:type main_window: MainApp</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.CTkResultInterface.FailedFitInterface.reset_app">
+<span class="sig-name descname"><span class="pre">reset_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#FailedFitInterface.reset_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.FailedFitInterface.reset_app" title="Link to this definition"></a></dt>
+<dd><p>Reset the parent application’s state and close this window.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.CTkResultInterface.</span></span><span class="sig-name descname"><span class="pre">ResultInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><span class="pre">MainApp</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitted_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><span class="pre">VPCModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CTkToplevel</span></code></p>
@@ -109,7 +136,7 @@
 <li><p><strong>main_window</strong> (<a class="reference internal" href="CTkInterface.html#src.CTkInterface.MainApp" title="src.CTkInterface.MainApp"><em>MainApp</em></a>) – Parent window.</p></li>
 <li><p><strong>model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – Model that was fitted to the sample data.</p></li>
 <li><p><strong>fitted_model</strong> (<a class="reference internal" href="VPCModel.html#src.VPCModel.VPCModel" title="src.VPCModel.VPCModel"><em>VPCModel</em></a>) – Fitted model as a means to get easy access to the fitted model’s lambda function.</p></li>
-<li><p><strong>data</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>  |  </em><em>float</em><em>]</em><em>]</em>) – The data the input was fitted to.</p></li>
+<li><p><strong>data</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em> | </em><em>float</em><em>]</em><em>]</em>) – The data the input was fitted to.</p></li>
 </ul>
 </dd>
 </dl>
@@ -117,7 +144,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.CTkResultInterface.ResultInterface.create_difference_dict">
-<span class="sig-name descname"><span class="pre">create_difference_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_actual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_predicted</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.create_difference_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.create_difference_dict" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_difference_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_actual</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_predicted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/CTkResultInterface.html#ResultInterface.create_difference_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.CTkResultInterface.ResultInterface.create_difference_dict" title="Link to this definition"></a></dt>
 <dd><p>Used to compute the differences (residuals) of two input lists created by <code class="docutils literal notranslate"><span class="pre">process_lists()</span></code>.
 Stores the differences at each index in a dictionary with index:difference pairs.</p>
 <dl class="field-list simple">

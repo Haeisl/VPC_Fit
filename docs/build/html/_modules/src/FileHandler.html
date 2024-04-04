@@ -89,6 +89,8 @@
 <span class="c1"># related third party imports</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="c1"># local imports</span>
+
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;FileHandler&quot;</span><span class="p">)</span>
 
@@ -105,35 +107,36 @@
 <div class="viewcode-block" id="is_extension_supported">
 <a class="viewcode-back" href="../../FileHandler.html#src.FileHandler.is_extension_supported">[docs]</a>
 <span class="k">def</span> <span class="nf">is_extension_supported</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to determine whether a file extension at the given path is supported.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if the file extension at the given path is supported.</span>
 
 <span class="sd">    :param file_path: Path pointing to the file.</span>
 <span class="sd">    :type file_path: str</span>
 <span class="sd">    :return: True if supported, False otherwise.</span>
 <span class="sd">    :rtype: bool</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">suffix</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">suffix</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">extension</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">FileExtensions</span><span class="p">]</span></div>
+    <span class="n">suffix</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span>
+    <span class="k">if</span> <span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">extension</span> <span class="o">=</span> <span class="n">suffix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">extension</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">valid_extension</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">valid_extension</span> <span class="ow">in</span> <span class="n">FileExtensions</span><span class="p">]</span></div>
 
 
 
 <div class="viewcode-block" id="read_file">
 <a class="viewcode-back" href="../../FileHandler.html#src.FileHandler.read_file">[docs]</a>
 <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to read a ``.csv`` or ``.xlsx`` file from a given path</span>
-<span class="sd">    and return its value as a ``pd.DataFrame``.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a `.csv` or `.xlsx` file from the given path and return it as a `pd.DataFrame`.</span>
 
-<span class="sd">    Uses pathlib&#39;s ``is_file()`` method to assure there is a file at the given path.</span>
-<span class="sd">    Then tries to obtain the file&#39;s suffix and checks for ``.csv`` or ``.xlsx`` formats,</span>
+<span class="sd">    Uses pathlib&#39;s `is_file()` method to ensure there is a file at the given path.</span>
+<span class="sd">    Then tries to obtain the file&#39;s suffix and checks for `.csv` or `.xlsx` formats,</span>
 <span class="sd">    for which the corresponding pandas read method is called.</span>
 
-<span class="sd">    :param file_path: String for path to the file that is to be read.</span>
+<span class="sd">    :param file_path: Path to the file to be read.</span>
 <span class="sd">    :type file_path: str</span>
-<span class="sd">    :raises FileNotFoundError: If there is no file at ``file_path``\</span>
-<span class="sd">    according to pathlib&#39;s ``is_file()`` method.</span>
-<span class="sd">    :raises ValueError: If the file at the provided path has no suffix.</span>
-<span class="sd">    :raises TypeError: If the file at the provided path is not either an excel table or csv file.</span>
-<span class="sd">    :return: A ``pd.DataFrame`` containing all information that is read from the excel or csv file.</span>
+<span class="sd">    :raises FileNotFoundError: If no file exists at `file_path`.</span>
+<span class="sd">    :raises ValueError: If `file_path` has no suffix.</span>
+<span class="sd">    :raises TypeError: If the file is not either an Excel table or CSV file.</span>
+<span class="sd">    :return: A `pd.DataFrame` containing all information that is read from the excel or csv file.</span>
 <span class="sd">    :rtype: pd.DataFrame</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
@@ -146,7 +149,11 @@
     <span class="k">if</span> <span class="n">suffix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
         <span class="n">data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">suffix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">CSV</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-        <span class="n">data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">pd</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">EmptyDataError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;FileHandler got an empty CSV file to read. Returning empty DataFrame.&quot;</span><span class="p">)</span>
+            <span class="n">data_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Invalid file extension.&quot;</span><span class="p">)</span>
 
@@ -157,17 +164,12 @@
 <div class="viewcode-block" id="dataframe_tolist">
 <a class="viewcode-back" href="../../FileHandler.html#src.FileHandler.dataframe_tolist">[docs]</a>
 <span class="k">def</span> <span class="nf">dataframe_tolist</span><span class="p">(</span><span class="n">data_frame</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes a ``pd.DataFrame`` and returns a ``list`` containing a separate ``list``</span>
-<span class="sd">    for every column in the original DataFrame. The values in the inner ``list`` are the ``int``</span>
-<span class="sd">    or ``float`` values that are in this column.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a `pd.DataFrame` to a list of lists containing its values.</span>
 
-<span class="sd">    :param data_frame: The ``pd.DataFrame`` that is to be read.</span>
+<span class="sd">    :param data_frame: `DataFrame` to be converted.</span>
 <span class="sd">    :type data_frame: pd.DataFrame</span>
-<span class="sd">    :raises ValueError: If the provided data frame is ``None``.</span>
-<span class="sd">    :raises ValueError: If the provided data frame is empty.</span>
-<span class="sd">    :raises ValueError: If there are empty cells in the data frame.</span>
-<span class="sd">    :raises ValueError: If there are non-``int`` or non-``float`` values in the data.</span>
-<span class="sd">    :return: A list of lists of each column&#39;s data.</span>
+<span class="sd">    :raises ValueError: If the `data_frame` is None, empty, contains empty cells, or non-numeric values.</span>
+<span class="sd">    :return: List of lists containing the DataFrame&#39;s values.</span>
 <span class="sd">    :rtype: list[list[float | int]]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">data_frame</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -193,111 +195,12 @@
 
 
 
-<div class="viewcode-block" id="create_dataframe_from_for">
-<a class="viewcode-back" href="../../FileHandler.html#src.FileHandler.create_dataframe_from_for">[docs]</a>
-<span class="k">def</span> <span class="nf">create_dataframe_from_for</span><span class="p">(</span>
-    <span class="n">fitted_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">fitted_consts</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;f(t) = ...&quot;</span><span class="p">,</span>
-    <span class="n">user_input_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;f(t) = ...&quot;</span><span class="p">,</span>
-    <span class="n">parameter</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-    <span class="n">user_input_parameter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
-    <span class="n">consts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-    <span class="n">user_input_consts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-    <span class="n">user_input_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;path/to/data&quot;</span><span class="p">,</span>
-    <span class="nb">format</span><span class="p">:</span> <span class="n">FileExtensions</span> <span class="o">=</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a ``pd.DataFrame`` for the specified ``format``, i.e. either Excel or CSV.</span>
-<span class="sd">    The data frame contains information about the user inputs into the program and what the program</span>
-<span class="sd">    made of those. It also contains the fit of the model if possible. If no fitted model string was</span>
-<span class="sd">    given, a warning will be logged and the field in the data frame will read &#39;N/A&#39;.</span>
-
-<span class="sd">    :param fitted_model: The fitted model as a ``str``.</span>
-<span class="sd">    :type fitted_model: str | None</span>
-<span class="sd">    :param fitted_consts: The dictionary of the constants as keys of type ``str`` and their value\</span>
-<span class="sd">    as ``float``. Alternatively just a string containing the same information.</span>
-<span class="sd">    :type fitted_consts: dict[str, float] | str | None</span>
-<span class="sd">    :param model: The model the program worked with, defaults to &quot;f(t) = ...&quot;</span>
-<span class="sd">    :type model: str, optional</span>
-<span class="sd">    :param user_input_model: The exact model the user entered, defaults to &quot;f(t) = ...&quot;</span>
-<span class="sd">    :type user_input_model: str, optional</span>
-<span class="sd">    :param parameter: The independent variable the program worked with, defaults to [&quot;...&quot;]</span>
-<span class="sd">    :type parameter: list[str], optional</span>
-<span class="sd">    :param user_input_parameter: The exact independent variables the user entered, defaults to &quot;...&quot;</span>
-<span class="sd">    :type user_input_parameter: str, optional</span>
-<span class="sd">    :param consts: The constants the program worked with, defaults to [&quot;...&quot;]</span>
-<span class="sd">    :type consts: list[str], optional</span>
-<span class="sd">    :param user_input_consts: The exact constants the user entered, defaults to [&quot;...&quot;]</span>
-<span class="sd">    :type user_input_consts: list[str], optional</span>
-<span class="sd">    :param user_input_path: The path to the data the user provided, defaults to &quot;path/to/data&quot;</span>
-<span class="sd">    :type user_input_path: str, optional</span>
-<span class="sd">    :param format: The format for which the data frame is constructed, defaults to FileExtensions.EXCEL</span>
-<span class="sd">    :type format: FileExtensions, optional</span>
-<span class="sd">    :return: A data frame containing all input and output information.</span>
-<span class="sd">    :rtype: pd.DataFrame</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">fitted_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Did not get a fitted model string.&quot;</span><span class="p">)</span>
-        <span class="n">fitted_model</span> <span class="o">=</span> <span class="s2">&quot;N/A&quot;</span>
-        <span class="n">fitted_consts</span> <span class="o">=</span> <span class="s2">&quot;N/A&quot;</span>
-
-    <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-            <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>
-            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">]</span>
-        <span class="p">)</span>
-
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Fitted Model:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">fitted_model</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Fitted Constants:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">fitted_consts</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Interpreted Data&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Raw Data&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Model:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">model</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Entered Model:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">user_input_model</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Independent Var:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">parameter</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="s2">&quot;Entered Independent Var:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">user_input_parameter</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Constants:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">consts</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Entered Constants:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_input_consts</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Entered Data:&quot;</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_input_path</span>
-
-    <span class="k">elif</span> <span class="nb">format</span> <span class="o">==</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">CSV</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-            <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Fitted Model:&quot;</span><span class="p">,</span>  <span class="s2">&quot;Interpreted&quot;</span><span class="p">,</span>          <span class="s2">&quot;Raw&quot;</span>                       <span class="p">],</span>
-            <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">fitted_model</span><span class="p">,</span>     <span class="s2">&quot;Model:&quot;</span><span class="p">,</span>               <span class="s2">&quot;Entered Model:&quot;</span>            <span class="p">],</span>
-            <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="n">model</span><span class="p">,</span>                  <span class="n">user_input_model</span>            <span class="p">],</span>
-            <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="s2">&quot;Independent Var:&quot;</span><span class="p">,</span>     <span class="s2">&quot;Entered Independent Var:&quot;</span>  <span class="p">],</span>
-            <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="n">parameter</span><span class="p">,</span>              <span class="n">user_input_parameter</span>        <span class="p">],</span>
-            <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="s2">&quot;Constants:&quot;</span><span class="p">,</span>           <span class="s2">&quot;Entered Constants:&quot;</span>        <span class="p">],</span>
-            <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="n">consts</span><span class="p">,</span>                 <span class="n">user_input_consts</span>           <span class="p">],</span>
-            <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="kc">None</span><span class="p">,</span>                   <span class="s2">&quot;Entered Data:&quot;</span>             <span class="p">],</span>
-            <span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span>             <span class="kc">None</span><span class="p">,</span>                   <span class="n">user_input_path</span>             <span class="p">],</span>
-        <span class="p">})</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Writing empty DataFrame.&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;  Passed format was </span><span class="si">{</span><span class="nb">format</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;  And checked against </span><span class="si">{</span><span class="p">[</span><span class="n">f</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">FileExtensions</span><span class="p">]</span><span class="si">}</span><span class="s2"> which resulted in no match.&quot;</span>
-        <span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-
-    <span class="k">return</span> <span class="n">data</span></div>
-
-
-
 <div class="viewcode-block" id="get_valid_filename">
 <a class="viewcode-back" href="../../FileHandler.html#src.FileHandler.get_valid_filename">[docs]</a>
 <span class="k">def</span> <span class="nf">get_valid_filename</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to create a valid, hopefully non duplicate, string to use as a file name.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a valid, hopefully non-duplicate, string to use as a file name.</span>
 
-<span class="sd">    :return: Stringified time from ``datetime.now()`` in the form of %Y-%m-%d-result-from-%Hh%Mm.</span>
+<span class="sd">    :return: Stringified time from `datetime.now()` in the form of `%Y-%m-%d-result-from-%Hh%Mm`.</span>
 <span class="sd">    :rtype: str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
@@ -307,20 +210,24 @@
 
 <div class="viewcode-block" id="write_file">
 <a class="viewcode-back" href="../../FileHandler.html#src.FileHandler.write_file">[docs]</a>
-<span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="n">data_frame</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">file_format</span><span class="p">:</span> <span class="n">FileExtensions</span> <span class="o">=</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes the provided ``pd.DataFrame`` as either .xlsx or .csv</span>
-<span class="sd">    to the hard-coded program&#39;s ``/res/`` directory.</span>
+<span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span>
+    <span class="n">data_frame</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">file_format</span><span class="p">:</span> <span class="n">FileExtensions</span> <span class="o">=</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span><span class="p">,</span>
+    <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./res/&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write the provided `pd.DataFrame` as either `.xlsx` or `.csv` to the `./res/` directory.</span>
 
-<span class="sd">    If there is no ``./res/`` directory relative to where the program was started from,</span>
+<span class="sd">    If there is no `./res/` directory relative to where the program was started from,</span>
 <span class="sd">    that directory will be created.</span>
 
-<span class="sd">    :param data_frame: The data frame that is to be written.</span>
+<span class="sd">    :param data_frame: The data frame to be written.</span>
 <span class="sd">    :type data_frame: pd.DataFrame</span>
-<span class="sd">    :param file_format: What format the written file should have, defaults to FileExtensions.EXCEL.</span>
+<span class="sd">    :param file_format: Format of the written file, defaults to `FileExtensions.EXCEL`.</span>
 <span class="sd">    :type file_format: FileExtensions, optional</span>
-<span class="sd">    :raises TypeError: If the provided ``file_format`` was neither Excel nor CSV.</span>
+<span class="sd">    :param destination: Destination directory, default to &quot;./res/&quot;.</span>
+<span class="sd">    :raises TypeError: If `file_format` was neither Excel nor CSV.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">relative_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./res/&quot;</span><span class="p">)</span>
+    <span class="n">relative_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
 
     <span class="n">relative_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 

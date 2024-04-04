@@ -13,7 +13,7 @@ from tktooltip import ToolTip
 # local imports
 from src import FileHandler
 from src import ModelFitter
-from src.CTkResultInterface import ResultInterface
+from src.CTkResultInterface import ResultInterface, FailedFitInterface
 from src.FileHandler import FileExtensions
 from src.ModelData import ModelData
 from src.VPCModel import VPCModel
@@ -150,29 +150,6 @@ class MainApp(customtkinter.CTk):
             padx=10, pady=(0,10),
             columnspan=2
         )
-        self.ode_initial_cond_label = customtkinter.CTkLabel(
-            self.tabview.tab("Additional"),
-            text="ODE initial conditions:",
-            font=font
-        )
-        self.ode_initial_cond_label.grid(
-            row=2, column=0,
-            padx=10,
-            pady=(0,0),
-            columnspan=2
-        )
-        self.ode_initial_value_entry = customtkinter.CTkEntry(
-            self.tabview.tab("Additional"),
-            placeholder_text="t0, y0",
-            font=font,
-            width=80
-        )
-        self.ode_initial_value_entry.grid(
-            row=3, column=0,
-            padx=10, pady=(0,10),
-            columnspan=2
-        )
-        # Confirm button at the bottom of the left frame
         self.confirm_inputs_button = customtkinter.CTkButton(
             self.main_frame,
             text="Confirm",
@@ -271,7 +248,7 @@ class MainApp(customtkinter.CTk):
         self.file_path = ""
         self.equation_entry.delete(0, customtkinter.END)
         self.what_parameter_entry.delete(0, customtkinter.END)
-        self.ode_initial_value_entry.delete(0, customtkinter.END)
+        # self.ode_initial_value_entry.delete(0, customtkinter.END)
 
         self.input_confirmation_textbox.delete("1.0", customtkinter.END)
         msg = self.create_interpretation_string()
@@ -299,7 +276,7 @@ class MainApp(customtkinter.CTk):
         logger.info("Successfully reset to initial state.")
 
     def remove_compute_tooltip(self) -> None:
-        """Removes the tooltip and its bindings from and enables the 'compute parameters' button."""
+        """Removes the tooltip and enables the 'compute parameters' button."""
         if self.compute_button_tooltip.winfo_exists():
             # unbinding compute button bindings
             self.compute_params_button.unbind("<Enter>")
@@ -316,15 +293,12 @@ class MainApp(customtkinter.CTk):
         model: VPCModel | None = None,
         **kwargs: str | None
     ) -> str:
-        """Creates the interpretation string of the user input to be displayed at the right side
-        of the program.
+        """Creates the interpretation string of the user input.
 
-        :param function: Interpreted function, defaults to "...".
-        :type function: str, optional
-        :param var: Interpreted independent variables, defaults to "...".
-        :type var: str, optional
-        :param consts: Interpreted parameters to fit, defaults to "...".
-        :type consts: str, optional
+        :param model: Model to be iterpreted, defaults to None.
+        :type model: VPCModel, optional
+        :param kwargs: Additional keyword arguments, defaults to None.
+        :type kwargs: str | None
         :return: A multi-line f-string containing the entered information.
         :rtype: str
         """
@@ -386,7 +360,7 @@ class MainApp(customtkinter.CTk):
             return
 
         fn = fp.name.split("/")[-1]
-        displayed_name = (fn[:12] + "..") if len(fn) > 12 else fn
+        displayed_name = (fn[:11] + "..") if len(fn) > 11 else fn
         self.file_name.set(displayed_name)
         self.file_path = fp.name
 
@@ -410,18 +384,6 @@ class MainApp(customtkinter.CTk):
                 missing_vars.append(var)
 
         return missing_vars
-
-    def is_initial_value_point(self) -> bool:
-        initial_value_string: str = self.ode_initial_value_entry.get()
-        if initial_value_string.count(",") != 1:
-            return False
-        initial_value_list: list[str] = initial_value_string.split(",")
-        for element in initial_value_list:
-            try:
-                float(element)
-            except ValueError:
-                return False
-        return True
 
     def check_inputs_populated(self) -> str:
         """Checks the various fields for missing user input.
@@ -465,12 +427,6 @@ class MainApp(customtkinter.CTk):
                     f"The following independent\nparameters were not found in\n"
                     f"the model expression:\n{missing_vars}\n\n"
                 )
-        if self.model.is_ode() and not self.is_initial_value_point():
-            msg += (
-                f"Initial values for ODE need\n"
-                f"to be exactly two floats,\n"
-                f"separated by commas.\n\n"
-            )
         if (self.file_path != "") and (not FileHandler.is_extension_supported(self.file_path)):
             msg += (
                 f"Unsupported file extension.\n"
@@ -479,13 +435,7 @@ class MainApp(customtkinter.CTk):
         return msg
 
     def confirm_input(self) -> None:
-        """Runs ``check_inputs_populated()`` and ``check_inputs_sensible()``
-        and displays any strings returned by those to the user.
-
-        If no issues are present, displays the interpreted inputs to
-        the user for human validation, enables the 'compute' button and uses the input to set
-        various internal variables.
-        """
+        """Checks inputs and displays any issues. If okay, sets internal variables."""
         logger.info("Confirm button pressed")
         error_msg = ""
         error_msg += self.check_inputs_populated()
@@ -498,11 +448,6 @@ class MainApp(customtkinter.CTk):
         self.model = VPCModel(self.equation_entry.get(), indep_param)
 
         error_msg += self.check_inputs_sensible()
-
-        if self.model.is_ode():
-            initial_value_string = self.ode_initial_value_entry.get()
-            initial_value_list = [float(val.strip()) for val in initial_value_string.split(",")]
-            self.model.set_initial_values(initial_value_list)
 
         try:
             data = FileHandler.read_file(self.file_path)
@@ -552,15 +497,17 @@ class MainApp(customtkinter.CTk):
         )
 
     def compute_params(self) -> None:
-        """Runs ``ModelFitter.fit()`` on the model and data and opens a window with the results
-        on top of the current one.
-        """
+        """Runs `ModelFitter.fit()` on the model and data, opens a window with the results."""
         logger.info("Compute parameters button pressed")
 
-        ModelFitter.fit(self._model, self._data)
-
-        if self._model.resulting_function == "":
+        try:
+            ModelFitter.fit(self._model, self._data)
+        except RuntimeError as re:
+            logger.error(f"Error occurred in fitting the model. See {re}")
+            failed_interface = FailedFitInterface(main_window=self)
+            failed_interface.focus_set()
             return
+
         fitted = VPCModel(self._model.resulting_function, self._independent_vars)
 
         result_window = ResultInterface(
@@ -589,10 +536,7 @@ class MainApp(customtkinter.CTk):
             user_input_path=self.file_path,
         )
         format = FileExtensions.EXCEL
-        data = FileHandler.create_dataframe_from_for(
-            model_data=model_data,
-            format=format
-        )
+        data = model_data.create_dataframe_for(format=format)
         try:
             logger.debug(
                 f"Attempting to write results file with:\n"

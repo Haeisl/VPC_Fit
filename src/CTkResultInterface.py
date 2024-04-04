@@ -21,6 +21,57 @@ from src.VPCModel import VPCModel
 logger = logging.getLogger("ResultInterface")
 
 
+class FailedFitInterface(customtkinter.CTkToplevel):
+    """Intereface for displaying a message for a failed fit."""
+    def __init__(self, main_window: MainApp):
+        """Initialize the failed fit interface.
+        :param main_window: Parent window.
+        :type main_window: MainApp
+        """
+        super().__init__(main_window)
+        self.main = main_window
+        self.title("Fit Unsuccessful")
+
+        window_width = 425
+        window_height = 210
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        center_x = int(screen_width/2 - window_width/2)
+        center_y = int(screen_height/2 - window_height/2)
+        self.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+        self.resizable(width=False, height=False)
+        self.grab_set()
+
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+
+        text_font = customtkinter.CTkFont(family="Arial", size=14, weight="bold")
+        symbol_font = customtkinter.CTkFont(size=25, weight="bold")
+
+        self.message_label = customtkinter.CTkLabel(
+            self,
+            text="Fitting process was unsuccessful.",
+            font=text_font,
+            text_color="red"
+        )
+        self.message_label.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.reset_button = customtkinter.CTkButton(
+            self,
+            text="\u21BA",
+            font=symbol_font,
+            command=self.reset_app,
+            text_color="white",
+        )
+        self.reset_button._set_dimensions(width=40, height=30)
+        self.reset_button.grid(row=1, column=0, padx=20, pady=(0, 20), sticky="nsew")
+
+    def reset_app(self) -> None:
+        """Reset the parent application's state and close this window."""
+        self.main.reset_state()
+        self.destroy()
+
+
 class ResultInterface(customtkinter.CTkToplevel):
     """Interface for results created by ``ModelFitter``.
 
@@ -28,7 +79,13 @@ class ResultInterface(customtkinter.CTkToplevel):
 
     Uses a ``tkinter`` extension called ``customtkinter`` to achieve a modern look.
     """
-    def __init__(self, main_window: MainApp, model: VPCModel, fitted_model: VPCModel, data: list[list[int | float]]):
+    def __init__(
+        self,
+        main_window: MainApp,
+        model: VPCModel,
+        fitted_model: VPCModel,
+        data: list[list[int | float]]
+    ):
         """Setup of the result interface window, arranging widgets and setting values.
 
         :param main_window: Parent window.
@@ -38,7 +95,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         :param fitted_model: Fitted model as a means to get easy access to the fitted model's lambda function.
         :type fitted_model: VPCModel
         :param data: The data the input was fitted to.
-        :type data: list[list[int  |  float]]
+        :type data: list[list[int | float]]
         """
         super().__init__(main_window)
         self.main = main_window

@@ -43,7 +43,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../main.html">main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CTkInterface.html">CTkInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CTkResultInterface.html">CTkResultInterface module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FileHandler.html">FileHandler module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ModelFitter.html">ModelFitter module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../VPCModel.html">VPCModel module</a></li>
 </ul>
 
         </div>
@@ -89,12 +94,18 @@
 <span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">VPCModel</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dataclass to store a model and extract relevant information from it.&quot;&quot;&quot;</span>
-
     <span class="n">_model_string</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">_independent_var</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set some internal variables post initialization of the model.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set some internal variables post-initialization of the model.</span>
+
+<span class="sd">        :raises ValueError: If the model string or independent variables are not provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t instantiate VPCModel without a model string.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t instantiate VPCModel without an independent variable.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_expression_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cut_off_lhs</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_model_function</span><span class="p">:</span> <span class="n">FunctionClass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_string_to_function</span><span class="p">()</span>
@@ -212,6 +223,9 @@
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resulting_function</span>
 
+    <span class="c1"># def set_initial_values(self, initial_values: list[float]) -&gt; None:</span>
+    <span class="c1">#     self.initial_values = initial_values</span>
+
     <span class="k">def</span> <span class="nf">_set_fitted_consts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitted_consts_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Function to set the computed fitted constants to its internal variable.</span>
 
@@ -227,6 +241,36 @@
 <span class="sd">        :type fitted_function: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_resulting_function</span> <span class="o">=</span> <span class="n">fitted_function</span>
+
+<div class="viewcode-block" id="VPCModel.set_fit_information">
+<a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.set_fit_information">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_fit_information</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">fitted_consts</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the fitted model information to the model&#39;s internal variables.</span>
+
+<span class="sd">        :param fitted_consts: The fitted model constants, defaults to None.</span>
+<span class="sd">        :type fitted_consts: dict[str, float]</span>
+<span class="sd">        :param error: Indicates if an error occurred during fitting, defaults to False.</span>
+<span class="sd">        :type error: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">or</span> <span class="n">fitted_consts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">res_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_string</span>
+        <span class="k">for</span> <span class="n">constant</span> <span class="ow">in</span> <span class="n">fitted_consts</span><span class="p">:</span>
+            <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fitted_consts</span><span class="p">[</span><span class="n">constant</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;**&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">)</span>
+        <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+        <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot; + &quot;</span><span class="p">)</span>
+        <span class="n">res_func</span> <span class="o">=</span> <span class="n">res_func</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot; - &quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_fitted_consts</span><span class="p">(</span><span class="n">fitted_consts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_resulting_function</span><span class="p">(</span><span class="n">res_func</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="VPCModel.format_eq">
 <a class="viewcode-back" href="../../VPCModel.html#src.VPCModel.VPCModel.format_eq">[docs]</a>
@@ -289,6 +333,15 @@
 <span class="sd">        :return: All unique symbols in the expression on the right-hand of the equation.</span>
 <span class="sd">        :rtype: list[str]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;sin&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;cos&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tan&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;exp&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;log&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sqrt&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;pi&quot;</span>
+        <span class="p">]</span>
         <span class="n">expression</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span>
 
         <span class="k">if</span> <span class="s2">&quot;=&quot;</span> <span class="ow">in</span> <span class="n">expression</span><span class="p">:</span>
@@ -312,7 +365,7 @@
 
             <span class="n">unique_symbols</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">custom_sort_key</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sorting_prio</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">unique_symbols</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">unique_symbols</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="VPCModel.model_string_to_function">
@@ -326,13 +379,15 @@
 <span class="sd">        :return: Lambdified model expression.</span>
 <span class="sd">        :rtype: FunctionClass</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">sorted_symbols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lambdifying expression...&quot;</span><span class="p">)</span>
         <span class="n">expression</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expression_string</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expression is: </span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sorted_symbols</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_symbols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_independent_var</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;detected symbols in expression: </span><span class="si">{</span><span class="n">sorted_symbols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">sympy_vars</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="n">sorted_symbols</span><span class="p">)</span>
         <span class="n">parsed_expression</span> <span class="o">=</span> <span class="n">parse_expr</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
-        <span class="n">func</span><span class="p">:</span> <span class="n">FunctionClass</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">sympy_vars</span><span class="p">,</span> <span class="n">parsed_expression</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;scipy&quot;</span><span class="p">,</span> <span class="s2">&quot;numpy&quot;</span><span class="p">])</span>
-
+        <span class="n">func</span><span class="p">:</span> <span class="n">FunctionClass</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">sympy_vars</span><span class="p">,</span> <span class="n">parsed_expression</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;scipy&quot;</span><span class="p">,</span><span class="s2">&quot;numpy&quot;</span><span class="p">])</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Success.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">func</span></div>
 
 
@@ -362,26 +417,26 @@
         <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span>
                 <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b&quot;</span><span class="p">),</span>
-                <span class="s2">&quot;Pattern d^2(a)/d(b)^2&quot;</span>
+                <span class="s2">&quot;Pattern &lt; d^2(a)/d(b)^2 &gt;&quot;</span>
             <span class="p">),</span>
             <span class="p">(</span>
                 <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b&quot;</span><span class="p">),</span>
-                <span class="s2">&quot;Pattern d(a)/d(b)&quot;</span>
+                <span class="s2">&quot;Pattern &lt; d(a)/d(b) &gt;&quot;</span>
             <span class="p">),</span>
             <span class="p">(</span>
                 <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-zA-Z]+&#39;&#39;&quot;</span><span class="p">),</span>
-                <span class="s2">&quot;Pattern ()&#39;&quot;</span>
+                <span class="s2">&quot;Pattern &lt; ()&#39;&#39; &gt;&quot;</span>
             <span class="p">),</span>
             <span class="p">(</span>
                 <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[a-zA-Z]+&#39;&quot;</span><span class="p">),</span>
-                <span class="s2">&quot;Pattern ()&#39;&#39;&quot;</span>
+                <span class="s2">&quot;Pattern &lt; ()&#39; &gt;&quot;</span>
             <span class="p">)</span>
         <span class="p">]</span>
 
         <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">pattern_name</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
             <span class="n">match</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_string</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Match found with: </span><span class="si">{</span><span class="n">pattern_name</span><span class="si">}</span><span class="s2">, function determined to be an ODE.&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Match found with </span><span class="si">{</span><span class="n">pattern_name</span><span class="si">}</span><span class="s2">, function determined to be an ODE.&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">True</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;No match found, function determined to not be an ODE.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>

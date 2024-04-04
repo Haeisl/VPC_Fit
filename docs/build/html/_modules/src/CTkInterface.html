@@ -91,8 +91,9 @@
 <span class="c1"># local imports</span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">FileHandler</span>
 <span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">ModelFitter</span>
-<span class="kn">from</span> <span class="nn">src.CTkResultInterface</span> <span class="kn">import</span> <span class="n">ResultInterface</span>
+<span class="kn">from</span> <span class="nn">src.CTkResultInterface</span> <span class="kn">import</span> <span class="n">ResultInterface</span><span class="p">,</span> <span class="n">FailedFitInterface</span>
 <span class="kn">from</span> <span class="nn">src.FileHandler</span> <span class="kn">import</span> <span class="n">FileExtensions</span>
+<span class="kn">from</span> <span class="nn">src.ModelData</span> <span class="kn">import</span> <span class="n">ModelData</span>
 <span class="kn">from</span> <span class="nn">src.VPCModel</span> <span class="kn">import</span> <span class="n">VPCModel</span>
 
 
@@ -209,7 +210,6 @@
             <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">35</span><span class="p">),</span>
             <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;w&quot;</span>
         <span class="p">)</span>
-
         <span class="c1"># tabview &quot;Additional&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
@@ -232,31 +232,6 @@
             <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
             <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_label</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkLabel</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
-            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Result Components:&quot;</span><span class="p">,</span>
-            <span class="n">font</span><span class="o">=</span><span class="n">font</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
-            <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkComboBox</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tabview</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="s2">&quot;Additional&quot;</span><span class="p">),</span>
-            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">],</span>
-            <span class="c1">#variable=self.result_components,</span>
-            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
-            <span class="n">width</span><span class="o">=</span><span class="mi">80</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span>
-            <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-            <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span>
-        <span class="p">)</span>
-
-        <span class="c1"># Confirm button at the bottom of the left frame</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">confirm_inputs_button</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkButton</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="p">,</span>
             <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Confirm&quot;</span><span class="p">,</span>
@@ -268,7 +243,6 @@
             <span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
             <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
         <span class="p">)</span>
-
         <span class="c1"># compute frame</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span> <span class="o">=</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">CTkFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compute_frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nsew&quot;</span><span class="p">)</span>
@@ -362,7 +336,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">equation_entry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">what_parameter_entry</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+        <span class="c1"># self.ode_initial_value_entry.delete(0, customtkinter.END)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">input_confirmation_textbox</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="n">customtkinter</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_interpretation_string</span><span class="p">()</span>
@@ -379,11 +353,13 @@
             <span class="s2">&quot;_model&quot;</span><span class="p">,</span> <span class="s2">&quot;_data&quot;</span><span class="p">,</span> <span class="s2">&quot;_independent_vars&quot;</span><span class="p">,</span>
             <span class="s2">&quot;_result_comps&quot;</span><span class="p">,</span> <span class="s2">&quot;_parameters_to_fit&quot;</span><span class="p">,</span> <span class="s2">&quot;_file_path&quot;</span>
         <span class="p">]</span>
+
         <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attribute_names</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
                 <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tried to find Attribute </span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">, but nothing was found&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tried to find Attribute </span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">, but nothing was found&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully reset to initial state.&quot;</span><span class="p">)</span></div>
 
@@ -391,7 +367,7 @@
 <div class="viewcode-block" id="MainApp.remove_compute_tooltip">
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.remove_compute_tooltip">[docs]</a>
     <span class="k">def</span> <span class="nf">remove_compute_tooltip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes the tooltip and its bindings from and enables the &#39;compute parameters&#39; button.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes the tooltip and enables the &#39;compute parameters&#39; button.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_button_tooltip</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
             <span class="c1"># unbinding compute button bindings</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">compute_params_button</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="s2">&quot;&lt;Enter&gt;&quot;</span><span class="p">)</span>
@@ -408,30 +384,41 @@
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.create_interpretation_string">[docs]</a>
     <span class="k">def</span> <span class="nf">create_interpretation_string</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">function</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
-        <span class="n">var</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-        <span class="n">consts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">VPCModel</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the interpretation string of the user input to be displayed at the right side</span>
-<span class="sd">        of the program.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the interpretation string of the user input.</span>
 
-<span class="sd">        :param function: Interpreted function, defaults to &quot;...&quot;.</span>
-<span class="sd">        :type function: str, optional</span>
-<span class="sd">        :param var: Interpreted independent variables, defaults to &quot;...&quot;.</span>
-<span class="sd">        :type var: str, optional</span>
-<span class="sd">        :param consts: Interpreted parameters to fit, defaults to &quot;...&quot;.</span>
-<span class="sd">        :type consts: str, optional</span>
+<span class="sd">        :param model: Model to be iterpreted, defaults to None.</span>
+<span class="sd">        :type model: VPCModel, optional</span>
+<span class="sd">        :param kwargs: Additional keyword arguments, defaults to None.</span>
+<span class="sd">        :type kwargs: str | None</span>
 <span class="sd">        :return: A multi-line f-string containing the entered information.</span>
 <span class="sd">        :rtype: str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">function</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>
+            <span class="n">var</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">]</span>
+            <span class="n">consts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;...&quot;</span><span class="p">]</span>
+            <span class="n">ode_msg</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>
+            <span class="n">vector_msg</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">function</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model_string</span>
+            <span class="n">var</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">independent_var</span>
+            <span class="n">consts</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">constants</span>
+            <span class="n">ode_msg</span> <span class="o">=</span> <span class="s2">&quot;Yes&quot;</span> <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">is_ode</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;No&quot;</span>
+            <span class="n">vector_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Yes, </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="si">}</span><span class="s2"> components&quot;</span> <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">is_vector</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;No&quot;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Function:</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">function</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;Independent Variable(s):</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">var</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;Constants to be fitted:</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">consts</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">consts</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;ODE:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">ode_msg</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Vector:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">vector_msg</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Extra:&quot;</span>
@@ -473,7 +460,7 @@
             <span class="k">return</span>
 
         <span class="n">fn</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">displayed_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">fn</span><span class="p">[:</span><span class="mi">12</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">12</span> <span class="k">else</span> <span class="n">fn</span>
+        <span class="n">displayed_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">fn</span><span class="p">[:</span><span class="mi">11</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">11</span> <span class="k">else</span> <span class="n">fn</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">displayed_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span></div>
 
@@ -502,25 +489,6 @@
         <span class="k">return</span> <span class="n">missing_vars</span></div>
 
 
-<div class="viewcode-block" id="MainApp.are_components_equal">
-<a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.are_components_equal">[docs]</a>
-    <span class="k">def</span> <span class="nf">are_components_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks whether the components assumed by the ``VPCModel`` model and given components</span>
-<span class="sd">        in the interface are the same.</span>
-
-<span class="sd">        Will default to ``True``, if the value in the result components field is left on &#39;auto&#39;.</span>
-
-<span class="sd">        :return: Whether the given and assumed components match.</span>
-<span class="sd">        :rtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
-            <span class="n">given</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">given</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
-        <span class="n">assumed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components</span>
-        <span class="k">return</span> <span class="n">given</span> <span class="o">==</span> <span class="n">assumed</span></div>
-
-
 <div class="viewcode-block" id="MainApp.check_inputs_populated">
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.check_inputs_populated">[docs]</a>
     <span class="k">def</span> <span class="nf">check_inputs_populated</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -534,17 +502,10 @@
             <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;No model equation entered.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
             <span class="p">)</span>
-        <span class="n">valid</span> <span class="o">=</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)}</span>
-        <span class="n">valid</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_components_combobox</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Result Components</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;have to be </span><span class="se">\&quot;</span><span class="s2">auto</span><span class="se">\&quot;</span><span class="s2"> or 1-9</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;No file path given</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;or path doesn&#39;t exist.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;or file doesn&#39;t exist.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">msg</span></div>
 
@@ -575,13 +536,6 @@
                     <span class="sa">f</span><span class="s2">&quot;The following independent</span><span class="se">\n</span><span class="s2">parameters were not found in</span><span class="se">\n</span><span class="s2">&quot;</span>
                     <span class="sa">f</span><span class="s2">&quot;the model expression:</span><span class="se">\n</span><span class="si">{</span><span class="n">missing_vars</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">are_components_equal</span><span class="p">():</span>
-            <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Entered model suggests</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;different # of components</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;than # provided in</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">additional</span><span class="se">\&quot;</span><span class="s2"> tab.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">is_extension_supported</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">)):</span>
             <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Unsupported file extension.</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -593,13 +547,7 @@
 <div class="viewcode-block" id="MainApp.confirm_input">
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.confirm_input">[docs]</a>
     <span class="k">def</span> <span class="nf">confirm_input</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs ``check_inputs_populated()`` and ``check_inputs_sensible()``</span>
-<span class="sd">        and displays any strings returned by those to the user.</span>
-
-<span class="sd">        If no issues are present, displays the interpreted inputs to</span>
-<span class="sd">        the user for human validation, enables the &#39;compute&#39; button and uses the input to set</span>
-<span class="sd">        various internal variables.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks inputs and displays any issues. If okay, sets internal variables.&quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Confirm button pressed&quot;</span><span class="p">)</span>
         <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="n">error_msg</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_inputs_populated</span><span class="p">()</span>
@@ -631,11 +579,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">display_interpreted_input</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_interpretation_string</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">model_string</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">independent_var</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">constants</span>
-        <span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_interpretation_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">display_interpreted_input</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_compute_tooltip</span><span class="p">()</span>
@@ -668,12 +612,16 @@
 <div class="viewcode-block" id="MainApp.compute_params">
 <a class="viewcode-back" href="../../CTkInterface.html#src.CTkInterface.MainApp.compute_params">[docs]</a>
     <span class="k">def</span> <span class="nf">compute_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs ``ModelFitter.fit()`` on the model and data and opens a window with the results</span>
-<span class="sd">        on top of the current one.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs `ModelFitter.fit()` on the model and data, opens a window with the results.&quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Compute parameters button pressed&quot;</span><span class="p">)</span>
 
-        <span class="n">ModelFitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ModelFitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">re</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error occurred in fitting the model. See </span><span class="si">{</span><span class="n">re</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">failed_interface</span> <span class="o">=</span> <span class="n">FailedFitInterface</span><span class="p">(</span><span class="n">main_window</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">failed_interface</span><span class="o">.</span><span class="n">focus_set</span><span class="p">()</span>
+            <span class="k">return</span>
 
         <span class="n">fitted</span> <span class="o">=</span> <span class="n">VPCModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">resulting_function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_independent_vars</span><span class="p">)</span>
 
@@ -694,8 +642,7 @@
 <span class="sd">        :return: 0 if ``FileHandler.write_file()`` finished normally, 1 otherwise.</span>
 <span class="sd">        :rtype: int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">format</span> <span class="o">=</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">create_dataframe_from_for</span><span class="p">(</span>
+        <span class="n">model_data</span> <span class="o">=</span> <span class="n">ModelData</span><span class="p">(</span>
             <span class="n">fitted_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">resulting_function</span><span class="p">,</span>
             <span class="n">fitted_consts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">fitted_consts</span><span class="p">,</span>
             <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">model_string</span><span class="p">,</span>
@@ -705,8 +652,9 @@
             <span class="n">consts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parameters_to_fit</span><span class="p">,</span>
             <span class="n">user_input_consts</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">constants</span><span class="p">,</span>
             <span class="n">user_input_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span>
-            <span class="nb">format</span><span class="o">=</span><span class="nb">format</span>
         <span class="p">)</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">FileExtensions</span><span class="o">.</span><span class="n">EXCEL</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">model_data</span><span class="o">.</span><span class="n">create_dataframe_for</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Attempting to write results file with:</span><span class="se">\n</span><span class="s2">&quot;</span>

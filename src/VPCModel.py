@@ -18,7 +18,10 @@ class VPCModel():
     _independent_var: list[str]
 
     def __post_init__(self) -> None:
-        """Set some internal variables post initialization of the model."""
+        """Set some internal variables post-initialization of the model.
+
+        :raises ValueError: If the model string or independent variables are not provided.
+        """
         if self._model_string == "":
             raise ValueError("Can't instantiate VPCModel without a model string.")
         if not self._independent_var:
@@ -140,8 +143,8 @@ class VPCModel():
             return ""
         return self._resulting_function
 
-    def set_initial_values(self, initial_values: list[float]) -> None:
-        self.initial_values = initial_values
+    # def set_initial_values(self, initial_values: list[float]) -> None:
+    #     self.initial_values = initial_values
 
     def _set_fitted_consts(self, fitted_consts_dict: dict[str, float]) -> None:
         """Function to set the computed fitted constants to its internal variable.
@@ -158,6 +161,33 @@ class VPCModel():
         :type fitted_function: str
         """
         self._resulting_function = fitted_function
+
+    def set_fit_information(
+        self,
+        fitted_consts: dict[str, float] | None = None,
+        error: bool = False
+    ) -> None:
+        """Set the fitted model information to the model's internal variables.
+
+        :param fitted_consts: The fitted model constants, defaults to None.
+        :type fitted_consts: dict[str, float]
+        :param error: Indicates if an error occurred during fitting, defaults to False.
+        :type error: bool
+        """
+        if error or fitted_consts is None:
+            return
+
+        res_func = self.model_string
+        for constant in fitted_consts:
+            res_func = res_func.replace(constant, f"{fitted_consts[constant]:.2f}")
+
+        res_func = res_func.replace("**", "^")
+        res_func = res_func.replace("+-", "-")
+        res_func = res_func.replace("+", " + ")
+        res_func = res_func.replace("-", " - ")
+
+        self._set_fitted_consts(fitted_consts)
+        self._set_resulting_function(res_func)
 
     def format_eq(self, equation: str) -> str:
         """Replaces some characters for others in a string. Strips leading and trailing spaces.
