@@ -9,7 +9,6 @@ if TYPE_CHECKING:
 
 # related third party imports
 import customtkinter
-import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 from sympy import FunctionClass
@@ -85,7 +84,7 @@ class ResultInterface(customtkinter.CTkToplevel):
         model: VPCModel,
         fitted_model: VPCModel,
         data: list[list[int | float]]
-    ):
+    ) -> None:
         """Setup of the result interface window, arranging widgets and setting values.
 
         :param main_window: Parent window.

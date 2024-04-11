@@ -240,11 +240,8 @@ class VPCModel():
         :rtype: list[str]
         """
         exclude = [
-            "sin",
-            "cos",
-            "tan",
-            "exp",
-            "log",
+            "sin", "cos", "tan",
+            "exp", "log",
             "sqrt",
             "pi"
         ]
@@ -299,38 +296,11 @@ class VPCModel():
         :return: True if at most 2nd order ODE, False otherwise.
         :rtype: bool
         """
-        # # pattern d^2{variable}/d{other_variable}^2
-        # second_derivative = r"\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b"
-        # # pattern d{variable}/d{other_variable}
-        # first_derivative = r"\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b"
-        # # pattern y''
-        # symbol_prime_prime = r"[a-zA-Z]+''"
-        # # pattern y'
-        # symbol_prime = r"[a-zA-Z]+'"
-
-        # patterns = [second_derivative, first_derivative, symbol_prime_prime, symbol_prime]
-
-        # match = any(search(pattern, self._model_string) for pattern in patterns)
-
-        # return match
-
         patterns = [
-            (
-                re.compile(r"\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b"),
-                "Pattern < d^2(a)/d(b)^2 >"
-            ),
-            (
-                re.compile(r"\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b"),
-                "Pattern < d(a)/d(b) >"
-            ),
-            (
-                re.compile(r"[a-zA-Z]+''"),
-                "Pattern < ()'' >"
-            ),
-            (
-                re.compile(r"[a-zA-Z]+'"),
-                "Pattern < ()' >"
-            )
+            (re.compile(r"\bd\^2([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\^2\b"), "Pattern < d^2(a)/d(b)^2 >"),
+            (re.compile(r"\bd([a-zA-Z]+)\/d((?!\1)[a-zA-Z]+)\b"), "Pattern < d(a)/d(b) >"),
+            (re.compile(r"[a-zA-Z]+''"), "Pattern < ()'' >"),
+            (re.compile(r"[a-zA-Z]+'"), "Pattern < ()' >")
         ]
 
         for pattern, pattern_name in patterns:

@@ -5,15 +5,12 @@ The fitting routines are based on the assumption that the model is of type VPCMo
 with provided data consisting of a list of lists where each sub-list is a column from a datasheet.
 """
 # standard library imports
-import inspect
 import logging
-from typing import Any, Callable
+from typing import Any
 
 # related third party imports
 import numpy as np
 import numpy.typing as npt
-import sympy as sp
-from scipy.integrate import odeint
 from scipy.integrate import solve_ivp
 from scipy.optimize import curve_fit
 from scipy.optimize import minimize

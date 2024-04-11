@@ -119,7 +119,7 @@ def write_file(
     data_frame: pd.DataFrame,
     file_format: FileExtensions = FileExtensions.EXCEL,
     destination: str = "./res/"
-    ) -> None:
+) -> None:
     """Write the provided `pd.DataFrame` as either `.xlsx` or `.csv` to the `./res/` directory.
 
     If there is no `./res/` directory relative to where the program was started from,

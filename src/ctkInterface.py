@@ -248,7 +248,6 @@ class MainApp(customtkinter.CTk):
         self.file_path = ""
         self.equation_entry.delete(0, customtkinter.END)
         self.what_parameter_entry.delete(0, customtkinter.END)
-        # self.ode_initial_value_entry.delete(0, customtkinter.END)
 
         self.input_confirmation_textbox.delete("1.0", customtkinter.END)
         msg = self.create_interpretation_string()
@@ -364,7 +363,7 @@ class MainApp(customtkinter.CTk):
         self.file_name.set(displayed_name)
         self.file_path = fp.name
 
-    def missing_independent_variables(self) -> list:
+    def missing_independent_variables(self) -> list[str]:
         """Returns list of all characters or strings that were entered in the independent
         parameter field that are not present in the model string.
         If the field was left empty 't' is defaulted to.
@@ -454,7 +453,7 @@ class MainApp(customtkinter.CTk):
             data_list = FileHandler.dataframe_tolist(data)
         except Exception as e:
             logger.error(
-                f"Error occurred when reading file, see:"
+                f"Error occurred when reading file, see:\n"
                 f"  {e}"
             )
             error_msg += (
