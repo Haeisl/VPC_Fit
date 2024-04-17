@@ -1,0 +1,164 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter {\sphinxsymbolsname}
+  \item \spxentry{\_\_init\_\_()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{3}
+  \item \spxentry{\_\_init\_\_()}\spxextra{src.CTkResultInterface.FailedFitInterface method}, 
+		\hyperpage{5}
+  \item \spxentry{\_\_init\_\_()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{5}
+  \item \spxentry{\_\_init\_\_()}\spxextra{src.ModelData.ModelData method}, \hyperpage{9}
+  \item \spxentry{\_\_init\_\_()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
+
+  \indexspace
+  \bigletter B
+  \item \spxentry{browse\_files()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{3}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{check\_inputs\_populated()}\spxextra{src.CTkInterface.MainApp method}, 
+		\hyperpage{3}
+  \item \spxentry{check\_inputs\_sensible()}\spxextra{src.CTkInterface.MainApp method}, 
+		\hyperpage{3}
+  \item \spxentry{check\_model\_is\_valid\_vector()}\spxextra{in module src.ModelFitter}, 
+		\hyperpage{11}
+  \item \spxentry{components}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{13}
+  \item \spxentry{compute\_params()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{3}
+  \item \spxentry{confirm\_input()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{3}
+  \item \spxentry{constants}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{13}
+  \item \spxentry{consts}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{9}
+  \item \spxentry{create\_dataframe\_for()}\spxextra{src.ModelData.ModelData method}, \hyperpage{9}
+  \item \spxentry{create\_difference\_dict()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{5}
+  \item \spxentry{create\_interpretation\_string()}\spxextra{src.CTkInterface.MainApp method}, 
+		\hyperpage{3}
+  \item \spxentry{create\_tooltip\_for()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{4}
+  \item \spxentry{CSV}\spxextra{src.FileHandler.FileExtensions attribute}, \hyperpage{7}
+  \item \spxentry{cut\_off\_lhs()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
+  \item \spxentry{cut\_off\_rhs()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{dataframe\_tolist()}\spxextra{in module src.FileHandler}, \hyperpage{7}
+  \item \spxentry{display\_interpreted\_input()}\spxextra{src.CTkInterface.MainApp method}, 
+		\hyperpage{4}
+
+  \indexspace
+  \bigletter E
+  \item \spxentry{evaluate\_fit()}\spxextra{in module src.ModelFitter}, \hyperpage{11}
+  \item \spxentry{EXCEL}\spxextra{src.FileHandler.FileExtensions attribute}, \hyperpage{7}
+  \item \spxentry{expression\_string}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{13}
+  \item \spxentry{extract\_symbols()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{14}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{FailedFitInterface}\spxextra{class in src.CTkResultInterface}, \hyperpage{5}
+  \item \spxentry{FileExtensions}\spxextra{class in src.FileHandler}, \hyperpage{7}
+  \item \spxentry{fit()}\spxextra{in module src.ModelFitter}, \hyperpage{11}
+  \item \spxentry{fitted\_consts}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+  \item \spxentry{fitted\_consts}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{14}
+  \item \spxentry{fitted\_model}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+  \item \spxentry{format\_eq()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{14}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{get\_valid\_filename()}\spxextra{in module src.FileHandler}, \hyperpage{7}
+  \item \spxentry{graph\_residuals()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{6}
+
+  \indexspace
+  \bigletter H
+  \item \spxentry{handle\_leftclick()}\spxextra{in module main}, \hyperpage{1}
+
+  \indexspace
+  \bigletter I
+  \item \spxentry{independent\_var}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{14}
+  \item \spxentry{is\_extension\_supported()}\spxextra{in module src.FileHandler}, \hyperpage{7}
+  \item \spxentry{is\_ode()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{14}
+  \item \spxentry{is\_vector()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{15}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{main}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{main()}\spxextra{in module main}, \hyperpage{1}
+  \item \spxentry{MainApp}\spxextra{class in src.CTkInterface}, \hyperpage{3}
+  \item \spxentry{missing\_independent\_variables()}\spxextra{src.CTkInterface.MainApp method}, 
+		\hyperpage{4}
+  \item \spxentry{model}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+  \item \spxentry{model\_function}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{15}
+  \item \spxentry{model\_string}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{15}
+  \item \spxentry{model\_string\_to\_function()}\spxextra{src.VPCModel.VPCModel method}, 
+		\hyperpage{15}
+  \item \spxentry{ModelData}\spxextra{class in src.ModelData}, \hyperpage{9}
+  \item \spxentry{module}
+    \subitem \spxentry{main}, \hyperpage{1}
+    \subitem \spxentry{src.CTkInterface}, \hyperpage{3}
+    \subitem \spxentry{src.CTkResultInterface}, \hyperpage{5}
+    \subitem \spxentry{src.FileHandler}, \hyperpage{7}
+    \subitem \spxentry{src.ModelData}, \hyperpage{9}
+    \subitem \spxentry{src.ModelFitter}, \hyperpage{11}
+    \subitem \spxentry{src.VPCModel}, \hyperpage{13}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{parameter}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+  \item \spxentry{process\_lists()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{6}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{read\_file()}\spxextra{in module src.FileHandler}, \hyperpage{7}
+  \item \spxentry{remove\_compute\_tooltip()}\spxextra{src.CTkInterface.MainApp method}, 
+		\hyperpage{4}
+  \item \spxentry{reset\_app()}\spxextra{src.CTkResultInterface.FailedFitInterface method}, 
+		\hyperpage{5}
+  \item \spxentry{reset\_app()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{6}
+  \item \spxentry{reset\_state()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{4}
+  \item \spxentry{resulting\_function}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{15}
+  \item \spxentry{ResultInterface}\spxextra{class in src.CTkResultInterface}, \hyperpage{5}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{save\_as()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{6}
+  \item \spxentry{save\_results()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{4}
+  \item \spxentry{set\_fit\_information()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{16}
+  \item \spxentry{set\_result\_label\_text()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
+		\hyperpage{6}
+  \item \spxentry{setup\_logging()}\spxextra{in module main}, \hyperpage{1}
+  \item \spxentry{src.CTkInterface}
+    \subitem \spxentry{module}, \hyperpage{3}
+  \item \spxentry{src.CTkResultInterface}
+    \subitem \spxentry{module}, \hyperpage{5}
+  \item \spxentry{src.FileHandler}
+    \subitem \spxentry{module}, \hyperpage{7}
+  \item \spxentry{src.ModelData}
+    \subitem \spxentry{module}, \hyperpage{9}
+  \item \spxentry{src.ModelFitter}
+    \subitem \spxentry{module}, \hyperpage{11}
+  \item \spxentry{src.VPCModel}
+    \subitem \spxentry{module}, \hyperpage{13}
+  \item \spxentry{symbols}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{16}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{user\_input\_consts}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+  \item \spxentry{user\_input\_model}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+  \item \spxentry{user\_input\_parameter}\spxextra{src.ModelData.ModelData attribute}, 
+		\hyperpage{10}
+  \item \spxentry{user\_input\_path}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
+
+  \indexspace
+  \bigletter V
+  \item \spxentry{VPCModel}\spxextra{class in src.VPCModel}, \hyperpage{13}
+
+  \indexspace
+  \bigletter W
+  \item \spxentry{write\_file()}\spxextra{in module src.FileHandler}, \hyperpage{8}
+
+\end{sphinxtheindex}

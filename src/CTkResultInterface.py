@@ -29,7 +29,7 @@ class FailedFitInterface(customtkinter.CTkToplevel):
         """
         super().__init__(main_window)
         self.main = main_window
-        self.title("Fit Unsuccessful")
+        self.title("Virtual Patient Cohorts - Fit Unsuccessful")
 
         window_width = 425
         window_height = 210
@@ -49,7 +49,7 @@ class FailedFitInterface(customtkinter.CTkToplevel):
 
         self.message_label = customtkinter.CTkLabel(
             self,
-            text="Fitting process was unsuccessful.",
+            text="Fitting process was unsuccessful.\nSee logs.",
             font=text_font,
             text_color="red"
         )

@@ -1,0 +1,84 @@
+\indexentry{module@\spxentry{module}!main@\spxentry{main}|hyperpage}{1}
+\indexentry{main@\spxentry{main}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{handle\_leftclick() (in module main)@\spxentry{handle\_leftclick()}\spxextra{in module main}|hyperpage}{1}
+\indexentry{main() (in module main)@\spxentry{main()}\spxextra{in module main}|hyperpage}{1}
+\indexentry{setup\_logging() (in module main)@\spxentry{setup\_logging()}\spxextra{in module main}|hyperpage}{1}
+\indexentry{module@\spxentry{module}!src.CTkInterface@\spxentry{src.CTkInterface}|hyperpage}{3}
+\indexentry{src.CTkInterface@\spxentry{src.CTkInterface}!module@\spxentry{module}|hyperpage}{3}
+\indexentry{MainApp (class in src.CTkInterface)@\spxentry{MainApp}\spxextra{class in src.CTkInterface}|hyperpage}{3}
+\indexentry{\_\_init\_\_() (src.CTkInterface.MainApp method)@\spxentry{\_\_init\_\_()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{browse\_files() (src.CTkInterface.MainApp method)@\spxentry{browse\_files()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{check\_inputs\_populated() (src.CTkInterface.MainApp method)@\spxentry{check\_inputs\_populated()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{check\_inputs\_sensible() (src.CTkInterface.MainApp method)@\spxentry{check\_inputs\_sensible()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{compute\_params() (src.CTkInterface.MainApp method)@\spxentry{compute\_params()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{confirm\_input() (src.CTkInterface.MainApp method)@\spxentry{confirm\_input()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{create\_interpretation\_string() (src.CTkInterface.MainApp method)@\spxentry{create\_interpretation\_string()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{3}
+\indexentry{create\_tooltip\_for() (src.CTkInterface.MainApp method)@\spxentry{create\_tooltip\_for()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{4}
+\indexentry{display\_interpreted\_input() (src.CTkInterface.MainApp method)@\spxentry{display\_interpreted\_input()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{4}
+\indexentry{missing\_independent\_variables() (src.CTkInterface.MainApp method)@\spxentry{missing\_independent\_variables()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{4}
+\indexentry{remove\_compute\_tooltip() (src.CTkInterface.MainApp method)@\spxentry{remove\_compute\_tooltip()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{4}
+\indexentry{reset\_state() (src.CTkInterface.MainApp method)@\spxentry{reset\_state()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{4}
+\indexentry{save\_results() (src.CTkInterface.MainApp method)@\spxentry{save\_results()}\spxextra{src.CTkInterface.MainApp method}|hyperpage}{4}
+\indexentry{module@\spxentry{module}!src.CTkResultInterface@\spxentry{src.CTkResultInterface}|hyperpage}{5}
+\indexentry{src.CTkResultInterface@\spxentry{src.CTkResultInterface}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{FailedFitInterface (class in src.CTkResultInterface)@\spxentry{FailedFitInterface}\spxextra{class in src.CTkResultInterface}|hyperpage}{5}
+\indexentry{\_\_init\_\_() (src.CTkResultInterface.FailedFitInterface method)@\spxentry{\_\_init\_\_()}\spxextra{src.CTkResultInterface.FailedFitInterface method}|hyperpage}{5}
+\indexentry{reset\_app() (src.CTkResultInterface.FailedFitInterface method)@\spxentry{reset\_app()}\spxextra{src.CTkResultInterface.FailedFitInterface method}|hyperpage}{5}
+\indexentry{ResultInterface (class in src.CTkResultInterface)@\spxentry{ResultInterface}\spxextra{class in src.CTkResultInterface}|hyperpage}{5}
+\indexentry{\_\_init\_\_() (src.CTkResultInterface.ResultInterface method)@\spxentry{\_\_init\_\_()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{5}
+\indexentry{create\_difference\_dict() (src.CTkResultInterface.ResultInterface method)@\spxentry{create\_difference\_dict()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{5}
+\indexentry{graph\_residuals() (src.CTkResultInterface.ResultInterface method)@\spxentry{graph\_residuals()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{6}
+\indexentry{process\_lists() (src.CTkResultInterface.ResultInterface method)@\spxentry{process\_lists()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{6}
+\indexentry{reset\_app() (src.CTkResultInterface.ResultInterface method)@\spxentry{reset\_app()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{6}
+\indexentry{save\_as() (src.CTkResultInterface.ResultInterface method)@\spxentry{save\_as()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{6}
+\indexentry{set\_result\_label\_text() (src.CTkResultInterface.ResultInterface method)@\spxentry{set\_result\_label\_text()}\spxextra{src.CTkResultInterface.ResultInterface method}|hyperpage}{6}
+\indexentry{module@\spxentry{module}!src.FileHandler@\spxentry{src.FileHandler}|hyperpage}{7}
+\indexentry{src.FileHandler@\spxentry{src.FileHandler}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{FileExtensions (class in src.FileHandler)@\spxentry{FileExtensions}\spxextra{class in src.FileHandler}|hyperpage}{7}
+\indexentry{CSV (src.FileHandler.FileExtensions attribute)@\spxentry{CSV}\spxextra{src.FileHandler.FileExtensions attribute}|hyperpage}{7}
+\indexentry{EXCEL (src.FileHandler.FileExtensions attribute)@\spxentry{EXCEL}\spxextra{src.FileHandler.FileExtensions attribute}|hyperpage}{7}
+\indexentry{dataframe\_tolist() (in module src.FileHandler)@\spxentry{dataframe\_tolist()}\spxextra{in module src.FileHandler}|hyperpage}{7}
+\indexentry{get\_valid\_filename() (in module src.FileHandler)@\spxentry{get\_valid\_filename()}\spxextra{in module src.FileHandler}|hyperpage}{7}
+\indexentry{is\_extension\_supported() (in module src.FileHandler)@\spxentry{is\_extension\_supported()}\spxextra{in module src.FileHandler}|hyperpage}{7}
+\indexentry{read\_file() (in module src.FileHandler)@\spxentry{read\_file()}\spxextra{in module src.FileHandler}|hyperpage}{7}
+\indexentry{write\_file() (in module src.FileHandler)@\spxentry{write\_file()}\spxextra{in module src.FileHandler}|hyperpage}{8}
+\indexentry{module@\spxentry{module}!src.ModelData@\spxentry{src.ModelData}|hyperpage}{9}
+\indexentry{src.ModelData@\spxentry{src.ModelData}!module@\spxentry{module}|hyperpage}{9}
+\indexentry{ModelData (class in src.ModelData)@\spxentry{ModelData}\spxextra{class in src.ModelData}|hyperpage}{9}
+\indexentry{\_\_init\_\_() (src.ModelData.ModelData method)@\spxentry{\_\_init\_\_()}\spxextra{src.ModelData.ModelData method}|hyperpage}{9}
+\indexentry{consts (src.ModelData.ModelData attribute)@\spxentry{consts}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{9}
+\indexentry{create\_dataframe\_for() (src.ModelData.ModelData method)@\spxentry{create\_dataframe\_for()}\spxextra{src.ModelData.ModelData method}|hyperpage}{9}
+\indexentry{fitted\_consts (src.ModelData.ModelData attribute)@\spxentry{fitted\_consts}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{fitted\_model (src.ModelData.ModelData attribute)@\spxentry{fitted\_model}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{model (src.ModelData.ModelData attribute)@\spxentry{model}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{parameter (src.ModelData.ModelData attribute)@\spxentry{parameter}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{user\_input\_consts (src.ModelData.ModelData attribute)@\spxentry{user\_input\_consts}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{user\_input\_model (src.ModelData.ModelData attribute)@\spxentry{user\_input\_model}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{user\_input\_parameter (src.ModelData.ModelData attribute)@\spxentry{user\_input\_parameter}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{user\_input\_path (src.ModelData.ModelData attribute)@\spxentry{user\_input\_path}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
+\indexentry{module@\spxentry{module}!src.ModelFitter@\spxentry{src.ModelFitter}|hyperpage}{11}
+\indexentry{src.ModelFitter@\spxentry{src.ModelFitter}!module@\spxentry{module}|hyperpage}{11}
+\indexentry{check\_model\_is\_valid\_vector() (in module src.ModelFitter)@\spxentry{check\_model\_is\_valid\_vector()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
+\indexentry{evaluate\_fit() (in module src.ModelFitter)@\spxentry{evaluate\_fit()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
+\indexentry{fit() (in module src.ModelFitter)@\spxentry{fit()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
+\indexentry{module@\spxentry{module}!src.VPCModel@\spxentry{src.VPCModel}|hyperpage}{13}
+\indexentry{src.VPCModel@\spxentry{src.VPCModel}!module@\spxentry{module}|hyperpage}{13}
+\indexentry{VPCModel (class in src.VPCModel)@\spxentry{VPCModel}\spxextra{class in src.VPCModel}|hyperpage}{13}
+\indexentry{\_\_init\_\_() (src.VPCModel.VPCModel method)@\spxentry{\_\_init\_\_()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
+\indexentry{components (src.VPCModel.VPCModel property)@\spxentry{components}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{13}
+\indexentry{constants (src.VPCModel.VPCModel property)@\spxentry{constants}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{13}
+\indexentry{cut\_off\_lhs() (src.VPCModel.VPCModel method)@\spxentry{cut\_off\_lhs()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
+\indexentry{cut\_off\_rhs() (src.VPCModel.VPCModel method)@\spxentry{cut\_off\_rhs()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
+\indexentry{expression\_string (src.VPCModel.VPCModel property)@\spxentry{expression\_string}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{13}
+\indexentry{extract\_symbols() (src.VPCModel.VPCModel method)@\spxentry{extract\_symbols()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
+\indexentry{fitted\_consts (src.VPCModel.VPCModel property)@\spxentry{fitted\_consts}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{14}
+\indexentry{format\_eq() (src.VPCModel.VPCModel method)@\spxentry{format\_eq()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
+\indexentry{independent\_var (src.VPCModel.VPCModel property)@\spxentry{independent\_var}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{14}
+\indexentry{is\_ode() (src.VPCModel.VPCModel method)@\spxentry{is\_ode()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
+\indexentry{is\_vector() (src.VPCModel.VPCModel method)@\spxentry{is\_vector()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{15}
+\indexentry{model\_function (src.VPCModel.VPCModel property)@\spxentry{model\_function}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
+\indexentry{model\_string (src.VPCModel.VPCModel property)@\spxentry{model\_string}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
+\indexentry{model\_string\_to\_function() (src.VPCModel.VPCModel method)@\spxentry{model\_string\_to\_function()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{15}
+\indexentry{resulting\_function (src.VPCModel.VPCModel property)@\spxentry{resulting\_function}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
+\indexentry{set\_fit\_information() (src.VPCModel.VPCModel method)@\spxentry{set\_fit\_information()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{16}
+\indexentry{symbols (src.VPCModel.VPCModel property)@\spxentry{symbols}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{16}

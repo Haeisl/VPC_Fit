@@ -196,7 +196,7 @@ def check_model_is_valid_vector(model: VPCModel, columns: int) -> bool:
     num_indep_vars = len(model.independent_var)
     has_invalid_dimensions: bool = model.components + num_indep_vars != columns
     if has_invalid_dimensions:
-        raise Exception("Each model component needs its own data column.")
+        raise RuntimeError("Each model component needs its own data column.")
     return model.is_vector()
 
 

@@ -460,7 +460,6 @@ class MainApp(customtkinter.CTk):
                 f"Error reading input file.\n"
                 f"See logs for more info."
             )
-            return
 
         if error_msg:
             self.display_interpreted_input(error_msg)
