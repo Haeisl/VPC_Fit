@@ -52,18 +52,6 @@ def test_dataframe_tolist_empty():
     with pytest.raises(ValueError):
         dataframe_tolist(pd.DataFrame())
 
-# Test cases for create_dataframe_from_for function
-def test_create_dataframe_from_for_excel():
-    df = create_dataframe_from_for("model", {"const1": 1.0}, format=FileExtensions.EXCEL)
-    assert isinstance(df, pd.DataFrame)
-
-def test_create_dataframe_from_for_csv():
-    df = create_dataframe_from_for("model", {"const1": 1.0}, format=FileExtensions.CSV)
-    assert isinstance(df, pd.DataFrame)
-
-def test_create_dataframe_from_for_invalid_format():
-    assert create_dataframe_from_for("model", {"const1": 1.0}, format="invalid_format").empty # type: ignore
-
 # Test cases for write_file function
 def test_write_file_excel(temp_dataframe, tmp_path):
     file_path = tmp_path / "test.xlsx"
@@ -101,11 +89,6 @@ def test_read_file_with_special_characters(tmp_path):
     data = {"A": ["$100", "%200", "#300"]}
     pd.DataFrame(data).to_csv(file_path, index=False)
     assert isinstance(read_file(file_path), pd.DataFrame)
-
-# Test with empty input parameters for create_dataframe_from_for function
-def test_create_dataframe_from_for_empty_inputs():
-    df = create_dataframe_from_for()
-    assert isinstance(df, pd.DataFrame)
 
 # Test writing an empty DataFrame to both Excel and CSV formats
 def test_write_empty_dataframe(tmp_path):

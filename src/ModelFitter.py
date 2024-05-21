@@ -168,7 +168,6 @@ def _fit_reg(model: VPCModel, data: list[list[int | float]]) -> None:
         )
         fitted_consts = dict(zip(model.constants, popt))
         model.set_fit_information(fitted_consts)
-        print(evaluate_fit(pcov))
     except ValueError as ve:
         logger.error("Value error in curve fitting regular function.")
         raise RuntimeError("Value error in curve_fit.") from ve

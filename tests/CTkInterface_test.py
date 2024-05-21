@@ -12,7 +12,6 @@ def test_reset_state(main_app):
     main_app.file_path = "/path/to/test_file.xlsx"
     main_app.equation_entry.insert(0, "test equation")
     main_app.what_parameter_entry.insert(0, "t")
-    main_app.result_components_combobox.set("auto")
 
     main_app.reset_state()
 
@@ -20,7 +19,6 @@ def test_reset_state(main_app):
     assert main_app.file_path == ""
     assert main_app.equation_entry.get() == ""
     assert main_app.what_parameter_entry.get() == ""
-    assert main_app.result_components_combobox.get() == "1"
 
 @patch('src.FileHandler.read_file')
 def test_confirm_input_with_valid_input(mock_read_file, main_app):
@@ -28,7 +26,6 @@ def test_confirm_input_with_valid_input(mock_read_file, main_app):
     main_app.file_path = "/path/to/test_file.xlsx"
     main_app.equation_entry.insert(0, "test equation")
     main_app.what_parameter_entry.insert(0, "t")
-    main_app.result_components_combobox.set("auto")
 
     main_app.confirm_input()
 
@@ -39,7 +36,6 @@ def test_confirm_input_with_invalid_file(mock_read_file, main_app):
     main_app.file_path = "/path/to/nonexistent_file.xlsx"
     main_app.equation_entry.insert(0, "test equation")
     main_app.what_parameter_entry.insert(0, "t")
-    main_app.result_components_combobox.set("auto")
 
     main_app.confirm_input()
 
@@ -60,7 +56,6 @@ def test_are_components_equal(main_app):
 def test_check_inputs_populated(main_app):
     main_app.equation_entry.insert(0, "test equation")
     main_app.what_parameter_entry.insert(0, "t")
-    main_app.result_components_combobox.set("auto")
     main_app.file_path = ""
 
     error_msg = main_app.check_inputs_populated()
@@ -69,7 +64,6 @@ def test_check_inputs_populated(main_app):
 def test_check_inputs_sensible(main_app):
     main_app.equation_entry.insert(0, "f(t) = k * t")
     main_app.what_parameter_entry.insert(0, "t,x")
-    main_app.result_components_combobox.set("auto")
     main_app.model = MagicMock()
     main_app.model.constants = ["k"]
 

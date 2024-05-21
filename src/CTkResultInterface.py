@@ -214,9 +214,9 @@ class ResultInterface(customtkinter.CTkToplevel):
             sticky="e"
         )
 
-        if self.fitted_model.is_ode():
-            self.show_graph_button.configure(state="disabled", image=disabled_image)
-            self.main.create_tooltip_for(self.show_graph_button, "Can't show graph for ODE models")
+        # if self.fitted_model.is_ode():
+        #     self.show_graph_button.configure(state="disabled", image=disabled_image)
+        #     self.main.create_tooltip_for(self.show_graph_button, "Can't show graph for ODE models")
 
         self.set_result_label_text()
 
