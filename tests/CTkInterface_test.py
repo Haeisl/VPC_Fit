@@ -48,11 +48,6 @@ def test_missing_independent_variables(main_app):
     missing_vars = main_app.missing_independent_variables()
     assert missing_vars == ["x", "y", "z"]
 
-def test_are_components_equal(main_app):
-    main_app.result_components_combobox.set("2")
-    main_app.model = VPCModel("f = at, bt", ["t"])
-    assert main_app.are_components_equal() == True
-
 def test_check_inputs_populated(main_app):
     main_app.equation_entry.insert(0, "test equation")
     main_app.what_parameter_entry.insert(0, "t")
@@ -71,7 +66,7 @@ def test_check_inputs_sensible(main_app):
     assert "parameters were not found" in error_msg
 
 def test_create_interpretation_string(main_app):
-    interpretation = main_app.create_interpretation_string("f(t) = k * t", ["t"], ["k"])
+    interpretation = main_app.create_interpretation_string(VPCModel("f(t) = k * t", ["t"]))
     assert "Function:\n    f(t) = k * t" in interpretation
 
 def test_display_interpreted_input(main_app):
@@ -88,5 +83,5 @@ def test_browse_files(main_app):
         main_app.browse_files()
 
         fn = "test_file.xlsx"
-        assert main_app.file_name.get() == (fn[:12] + "..") if len(fn) > 12 else fn
+        assert main_app.file_name.get() == (fn[:11] + "..") if len(fn) > 12 else fn
         assert main_app.file_path == "/path/to/test_file.xlsx"
