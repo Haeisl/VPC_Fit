@@ -58,27 +58,33 @@
 \indexentry{user\_input\_path (src.ModelData.ModelData attribute)@\spxentry{user\_input\_path}\spxextra{src.ModelData.ModelData attribute}|hyperpage}{10}
 \indexentry{module@\spxentry{module}!src.ModelFitter@\spxentry{src.ModelFitter}|hyperpage}{11}
 \indexentry{src.ModelFitter@\spxentry{src.ModelFitter}!module@\spxentry{module}|hyperpage}{11}
+\indexentry{\_fit\_ode() (in module src.ModelFitter)@\spxentry{\_fit\_ode()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
+\indexentry{\_fit\_reg() (in module src.ModelFitter)@\spxentry{\_fit\_reg()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
 \indexentry{check\_model\_is\_valid\_vector() (in module src.ModelFitter)@\spxentry{check\_model\_is\_valid\_vector()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
-\indexentry{evaluate\_fit() (in module src.ModelFitter)@\spxentry{evaluate\_fit()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
-\indexentry{fit() (in module src.ModelFitter)@\spxentry{fit()}\spxextra{in module src.ModelFitter}|hyperpage}{11}
+\indexentry{evaluate\_fit() (in module src.ModelFitter)@\spxentry{evaluate\_fit()}\spxextra{in module src.ModelFitter}|hyperpage}{12}
+\indexentry{fit() (in module src.ModelFitter)@\spxentry{fit()}\spxextra{in module src.ModelFitter}|hyperpage}{12}
 \indexentry{module@\spxentry{module}!src.VPCModel@\spxentry{src.VPCModel}|hyperpage}{13}
 \indexentry{src.VPCModel@\spxentry{src.VPCModel}!module@\spxentry{module}|hyperpage}{13}
 \indexentry{VPCModel (class in src.VPCModel)@\spxentry{VPCModel}\spxextra{class in src.VPCModel}|hyperpage}{13}
 \indexentry{\_\_init\_\_() (src.VPCModel.VPCModel method)@\spxentry{\_\_init\_\_()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
+\indexentry{\_independent\_var (src.VPCModel.VPCModel attribute)@\spxentry{\_independent\_var}\spxextra{src.VPCModel.VPCModel attribute}|hyperpage}{13}
+\indexentry{\_model\_string (src.VPCModel.VPCModel attribute)@\spxentry{\_model\_string}\spxextra{src.VPCModel.VPCModel attribute}|hyperpage}{13}
+\indexentry{\_set\_fitted\_consts() (src.VPCModel.VPCModel method)@\spxentry{\_set\_fitted\_consts()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
+\indexentry{\_set\_resulting\_function() (src.VPCModel.VPCModel method)@\spxentry{\_set\_resulting\_function()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
 \indexentry{components (src.VPCModel.VPCModel property)@\spxentry{components}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{13}
 \indexentry{constants (src.VPCModel.VPCModel property)@\spxentry{constants}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{13}
 \indexentry{cut\_off\_lhs() (src.VPCModel.VPCModel method)@\spxentry{cut\_off\_lhs()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
-\indexentry{cut\_off\_rhs() (src.VPCModel.VPCModel method)@\spxentry{cut\_off\_rhs()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{13}
-\indexentry{expression\_string (src.VPCModel.VPCModel property)@\spxentry{expression\_string}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{13}
+\indexentry{cut\_off\_rhs() (src.VPCModel.VPCModel method)@\spxentry{cut\_off\_rhs()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
+\indexentry{expression\_string (src.VPCModel.VPCModel property)@\spxentry{expression\_string}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{14}
 \indexentry{extract\_symbols() (src.VPCModel.VPCModel method)@\spxentry{extract\_symbols()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
 \indexentry{fitted\_consts (src.VPCModel.VPCModel property)@\spxentry{fitted\_consts}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{14}
 \indexentry{format\_eq() (src.VPCModel.VPCModel method)@\spxentry{format\_eq()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
-\indexentry{independent\_var (src.VPCModel.VPCModel property)@\spxentry{independent\_var}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{14}
-\indexentry{is\_ode() (src.VPCModel.VPCModel method)@\spxentry{is\_ode()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{14}
+\indexentry{independent\_var (src.VPCModel.VPCModel property)@\spxentry{independent\_var}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
+\indexentry{is\_ode() (src.VPCModel.VPCModel method)@\spxentry{is\_ode()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{15}
 \indexentry{is\_vector() (src.VPCModel.VPCModel method)@\spxentry{is\_vector()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{15}
 \indexentry{model\_function (src.VPCModel.VPCModel property)@\spxentry{model\_function}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
 \indexentry{model\_string (src.VPCModel.VPCModel property)@\spxentry{model\_string}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
 \indexentry{model\_string\_to\_function() (src.VPCModel.VPCModel method)@\spxentry{model\_string\_to\_function()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{15}
-\indexentry{resulting\_function (src.VPCModel.VPCModel property)@\spxentry{resulting\_function}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{15}
+\indexentry{resulting\_function (src.VPCModel.VPCModel property)@\spxentry{resulting\_function}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{16}
 \indexentry{set\_fit\_information() (src.VPCModel.VPCModel method)@\spxentry{set\_fit\_information()}\spxextra{src.VPCModel.VPCModel method}|hyperpage}{16}
 \indexentry{symbols (src.VPCModel.VPCModel property)@\spxentry{symbols}\spxextra{src.VPCModel.VPCModel property}|hyperpage}{16}

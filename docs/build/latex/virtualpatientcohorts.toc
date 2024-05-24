@@ -7,5 +7,5 @@
 \contentsline {chapter}{\numberline {6}ModelFitter module}{11}{chapter.6}%
 \contentsline {chapter}{\numberline {7}VPCModel module}{13}{chapter.7}%
 \contentsline {chapter}{\numberline {8}Indices and tables}{17}{chapter.8}%
-\contentsline {chapter}{Python Module Index}{19}{section*.73}%
-\contentsline {chapter}{Index}{21}{section*.74}%
+\contentsline {chapter}{Python Module Index}{19}{section*.79}%
+\contentsline {chapter}{Index}{21}{section*.80}%

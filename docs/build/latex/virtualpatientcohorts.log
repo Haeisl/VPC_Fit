@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.2)  17 APR 2024 04:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.2)  24 MAY 2024 13:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -893,11 +893,11 @@ Chapter 5.
 Chapter 6.
 [11
 
-] [12
-
-]
+] [12]
 Chapter 7.
-[13] [14] [15] [16]
+[13
+
+] [14] [15] [16]
 Chapter 8.
 [17
 
@@ -916,161 +916,178 @@ face.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--24
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+[]\T1/txtt/m/n/10 _independent_var \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.VPCModel
+.VPCModel at-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+[]\T1/txtt/m/n/10 _set_fitted_consts() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.VPCM
+odel.VPCModel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--22
+[]\T1/txtt/m/n/10 _set_resulting_function()
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
 []\T1/txtt/m/n/10 check_inputs_populated()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--26
+Underfull \hbox (badness 10000) in paragraph at lines 31--33
 []\T1/txtt/m/n/10 check_inputs_sensible()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--28
+Underfull \hbox (badness 10000) in paragraph at lines 33--35
 []\T1/txtt/m/n/10 check_model_is_valid_vector() \T1/qtm/m/n/10 (\T1/qtm/m/it/10
  in mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
 []\T1/txtt/m/n/10 compute_params() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkInter
 face.MainApp
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--36
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
 []\T1/txtt/m/n/10 create_difference_dict()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--36
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
 \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkResultInterface.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--38
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
 []\T1/txtt/m/n/10 create_interpretation_string()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
 []\T1/txtt/m/n/10 create_tooltip_for() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkI
 nterface.MainApp
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
+Underfull \hbox (badness 10000) in paragraph at lines 53--55
 []\T1/txtt/m/n/10 display_interpreted_input()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 []\T1/txtt/m/n/10 extract_symbols() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.VPCMode
 l.VPCModel
  []
 
 
-Overfull \hbox (19.61224pt too wide) in paragraph at lines 69--71
+Overfull \hbox (19.61224pt too wide) in paragraph at lines 76--78
 []\T1/txtt/m/n/10 graph_residuals() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkResu
 ltInterface.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--79
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 []\T1/txtt/m/n/10 independent_var \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.VPCModel.
 VPCModel prop-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
-[]\T1/txtt/m/n/10 is_extension_supported() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in m
-od-ule
  []
 
 [21
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 89--91
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
+[]\T1/txtt/m/n/10 is_extension_supported() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in m
+od-ule
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--98
 []\T1/txtt/m/n/10 missing_independent_variables()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--96
+Underfull \hbox (badness 10000) in paragraph at lines 101--103
 []\T1/txtt/m/n/10 model_string_to_function()
  []
 
 
-Overfull \hbox (9.11227pt too wide) in paragraph at lines 109--111
+Overfull \hbox (9.11227pt too wide) in paragraph at lines 116--118
 []\T1/txtt/m/n/10 process_lists() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkResult
 Interface.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--117
+Underfull \hbox (badness 10000) in paragraph at lines 122--124
 []\T1/txtt/m/n/10 remove_compute_tooltip()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--121
+Underfull \hbox (badness 10000) in paragraph at lines 126--128
 []\T1/txtt/m/n/10 reset_app() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkResultInte
 rface.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--129
+Underfull \hbox (badness 10000) in paragraph at lines 134--136
 []\T1/txtt/m/n/10 save_as() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkResultInterf
 ace.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
 []\T1/txtt/m/n/10 set_fit_information() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.VPC
 Model.VPCModel
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--133
+Underfull \hbox (badness 10000) in paragraph at lines 138--140
 []\T1/txtt/m/n/10 set_result_label_text()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--133
+Underfull \hbox (badness 10000) in paragraph at lines 138--140
 \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.CTkResultInterface.ResultInterface
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 []\T1/txtt/m/n/10 user_input_consts \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.ModelDa
 ta.ModelData
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 []\T1/txtt/m/n/10 user_input_model \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.ModelDat
 a.ModelData at-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--154
+Underfull \hbox (badness 10000) in paragraph at lines 159--161
 []\T1/txtt/m/n/10 user_input_parameter \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.Mode
 lData.ModelData
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
 []\T1/txtt/m/n/10 user_input_path \T1/qtm/m/n/10 (\T1/qtm/m/it/10 src.ModelData
 .ModelData at-
  []
 
 [22]) (./virtualpatientcohorts.aux)
 Package rerunfilecheck Info: File `virtualpatientcohorts.out' has not changed.
-(rerunfilecheck)             Checksum: BDFF55F791A4B55F588713F37F785875;1250.
+(rerunfilecheck)             Checksum: 40BF4B110A6E514FF829A02DD1873E2A;1250.
  ) 
 Here is how much of TeX's memory you used:
- 15422 strings out of 479485
- 236350 string characters out of 5875916
- 560238 words of memory out of 5000000
- 31937 multiletter control sequences out of 15000+600000
+ 15434 strings out of 479485
+ 236694 string characters out of 5875916
+ 561490 words of memory out of 5000000
+ 31943 multiletter control sequences out of 15000+600000
  580913 words of font info for 69 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  80i,12n,85p,1187b,707s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1085,10 +1102,10 @@ nts/type1/public/tex-gyre/qtmri.pfb><c:/texlive/2020/texmf-dist/fonts/type1/pub
 lic/txfonts/t1xbtt.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t
 1xtt.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb><c:/t
 exlive/2020/texmf-dist/fonts/type1/public/txfonts/tcxbtt.pfb>
-Output written on virtualpatientcohorts.pdf (26 pages, 215043 bytes).
+Output written on virtualpatientcohorts.pdf (26 pages, 217328 bytes).
 PDF statistics:
- 430 PDF objects out of 1000 (max. 8388607)
- 382 compressed objects within 4 object streams
- 107 named destinations out of 1000 (max. 500000)
+ 448 PDF objects out of 1000 (max. 8388607)
+ 400 compressed objects within 4 object streams
+ 113 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

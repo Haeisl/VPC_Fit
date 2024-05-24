@@ -64,7 +64,7 @@
 
 
 \title{Virtual Patient Cohorts}
-\date{Apr 17, 2024}
+\date{May 24, 2024}
 \release{2024}
 \author{Alisa Ebert, David Hasse}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1054,6 +1054,74 @@ This module provides functions to fit a model to data.
 \sphinxAtStartPar
 The fitting routines are based on the assumption that the model is of type VPCModel
 with provided data consisting of a list of lists where each sub\sphinxhyphen{}list is a column from a datasheet.
+\index{\_fit\_ode() (in module src.ModelFitter)@\spxentry{\_fit\_ode()}\spxextra{in module src.ModelFitter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{ModelFitter:src.ModelFitter._fit_ode}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.ModelFitter.}}\sphinxbfcode{\sphinxupquote{\_fit\_ode}}}{\sphinxparam{\DUrole{n}{model}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{{\hyperref[\detokenize{VPCModel:src.VPCModel.VPCModel}]{\sphinxcrossref{VPCModel}}}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{data}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{list\DUrole{p}{{[}}list\DUrole{p}{{[}}int\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }float\DUrole{p}{{]}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ None}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Fit a model represented by an ordinary differential equation (ODE) to provided data.
+
+\sphinxAtStartPar
+This function sets the internal variables of the model to reflect the fit.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{model}} ({\hyperref[\detokenize{VPCModel:src.VPCModel.VPCModel}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{VPCModel}}}}}) \textendash{} The model that is to be fit.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{data}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}\sphinxstyleliteralemphasis{\sphinxupquote{{[}}}\sphinxstyleliteralemphasis{\sphinxupquote{list}}\sphinxstyleliteralemphasis{\sphinxupquote{{[}}}\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{  |  }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}\sphinxstyleliteralemphasis{\sphinxupquote{{]}}}\sphinxstyleliteralemphasis{\sphinxupquote{{]}}}) \textendash{} The provided data to which the model is fitted.
+
+\end{itemize}
+
+\sphinxlineitem{Raises}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{RuntimeError}} \textendash{} If an error occurs during the minimization process or while solving the initial value problem.
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_fit\_reg() (in module src.ModelFitter)@\spxentry{\_fit\_reg()}\spxextra{in module src.ModelFitter}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{ModelFitter:src.ModelFitter._fit_reg}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{src.ModelFitter.}}\sphinxbfcode{\sphinxupquote{\_fit\_reg}}}{\sphinxparam{\DUrole{n}{model}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{{\hyperref[\detokenize{VPCModel:src.VPCModel.VPCModel}]{\sphinxcrossref{VPCModel}}}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{data}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{list\DUrole{p}{{[}}list\DUrole{p}{{[}}int\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }float\DUrole{p}{{]}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ None}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Fit a model that is not represented by an ordinary differential equation (ODE) to provided data.
+
+\sphinxAtStartPar
+This function sets the internal parameters of the model to reflect the fit.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{model}} ({\hyperref[\detokenize{VPCModel:src.VPCModel.VPCModel}]{\sphinxcrossref{\sphinxstyleliteralemphasis{\sphinxupquote{VPCModel}}}}}) \textendash{} The model that is to be fitted.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{data}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}\sphinxstyleliteralemphasis{\sphinxupquote{{[}}}\sphinxstyleliteralemphasis{\sphinxupquote{list}}\sphinxstyleliteralemphasis{\sphinxupquote{{[}}}\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{  |  }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}\sphinxstyleliteralemphasis{\sphinxupquote{{]}}}\sphinxstyleliteralemphasis{\sphinxupquote{{]}}}) \textendash{} The provided data to which the model is fitted.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+Tuple consisting of a callable function, as well as values    for the independent variable and their resulting data, taken from the provided input data
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+None
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{check\_model\_is\_valid\_vector() (in module src.ModelFitter)@\spxentry{check\_model\_is\_valid\_vector()}\spxextra{in module src.ModelFitter}}
 
 \begin{fulllineitems}
@@ -1171,6 +1239,60 @@ Dataclass to store a model and extract relevant information from it.
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{\_model\_string}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{str}}\sphinxparamcomma \sphinxparam{\DUrole{n}{\_independent\_var}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{list\DUrole{p}{{[}}str\DUrole{p}{{]}}}}}{{ $\rightarrow$ None}}
 \pysigstopsignatures
+\end{fulllineitems}
+
+\index{\_independent\_var (src.VPCModel.VPCModel attribute)@\spxentry{\_independent\_var}\spxextra{src.VPCModel.VPCModel attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VPCModel:src.VPCModel.VPCModel._independent_var}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{\_independent\_var}}\sphinxbfcode{\sphinxupquote{\DUrole{p}{:}\DUrole{w}{ }list\DUrole{p}{{[}}str\DUrole{p}{{]}}}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{\_model\_string (src.VPCModel.VPCModel attribute)@\spxentry{\_model\_string}\spxextra{src.VPCModel.VPCModel attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VPCModel:src.VPCModel.VPCModel._model_string}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{\_model\_string}}\sphinxbfcode{\sphinxupquote{\DUrole{p}{:}\DUrole{w}{ }str}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{\_set\_fitted\_consts() (src.VPCModel.VPCModel method)@\spxentry{\_set\_fitted\_consts()}\spxextra{src.VPCModel.VPCModel method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VPCModel:src.VPCModel.VPCModel._set_fitted_consts}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_set\_fitted\_consts}}}{\sphinxparam{\DUrole{n}{fitted\_consts\_dict}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }float\DUrole{p}{{]}}}}}{{ $\rightarrow$ None}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Function to set the computed fitted constants to its internal variable.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{fitted\_consts\_dict}} (\sphinxstyleliteralemphasis{\sphinxupquote{dict}}\sphinxstyleliteralemphasis{\sphinxupquote{{[}}}\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{float}}\sphinxstyleliteralemphasis{\sphinxupquote{{]}}}) \textendash{} Dictionary of \{‘const\_name’: value\}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{\_set\_resulting\_function() (src.VPCModel.VPCModel method)@\spxentry{\_set\_resulting\_function()}\spxextra{src.VPCModel.VPCModel method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{VPCModel:src.VPCModel.VPCModel._set_resulting_function}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_set\_resulting\_function}}}{\sphinxparam{\DUrole{n}{fitted\_function}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{str}}}{{ $\rightarrow$ None}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Function to set the computed fitted function to its internal variable.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{fitted\_function}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} The fitted function string.
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{components (src.VPCModel.VPCModel property)@\spxentry{components}\spxextra{src.VPCModel.VPCModel property}}

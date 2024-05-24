@@ -12,6 +12,13 @@
 		\hyperpage{5}
   \item \spxentry{\_\_init\_\_()}\spxextra{src.ModelData.ModelData method}, \hyperpage{9}
   \item \spxentry{\_\_init\_\_()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
+  \item \spxentry{\_fit\_ode()}\spxextra{in module src.ModelFitter}, \hyperpage{11}
+  \item \spxentry{\_fit\_reg()}\spxextra{in module src.ModelFitter}, \hyperpage{11}
+  \item \spxentry{\_independent\_var}\spxextra{src.VPCModel.VPCModel attribute}, \hyperpage{13}
+  \item \spxentry{\_model\_string}\spxextra{src.VPCModel.VPCModel attribute}, \hyperpage{13}
+  \item \spxentry{\_set\_fitted\_consts()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
+  \item \spxentry{\_set\_resulting\_function()}\spxextra{src.VPCModel.VPCModel method}, 
+		\hyperpage{13}
 
   \indexspace
   \bigletter B
@@ -38,7 +45,7 @@
   \item \spxentry{create\_tooltip\_for()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{4}
   \item \spxentry{CSV}\spxextra{src.FileHandler.FileExtensions attribute}, \hyperpage{7}
   \item \spxentry{cut\_off\_lhs()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
-  \item \spxentry{cut\_off\_rhs()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{13}
+  \item \spxentry{cut\_off\_rhs()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{14}
 
   \indexspace
   \bigletter D
@@ -48,16 +55,16 @@
 
   \indexspace
   \bigletter E
-  \item \spxentry{evaluate\_fit()}\spxextra{in module src.ModelFitter}, \hyperpage{11}
+  \item \spxentry{evaluate\_fit()}\spxextra{in module src.ModelFitter}, \hyperpage{12}
   \item \spxentry{EXCEL}\spxextra{src.FileHandler.FileExtensions attribute}, \hyperpage{7}
-  \item \spxentry{expression\_string}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{13}
+  \item \spxentry{expression\_string}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{14}
   \item \spxentry{extract\_symbols()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{14}
 
   \indexspace
   \bigletter F
   \item \spxentry{FailedFitInterface}\spxextra{class in src.CTkResultInterface}, \hyperpage{5}
   \item \spxentry{FileExtensions}\spxextra{class in src.FileHandler}, \hyperpage{7}
-  \item \spxentry{fit()}\spxextra{in module src.ModelFitter}, \hyperpage{11}
+  \item \spxentry{fit()}\spxextra{in module src.ModelFitter}, \hyperpage{12}
   \item \spxentry{fitted\_consts}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
   \item \spxentry{fitted\_consts}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{14}
   \item \spxentry{fitted\_model}\spxextra{src.ModelData.ModelData attribute}, \hyperpage{10}
@@ -75,9 +82,9 @@
 
   \indexspace
   \bigletter I
-  \item \spxentry{independent\_var}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{14}
+  \item \spxentry{independent\_var}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{15}
   \item \spxentry{is\_extension\_supported()}\spxextra{in module src.FileHandler}, \hyperpage{7}
-  \item \spxentry{is\_ode()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{14}
+  \item \spxentry{is\_ode()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{15}
   \item \spxentry{is\_vector()}\spxextra{src.VPCModel.VPCModel method}, \hyperpage{15}
 
   \indexspace
@@ -119,7 +126,7 @@
   \item \spxentry{reset\_app()}\spxextra{src.CTkResultInterface.ResultInterface method}, 
 		\hyperpage{6}
   \item \spxentry{reset\_state()}\spxextra{src.CTkInterface.MainApp method}, \hyperpage{4}
-  \item \spxentry{resulting\_function}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{15}
+  \item \spxentry{resulting\_function}\spxextra{src.VPCModel.VPCModel property}, \hyperpage{16}
   \item \spxentry{ResultInterface}\spxextra{class in src.CTkResultInterface}, \hyperpage{5}
 
   \indexspace
